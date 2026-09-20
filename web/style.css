@@ -1,0 +1,17 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #101714; color: #f1f7ef; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+main { width: min(100%, 560px); }
+.eyebrow { font-size: .75rem; letter-spacing: .17em; color: #a7d4ab; font-weight: 700; }
+h1 { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.05; margin: .5rem 0 1.5rem; }
+#server-status { margin-bottom: 2rem; color: #b6c7b9; }
+.player { padding: clamp(20px, 5vw, 36px); border: 1px solid #48634d; border-radius: 22px; background: #1b2920; box-shadow: 0 16px 48px #0005; }
+h2 { margin: 1rem 0 2rem; font-size: 1.8rem; }
+.controls { display: flex; gap: 12px; margin-bottom: 2rem; }
+button { border: 0; border-radius: 999px; background: #b3f0aa; color: #112319; padding: 12px 24px; font: inherit; font-weight: 700; cursor: pointer; }
+button:disabled { opacity: .4; cursor: default; }
+button:focus-visible, input:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+label { display: block; font-size: .85rem; margin-bottom: 12px; color: #c9d8ca; }
+input[type=range] { width: 100%; accent-color: #b3f0aa; cursor: pointer; }
+.times { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; color: #c9d8ca; }
+#error { color: #ffb4a8; }

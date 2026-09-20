@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resonance M0</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Project Resonance · M0</p>
+    <h1>Local audio, live</h1>
+    <p id="server-status" role="status">Checking server…</p>
+    <section class="player" aria-label="Demo track player">
+      <p class="eyebrow">NOW PLAYING</p>
+      <h2 id="track-title">Loading track…</h2>
+      <audio id="audio" preload="metadata"></audio>
+      <div class="controls">
+        <button id="play" type="button" disabled>Play</button>
+        <button id="pause" type="button" disabled>Pause</button>
+      </div>
+      <label for="seek">Position</label>
+      <input id="seek" type="range" min="0" max="1000" value="0" disabled>
+      <div class="times"><output id="elapsed">0:00</output><output id="duration">—</output></div>
+      <p id="error" role="alert" hidden></p>
+    </section>
+  </main>
+</body>
+</html>

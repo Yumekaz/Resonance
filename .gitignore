@@ -1,3 +1,12 @@
+# Generated local media and build output
+data/
+bin/
+*.exe
+node_modules/
+playwright-report/
+test-results/
+
+# Private/local engineering and planning documents
 ACCEPTANCE.md
 AGENTS.md
 CODEX_MODEL_GUIDE.md
@@ -5,5 +14,6 @@ CODEX_REVIEW_PROMPT.md
 CODEX_START_PROMPT.md
 CURRENT_MILESTONE.md
 RESONANCE_BLUEPRINT.md
+PROJECT_RESONANCE_FLAGSHIP_BLUEPRINT.md
 README_HANDOFF.md
 ROADMAP.md

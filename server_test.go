@@ -166,10 +166,11 @@ func TestEmptyMissingAndTruncated(t *testing.T) {
 
 type cancelWriter struct {
 	ctxCancel context.CancelFunc
+	header    http.Header
 	written   bool
 }
 
-func (w *cancelWriter) Header() http.Header { return make(http.Header) }
+func (w *cancelWriter) Header() http.Header { return w.header }
 func (w *cancelWriter) WriteHeader(int)     {}
 func (w *cancelWriter) Write(p []byte) (int, error) {
 	w.ctxCancel()
@@ -182,9 +183,16 @@ func TestCancellationTelemetry(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	r := httptest.NewRequest(http.MethodGet, "/media/demo-track", nil).WithContext(ctx)
-	w := &cancelWriter{ctxCancel: cancel}
+	w := &cancelWriter{ctxCancel: cancel, header: make(http.Header)}
 	h.ServeHTTP(w, r)
-	if !w.written || !strings.Contains(logs.String(), `"canceled":true`) || !strings.Contains(logs.String(), `"error":"stream_failed"`) {
-		t.Fatalf("cancellation: %s", logs.String())
+	var event map[string]any
+	if err := json.Unmarshal(logs.Bytes(), &event); err != nil {
+		t.Fatalf("cancellation telemetry: %v; logs=%s", err, logs.String())
+	}
+	if !w.written || event["request_id"] == "" || event["canceled"] != true || event["bytes_intended"] != float64(128*1024) || event["bytes_served"] != float64(0) || event["error"] != "client_canceled" {
+		t.Fatalf("cancellation telemetry: %s", logs.String())
+	}
+	if event["error"] == "stream_failed" {
+		t.Fatalf("cancellation reported as server stream failure: %s", logs.String())
 	}
 }

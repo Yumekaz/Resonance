@@ -87,10 +87,15 @@ func (a *app) media(w http.ResponseWriter, r *http.Request) {
 	requestedStart, requestedEnd := int64(-1), int64(-1)
 	var streamErr error
 	defer func() {
-		canceled := r.Context().Err() != nil
+		contextErr := r.Context().Err()
+		canceled := contextErr != nil
 		attrs := []any{"request_id", requestID, "media_id", id, "range", usedRange, "range_applied", applyRange && status == http.StatusPartialContent, "range_header", rangeHeader, "selected_start", requestedStart, "selected_end", requestedEnd, "status", status, "bytes_intended", intended, "bytes_served", served, "duration_ms", float64(time.Since(started).Microseconds()) / 1000, "canceled", canceled}
 		if streamErr != nil {
-			attrs = append(attrs, "error", "stream_failed")
+			errorClass := "stream_failed"
+			if contextErr != nil {
+				errorClass = "client_canceled"
+			}
+			attrs = append(attrs, "error", errorClass)
 		}
 		a.log.Info("media_request", attrs...)
 	}()

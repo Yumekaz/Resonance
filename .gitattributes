@@ -1,0 +1,2 @@
+# Embedded migration checksums must not vary with checkout line endings.
+internal/storage/migrations/*.sql text eol=lf

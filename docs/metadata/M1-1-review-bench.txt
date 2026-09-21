@@ -1,0 +1,15 @@
+goos: windows
+goarch: amd64
+pkg: resonance/internal/metadata
+cpu: AMD Ryzen 7 5700U with Radeon Graphics
+BenchmarkMetadataSparseMP3-16           	   19692	     81025 ns/op	     984 B/op	      45 allocs/op
+BenchmarkMetadataSparseMP3-16           	   14770	     80216 ns/op	     984 B/op	      45 allocs/op
+BenchmarkMetadataSparseMP3-16           	   20071	     62291 ns/op	     984 B/op	      45 allocs/op
+BenchmarkReviewArtwork-16               	    3592	    359016 ns/op	 1057762 B/op	      28 allocs/op
+BenchmarkReviewArtwork-16               	    3369	    318638 ns/op	 1057759 B/op	      28 allocs/op
+BenchmarkReviewArtwork-16               	    4594	    239770 ns/op	 1057757 B/op	      28 allocs/op
+BenchmarkReviewRejectedDuplicates-16    	   23292	     50808 ns/op	   16472 B/op	    1028 allocs/op
+BenchmarkReviewRejectedDuplicates-16    	   23598	     50342 ns/op	   16472 B/op	    1028 allocs/op
+BenchmarkReviewRejectedDuplicates-16    	   24080	     49871 ns/op	   16472 B/op	    1028 allocs/op
+PASS
+ok  	resonance/internal/metadata	17.005s

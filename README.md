@@ -1,10 +1,12 @@
-# Project Resonance — M0 Streaming Physics
+# Project Resonance — M0 stream and M1.1 persistence foundations
 
 One Go server streams one configured WAV file to a browser player. M0 is a local/LAN experiment with no authentication or Internet access feature.
 
+M1.1 adds PostgreSQL metadata foundations and a metadata parser evaluation. It does not enroll folders or scan a library. Without `RESONANCE_DATABASE_URL`, the accepted M0 demo continues to run; `/ready` reports the catalog as unconfigured. See the [M1.1 PostgreSQL runbook](docs/runbooks/M1-1-postgres.md) for setup, migrations, integration tests, backup, and restore.
+
 ## Requirements
 
-- Go 1.24 or newer (`os.OpenInRoot` provides filesystem containment)
+- Go 1.25 or newer (`os.OpenInRoot` provides filesystem containment; the patched `pgx` version requires Go 1.25)
 - A browser with PCM WAV playback support
 - Node.js 18+, Playwright, and installed Chrome for browser tests only
 
@@ -19,11 +21,12 @@ go run . -media data/demo.wav
 
 Open <http://127.0.0.1:8080/>. The default listener is loopback. For a phone on a trusted LAN, explicitly bind to the laptop's private address using `-addr <laptop-LAN-IP>:8080`. Permit the port only on the private network in the host firewall. Anyone able to reach this unauthenticated HTTP listener can retrieve the configured file. Do not forward the port to the Internet.
 
-`-media` selects a trusted PCM WAV without source edits. Its parent directory is the enrolled root; the basename resolves through `os.OpenInRoot`. Links escaping that root and Windows alternate data streams are rejected. The configured parent directory itself is trusted operator input; this is not a sandbox against a privileged local attacker, mount changes, or malicious hard links. The only public media ID is `demo-track`, never a client pathname. Web assets are embedded, so a built executable does not serve arbitrary files or links from the working directory.
+`-media` selects a trusted PCM WAV without source edits. Its parent directory is the configured file root for this diagnostic track; the basename resolves through `os.OpenInRoot`. This is not M1 library-folder enrollment. Links escaping that root and Windows alternate data streams are rejected. The configured parent directory itself is trusted operator input; this is not a sandbox against a privileged local attacker, mount changes, or malicious hard links. The only public media ID is `demo-track`, never a client pathname. Web assets are embedded, so a built executable does not serve arbitrary files or links from the working directory.
 
 ## API and Range policy
 
 - `GET /health`: status/version JSON (server liveness, not codec validation).
+- `GET /ready`: PostgreSQL and migration readiness. Returns `503` when the catalog dependency is unconfigured or unavailable, and `200` when the configured database is reachable at the current schema version. It does not claim that scanning or browsing exists.
 - `GET /api/v1/demo-track`: logical ID, title, and stream URL.
 - `GET /media/demo-track`: full `200`, or single bounded/open-ended/suffix Range `206` with exact length and inclusive `Content-Range`.
 - Unsatisfiable ranges return `416` with `Content-Range: bytes */size`. Malformed single-byte syntax returns `400`. Reversed intervals return `416`.

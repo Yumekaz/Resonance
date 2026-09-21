@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"errors"
 	"flag"
 	"log"
 	"net/http"
@@ -8,33 +10,71 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"resonance/internal/storage"
 )
 
 func main() {
+	if err := run(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+// Return before reporting fatal startup/listener errors so resource defers run.
+func run() error {
 	addr := flag.String("addr", "127.0.0.1:8080", "HTTP listen address; use a LAN address only on a trusted network")
 	media := flag.String("media", "data/demo.wav", "configured WAV file for demo-track")
 	title := flag.String("title", "Demo Track", "display title")
+	migrateOnly := flag.Bool("migrate-only", false, "apply pending database migrations and exit")
 	flag.Parse()
+	databaseURL := os.Getenv("RESONANCE_DATABASE_URL")
+	var ready func(context.Context) error
+	if databaseURL != "" || *migrateOnly {
+		if databaseURL == "" {
+			return errors.New("RESONANCE_DATABASE_URL is required for migrations")
+		}
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		store, err := storage.Open(ctx, databaseURL)
+		if err != nil {
+			return errors.New("invalid database configuration")
+		}
+		defer store.Close()
+		if *migrateOnly {
+			if err := store.Migrate(ctx); err != nil {
+				return errors.New("database migration failed; inspect PostgreSQL logs and migration state")
+			}
+			log.Print("database migrations applied")
+			return nil
+		}
+		if err := store.Ready(ctx); err != nil {
+			return errors.New("database unavailable or schema incompatible; run migrations and check PostgreSQL")
+		}
+		ready = store.Ready
+	}
 
 	if strings.Contains(filepath.Base(*media), ":") {
-		log.Fatal("alternate data streams are not supported")
+		return errors.New("alternate data streams are not supported")
 	}
 	f, err := os.OpenInRoot(filepath.Dir(*media), filepath.Base(*media))
 	if err != nil {
-		log.Fatalf("configured media is unavailable: %v", err)
+		return errors.New("configured media is unavailable")
 	}
 	info, err := f.Stat()
 	f.Close()
 	if err != nil || !info.Mode().IsRegular() {
-		log.Fatal("configured media must be a readable regular file")
+		return errors.New("configured media must be a readable regular file")
 	}
 	server := &http.Server{
 		Addr:              *addr,
-		Handler:           newHandler(*media, *title, os.Stdout),
+		Handler:           newHandlerWithReadiness(*media, *title, os.Stdout, ready),
 		ReadHeaderTimeout: 5 * time.Second,
 		IdleTimeout:       60 * time.Second,
 		MaxHeaderBytes:    16 * 1024,
 	}
-	log.Printf("Resonance M0 listening on %s", *addr)
-	log.Fatal(server.ListenAndServe())
+	log.Printf("Resonance listening on %s", *addr)
+	if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		return errors.New("HTTP server stopped or could not listen")
+	}
+	return nil
 }

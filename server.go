@@ -32,15 +32,22 @@ type track struct {
 type app struct {
 	tracks map[string]track
 	log    *slog.Logger
+	ready  func(context.Context) error
 }
 
 func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
+	return newHandlerWithReadiness(mediaPath, title, logOutput, nil)
+}
+
+func newHandlerWithReadiness(mediaPath, title string, logOutput io.Writer, ready func(context.Context) error) http.Handler {
 	a := &app{
 		tracks: map[string]track{"demo-track": {ID: "demo-track", Title: title, StreamURL: "/media/demo-track", root: filepath.Dir(mediaPath), filename: filepath.Base(mediaPath)}},
 		log:    slog.New(slog.NewJSONHandler(logOutput, nil)),
+		ready:  ready,
 	}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", a.health)
+	mux.HandleFunc("GET /ready", a.readiness)
 	mux.HandleFunc("GET /api/v1/demo-track", a.metadata)
 	mux.HandleFunc("GET /media/{id}", a.media)
 	assets, _ := fs.Sub(webAssets, "web")
@@ -52,6 +59,20 @@ func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
 	})
 }
 
+func (a *app) readiness(w http.ResponseWriter, r *http.Request) {
+	if a.ready == nil {
+		jsonResponseStatus(w, http.StatusServiceUnavailable, map[string]string{"status": "not_ready", "catalog": "unconfigured"})
+		return
+	}
+	ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
+	defer cancel()
+	if err := a.ready(ctx); err != nil {
+		jsonResponseStatus(w, http.StatusServiceUnavailable, map[string]string{"status": "not_ready", "catalog": "unavailable"})
+		return
+	}
+	jsonResponse(w, map[string]string{"status": "ready", "catalog": "ready"})
+}
+
 func (a *app) health(w http.ResponseWriter, r *http.Request) {
 	jsonResponse(w, map[string]string{"status": "ok", "version": "dev"})
 }
@@ -61,7 +82,12 @@ func (a *app) metadata(w http.ResponseWriter, r *http.Request) {
 }
 
 func jsonResponse(w http.ResponseWriter, value any) {
+	jsonResponseStatus(w, http.StatusOK, value)
+}
+
+func jsonResponseStatus(w http.ResponseWriter, status int, value any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(value)
 }
 

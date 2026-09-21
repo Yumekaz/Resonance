@@ -5,6 +5,9 @@ bin/
 node_modules/
 playwright-report/
 test-results/
+.env
+.env.*
+*.dump
 
 # Private/local engineering and planning documents
 ACCEPTANCE.md
@@ -13,6 +16,7 @@ CODEX_MODEL_GUIDE.md
 CODEX_REVIEW_PROMPT.md
 CODEX_START_PROMPT.md
 CURRENT_MILESTONE.md
+M1_POSTGRES_ADR.md
 RESONANCE_BLUEPRINT.md
 PROJECT_RESONANCE_FLAGSHIP_BLUEPRINT.md
 README_HANDOFF.md

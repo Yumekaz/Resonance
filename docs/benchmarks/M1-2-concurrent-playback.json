@@ -1,0 +1,1044 @@
+{
+  "cache_state": "uncontrolled OS cache; full transfer precedes ranges",
+  "concurrency": 1,
+  "connection_policy": "Go default transport, sequential reuse",
+  "first_range_ttfb_ms": 3.3752,
+  "full_ttfb_ms": 4.0716,
+  "go_arch": "amd64",
+  "go_os": "windows",
+  "go_version": "go1.25.0",
+  "media_bytes": 26460044,
+  "median_method": "mean of middle pair for even sample counts",
+  "p95_method": "nearest rank ceil(0.95*N)",
+  "random_range_total_median_ms": 3.2838000000000003,
+  "random_range_total_p95_ms": 4.1344,
+  "random_range_ttfb_median_ms": 3.19925,
+  "random_range_ttfb_p95_ms": 4.0464,
+  "random_seed": 42,
+  "range_bytes": 65536,
+  "request_count": 100,
+  "samples": [
+    {
+      "kind": "full",
+      "offset": 0,
+      "ttfb_ms": 4.0716,
+      "total_ms": 52.6174,
+      "bytes": 26460044,
+      "status": 200,
+      "content_range": "",
+      "request_id": "c8140415261384a24e590366c8a420d3"
+    },
+    {
+      "kind": "range_first",
+      "offset": 0,
+      "ttfb_ms": 3.3752,
+      "total_ms": 3.3752,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 0-65535/26460044",
+      "request_id": "092e23e3e6ac9367aa1cd0b7a82ae203"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15934243,
+      "ttfb_ms": 2.7626,
+      "total_ms": 2.7626,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15934243-15999778/26460044",
+      "request_id": "c03c08750bfe480fdc44a654582624e5"
+    },
+    {
+      "kind": "random_range",
+      "offset": 26250507,
+      "ttfb_ms": 2.6811000000000003,
+      "total_ms": 2.6811000000000003,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 26250507-26316042/26460044",
+      "request_id": "0548f1cf445d008edfaea17b087781dd"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22687448,
+      "ttfb_ms": 2.4436,
+      "total_ms": 2.4436,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22687448-22752983/26460044",
+      "request_id": "39abbd055c1986ddda946ca31c11decf"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22371425,
+      "ttfb_ms": 2.1026000000000002,
+      "total_ms": 2.1026000000000002,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22371425-22436960/26460044",
+      "request_id": "69908a0d0c728e1f338c459f81c0597b"
+    },
+    {
+      "kind": "random_range",
+      "offset": 5570417,
+      "ttfb_ms": 2.7166,
+      "total_ms": 2.7166,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 5570417-5635952/26460044",
+      "request_id": "ffdeabd2b897fe015708a0616d45a39c"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24144457,
+      "ttfb_ms": 3.4344,
+      "total_ms": 3.4344,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24144457-24209992/26460044",
+      "request_id": "d8f573e2189c2303667c6948e1e50559"
+    },
+    {
+      "kind": "random_range",
+      "offset": 25220039,
+      "ttfb_ms": 2.8676,
+      "total_ms": 2.8676,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 25220039-25285574/26460044",
+      "request_id": "a39e77f765a1e1f41de8ab41cab4ac8a"
+    },
+    {
+      "kind": "random_range",
+      "offset": 5916368,
+      "ttfb_ms": 2.076,
+      "total_ms": 2.076,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 5916368-5981903/26460044",
+      "request_id": "719d39b34bd09ea4a1445c7db1d3a156"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22437116,
+      "ttfb_ms": 2.8958,
+      "total_ms": 2.8958,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22437116-22502651/26460044",
+      "request_id": "0048db670a0703cf3d8df8921d381a92"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15286916,
+      "ttfb_ms": 2.644,
+      "total_ms": 2.644,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15286916-15352451/26460044",
+      "request_id": "ef418bbb7b0437608ac4e4ec9a68c71c"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22546038,
+      "ttfb_ms": 2.6416999999999997,
+      "total_ms": 2.6416999999999997,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22546038-22611573/26460044",
+      "request_id": "f90dc9ee7084ed81c238dc96805e75e9"
+    },
+    {
+      "kind": "random_range",
+      "offset": 9925473,
+      "ttfb_ms": 2.9227,
+      "total_ms": 3.4891,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 9925473-9991008/26460044",
+      "request_id": "edf4158cfa0e98f675463519593ec1b1"
+    },
+    {
+      "kind": "random_range",
+      "offset": 16872102,
+      "ttfb_ms": 2.5503,
+      "total_ms": 3.1067,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 16872102-16937637/26460044",
+      "request_id": "9100f5c500ff4b50beb90ffa35c8fcc1"
+    },
+    {
+      "kind": "random_range",
+      "offset": 13523957,
+      "ttfb_ms": 2.2009999999999996,
+      "total_ms": 2.2009999999999996,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 13523957-13589492/26460044",
+      "request_id": "a427bd1a593c415f89fb76799b705eb8"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23533554,
+      "ttfb_ms": 2.9578,
+      "total_ms": 2.9578,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23533554-23599089/26460044",
+      "request_id": "2af0f267d4eac288a2f20ebb3d577ec6"
+    },
+    {
+      "kind": "random_range",
+      "offset": 10449684,
+      "ttfb_ms": 2.1782,
+      "total_ms": 2.1782,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 10449684-10515219/26460044",
+      "request_id": "ede97c6675bbfdd28aa2876f73c1437e"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23679143,
+      "ttfb_ms": 3.0148,
+      "total_ms": 3.0148,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23679143-23744678/26460044",
+      "request_id": "49044b38c63539980e826ae0aa6a0b81"
+    },
+    {
+      "kind": "random_range",
+      "offset": 19150678,
+      "ttfb_ms": 2.7372,
+      "total_ms": 2.7372,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 19150678-19216213/26460044",
+      "request_id": "b7a0e3ddb1bc0caf374ca92ffe4e0463"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15390135,
+      "ttfb_ms": 2.7372,
+      "total_ms": 2.7372,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15390135-15455670/26460044",
+      "request_id": "68a047459242f81c1d5d781be1a32b02"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24098811,
+      "ttfb_ms": 2.1599000000000004,
+      "total_ms": 2.1599000000000004,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24098811-24164346/26460044",
+      "request_id": "37f8b52f2991e28d97088ed6e52056c0"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22602977,
+      "ttfb_ms": 2.1989,
+      "total_ms": 2.1989,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22602977-22668512/26460044",
+      "request_id": "fdf1307cccbcf339f015d8afb4febc85"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22342106,
+      "ttfb_ms": 2.7891,
+      "total_ms": 2.7891,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22342106-22407641/26460044",
+      "request_id": "483e4b9bb99943b1baf8828f7917c279"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23305337,
+      "ttfb_ms": 2.9834,
+      "total_ms": 2.9834,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23305337-23370872/26460044",
+      "request_id": "2f0787a658455e6daec1d2b85ae6772f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2477791,
+      "ttfb_ms": 3.3733,
+      "total_ms": 3.3733,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2477791-2543326/26460044",
+      "request_id": "48935281d5f4b2108546e07b917c50f2"
+    },
+    {
+      "kind": "random_range",
+      "offset": 5487334,
+      "ttfb_ms": 3.1310000000000002,
+      "total_ms": 3.1310000000000002,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 5487334-5552869/26460044",
+      "request_id": "d31110bef3ecfd508b837e5dcb4ca6cc"
+    },
+    {
+      "kind": "random_range",
+      "offset": 16189793,
+      "ttfb_ms": 2.8682999999999996,
+      "total_ms": 3.4171,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 16189793-16255328/26460044",
+      "request_id": "5f915b2ceb693d9898f3510f48767992"
+    },
+    {
+      "kind": "random_range",
+      "offset": 6931601,
+      "ttfb_ms": 2.7536,
+      "total_ms": 2.7536,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 6931601-6997136/26460044",
+      "request_id": "c58606998931979d7a318a4518a91389"
+    },
+    {
+      "kind": "random_range",
+      "offset": 20975736,
+      "ttfb_ms": 2.8757,
+      "total_ms": 2.8757,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 20975736-21041271/26460044",
+      "request_id": "5ba6dfee06e7483674f87c05bb752166"
+    },
+    {
+      "kind": "random_range",
+      "offset": 3470164,
+      "ttfb_ms": 3.3365,
+      "total_ms": 3.3365,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 3470164-3535699/26460044",
+      "request_id": "521d50ff03b145d79d73f4f85b84a8c9"
+    },
+    {
+      "kind": "random_range",
+      "offset": 4624937,
+      "ttfb_ms": 3.15,
+      "total_ms": 3.15,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 4624937-4690472/26460044",
+      "request_id": "566f825fbb7c6816f3aed97e46f8d8ef"
+    },
+    {
+      "kind": "random_range",
+      "offset": 25492761,
+      "ttfb_ms": 3.2334,
+      "total_ms": 3.2334,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 25492761-25558296/26460044",
+      "request_id": "6dfa2e2779a1d7bfd75a11f86d07eae1"
+    },
+    {
+      "kind": "random_range",
+      "offset": 7538706,
+      "ttfb_ms": 3.3663,
+      "total_ms": 3.9229,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 7538706-7604241/26460044",
+      "request_id": "4fc11175ac5fdccb5e21efab5e4e0919"
+    },
+    {
+      "kind": "random_range",
+      "offset": 7794841,
+      "ttfb_ms": 2.9046,
+      "total_ms": 3.4565,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 7794841-7860376/26460044",
+      "request_id": "0849911bcfe79b2dbf19d53824109789"
+    },
+    {
+      "kind": "random_range",
+      "offset": 287558,
+      "ttfb_ms": 2.7369999999999997,
+      "total_ms": 3.3532,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 287558-353093/26460044",
+      "request_id": "004d2b91a04099b73dbf01d5b7fae1f7"
+    },
+    {
+      "kind": "random_range",
+      "offset": 7738863,
+      "ttfb_ms": 3.3988,
+      "total_ms": 3.3988,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 7738863-7804398/26460044",
+      "request_id": "139af0254736cc55c4478b1d8569c6e3"
+    },
+    {
+      "kind": "random_range",
+      "offset": 6271609,
+      "ttfb_ms": 2.7428,
+      "total_ms": 2.7428,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 6271609-6337144/26460044",
+      "request_id": "756228d7e10faf7988b49e41ca0f8c7f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 18726320,
+      "ttfb_ms": 3.6476,
+      "total_ms": 3.6476,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 18726320-18791855/26460044",
+      "request_id": "5a574f7fe3fcfbd950135314444f13e0"
+    },
+    {
+      "kind": "random_range",
+      "offset": 10072672,
+      "ttfb_ms": 2.9243,
+      "total_ms": 3.6213,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 10072672-10138207/26460044",
+      "request_id": "a9bd253b2452061d6f0957f43328419f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23797799,
+      "ttfb_ms": 3.3151,
+      "total_ms": 3.3151,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23797799-23863334/26460044",
+      "request_id": "f0e701bc71aebc1129897e411f8bbf22"
+    },
+    {
+      "kind": "random_range",
+      "offset": 3045423,
+      "ttfb_ms": 3.1557,
+      "total_ms": 3.1557,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 3045423-3110958/26460044",
+      "request_id": "591087f4cc962cf006abce267be09c1f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 797842,
+      "ttfb_ms": 3.4145999999999996,
+      "total_ms": 3.4145999999999996,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 797842-863377/26460044",
+      "request_id": "7eb9bf71f78f1d551d7d16e124c39582"
+    },
+    {
+      "kind": "random_range",
+      "offset": 666870,
+      "ttfb_ms": 2.7121,
+      "total_ms": 2.7121,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 666870-732405/26460044",
+      "request_id": "a93c699f5ba395fdbbc8905c66650556"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15685366,
+      "ttfb_ms": 2.8491,
+      "total_ms": 3.3939999999999997,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15685366-15750901/26460044",
+      "request_id": "b1e230f3af39d36331c5b672ef7a940d"
+    },
+    {
+      "kind": "random_range",
+      "offset": 1187008,
+      "ttfb_ms": 2.749,
+      "total_ms": 2.749,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 1187008-1252543/26460044",
+      "request_id": "87fa0ab475175013859a658c2290bf42"
+    },
+    {
+      "kind": "random_range",
+      "offset": 25005488,
+      "ttfb_ms": 3.4431000000000003,
+      "total_ms": 3.4431000000000003,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 25005488-25071023/26460044",
+      "request_id": "3c872cb3ec33e5a8bd8e9ad454dedab7"
+    },
+    {
+      "kind": "random_range",
+      "offset": 70195,
+      "ttfb_ms": 2.7736,
+      "total_ms": 3.3422,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 70195-135730/26460044",
+      "request_id": "45c7ae26b2226964eda0bac9acccf18e"
+    },
+    {
+      "kind": "random_range",
+      "offset": 3227432,
+      "ttfb_ms": 2.7045,
+      "total_ms": 2.7045,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 3227432-3292967/26460044",
+      "request_id": "beaea434fdb00b84d498ab090414d318"
+    },
+    {
+      "kind": "random_range",
+      "offset": 16483816,
+      "ttfb_ms": 3.3532,
+      "total_ms": 3.3532,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 16483816-16549351/26460044",
+      "request_id": "2e80bb56f668a234a7f5743200247a98"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23278359,
+      "ttfb_ms": 2.6968,
+      "total_ms": 2.6968,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23278359-23343894/26460044",
+      "request_id": "4d2e28bb36856ba909b71773a0c7beea"
+    },
+    {
+      "kind": "random_range",
+      "offset": 18178529,
+      "ttfb_ms": 4.0436,
+      "total_ms": 4.0436,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 18178529-18244064/26460044",
+      "request_id": "18aa79d9904076c11d2160afa3ecadea"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24483042,
+      "ttfb_ms": 2.8134,
+      "total_ms": 2.8134,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24483042-24548577/26460044",
+      "request_id": "f38534cf49f7742d410051382c9b0fee"
+    },
+    {
+      "kind": "random_range",
+      "offset": 16526982,
+      "ttfb_ms": 2.8701999999999996,
+      "total_ms": 2.8701999999999996,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 16526982-16592517/26460044",
+      "request_id": "e816cd02ddbb91a653703af17b17dccd"
+    },
+    {
+      "kind": "random_range",
+      "offset": 17542077,
+      "ttfb_ms": 2.8273,
+      "total_ms": 2.8273,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 17542077-17607612/26460044",
+      "request_id": "be69e40b7c2d069957a82290cd4deef8"
+    },
+    {
+      "kind": "random_range",
+      "offset": 9769306,
+      "ttfb_ms": 2.7945,
+      "total_ms": 2.7945,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 9769306-9834841/26460044",
+      "request_id": "d8d35007eb621ea9ad45eed5e390b166"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22582912,
+      "ttfb_ms": 3.1625,
+      "total_ms": 3.1625,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22582912-22648447/26460044",
+      "request_id": "d2ce7a6008319bd7153b7c0946adb44f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 14111356,
+      "ttfb_ms": 2.9244000000000003,
+      "total_ms": 2.9244000000000003,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 14111356-14176891/26460044",
+      "request_id": "6c3e2ba948b1570479a03d7a4eadacd4"
+    },
+    {
+      "kind": "random_range",
+      "offset": 26219129,
+      "ttfb_ms": 3.48,
+      "total_ms": 3.48,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 26219129-26284664/26460044",
+      "request_id": "27b8f2e630b2edbbf07d2630c6410991"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22125494,
+      "ttfb_ms": 2.8191,
+      "total_ms": 2.8191,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22125494-22191029/26460044",
+      "request_id": "677ba62ce5698080f9f1a345e85fe27d"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22905891,
+      "ttfb_ms": 3.4667,
+      "total_ms": 3.4667,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22905891-22971426/26460044",
+      "request_id": "088bca578e049aec5f2d2536078846a5"
+    },
+    {
+      "kind": "random_range",
+      "offset": 11209893,
+      "ttfb_ms": 3.3397,
+      "total_ms": 3.3397,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 11209893-11275428/26460044",
+      "request_id": "3015ee11ecd3608baa394e3fe078988c"
+    },
+    {
+      "kind": "random_range",
+      "offset": 7471710,
+      "ttfb_ms": 3.3896,
+      "total_ms": 3.3896,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 7471710-7537245/26460044",
+      "request_id": "1a98983f27e19601a3c1d3f52d6f5e46"
+    },
+    {
+      "kind": "random_range",
+      "offset": 4188799,
+      "ttfb_ms": 3.3672,
+      "total_ms": 3.3672,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 4188799-4254334/26460044",
+      "request_id": "e7dc85be53dc846b2d8f5e4fee022c33"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24204952,
+      "ttfb_ms": 2.8002000000000002,
+      "total_ms": 2.8002000000000002,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24204952-24270487/26460044",
+      "request_id": "ccd6fe31d860768436608bd3ac7ee412"
+    },
+    {
+      "kind": "random_range",
+      "offset": 23551079,
+      "ttfb_ms": 3.2417000000000002,
+      "total_ms": 3.2417000000000002,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 23551079-23616614/26460044",
+      "request_id": "7a5dd97c7ca0f341f59ce2fe389af006"
+    },
+    {
+      "kind": "random_range",
+      "offset": 20221645,
+      "ttfb_ms": 3.4393000000000002,
+      "total_ms": 3.4393000000000002,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 20221645-20287180/26460044",
+      "request_id": "95bb2574a197256fc9906e7458c2b696"
+    },
+    {
+      "kind": "random_range",
+      "offset": 983909,
+      "ttfb_ms": 3.7735999999999996,
+      "total_ms": 3.7735999999999996,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 983909-1049444/26460044",
+      "request_id": "652d50d3e195c2dd02a75f49b714652a"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2555859,
+      "ttfb_ms": 3.2206,
+      "total_ms": 3.2206,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2555859-2621394/26460044",
+      "request_id": "d39ef47eb61fbf58d799ed4198cde7f4"
+    },
+    {
+      "kind": "random_range",
+      "offset": 19411,
+      "ttfb_ms": 3.2923,
+      "total_ms": 3.2923,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 19411-84946/26460044",
+      "request_id": "e03adb0df928383df0011881627266fc"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2533380,
+      "ttfb_ms": 2.886,
+      "total_ms": 3.4293,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2533380-2598915/26460044",
+      "request_id": "e58bd0c551e7c20881cf730c89df32df"
+    },
+    {
+      "kind": "random_range",
+      "offset": 18603471,
+      "ttfb_ms": 2.8893999999999997,
+      "total_ms": 3.3767,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 18603471-18669006/26460044",
+      "request_id": "abe2e38ea15ba1f620355befe7cbdd45"
+    },
+    {
+      "kind": "random_range",
+      "offset": 20074059,
+      "ttfb_ms": 3.5949,
+      "total_ms": 3.5949,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 20074059-20139594/26460044",
+      "request_id": "098d77f91e4e111d1baf3effb6d42ddf"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2280834,
+      "ttfb_ms": 3.2678,
+      "total_ms": 3.2678,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2280834-2346369/26460044",
+      "request_id": "5712c1a0a5c44da99f47dccec703f081"
+    },
+    {
+      "kind": "random_range",
+      "offset": 17713770,
+      "ttfb_ms": 3.2082,
+      "total_ms": 3.2082,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 17713770-17779305/26460044",
+      "request_id": "7c742cd546eb361ed2d2ff8392604679"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15153462,
+      "ttfb_ms": 2.9968,
+      "total_ms": 2.9968,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15153462-15218997/26460044",
+      "request_id": "246b70ba6d405153c89250d8c1d0a88b"
+    },
+    {
+      "kind": "random_range",
+      "offset": 15474271,
+      "ttfb_ms": 3.6725,
+      "total_ms": 4.2261,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 15474271-15539806/26460044",
+      "request_id": "8b709fc978774079bb82b19be16c28ea"
+    },
+    {
+      "kind": "random_range",
+      "offset": 10158378,
+      "ttfb_ms": 3.222,
+      "total_ms": 3.222,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 10158378-10223913/26460044",
+      "request_id": "a96ca9f3060e4fad0c4b46fc505b57a2"
+    },
+    {
+      "kind": "random_range",
+      "offset": 3868634,
+      "ttfb_ms": 3.2753,
+      "total_ms": 3.2753,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 3868634-3934169/26460044",
+      "request_id": "4ff3549375d2c74831cc73f9c433e595"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24059409,
+      "ttfb_ms": 3.1903,
+      "total_ms": 3.1903,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24059409-24124944/26460044",
+      "request_id": "d8fe39de91791918e2b40ff91874eacb"
+    },
+    {
+      "kind": "random_range",
+      "offset": 8345681,
+      "ttfb_ms": 3.4166000000000003,
+      "total_ms": 3.4166000000000003,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 8345681-8411216/26460044",
+      "request_id": "e9ae1fb32a91a2f59882a8f635b2375f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2851034,
+      "ttfb_ms": 4.6849,
+      "total_ms": 4.6849,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2851034-2916569/26460044",
+      "request_id": "681de2222e1ade6d6775406bab25c54f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 7459232,
+      "ttfb_ms": 3.4536,
+      "total_ms": 3.4536,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 7459232-7524767/26460044",
+      "request_id": "1dde173e41120b87422b5a3f17d32fda"
+    },
+    {
+      "kind": "random_range",
+      "offset": 19949228,
+      "ttfb_ms": 4.1344,
+      "total_ms": 4.1344,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 19949228-20014763/26460044",
+      "request_id": "65fe2005d935ee951fc51472610a8109"
+    },
+    {
+      "kind": "random_range",
+      "offset": 14814580,
+      "ttfb_ms": 3.4589,
+      "total_ms": 3.4589,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 14814580-14880115/26460044",
+      "request_id": "6f6f466eb6d4f0c411ff5282e45e7ebf"
+    },
+    {
+      "kind": "random_range",
+      "offset": 1430165,
+      "ttfb_ms": 3.9402999999999997,
+      "total_ms": 3.9402999999999997,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 1430165-1495700/26460044",
+      "request_id": "b5f6dd99a412532d6a92c9ad3dc91d48"
+    },
+    {
+      "kind": "random_range",
+      "offset": 25329505,
+      "ttfb_ms": 3.8918,
+      "total_ms": 3.8918,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 25329505-25395040/26460044",
+      "request_id": "dc5a1e5019f345ea5003eb74272cbf96"
+    },
+    {
+      "kind": "random_range",
+      "offset": 21842134,
+      "ttfb_ms": 3.2122,
+      "total_ms": 3.2122,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 21842134-21907669/26460044",
+      "request_id": "0f2d420a5058dfea8947c80cdeac6e98"
+    },
+    {
+      "kind": "random_range",
+      "offset": 2710478,
+      "ttfb_ms": 3.3355,
+      "total_ms": 3.3355,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 2710478-2776013/26460044",
+      "request_id": "30748e1a4bcef1668c39d146583b0650"
+    },
+    {
+      "kind": "random_range",
+      "offset": 26226645,
+      "ttfb_ms": 3.298,
+      "total_ms": 3.298,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 26226645-26292180/26460044",
+      "request_id": "c35e565e38bd9178d1410ff165ea0f45"
+    },
+    {
+      "kind": "random_range",
+      "offset": 14919323,
+      "ttfb_ms": 3.9524,
+      "total_ms": 3.9524,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 14919323-14984858/26460044",
+      "request_id": "fcfb906de1007b776a3704001f3d5a22"
+    },
+    {
+      "kind": "random_range",
+      "offset": 6868955,
+      "ttfb_ms": 3.5719,
+      "total_ms": 3.5719,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 6868955-6934490/26460044",
+      "request_id": "e516750bae8ef2ef3d36a7d4a29ac8db"
+    },
+    {
+      "kind": "random_range",
+      "offset": 16409253,
+      "ttfb_ms": 3.5486,
+      "total_ms": 3.5486,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 16409253-16474788/26460044",
+      "request_id": "491c712a287a7da064f3ba7de8e54ff7"
+    },
+    {
+      "kind": "random_range",
+      "offset": 828921,
+      "ttfb_ms": 3.8079,
+      "total_ms": 3.8079,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 828921-894456/26460044",
+      "request_id": "d2fb9b9bbca1a6fa196860080dc2613b"
+    },
+    {
+      "kind": "random_range",
+      "offset": 393513,
+      "ttfb_ms": 3.7403,
+      "total_ms": 4.5342,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 393513-459048/26460044",
+      "request_id": "632db833b2b8b505e05529102e935b23"
+    },
+    {
+      "kind": "random_range",
+      "offset": 8293476,
+      "ttfb_ms": 4.069299999999999,
+      "total_ms": 4.069299999999999,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 8293476-8359011/26460044",
+      "request_id": "501f70a341d42bdd209b11418c1f7f4f"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22462780,
+      "ttfb_ms": 4.8316,
+      "total_ms": 4.8316,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22462780-22528315/26460044",
+      "request_id": "08ea3baf4f7f169ad76db1807bc8f058"
+    },
+    {
+      "kind": "random_range",
+      "offset": 963265,
+      "ttfb_ms": 3.8819000000000004,
+      "total_ms": 3.8819000000000004,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 963265-1028800/26460044",
+      "request_id": "ea599f492d2af9ff3f35181eaa37e4c5"
+    },
+    {
+      "kind": "random_range",
+      "offset": 22639567,
+      "ttfb_ms": 5.180899999999999,
+      "total_ms": 5.180899999999999,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 22639567-22705102/26460044",
+      "request_id": "0335d9c683e92299b24e42ddf040d505"
+    },
+    {
+      "kind": "random_range",
+      "offset": 19110729,
+      "ttfb_ms": 4.0207999999999995,
+      "total_ms": 4.0207999999999995,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 19110729-19176264/26460044",
+      "request_id": "63217174ac5da9754561759a280102fe"
+    },
+    {
+      "kind": "random_range",
+      "offset": 24007566,
+      "ttfb_ms": 4.0464,
+      "total_ms": 4.0464,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 24007566-24073101/26460044",
+      "request_id": "07ed6c5229bf736aab1b7d5ef127bacd"
+    },
+    {
+      "kind": "random_range",
+      "offset": 14433041,
+      "ttfb_ms": 3.2707,
+      "total_ms": 3.2707,
+      "bytes": 65536,
+      "status": 206,
+      "content_range": "bytes 14433041-14498576/26460044",
+      "request_id": "d584fbf11a9c852b3cb11ce745c22282"
+    }
+  ],
+  "timestamp_utc": "2026-09-21T01:08:44Z",
+  "url": "http://127.0.0.1:8080/media/demo-track"
+}

@@ -75,7 +75,7 @@ func TestEmptyMigrationAndIdempotence(t *testing.T) {
 		t.Fatal(err)
 	}
 	var count int
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 2 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 4 {
 		t.Fatalf("migrations=%d error=%v", count, err)
 	}
 }
@@ -134,6 +134,59 @@ func TestPopulatedMigrationPreservesIdentities(t *testing.T) {
 	var count int
 	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM media_objects WHERE id='obj-1' AND sha256=$1", hash[:]).Scan(&count); err != nil || count != 1 {
 		t.Fatalf("media object lost: %d %v", count, err)
+	}
+}
+
+func TestM12MigrationOnPopulatedCore(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.migrateTo(ctx, 2); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, `INSERT INTO tracks(id,title) VALUES('legacy-track','Existing');
+		INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES('legacy-object','legacy-track',decode(repeat('ba',32),'hex'),'wav',100);
+		INSERT INTO media_locations(id,media_object_id,local_path) VALUES('legacy-location','legacy-object','fixture://existing.wav')`); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Ready(ctx); err != nil {
+		t.Fatal(err)
+	}
+	var count int
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM media_locations WHERE id='legacy-location' AND root_id IS NULL").Scan(&count); err != nil || count != 1 {
+		t.Fatalf("legacy row lost: %d %v", count, err)
+	}
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 4 {
+		t.Fatalf("migration count: %d %v", count, err)
+	}
+}
+
+func TestM12GroupingCorrectionPreservesObservedMetadata(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.migrateTo(ctx, 3); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, `INSERT INTO artists(id,display_name) VALUES('art_old','Shared Name');
+		INSERT INTO albums(id,title,album_artist_credit) VALUES('alb_old','Observed Album','Album Credit');
+		INSERT INTO tracks(id,title,artist_id,album_id,artist_credit,album_artist_credit) VALUES('trk_old','Song','art_old','alb_old','Shared Name','Album Credit')`); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	var title, artist, albumArtist string
+	if err := s.pool.QueryRow(ctx, "SELECT album_title,artist_credit,album_artist_credit FROM tracks WHERE id='trk_old'").Scan(&title, &artist, &albumArtist); err != nil {
+		t.Fatal(err)
+	}
+	if title != "Observed Album" || artist != "Shared Name" || albumArtist != "Album Credit" {
+		t.Fatalf("metadata not preserved: %q %q %q", title, artist, albumArtist)
+	}
+	var oldTables int
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM pg_class WHERE oid IN (to_regclass('artists'),to_regclass('albums'))").Scan(&oldTables); err != nil || oldTables != 0 {
+		t.Fatalf("premature grouping tables remain: %d %v", oldTables, err)
 	}
 }
 

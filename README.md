@@ -1,8 +1,8 @@
-# Project Resonance — M0 stream and M1.1 persistence foundations
+# Project Resonance — M0 stream and M1.2 initial library import
 
 One Go server streams one configured WAV file to a browser player. M0 is a local/LAN experiment with no authentication or Internet access feature.
 
-M1.1 adds PostgreSQL metadata foundations and a metadata parser evaluation. It does not enroll folders or scan a library. Without `RESONANCE_DATABASE_URL`, the accepted M0 demo continues to run; `/ready` reports the catalog as unconfigured. See the [M1.1 PostgreSQL runbook](docs/runbooks/M1-1-postgres.md) for setup, migrations, integration tests, backup, and restore.
+M1.1 adds PostgreSQL metadata foundations and a metadata parser evaluation. M1.2 adds host-only folder enrollment and initial import for MP3, FLAC, and PCM WAV. It does not add catalog browsing, file watching, or incremental reconciliation. Without `RESONANCE_DATABASE_URL`, the accepted M0 demo continues to run; `/ready` reports the catalog as unconfigured. See the [PostgreSQL runbook](docs/runbooks/M1-1-postgres.md) and [library runbook](docs/runbooks/M1-2-library.md).
 
 ## Requirements
 
@@ -45,12 +45,15 @@ Every routed response has `X-Request-ID`. Media requests emit JSON logs with tha
 go fmt ./...
 go vet ./...
 go test -count=1 ./...
+go test -p 1 -tags=integration -count=1 ./internal/storage ./internal/library
 go run ./cmd/fixture -out data/demo.wav -seconds 300
 npm ci
 npm run test:e2e
 ```
 
 Keep a freshly built server running on `127.0.0.1:8080` for E2E. Tests require the generated 300-second fixture. Browser tests disable cache and throttle downloads to 256 KiB/s, verify playback before full transfer, seek to an unbuffered position, validate a new matching partial response, and require playback to advance after seeking. They also test unreachable-server and corrupt-media UI states.
+
+The integration command requires the dedicated `RESONANCE_TEST_DATABASE_URL` described in the PostgreSQL runbook. To enroll and scan a host directory, apply migrations and use `go run . library add -path <directory> -name <name>`, followed by `go run . library scan <root-id>`. The web client cannot enroll paths.
 
 Windows tests create a junction through a fixed PowerShell command to verify containment. A separate file-symlink test explicitly skips if Windows denies symlink creation. The application itself launches no child processes. `go test -race ./...` additionally requires a working CGO/C compiler toolchain; it is not silently treated as passed when unavailable.
 

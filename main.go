@@ -22,6 +22,9 @@ func main() {
 
 // Return before reporting fatal startup/listener errors so resource defers run.
 func run() error {
+	if len(os.Args) > 1 && os.Args[1] == "library" {
+		return runLibrary(os.Args[2:], os.Stdout, os.Stderr)
+	}
 	addr := flag.String("addr", "127.0.0.1:8080", "HTTP listen address; use a LAN address only on a trusted network")
 	media := flag.String("media", "data/demo.wav", "configured WAV file for demo-track")
 	title := flag.String("title", "Demo Track", "display title")

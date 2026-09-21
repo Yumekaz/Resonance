@@ -43,6 +43,9 @@ func TestCorpus(t *testing.T) {
 			if result.Title == nil || *result.Title != "Test Title" || result.Artist == nil || *result.Artist != "Test Artist" || result.Album == nil || *result.Album != "Test Album" {
 				t.Fatalf("tags: %#v", result)
 			}
+			if result.AlbumArtist == nil || *result.AlbumArtist != "Album Credit" || result.Genre == nil || *result.Genre != "Jazz" || result.TrackNumber == nil || *result.TrackNumber != 2 || result.DiscNumber == nil || *result.DiscNumber != 1 {
+				t.Fatalf("extended tags: %#v", result)
+			}
 			if result.DurationSec != nil || result.SampleRate != nil || result.Channels != nil || result.Bitrate != nil {
 				t.Fatal("audio properties must remain absent")
 			}
@@ -95,6 +98,10 @@ func taggedMP3(t testing.TB, title, artist, album string, art bool) []byte {
 	}
 	frames := append(id3Frame("TIT2", id3Text(title)), id3Frame("TPE1", id3Text(artist))...)
 	frames = append(frames, id3Frame("TALB", id3Text(album))...)
+	frames = append(frames, id3Frame("TPE2", id3Text("Album Credit"))...)
+	frames = append(frames, id3Frame("TRCK", id3Text("2/9"))...)
+	frames = append(frames, id3Frame("TPOS", id3Text("1/2"))...)
+	frames = append(frames, id3Frame("TCON", id3Text("Jazz"))...)
 	if art {
 		png, err := base64.StdEncoding.DecodeString("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/dXcAAAAASUVORK5CYII=")
 		if err != nil {
@@ -137,7 +144,7 @@ func taggedFLAC(t testing.TB) []byte {
 	put := func(n uint32) { var b [4]byte; binary.LittleEndian.PutUint32(b[:], n); block = append(block, b[:]...) }
 	put(4)
 	block = append(block, "test"...)
-	comments := []string{"TITLE=Test Title", "ARTIST=Test Artist", "ALBUM=Test Album", "DATE=2024"}
+	comments := []string{"TITLE=Test Title", "ARTIST=Test Artist", "ALBUM=Test Album", "ALBUMARTIST=Album Credit", "TRACKNUMBER=2", "DISCNUMBER=1", "GENRE=Jazz", "DATE=2024"}
 	put(uint32(len(comments)))
 	for _, comment := range comments {
 		put(uint32(len(comment)))

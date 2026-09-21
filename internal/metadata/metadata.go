@@ -28,6 +28,10 @@ type Result struct {
 	Title       *string
 	Artist      *string
 	Album       *string
+	AlbumArtist *string
+	Genre       *string
+	TrackNumber *int
+	DiscNumber  *int
 	Year        *int
 	Artwork     *Artwork
 	DurationSec *float64
@@ -79,10 +83,18 @@ func Read(source io.ReadSeeker) (Result, int64, error) {
 		return Result{}, reader.read, err
 	}
 	result := Result{
-		Format: string(m.FileType()),
-		Title:  nullableString(m.Title()),
-		Artist: nullableString(m.Artist()),
-		Album:  nullableString(m.Album()),
+		Format:      string(m.FileType()),
+		Title:       nullableString(m.Title()),
+		Artist:      nullableString(m.Artist()),
+		Album:       nullableString(m.Album()),
+		AlbumArtist: nullableString(m.AlbumArtist()),
+		Genre:       nullableString(m.Genre()),
+	}
+	if number, _ := m.Track(); number > 0 {
+		result.TrackNumber = &number
+	}
+	if number, _ := m.Disc(); number > 0 {
+		result.DiscNumber = &number
 	}
 	if year := metadataYear(m); year > 0 && year <= 9999 {
 		result.Year = &year

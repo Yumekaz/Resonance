@@ -17,6 +17,8 @@ func TestReviewSchemaDrift(t *testing.T) {
 		"DROP INDEX media_objects_track_id_idx",
 		"ALTER TABLE media_locations ALTER COLUMN local_path DROP NOT NULL",
 		"ALTER TABLE media_objects DROP CONSTRAINT media_objects_track_id_fkey",
+		"ALTER TABLE scan_errors DROP CONSTRAINT scan_errors_code_check, ADD CONSTRAINT scan_errors_code_check CHECK (length(code) > 0)",
+		"ALTER TABLE library_roots DROP CONSTRAINT library_roots_path_key_key, ADD CONSTRAINT library_roots_path_key_key UNIQUE (canonical_path)",
 	} {
 		t.Run(ddl, func(t *testing.T) {
 			s, _ := isolatedStore(t)
@@ -31,6 +33,23 @@ func TestReviewSchemaDrift(t *testing.T) {
 				t.Fatalf("damaged schema ready: %v", err)
 			}
 		})
+	}
+}
+
+func TestReviewM12WrongSameNamedIndexIsRejected(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, "DROP INDEX scan_errors_run_idx"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, "CREATE INDEX scan_errors_run_idx ON scan_errors(code)"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Ready(ctx); !errors.Is(err, ErrSchemaMismatch) {
+		t.Fatalf("wrong same-named index accepted: %v", err)
 	}
 }
 

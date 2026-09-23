@@ -3,8 +3,6 @@ package storage
 import (
 	"context"
 	"crypto/rand"
-	"encoding/binary"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"path/filepath"
@@ -25,10 +23,11 @@ const enrollmentLockKey int64 = 0x6c6962726f6f7473
 const scanWorkerLockKey int64 = 0x7363616e776f726b
 
 type LibraryRoot struct {
-	ID            string `json:"id"`
-	Name          string `json:"name"`
-	Enabled       bool   `json:"enabled"`
-	CanonicalPath string `json:"-"`
+	ID                   string  `json:"id"`
+	Name                 string  `json:"name"`
+	Enabled              bool    `json:"enabled"`
+	CanonicalPath        string  `json:"-"`
+	LastSuccessfulScanID *string `json:"-"`
 }
 
 func newUUID() (string, error) {
@@ -190,124 +189,75 @@ type ImportMetadata struct {
 	ArtworkMIME       *string
 }
 
-type ImportFile struct {
-	RootID       string
-	RelativePath string
-	LocalPath    string
-	Format       string
-	Size         int64
-	SHA256       [32]byte
-	Metadata     ImportMetadata
-}
-
-func (s *Store) LocationExists(ctx context.Context, rootID, relativePath string) (bool, error) {
-	var exists bool
-	err := s.pool.QueryRow(ctx, "SELECT EXISTS(SELECT 1 FROM media_locations WHERE root_id=$1 AND relative_path=$2)", rootID, relativePath).Scan(&exists)
-	return exists, err
-}
-
-// Import inserts a new catalog identity only for unseen encoded bytes. Hashing
-// and metadata extraction happen before this short transaction.
-func (s *Store) Import(ctx context.Context, file ImportFile) (bool, error) {
-	if !validUUID(file.RootID) || file.RelativePath == "" || file.LocalPath == "" || file.Size < 0 {
-		return false, errors.New("invalid import")
-	}
-	tx, err := s.pool.Begin(ctx)
-	if err != nil {
-		return false, err
-	}
-	defer tx.Rollback(ctx)
-	lockKey := int64(binary.BigEndian.Uint64(file.SHA256[:8]))
-	if _, err = tx.Exec(ctx, "SELECT pg_advisory_xact_lock($1)", lockKey); err != nil {
-		return false, err
-	}
-	var objectID string
-	err = tx.QueryRow(ctx, "SELECT id FROM media_objects WHERE sha256=$1", file.SHA256[:]).Scan(&objectID)
-	if errors.Is(err, pgx.ErrNoRows) {
-		trackID, e := newLogicalID("trk_")
-		if e != nil {
-			return false, e
-		}
-		// Credits and the raw album title are observations on this Track. Artist
-		// and Album grouping identities are deliberately deferred to M1.4 so
-		// identical display strings are neither falsely merged nor falsely split.
-		_, err = tx.Exec(ctx, `INSERT INTO tracks(id,title,artist_credit,album_title,album_artist_credit,track_number,disc_number,release_year,genre,title_source)
-			VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`, trackID, file.Metadata.Title, file.Metadata.ArtistCredit, file.Metadata.AlbumTitle, file.Metadata.AlbumArtistCredit, file.Metadata.TrackNumber, file.Metadata.DiscNumber, file.Metadata.Year, file.Metadata.Genre, file.Metadata.TitleSource)
-		if err != nil {
-			return false, err
-		}
-		objectID = "obj_" + hex.EncodeToString(file.SHA256[:])
-		var artHash []byte
-		if file.Metadata.ArtworkSHA256 != nil {
-			artHash = file.Metadata.ArtworkSHA256[:]
-		}
-		_, err = tx.Exec(ctx, "INSERT INTO media_objects(id,track_id,sha256,format,byte_length,artwork_sha256,artwork_mime) VALUES($1,$2,$3,$4,$5,$6,$7)", objectID, trackID, file.SHA256[:], file.Format, file.Size, artHash, file.Metadata.ArtworkMIME)
-		if err != nil {
-			return false, err
-		}
-	} else if err != nil {
-		return false, err
-	}
-	locationID, err := newLogicalID("loc_")
-	if err != nil {
-		return false, err
-	}
-	tag, err := tx.Exec(ctx, `INSERT INTO media_locations(id,media_object_id,local_path,root_id,relative_path)
-		VALUES($1,$2,$3,$4,$5) ON CONFLICT DO NOTHING`, locationID, objectID, file.LocalPath, file.RootID, file.RelativePath)
-	if err != nil {
-		return false, err
-	}
-	if tag.RowsAffected() == 0 {
-		return false, nil
-	}
-	if err := tx.Commit(ctx); err != nil {
-		return false, err
-	}
-	return true, nil
-}
-
-func (s *Store) BeginScan(ctx context.Context, rootID string) (*ScanLease, string, error) {
-	root, err := s.GetRoot(ctx, rootID)
-	if err != nil {
-		return nil, "", err
-	}
-	if !root.Enabled {
-		return nil, "", ErrRootDisabled
+func (s *Store) BeginScan(ctx context.Context, rootID string) (*ScanLease, string, LibraryRoot, error) {
+	if !validUUID(rootID) {
+		return nil, "", LibraryRoot{}, ErrRootNotFound
 	}
 	pooled, err := s.pool.Acquire(ctx)
 	if err != nil {
-		return nil, "", err
+		return nil, "", LibraryRoot{}, err
 	}
 	conn := pooled.Hijack()
-	lease := &ScanLease{conn: conn}
+	lease := &ScanLease{conn: conn, rootID: rootID}
 	var locked bool
 	if err = conn.QueryRow(ctx, "SELECT pg_try_advisory_lock($1)", scanWorkerLockKey).Scan(&locked); err != nil {
 		lease.Close()
-		return nil, "", err
+		return nil, "", LibraryRoot{}, err
 	}
 	if !locked {
 		lease.Close()
-		return nil, "", ErrScanRunning
+		return nil, "", LibraryRoot{}, ErrScanRunning
 	}
+	tx, err := conn.Begin(ctx)
+	if err != nil {
+		lease.Close()
+		return nil, "", LibraryRoot{}, err
+	}
+	defer tx.Rollback(ctx)
 	// The global worker lock proves no scan is currently active, so any running
 	// row belongs to an interrupted prior process, regardless of root.
-	if _, err = s.pool.Exec(ctx, "UPDATE scan_runs SET status='failed',error_code='interrupted',finished_at=now() WHERE status='running'"); err != nil {
+	if _, err = tx.Exec(ctx, "UPDATE scan_runs SET status='failed',phase='finished',error_code='interrupted',finished_at=now() WHERE status='running'"); err != nil {
 		lease.Close()
-		return nil, "", err
+		return nil, "", LibraryRoot{}, err
+	}
+	var root LibraryRoot
+	err = tx.QueryRow(ctx, "SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text FROM library_roots WHERE id=$1", rootID).Scan(&root.ID, &root.Name, &root.Enabled, &root.CanonicalPath, &root.LastSuccessfulScanID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		lease.Close()
+		return nil, "", LibraryRoot{}, ErrRootNotFound
+	}
+	if err != nil {
+		lease.Close()
+		return nil, "", LibraryRoot{}, err
+	}
+	if !root.Enabled {
+		lease.Close()
+		return nil, "", LibraryRoot{}, ErrRootDisabled
 	}
 	runID, err := newUUID()
 	if err != nil {
 		lease.Close()
-		return nil, "", err
+		return nil, "", LibraryRoot{}, err
 	}
-	if _, err = s.pool.Exec(ctx, "INSERT INTO scan_runs(id,root_id,status) VALUES($1,$2,'running')", runID, rootID); err != nil {
+	if _, err = tx.Exec(ctx, "INSERT INTO scan_runs(id,root_id,status,phase) VALUES($1,$2,'running','discovering')", runID, rootID); err != nil {
 		lease.Close()
-		return nil, "", err
+		return nil, "", LibraryRoot{}, err
 	}
-	return lease, runID, nil
+	if _, err = tx.Exec(ctx, scanObservationTableSQL); err != nil {
+		lease.Close()
+		return nil, "", LibraryRoot{}, err
+	}
+	if err = tx.Commit(ctx); err != nil {
+		lease.Close()
+		return nil, "", LibraryRoot{}, err
+	}
+	return lease, runID, root, nil
 }
 
-type ScanLease struct{ conn *pgx.Conn }
+type ScanLease struct {
+	conn   *pgx.Conn
+	rootID string
+}
 
 func (l *ScanLease) Close() {
 	if l == nil || l.conn == nil {
@@ -315,22 +265,35 @@ func (l *ScanLease) Close() {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
+	_, _ = l.conn.Exec(ctx, "SELECT pg_advisory_unlock($1)", scanWorkerLockKey)
 	_ = l.conn.Close(ctx)
 	l.conn = nil
 }
 
 type ScanCounts struct {
-	FilesVisited        int64 `json:"files_visited"`
-	FilesSupported      int64 `json:"files_supported"`
-	Imported            int64 `json:"imported"`
-	Skipped             int64 `json:"skipped"`
-	Failed              int64 `json:"failed"`
-	BytesHashed         int64 `json:"bytes_hashed"`
-	MetadataExtractions int64 `json:"metadata_extractions"`
+	FilesVisited         int64 `json:"files_visited"`
+	FilesSupported       int64 `json:"files_supported"`
+	Imported             int64 `json:"imported"`
+	Skipped              int64 `json:"skipped"`
+	Failed               int64 `json:"failed"`
+	BytesHashed          int64 `json:"bytes_hashed"`
+	MetadataExtractions  int64 `json:"metadata_extractions"`
+	FilesUnchanged       int64 `json:"files_unchanged"`
+	FilesHashed          int64 `json:"files_hashed"`
+	StatChangedSameBytes int64 `json:"stat_changed_same_bytes"`
+	ChangedBytes         int64 `json:"changed_bytes"`
+	LocationsAdded       int64 `json:"locations_added"`
+	LocationsMoved       int64 `json:"locations_moved"`
+	LocationsUnavailable int64 `json:"locations_unavailable"`
+	MediaObjectsCreated  int64 `json:"media_objects_created"`
+	TracksCreated        int64 `json:"tracks_created"`
+	TraversalComplete    bool  `json:"traversal_complete"`
+	ObservationsApplied  bool  `json:"observations_applied"`
+	AbsenceReconciled    bool  `json:"absence_reconciled"`
 }
 
-func (s *Store) FinishScan(ctx context.Context, runID, status, errorCode string, counts ScanCounts) error {
-	_, err := s.pool.Exec(ctx, `UPDATE scan_runs SET status=$2,error_code=NULLIF($3,''),files_visited=$4,files_supported=$5,imported=$6,skipped=$7,failed=$8,bytes_hashed=$9,metadata_extractions=$10,finished_at=now() WHERE id=$1`, runID, status, errorCode, counts.FilesVisited, counts.FilesSupported, counts.Imported, counts.Skipped, counts.Failed, counts.BytesHashed, counts.MetadataExtractions)
+func (s *Store) FinishScanWithoutPublish(ctx context.Context, runID, status, errorCode string, counts ScanCounts, traversalComplete bool) error {
+	_, err := s.pool.Exec(ctx, `UPDATE scan_runs SET status=$2,phase='finished',error_code=NULLIF($3,''),files_visited=$4,files_supported=$5,imported=$6,skipped=$7,failed=$8,bytes_hashed=$9,metadata_extractions=$10,files_unchanged=$11,files_hashed=$12,stat_changed_same_bytes=$13,changed_bytes=$14,locations_added=$15,locations_moved=$16,locations_unavailable=$17,media_objects_created=$18,tracks_created=$19,traversal_complete=$20,observations_applied=false,absence_reconciled=false,finished_at=now() WHERE id=$1 AND status='running'`, runID, status, errorCode, counts.FilesVisited, counts.FilesSupported, counts.Imported, counts.Skipped, counts.Failed, counts.BytesHashed, counts.MetadataExtractions, counts.FilesUnchanged, counts.FilesHashed, counts.StatChangedSameBytes, counts.ChangedBytes, counts.LocationsAdded, counts.LocationsMoved, counts.LocationsUnavailable, counts.MediaObjectsCreated, counts.TracksCreated, traversalComplete)
 	return err
 }
 

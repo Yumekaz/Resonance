@@ -25,6 +25,7 @@ func Open(ctx context.Context, databaseURL string) (*Store, error) {
 	cfg.MaxConns = 4
 	cfg.MinConns = 0
 	cfg.MaxConnIdleTime = 5 * time.Minute
+	cfg.ConnConfig.Tracer = QueryWorkTracer()
 	pool, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
 		return nil, errors.New("database pool initialization failed")

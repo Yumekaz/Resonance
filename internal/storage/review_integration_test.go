@@ -19,6 +19,15 @@ func TestReviewSchemaDrift(t *testing.T) {
 		"ALTER TABLE media_objects DROP CONSTRAINT media_objects_track_id_fkey",
 		"ALTER TABLE scan_errors DROP CONSTRAINT scan_errors_code_check, ADD CONSTRAINT scan_errors_code_check CHECK (length(code) > 0)",
 		"ALTER TABLE library_roots DROP CONSTRAINT library_roots_path_key_key, ADD CONSTRAINT library_roots_path_key_key UNIQUE (canonical_path)",
+		"ALTER TABLE media_locations DROP COLUMN observed_mtime_ns",
+		"ALTER TABLE media_locations DROP CONSTRAINT media_locations_native_identity_check",
+		"ALTER TABLE scan_runs DROP CONSTRAINT scan_runs_counters_nonnegative",
+		"ALTER TABLE scan_runs DROP CONSTRAINT scan_runs_root_id_id_key CASCADE",
+		"ALTER TABLE library_roots DROP CONSTRAINT library_roots_last_successful_scan_fkey",
+		"ALTER TABLE tracks DROP CONSTRAINT tracks_metadata_source_location_fkey",
+		"DROP INDEX media_locations_active_root_relative_idx",
+		"DROP INDEX media_locations_root_availability_idx",
+		"DROP INDEX media_locations_native_lookup_idx",
 	} {
 		t.Run(ddl, func(t *testing.T) {
 			s, _ := isolatedStore(t)

@@ -16,6 +16,8 @@ import (
 
 type sample struct {
 	Kind         string  `json:"kind"`
+	StartedUTC   string  `json:"started_utc"`
+	FinishedUTC  string  `json:"finished_utc"`
 	Offset       int64   `json:"offset"`
 	TTFBMs       float64 `json:"ttfb_ms"`
 	TotalMs      float64 `json:"total_ms"`
@@ -52,6 +54,8 @@ func main() {
 	url := flag.String("url", "http://127.0.0.1:8080/media/demo-track", "media URL")
 	count := flag.Int("count", 100, "number of random range requests")
 	out := flag.String("out", "docs/benchmarks/M0-raw.json", "machine-readable results")
+	readyFile := flag.String("ready-file", "", "write this marker after warm-up requests")
+	startFile := flag.String("start-file", "", "wait for this marker before random ranges")
 	flag.Parse()
 	if *count < 100 {
 		fmt.Fprintln(os.Stderr, "count must be at least 100")
@@ -104,10 +108,30 @@ func main() {
 		if copied+1 != expected {
 			panic(fmt.Sprintf("short response: %d, wanted %d", copied+1, expected))
 		}
-		samples = append(samples, sample{Kind: kind, Offset: offset, TTFBMs: ttfb, TotalMs: time.Since(start).Seconds() * 1000, Bytes: copied + 1, Status: resp.StatusCode, ContentRange: resp.Header.Get("Content-Range"), RequestID: resp.Header.Get("X-Request-ID")})
+		finished := time.Now()
+		samples = append(samples, sample{Kind: kind, StartedUTC: start.UTC().Format(time.RFC3339Nano), FinishedUTC: finished.UTC().Format(time.RFC3339Nano), Offset: offset, TTFBMs: ttfb, TotalMs: finished.Sub(start).Seconds() * 1000, Bytes: copied + 1, Status: resp.StatusCode, ContentRange: resp.Header.Get("Content-Range"), RequestID: resp.Header.Get("X-Request-ID")})
 	}
 	measure("full", 0, "")
 	measure("range_first", 0, "bytes=0-65535")
+	if *readyFile != "" {
+		if err := os.WriteFile(*readyFile, []byte("ready"), 0600); err != nil {
+			panic(err)
+		}
+	}
+	if *startFile != "" {
+		deadline := time.Now().Add(60 * time.Second)
+		for {
+			if _, err := os.Stat(*startFile); err == nil {
+				break
+			} else if !os.IsNotExist(err) {
+				panic(err)
+			}
+			if time.Now().After(deadline) {
+				panic("timed out waiting for Range start marker")
+			}
+			time.Sleep(time.Millisecond)
+		}
+	}
 	rng := rand.New(rand.NewSource(42))
 	for i := 0; i < *count; i++ {
 		offset := rng.Int63n(size)
@@ -133,8 +157,10 @@ func main() {
 		"full_ttfb_ms": samples[0].TTFBMs, "first_range_ttfb_ms": samples[1].TTFBMs,
 		"random_range_total_median_ms": percentile(append([]float64(nil), values...), .5),
 		"random_range_total_p95_ms":    percentile(append([]float64(nil), values...), .95),
+		"random_range_total_p99_ms":    percentile(append([]float64(nil), values...), .99),
 		"random_range_ttfb_median_ms":  percentile(append([]float64(nil), ttfbValues...), .5),
 		"random_range_ttfb_p95_ms":     percentile(append([]float64(nil), ttfbValues...), .95),
+		"random_range_ttfb_p99_ms":     percentile(append([]float64(nil), ttfbValues...), .99),
 		"samples":                      samples,
 	}
 	data, err := json.MarshalIndent(report, "", "  ")
@@ -144,5 +170,5 @@ func main() {
 	if err := os.WriteFile(*out, append(data, '\n'), 0644); err != nil {
 		panic(err)
 	}
-	fmt.Printf("full TTFB %.3f ms; range TTFB %.3f ms; %d random ranges total median %.3f ms p95 %.3f ms\n", samples[0].TTFBMs, samples[1].TTFBMs, *count, report["random_range_total_median_ms"], report["random_range_total_p95_ms"])
+	fmt.Printf("full TTFB %.3f ms; range TTFB %.3f ms; %d random ranges total p50/p95/p99 %.3f/%.3f/%.3f ms\n", samples[0].TTFBMs, samples[1].TTFBMs, *count, report["random_range_total_median_ms"], report["random_range_total_p95_ms"], report["random_range_total_p99_ms"])
 }

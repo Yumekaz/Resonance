@@ -1,0 +1,107 @@
+{
+  "timestamp_utc": "2026-09-23T05:30:43.3523853+00:00",
+  "command": "pwsh -NoProfile -File tools/m1-3a-benchmark.ps1 -Repetitions 10 -GoExe 'data/go-sdk/go/bin/go.exe' -ReplaceEvidence",
+  "machine": {
+    "os": "Microsoft Windows 10.0.26200",
+    "logical_cpus": 16,
+    "physical_memory_bytes": 16473051136,
+    "repository_drive": "C:",
+    "drive_type": "Fixed",
+    "drive_file_system": "NTFS",
+    "drive_size_bytes": 206886137856,
+    "drive_free_bytes": 42800521216,
+    "physical_disk_model": "not available in the restricted PowerShell session"
+  },
+  "test_database": "dedicated test database; isolated migration schema dropped after this run",
+  "repetitions": 10,
+  "test_process_peak_working_set_bytes": 152334336,
+  "test_process_sampled_cpu_seconds": 123.141,
+  "benchmark_suite_duration_ms": 243120.777,
+  "initial_database_size_bytes": 15505075,
+  "final_database_size_bytes": 25990835,
+  "wal_bytes_generated": 100927464,
+  "idle_range_p50_ms": 7.639850000000001,
+  "idle_range_p95_ms": 16.241,
+  "idle_range_p99_ms": 21.4438,
+  "concurrent_range_samples_overlapping": 95,
+  "concurrent_range_p50_ms": 4.5563,
+  "concurrent_range_p95_ms": 6.2129,
+  "concurrent_range_p99_ms": 6.423500000000001,
+  "concurrent_range_max_ms": 6.423500000000001,
+  "range_overlap_ms": 2207,
+  "scan_workloads": {
+    "disappearance": {
+      "samples": 10,
+      "p50_ms": 1566.7024999999999,
+      "p95_ms": 2075.792,
+      "p99_ms": 2075.792
+    },
+    "exact_duplicate_additions": {
+      "samples": 10,
+      "p50_ms": 1898.8915,
+      "p95_ms": 2119.51,
+      "p99_ms": 2119.51
+    },
+    "m12_baseline_migrated": {
+      "samples": 10,
+      "p50_ms": 4233.1720000000005,
+      "p95_ms": 4760.006,
+      "p99_ms": 4760.006
+    },
+    "mixed_retags": {
+      "samples": 10,
+      "p50_ms": 1612.8490000000002,
+      "p95_ms": 2115.981,
+      "p99_ms": 2115.981
+    },
+    "mixed_retags_and_replacements": {
+      "samples": 10,
+      "p50_ms": 1392.897,
+      "p95_ms": 2012.917,
+      "p99_ms": 2012.917
+    },
+    "one_percent_mtime_only": {
+      "samples": 10,
+      "p50_ms": 1348.8315,
+      "p95_ms": 1785.085,
+      "p99_ms": 1785.085
+    },
+    "one_percent_new_bytes": {
+      "samples": 10,
+      "p50_ms": 1445.9434999999999,
+      "p95_ms": 1708.28,
+      "p99_ms": 1708.28
+    },
+    "partial_complete_followup": {
+      "samples": 10,
+      "p50_ms": 1475.098,
+      "p95_ms": 1658.817,
+      "p99_ms": 1658.817
+    },
+    "partial_incomplete_absence_suppressed": {
+      "samples": 10,
+      "p50_ms": 1266.455,
+      "p95_ms": 1511.708,
+      "p99_ms": 1511.708
+    },
+    "rename_native_provider": {
+      "samples": 10,
+      "p50_ms": 2278.281,
+      "p95_ms": 2891.696,
+      "p99_ms": 2891.696
+    },
+    "rename_native_unavailable": {
+      "samples": 10,
+      "p50_ms": 2081.599,
+      "p95_ms": 2703.32,
+      "p99_ms": 2703.32
+    },
+    "unchanged_warm": {
+      "samples": 20,
+      "p50_ms": 1289.0014999999999,
+      "p95_ms": 1776.182,
+      "p99_ms": 1804.88
+    }
+  },
+  "cold_cache_note": "first scanner pass over a newly generated corpus; OS filesystem cache was not forcibly cleared, so cold-cache status is unverified"
+}

@@ -21,3 +21,9 @@ type FakeNativeIdentityProvider func(*os.File) (storage.NativeIdentity, bool, er
 func (f FakeNativeIdentityProvider) FromOpenFile(file *os.File) (storage.NativeIdentity, bool, error) {
 	return f(file)
 }
+
+// NativeIdentityFromOpenFile reports optional platform evidence from the
+// already-confined media handle. Playback never uses it as a path authority.
+func NativeIdentityFromOpenFile(file *os.File) (storage.NativeIdentity, bool, error) {
+	return systemNativeIdentityProvider().FromOpenFile(file)
+}

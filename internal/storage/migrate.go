@@ -124,7 +124,13 @@ func (s *Store) migrateTo(ctx context.Context, target int) error {
 		}
 	}
 	if target == len(all) {
-		return validateSchemaContract(ctx, conn)
+		if err := validateSchemaContract(ctx, conn); err != nil {
+			return err
+		}
+		if _, err := conn.Exec(ctx, "SELECT pg_advisory_unlock($1)", migrationLockKey); err != nil {
+			return err
+		}
+		return s.BackfillGrouping(ctx)
 	}
 	return nil
 }

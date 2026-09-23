@@ -885,6 +885,10 @@ func TestM13MetadataSourceAndAmbiguousNativeIDs(t *testing.T) {
 		if title != "Source Title" || locationsForPath(before, "a-source.mp3").ID != sourceLocation {
 			t.Fatalf("metadata source was not deterministic: title=%q source=%q locations=%#v", title, sourceLocation, before)
 		}
+		var groupingArtistID, groupingSource string
+		if err := pool.QueryRow(context.Background(), "SELECT artist_id,source_location_id FROM track_artist_memberships WHERE track_id=$1 AND role='track_credit'", trackID).Scan(&groupingArtistID, &groupingSource); err != nil || groupingSource != sourceLocation {
+			t.Fatalf("grouping ignored source precedence: %q %q %v", groupingArtistID, groupingSource, err)
+		}
 		if err := os.WriteFile(filepath.Join(dir, "b-copy.mp3"), fixtureMP3WithTitle(t, "Edited Copy"), 0600); err != nil {
 			t.Fatal(err)
 		}
@@ -896,6 +900,10 @@ func TestM13MetadataSourceAndAmbiguousNativeIDs(t *testing.T) {
 		}
 		if err := pool.QueryRow(context.Background(), "SELECT title,metadata_source_location_id FROM tracks WHERE id=$1", trackID).Scan(&title, &sourceLocation); err != nil || title != "Source Title" || sourceLocation != locationsForPath(before, "a-source.mp3").ID {
 			t.Fatalf("non-source edit replaced shared metadata: %q %q %v", title, sourceLocation, err)
+		}
+		var afterArtistID, afterGroupingSource string
+		if err := pool.QueryRow(context.Background(), "SELECT artist_id,source_location_id FROM track_artist_memberships WHERE track_id=$1 AND role='track_credit'", trackID).Scan(&afterArtistID, &afterGroupingSource); err != nil || afterArtistID != groupingArtistID || afterGroupingSource != groupingSource {
+			t.Fatalf("duplicate edit changed grouping provenance: %q %q %v", afterArtistID, afterGroupingSource, err)
 		}
 		if len(locationsForRoot(t, pool, root.ID)) != 2 || countRows(t, pool, "tracks") != 1 || countRows(t, pool, "media_objects") != 2 {
 			t.Fatal("non-source edit changed Track identity or location count")
@@ -1141,6 +1149,83 @@ func TestM13FinalPublishRollbackIsAtomic(t *testing.T) {
 	retry, err := scanner.Scan(context.Background(), root.ID)
 	if err != nil || retry.Status != "succeeded" || countRows(t, pool, "tracks") != 1 || countRows(t, pool, "media_objects") != 1 || countRows(t, pool, "media_locations") != 1 {
 		t.Fatalf("retry after rolled back publish: %#v %v", retry, err)
+	}
+}
+
+func TestM14GroupingFailureRollsBackScanPublication(t *testing.T) {
+	s, pool, _ := isolatedLibraryStore(t)
+	dir := testWorkspaceDir(t)
+	writeFile(t, filepath.Join(dir, "Artist", "Album", "grouped.mp3"), fixtureMP3(t))
+	root := addRoot(t, s, dir, "grouping atomicity")
+	if _, err := pool.Exec(context.Background(), `CREATE FUNCTION fail_group_insert() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'injected grouping failure'; END $$`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(context.Background(), `CREATE TRIGGER fail_group_insert BEFORE INSERT ON track_album_memberships FOR EACH ROW EXECUTE FUNCTION fail_group_insert()`); err != nil {
+		t.Fatal(err)
+	}
+	scanner := testScanner(s)
+	failed, err := scanner.Scan(context.Background(), root.ID)
+	if err == nil || failed.Status != "failed" || failed.ObservationsApplied {
+		t.Fatalf("grouping failure published scan: %#v %v", failed, err)
+	}
+	for _, table := range []string{"tracks", "media_objects", "media_locations", "catalog_artists", "catalog_albums", "track_album_memberships", "track_artist_memberships"} {
+		if n := countRows(t, pool, table); n != 0 {
+			t.Fatalf("%s retained %d rows after rollback", table, n)
+		}
+	}
+	if _, err := pool.Exec(context.Background(), "DROP TRIGGER fail_group_insert ON track_album_memberships"); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(context.Background(), "DROP FUNCTION fail_group_insert()"); err != nil {
+		t.Fatal(err)
+	}
+	retry, err := scanner.Scan(context.Background(), root.ID)
+	if err != nil || retry.Status != "succeeded" || countRows(t, pool, "track_album_memberships") != 1 || retry.GroupingMS <= 0 {
+		t.Fatalf("grouping retry failed: %#v %v", retry, err)
+	}
+}
+
+func TestM14UnambiguousMoveKeepsGroupingIDs(t *testing.T) {
+	s, pool, _ := isolatedLibraryStore(t)
+	dir := testWorkspaceDir(t)
+	oldDir := filepath.Join(dir, "Artist", "Album")
+	newDir := filepath.Join(dir, "Moved Artist", "Album")
+	writeFile(t, filepath.Join(oldDir, "song.mp3"), fixtureMP3(t))
+	root := addRoot(t, s, dir, "group continuity")
+	scanner := testScanner(s)
+	scanner.nativeIdentity = FakeNativeIdentityProvider(func(*os.File) (storage.NativeIdentity, bool, error) {
+		return storage.NativeIdentity{Kind: "test", Scope: "volume", ID: []byte("same-file"), BirthToken: []byte("same-birth")}, true, nil
+	})
+	first, err := scanner.Scan(context.Background(), root.ID)
+	if err != nil || first.Status != "succeeded" {
+		t.Fatalf("first scan: %#v %v", first, err)
+	}
+	var trackID, albumID, artistID string
+	if err := pool.QueryRow(context.Background(), "SELECT id FROM tracks").Scan(&trackID); err != nil {
+		t.Fatal(err)
+	}
+	if err := pool.QueryRow(context.Background(), "SELECT album_id FROM track_album_memberships WHERE track_id=$1", trackID).Scan(&albumID); err != nil {
+		t.Fatal(err)
+	}
+	if err := pool.QueryRow(context.Background(), "SELECT artist_id FROM track_artist_memberships WHERE track_id=$1 AND role='track_credit'", trackID).Scan(&artistID); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Rename(filepath.Dir(oldDir), filepath.Dir(newDir)); err != nil {
+		t.Fatal(err)
+	}
+	second, err := scanner.Scan(context.Background(), root.ID)
+	if err != nil || second.Status != "succeeded" || second.LocationsMoved != 1 {
+		t.Fatalf("move scan: %#v %v", second, err)
+	}
+	var afterAlbum, afterArtist string
+	if err := pool.QueryRow(context.Background(), "SELECT album_id FROM track_album_memberships WHERE track_id=$1", trackID).Scan(&afterAlbum); err != nil {
+		t.Fatal(err)
+	}
+	if err := pool.QueryRow(context.Background(), "SELECT artist_id FROM track_artist_memberships WHERE track_id=$1 AND role='track_credit'", trackID).Scan(&afterArtist); err != nil {
+		t.Fatal(err)
+	}
+	if afterAlbum != albumID || afterArtist != artistID {
+		t.Fatalf("unambiguous move changed grouping IDs: album %s -> %s artist %s -> %s", albumID, afterAlbum, artistID, afterArtist)
 	}
 }
 

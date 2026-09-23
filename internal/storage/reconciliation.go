@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"path"
 	"strings"
+	"time"
 	"unicode/utf8"
 
 	"github.com/jackc/pgx/v5"
@@ -344,6 +345,17 @@ func (s *Store) PublishScan(ctx context.Context, rootID, runID string, expectedG
 	if err != nil {
 		return counts, err
 	}
+	affectedGroupTracks := map[string]bool{}
+	for _, decision := range plan {
+		if decision.Moved || decision.Changed || decision.SourceEdit || decision.CreateTrack {
+			if decision.UseTrackID != "" {
+				affectedGroupTracks[decision.UseTrackID] = true
+			}
+			if decision.Existing != nil {
+				affectedGroupTracks[decision.Existing.TrackID] = true
+			}
+		}
+	}
 	for id, reason := range unavailableIDs {
 		changed, err := setUnavailable(ctx, tx, id, reason)
 		if err != nil {
@@ -388,6 +400,36 @@ func (s *Store) PublishScan(ctx context.Context, rootID, runID string, expectedG
 		if _, err := tx.Exec(ctx, `UPDATE library_roots SET last_successful_scan_id=$2 WHERE id=$1`, rootID, runID); err != nil {
 			return counts, err
 		}
+	}
+	// Grouping is published in the same transaction as Track, object, and
+	// availability changes. An error rolls back the entire scan publication.
+	if counts.TracksCreated > 0 {
+		rows, e := tx.Query(ctx, `SELECT DISTINCT t.id FROM tracks t JOIN media_locations ml ON ml.id=t.metadata_source_location_id WHERE ml.root_id=$1`, rootID)
+		if e != nil {
+			return counts, e
+		}
+		for rows.Next() {
+			var id string
+			if e = rows.Scan(&id); e != nil {
+				rows.Close()
+				return counts, e
+			}
+			if _, known := snapshot.MetadataSourceByTrack[id]; !known {
+				affectedGroupTracks[id] = true
+			}
+		}
+		e = rows.Err()
+		rows.Close()
+		if e != nil {
+			return counts, e
+		}
+	}
+	if len(affectedGroupTracks) > 0 {
+		groupingStarted := time.Now()
+		if err := rebuildGrouping(ctx, tx, affectedGroupTracks); err != nil {
+			return counts, err
+		}
+		counts.GroupingMS = float64(time.Since(groupingStarted).Microseconds()) / 1000
 	}
 	counts.TraversalComplete = traversalComplete
 	counts.ObservationsApplied = true

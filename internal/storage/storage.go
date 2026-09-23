@@ -46,5 +46,8 @@ func (s *Store) Ready(ctx context.Context) error {
 	if err := s.Ping(ctx); err != nil {
 		return err
 	}
-	return s.ValidateSchema(ctx)
+	if err := s.ValidateSchema(ctx); err != nil {
+		return err
+	}
+	return s.GroupingReady(ctx)
 }

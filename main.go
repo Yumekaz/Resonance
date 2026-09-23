@@ -32,6 +32,7 @@ func run() error {
 	flag.Parse()
 	databaseURL := os.Getenv("RESONANCE_DATABASE_URL")
 	var ready func(context.Context) error
+	var catalogStore *storage.Store
 	if databaseURL != "" || *migrateOnly {
 		if databaseURL == "" {
 			return errors.New("RESONANCE_DATABASE_URL is required for migrations")
@@ -54,6 +55,7 @@ func run() error {
 			return errors.New("database unavailable or schema incompatible; run migrations and check PostgreSQL")
 		}
 		ready = store.Ready
+		catalogStore = store
 	}
 
 	if strings.Contains(filepath.Base(*media), ":") {
@@ -70,7 +72,7 @@ func run() error {
 	}
 	server := &http.Server{
 		Addr:              *addr,
-		Handler:           newHandlerWithReadiness(*media, *title, os.Stdout, ready),
+		Handler:           newHandlerWithCatalog(*media, *title, os.Stdout, ready, catalogStore),
 		ReadHeaderTimeout: 5 * time.Second,
 		IdleTimeout:       60 * time.Second,
 		MaxHeaderBytes:    16 * 1024,

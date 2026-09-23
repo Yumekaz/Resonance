@@ -188,7 +188,7 @@ func TestReviewTelemetrySeparatesRequestedAndSelected(t *testing.T) {
 	if err := json.Unmarshal(logs.Bytes(), &event); err != nil {
 		t.Fatal(err)
 	}
-	if event["range_header"] != "bytes=2-999" || event["selected_end"] != float64(9) || event["range_applied"] != true || event["bytes_served"] != float64(8) {
+	if event["source"] != "demo" || event["range_header"] != "bytes=2-999" || event["selected_end"] != float64(9) || event["range_applied"] != true || event["bytes_served"] != float64(8) {
 		t.Fatalf("%s", logs.String())
 	}
 }

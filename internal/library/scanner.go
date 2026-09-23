@@ -123,7 +123,7 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 			"failed", result.Failed, "bytes_hashed", result.BytesHashed, "metadata_extractions", result.MetadataExtractions,
 			"traversal_complete", result.TraversalComplete, "observations_applied", result.ObservationsApplied,
 			"absence_reconciled", result.AbsenceReconciled, "duration_ms", result.DurationMS,
-			"publish_transaction_ms", result.PublishTransactionMS, "sql_statements", result.SQLStatements, "rows_affected", result.RowsAffected)
+			"publish_transaction_ms", result.PublishTransactionMS, "grouping_ms", result.GroupingMS, "sql_statements", result.SQLStatements, "rows_affected", result.RowsAffected)
 	}()
 
 	root, err := os.OpenRoot(rootRecord.CanonicalPath)

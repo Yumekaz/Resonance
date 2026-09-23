@@ -271,25 +271,26 @@ func (l *ScanLease) Close() {
 }
 
 type ScanCounts struct {
-	FilesVisited         int64 `json:"files_visited"`
-	FilesSupported       int64 `json:"files_supported"`
-	Imported             int64 `json:"imported"`
-	Skipped              int64 `json:"skipped"`
-	Failed               int64 `json:"failed"`
-	BytesHashed          int64 `json:"bytes_hashed"`
-	MetadataExtractions  int64 `json:"metadata_extractions"`
-	FilesUnchanged       int64 `json:"files_unchanged"`
-	FilesHashed          int64 `json:"files_hashed"`
-	StatChangedSameBytes int64 `json:"stat_changed_same_bytes"`
-	ChangedBytes         int64 `json:"changed_bytes"`
-	LocationsAdded       int64 `json:"locations_added"`
-	LocationsMoved       int64 `json:"locations_moved"`
-	LocationsUnavailable int64 `json:"locations_unavailable"`
-	MediaObjectsCreated  int64 `json:"media_objects_created"`
-	TracksCreated        int64 `json:"tracks_created"`
-	TraversalComplete    bool  `json:"traversal_complete"`
-	ObservationsApplied  bool  `json:"observations_applied"`
-	AbsenceReconciled    bool  `json:"absence_reconciled"`
+	GroupingMS           float64 `json:"grouping_ms"`
+	FilesVisited         int64   `json:"files_visited"`
+	FilesSupported       int64   `json:"files_supported"`
+	Imported             int64   `json:"imported"`
+	Skipped              int64   `json:"skipped"`
+	Failed               int64   `json:"failed"`
+	BytesHashed          int64   `json:"bytes_hashed"`
+	MetadataExtractions  int64   `json:"metadata_extractions"`
+	FilesUnchanged       int64   `json:"files_unchanged"`
+	FilesHashed          int64   `json:"files_hashed"`
+	StatChangedSameBytes int64   `json:"stat_changed_same_bytes"`
+	ChangedBytes         int64   `json:"changed_bytes"`
+	LocationsAdded       int64   `json:"locations_added"`
+	LocationsMoved       int64   `json:"locations_moved"`
+	LocationsUnavailable int64   `json:"locations_unavailable"`
+	MediaObjectsCreated  int64   `json:"media_objects_created"`
+	TracksCreated        int64   `json:"tracks_created"`
+	TraversalComplete    bool    `json:"traversal_complete"`
+	ObservationsApplied  bool    `json:"observations_applied"`
+	AbsenceReconciled    bool    `json:"absence_reconciled"`
 }
 
 func (s *Store) FinishScanWithoutPublish(ctx context.Context, runID, status, errorCode string, counts ScanCounts, traversalComplete bool) error {

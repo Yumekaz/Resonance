@@ -16,9 +16,11 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"resonance/internal/storage"
 )
 
-//go:embed web/index.html web/app.js web/style.css
+//go:embed web/index.html web/app.js web/style.css web/library.html web/library.js web/library.css
 var webAssets embed.FS
 
 type track struct {
@@ -33,6 +35,7 @@ type app struct {
 	tracks map[string]track
 	log    *slog.Logger
 	ready  func(context.Context) error
+	store  *storage.Store
 }
 
 func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
@@ -40,17 +43,46 @@ func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
 }
 
 func newHandlerWithReadiness(mediaPath, title string, logOutput io.Writer, ready func(context.Context) error) http.Handler {
+	return newHandlerWithCatalog(mediaPath, title, logOutput, ready, nil)
+}
+
+func newHandlerWithCatalog(mediaPath, title string, logOutput io.Writer, ready func(context.Context) error, store *storage.Store) http.Handler {
 	a := &app{
 		tracks: map[string]track{"demo-track": {ID: "demo-track", Title: title, StreamURL: "/media/demo-track", root: filepath.Dir(mediaPath), filename: filepath.Base(mediaPath)}},
 		log:    slog.New(slog.NewJSONHandler(logOutput, nil)),
 		ready:  ready,
+		store:  store,
 	}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", a.health)
 	mux.HandleFunc("GET /ready", a.readiness)
 	mux.HandleFunc("GET /api/v1/demo-track", a.metadata)
 	mux.HandleFunc("GET /media/{id}", a.media)
+	mux.HandleFunc("GET /api/v1/tracks", a.tracksList)
+	mux.HandleFunc("GET /api/v1/tracks/{id}", a.trackDetail)
+	mux.HandleFunc("GET /api/v1/artists", a.artistsList)
+	mux.HandleFunc("GET /api/v1/artists/{id}", a.artistDetail)
+	mux.HandleFunc("GET /api/v1/albums", a.albumsList)
+	mux.HandleFunc("GET /api/v1/albums/{id}", a.albumDetail)
+	mux.HandleFunc("GET /api/v1/artists/{id}/albums", a.artistAlbums)
+	mux.HandleFunc("GET /api/v1/artists/{id}/tracks", a.groupedTracks)
+	mux.HandleFunc("GET /api/v1/albums/{id}/tracks", a.groupedTracks)
+	mux.HandleFunc("GET /api/v1/tracks/{id}/stream", a.catalogStream)
+	mux.HandleFunc("HEAD /api/v1/tracks/{id}/stream", a.catalogStream)
+	mux.HandleFunc("GET /api/v1/tracks/{id}/artwork", a.catalogArtwork)
 	assets, _ := fs.Sub(webAssets, "web")
+	if store != nil {
+		mux.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			body, _ := webAssets.ReadFile("web/library.html")
+			_, _ = w.Write(body)
+		})
+		mux.HandleFunc("GET /demo", func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			body, _ := webAssets.ReadFile("web/index.html")
+			_, _ = w.Write(body)
+		})
+	}
 	mux.Handle("GET /", http.FileServer(http.FS(assets)))
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Request-ID", requestID())
@@ -115,7 +147,7 @@ func (a *app) media(w http.ResponseWriter, r *http.Request) {
 	defer func() {
 		contextErr := r.Context().Err()
 		canceled := contextErr != nil
-		attrs := []any{"request_id", requestID, "media_id", id, "range", usedRange, "range_applied", applyRange && status == http.StatusPartialContent, "range_header", rangeHeader, "selected_start", requestedStart, "selected_end", requestedEnd, "status", status, "bytes_intended", intended, "bytes_served", served, "duration_ms", float64(time.Since(started).Microseconds()) / 1000, "canceled", canceled}
+		attrs := []any{"request_id", requestID, "source", "demo", "media_id", id, "range", usedRange, "range_applied", applyRange && status == http.StatusPartialContent, "range_header", safeRangeForLog(rangeHeader), "selected_start", requestedStart, "selected_end", requestedEnd, "status", status, "bytes_intended", intended, "bytes_served", served, "duration_ms", float64(time.Since(started).Microseconds()) / 1000, "canceled", canceled}
 		if streamErr != nil {
 			errorClass := "stream_failed"
 			if contextErr != nil {
@@ -159,43 +191,11 @@ func (a *app) media(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "media unavailable", status)
 		return
 	}
-	size := info.Size()
-	w.Header().Set("Accept-Ranges", "bytes")
-	w.Header().Set("Content-Type", "audio/wav")
-	w.Header().Set("Cache-Control", "no-store")
-	selected := byteRange{0, size - 1}
-	if applyRange {
-		selected, err = parseRange(rangeHeader, size)
-		if err != nil {
-			if errors.Is(err, errUnsatisfiableRange) {
-				status = http.StatusRequestedRangeNotSatisfiable
-				w.Header().Set("Content-Range", fmt.Sprintf("bytes */%d", size))
-			} else {
-				status = http.StatusBadRequest
-			}
-			http.Error(w, http.StatusText(status), status)
-			return
-		}
-		status = http.StatusPartialContent
-		w.Header().Set("Content-Range", fmt.Sprintf("bytes %d-%d/%d", selected.start, selected.end, size))
-	}
-	requestedStart, requestedEnd = selected.start, selected.end
-	intended = selected.end - selected.start + 1
-	if _, err = f.Seek(selected.start, io.SeekStart); err != nil {
-		status = http.StatusServiceUnavailable
-		streamErr = err
-		http.Error(w, "media unavailable", status)
-		return
-	}
-	w.Header().Set("Content-Length", fmt.Sprint(intended))
-	w.WriteHeader(status)
-	if intended == 0 || r.Method == http.MethodHead {
-		return
-	}
-	served, streamErr = copyMedia(r.Context(), w, f, intended)
-	if streamErr != nil && r.Context().Err() == nil {
-		// Headers are already committed: terminate the transfer, never append
-		// an error document or present a short transfer as successful.
+	result := serveMediaBytes(r.Context(), w, r, f, "audio/wav")
+	status, intended, served = result.status, result.intended, result.served
+	requestedStart, requestedEnd = result.start, result.end
+	streamErr = result.err
+	if result.headersStarted && streamErr != nil && r.Context().Err() == nil {
 		panic(http.ErrAbortHandler)
 	}
 }

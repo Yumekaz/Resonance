@@ -1,0 +1,14 @@
+{
+  "media_size": 26460044,
+  "seek_to_playing_ms": 194.8,
+  "bytes_at_playback": 515306,
+  "download_bytes_per_second": 262144,
+  "browser": "Chrome via Playwright",
+  "test": "tests/e2e/library.spec.js",
+  "seek_request": "bytes=18513920-",
+  "test_date": "2026-09-23",
+  "note": "Values copied from the final passing Playwright console evidence; one browser playback/seek sample",
+  "latency_ms": 20,
+  "result": "3 passed",
+  "seek_content_range": "bytes 18513920-26460043/26460044"
+}

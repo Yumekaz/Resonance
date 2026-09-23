@@ -1,0 +1,3838 @@
+{
+  "arch": "amd64",
+  "cache_state": "uncontrolled OS and PostgreSQL cache; sequential warm requests",
+  "concurrency": 1,
+  "count_per_operation": 100,
+  "date_utc": "2026-09-23T08:17:32.7312514Z",
+  "go_version": "go1.25.0",
+  "os": "windows",
+  "samples": [
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.3306959Z",
+      "finished_utc": "2026-09-23T08:17:29.3502105Z",
+      "duration_ms": 19.514,
+      "status": 200,
+      "request_id": "85ae9a5a7e2de2d2d0a47a2062c52653"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.3502105Z",
+      "finished_utc": "2026-09-23T08:17:29.3629656Z",
+      "duration_ms": 12.755,
+      "status": 200,
+      "request_id": "b1ef697a0db7cca0f3b79bafa773fe41"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.3629656Z",
+      "finished_utc": "2026-09-23T08:17:29.3757621Z",
+      "duration_ms": 12.796,
+      "status": 200,
+      "request_id": "c04662b8cd0e1f0de71ef6ff73c0f0e1"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.3757621Z",
+      "finished_utc": "2026-09-23T08:17:29.3903292Z",
+      "duration_ms": 14.567,
+      "status": 200,
+      "request_id": "da70ee08ca18add37e2a2648793cb966"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.3903292Z",
+      "finished_utc": "2026-09-23T08:17:29.4052056Z",
+      "duration_ms": 14.876,
+      "status": 200,
+      "request_id": "4340227962692dce2a94b5eddc6c6baa"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4052056Z",
+      "finished_utc": "2026-09-23T08:17:29.4216734Z",
+      "duration_ms": 16.467,
+      "status": 200,
+      "request_id": "aa2159fbaa18ab8c0dfa7512c173795c"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4216734Z",
+      "finished_utc": "2026-09-23T08:17:29.4354543Z",
+      "duration_ms": 13.78,
+      "status": 200,
+      "request_id": "e6ec4d62d5c3b8c23c60d79635b9bc63"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4354543Z",
+      "finished_utc": "2026-09-23T08:17:29.4488169Z",
+      "duration_ms": 13.362,
+      "status": 200,
+      "request_id": "c1c846a9af2c036d530498a2f3f637d8"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4488169Z",
+      "finished_utc": "2026-09-23T08:17:29.4634799Z",
+      "duration_ms": 14.663,
+      "status": 200,
+      "request_id": "f39a7de7e651ec06773d20e5b449ad99"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4634799Z",
+      "finished_utc": "2026-09-23T08:17:29.4780388Z",
+      "duration_ms": 14.558,
+      "status": 200,
+      "request_id": "f449b40511aa26a77fd6e5578e19b20b"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4780388Z",
+      "finished_utc": "2026-09-23T08:17:29.4907669Z",
+      "duration_ms": 12.728,
+      "status": 200,
+      "request_id": "5b4f0c006400dbe2ba4e654d4cffcc4e"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.4907669Z",
+      "finished_utc": "2026-09-23T08:17:29.5061472Z",
+      "duration_ms": 15.38,
+      "status": 200,
+      "request_id": "dcd4907963e25e10a076c516747fd495"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5061472Z",
+      "finished_utc": "2026-09-23T08:17:29.5224867Z",
+      "duration_ms": 16.339,
+      "status": 200,
+      "request_id": "06abefdc69d104f1096f52d2ac4e51e1"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5224867Z",
+      "finished_utc": "2026-09-23T08:17:29.5376117Z",
+      "duration_ms": 15.125,
+      "status": 200,
+      "request_id": "124caba682c585a1f1cdabd3e14c2a42"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5376117Z",
+      "finished_utc": "2026-09-23T08:17:29.5510862Z",
+      "duration_ms": 13.474,
+      "status": 200,
+      "request_id": "982d4beb0d056504f99bf86e6334ebaa"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5510862Z",
+      "finished_utc": "2026-09-23T08:17:29.5651936Z",
+      "duration_ms": 14.107,
+      "status": 200,
+      "request_id": "4a4f5f31a22ca8199e8d7b454601eb7b"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5651936Z",
+      "finished_utc": "2026-09-23T08:17:29.5805625Z",
+      "duration_ms": 15.368,
+      "status": 200,
+      "request_id": "ca3068790ea3e0eeef026613b5fdb843"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5805625Z",
+      "finished_utc": "2026-09-23T08:17:29.5947177Z",
+      "duration_ms": 14.155,
+      "status": 200,
+      "request_id": "b62cc7e96cc189060b628b773a16e985"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.5947177Z",
+      "finished_utc": "2026-09-23T08:17:29.6076053Z",
+      "duration_ms": 12.887,
+      "status": 200,
+      "request_id": "6b86ab113fbe2bad1fb24505fb0b7e65"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6076053Z",
+      "finished_utc": "2026-09-23T08:17:29.6197947Z",
+      "duration_ms": 12.189,
+      "status": 200,
+      "request_id": "f10a9f426c5fe2352aa35a9c14b5cea5"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6197947Z",
+      "finished_utc": "2026-09-23T08:17:29.6337888Z",
+      "duration_ms": 13.994,
+      "status": 200,
+      "request_id": "34d5630bb6a533244a17693f048f903c"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6337888Z",
+      "finished_utc": "2026-09-23T08:17:29.6471638Z",
+      "duration_ms": 13.375,
+      "status": 200,
+      "request_id": "90cc4e5be674485dd51a515179b8c32f"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6471638Z",
+      "finished_utc": "2026-09-23T08:17:29.661305Z",
+      "duration_ms": 14.141,
+      "status": 200,
+      "request_id": "5b3ef9aa3f4e8110e62fdfb156d3dbf1"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.661305Z",
+      "finished_utc": "2026-09-23T08:17:29.6740101Z",
+      "duration_ms": 12.705,
+      "status": 200,
+      "request_id": "b5a78472ca8b447207c3df0613d62ecd"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6740101Z",
+      "finished_utc": "2026-09-23T08:17:29.6880856Z",
+      "duration_ms": 14.075,
+      "status": 200,
+      "request_id": "cf5a84436075e8e8918bd48e11185b93"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.6880856Z",
+      "finished_utc": "2026-09-23T08:17:29.7016577Z",
+      "duration_ms": 13.572,
+      "status": 200,
+      "request_id": "c9f9e06ea7c21565b78730c9063506e8"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7016577Z",
+      "finished_utc": "2026-09-23T08:17:29.7136277Z",
+      "duration_ms": 11.97,
+      "status": 200,
+      "request_id": "2eadfd919abb6f1001bf708b3d57c94b"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7136277Z",
+      "finished_utc": "2026-09-23T08:17:29.7271804Z",
+      "duration_ms": 13.552,
+      "status": 200,
+      "request_id": "530b6e2badc843f11469d0d246759685"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7271804Z",
+      "finished_utc": "2026-09-23T08:17:29.7402422Z",
+      "duration_ms": 13.061,
+      "status": 200,
+      "request_id": "9e29a52615675bec9fb01433ffa493da"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7402422Z",
+      "finished_utc": "2026-09-23T08:17:29.7536975Z",
+      "duration_ms": 13.455,
+      "status": 200,
+      "request_id": "3e5f1131f4742cf780c50c5e28d464da"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7536975Z",
+      "finished_utc": "2026-09-23T08:17:29.7655034Z",
+      "duration_ms": 11.805,
+      "status": 200,
+      "request_id": "908a48ec8a1f3806674d7422e292f373"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7655034Z",
+      "finished_utc": "2026-09-23T08:17:29.7799783Z",
+      "duration_ms": 14.474,
+      "status": 200,
+      "request_id": "fc26f4e72f8ccdc1a0e85f88acc09daa"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7799783Z",
+      "finished_utc": "2026-09-23T08:17:29.7928166Z",
+      "duration_ms": 12.838,
+      "status": 200,
+      "request_id": "30d953cdbea82699515e73075e8d8c67"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.7928166Z",
+      "finished_utc": "2026-09-23T08:17:29.8059291Z",
+      "duration_ms": 13.112,
+      "status": 200,
+      "request_id": "0d797e5c34ef593678e6b399cdcdf9e8"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8059291Z",
+      "finished_utc": "2026-09-23T08:17:29.8193638Z",
+      "duration_ms": 13.434,
+      "status": 200,
+      "request_id": "bf9ea4e81541147d66781ac0c36285be"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8193638Z",
+      "finished_utc": "2026-09-23T08:17:29.8312644Z",
+      "duration_ms": 11.9,
+      "status": 200,
+      "request_id": "8375a72c1cbf94f261be170b6a31325e"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8312644Z",
+      "finished_utc": "2026-09-23T08:17:29.8444705Z",
+      "duration_ms": 13.206,
+      "status": 200,
+      "request_id": "b6a9b1612b292f61e9648172adf7ec55"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8444705Z",
+      "finished_utc": "2026-09-23T08:17:29.8555757Z",
+      "duration_ms": 11.105,
+      "status": 200,
+      "request_id": "3bb0c56176b410ca8bda77a9789c9f45"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8555757Z",
+      "finished_utc": "2026-09-23T08:17:29.8699983Z",
+      "duration_ms": 14.422,
+      "status": 200,
+      "request_id": "b8c8b69f67eb5c085cabad56a148c4fd"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8699983Z",
+      "finished_utc": "2026-09-23T08:17:29.8822054Z",
+      "duration_ms": 12.207,
+      "status": 200,
+      "request_id": "cade9e46925a4bf19a3a52d6bdd11db4"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8822054Z",
+      "finished_utc": "2026-09-23T08:17:29.8957292Z",
+      "duration_ms": 13.523,
+      "status": 200,
+      "request_id": "729a56415d904534a4fc79cd0c1602ff"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.8957292Z",
+      "finished_utc": "2026-09-23T08:17:29.9072008Z",
+      "duration_ms": 11.471,
+      "status": 200,
+      "request_id": "47cdcc8b6346d76dbd730515f8638e36"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9072008Z",
+      "finished_utc": "2026-09-23T08:17:29.9201316Z",
+      "duration_ms": 12.93,
+      "status": 200,
+      "request_id": "4170f64c8fdffbfcd9de0c0b659b4d35"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9201316Z",
+      "finished_utc": "2026-09-23T08:17:29.9316093Z",
+      "duration_ms": 11.477,
+      "status": 200,
+      "request_id": "2cdf838ebaf0696e10b2ea6220c74434"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9316093Z",
+      "finished_utc": "2026-09-23T08:17:29.9445396Z",
+      "duration_ms": 12.93,
+      "status": 200,
+      "request_id": "e9f70100187c4e6f6d567138e03138ae"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9445396Z",
+      "finished_utc": "2026-09-23T08:17:29.9563041Z",
+      "duration_ms": 11.764,
+      "status": 200,
+      "request_id": "d720fea303041e4890a765c4e6a513fc"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9563041Z",
+      "finished_utc": "2026-09-23T08:17:29.9712425Z",
+      "duration_ms": 14.938,
+      "status": 200,
+      "request_id": "b56383672e3fc58e6d21fee495eade8a"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9712425Z",
+      "finished_utc": "2026-09-23T08:17:29.983248Z",
+      "duration_ms": 12.005,
+      "status": 200,
+      "request_id": "30d1496badf4861bc1b7f8bf102418fa"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.983248Z",
+      "finished_utc": "2026-09-23T08:17:29.9963738Z",
+      "duration_ms": 13.125,
+      "status": 200,
+      "request_id": "796f853c6262e23a1f57f910d06cba43"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:29.9963738Z",
+      "finished_utc": "2026-09-23T08:17:30.0084816Z",
+      "duration_ms": 12.107,
+      "status": 200,
+      "request_id": "fca10b482b7753cfe6d317cb9b94ba22"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0084816Z",
+      "finished_utc": "2026-09-23T08:17:30.021839Z",
+      "duration_ms": 13.357,
+      "status": 200,
+      "request_id": "f47ef5a18c0db2e5d13adc28317527f2"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.021839Z",
+      "finished_utc": "2026-09-23T08:17:30.0349332Z",
+      "duration_ms": 13.094,
+      "status": 200,
+      "request_id": "9528babe5764e47243615c70cfbfe806"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0349332Z",
+      "finished_utc": "2026-09-23T08:17:30.0470062Z",
+      "duration_ms": 12.073,
+      "status": 200,
+      "request_id": "e792a6636a66b728e1e474942c0c2ebf"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0470062Z",
+      "finished_utc": "2026-09-23T08:17:30.0597894Z",
+      "duration_ms": 12.783,
+      "status": 200,
+      "request_id": "56efb11ce2714bdb77f985cb81a7de65"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0597894Z",
+      "finished_utc": "2026-09-23T08:17:30.0728862Z",
+      "duration_ms": 13.096,
+      "status": 200,
+      "request_id": "e9ec5966933fc6c78bcb9c7da374fc3c"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0728862Z",
+      "finished_utc": "2026-09-23T08:17:30.0872988Z",
+      "duration_ms": 14.412,
+      "status": 200,
+      "request_id": "c4f1010ece6073c99235f7c2a04a3034"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0872988Z",
+      "finished_utc": "2026-09-23T08:17:30.0987136Z",
+      "duration_ms": 11.414,
+      "status": 200,
+      "request_id": "1182387ca716b4ad762ab725aa7a31ba"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.0991479Z",
+      "finished_utc": "2026-09-23T08:17:30.1123635Z",
+      "duration_ms": 13.215,
+      "status": 200,
+      "request_id": "11f8b5dfe0743aebe8ce246f18f41e59"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.1123635Z",
+      "finished_utc": "2026-09-23T08:17:30.1255035Z",
+      "duration_ms": 13.14,
+      "status": 200,
+      "request_id": "dad9fee7460a63aec79f35f078b4c24c"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.1255035Z",
+      "finished_utc": "2026-09-23T08:17:30.138532Z",
+      "duration_ms": 13.028,
+      "status": 200,
+      "request_id": "d8b104c77d7c55afc84508c212ecb3c9"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.138532Z",
+      "finished_utc": "2026-09-23T08:17:30.1503742Z",
+      "duration_ms": 11.842,
+      "status": 200,
+      "request_id": "88507d443d1522a6488a777dbfae3f8a"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.1503742Z",
+      "finished_utc": "2026-09-23T08:17:30.1638844Z",
+      "duration_ms": 13.51,
+      "status": 200,
+      "request_id": "d19917ec75f4e3857f99d04aaef7d02d"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.1638844Z",
+      "finished_utc": "2026-09-23T08:17:30.1784765Z",
+      "duration_ms": 14.592,
+      "status": 200,
+      "request_id": "e55db4aa63a59fedf98ccb3e91020992"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.179176Z",
+      "finished_utc": "2026-09-23T08:17:30.1928629Z",
+      "duration_ms": 13.686,
+      "status": 200,
+      "request_id": "7b1593b40dc57759d109334d7308bbdf"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.1928629Z",
+      "finished_utc": "2026-09-23T08:17:30.2062323Z",
+      "duration_ms": 13.369,
+      "status": 200,
+      "request_id": "8dce6e969d610d5891acd52014654400"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2062323Z",
+      "finished_utc": "2026-09-23T08:17:30.2196291Z",
+      "duration_ms": 13.396,
+      "status": 200,
+      "request_id": "691cf88b0f627c47eec73be20f8ebd36"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2196291Z",
+      "finished_utc": "2026-09-23T08:17:30.230688Z",
+      "duration_ms": 11.058,
+      "status": 200,
+      "request_id": "947e9155df0e09630ee9fdc468cf8217"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2316733Z",
+      "finished_utc": "2026-09-23T08:17:30.2445414Z",
+      "duration_ms": 12.868,
+      "status": 200,
+      "request_id": "6cb2e867a30d8142accb548005227883"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2445414Z",
+      "finished_utc": "2026-09-23T08:17:30.2566019Z",
+      "duration_ms": 12.06,
+      "status": 200,
+      "request_id": "91aa15e99dffaf16dd33bd3bf73f9d70"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2566019Z",
+      "finished_utc": "2026-09-23T08:17:30.2717294Z",
+      "duration_ms": 15.127,
+      "status": 200,
+      "request_id": "48b800d19ea66b5b00a4d6965964f525"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2717294Z",
+      "finished_utc": "2026-09-23T08:17:30.2831396Z",
+      "duration_ms": 11.41,
+      "status": 200,
+      "request_id": "2b3c460b0ea1f9b0e6a61ad713b9841e"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2831396Z",
+      "finished_utc": "2026-09-23T08:17:30.2968911Z",
+      "duration_ms": 13.751,
+      "status": 200,
+      "request_id": "1c79506fa5c6eb6d87f7a4578bbf6acd"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.2968911Z",
+      "finished_utc": "2026-09-23T08:17:30.309283Z",
+      "duration_ms": 12.391,
+      "status": 200,
+      "request_id": "ebb6469fcd1d8af93cdb02b9944f3020"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.309283Z",
+      "finished_utc": "2026-09-23T08:17:30.3224651Z",
+      "duration_ms": 13.182,
+      "status": 200,
+      "request_id": "2b8713f16510fd7e9816c2c06d53134e"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3224651Z",
+      "finished_utc": "2026-09-23T08:17:30.3357749Z",
+      "duration_ms": 13.309,
+      "status": 200,
+      "request_id": "c32bb266ee2a52e90f808a876f915a7e"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3357749Z",
+      "finished_utc": "2026-09-23T08:17:30.3480102Z",
+      "duration_ms": 12.235,
+      "status": 200,
+      "request_id": "0a583ab9226c11019d37906edb4eab4a"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3480102Z",
+      "finished_utc": "2026-09-23T08:17:30.3620122Z",
+      "duration_ms": 14.002,
+      "status": 200,
+      "request_id": "17d058e6515ba1af0c7671defc723b62"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3620122Z",
+      "finished_utc": "2026-09-23T08:17:30.3742973Z",
+      "duration_ms": 12.285,
+      "status": 200,
+      "request_id": "18355637bd19b89524893a762cfe0d55"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3742973Z",
+      "finished_utc": "2026-09-23T08:17:30.3883963Z",
+      "duration_ms": 14.099,
+      "status": 200,
+      "request_id": "adbe77b084e7630a8cff9c1066ee0ce6"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.3883963Z",
+      "finished_utc": "2026-09-23T08:17:30.4008266Z",
+      "duration_ms": 12.43,
+      "status": 200,
+      "request_id": "8a39dcc5390e73af49ce4f1261568d6f"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4008266Z",
+      "finished_utc": "2026-09-23T08:17:30.4137703Z",
+      "duration_ms": 12.943,
+      "status": 200,
+      "request_id": "fe516cf8f6e33396880cb8a0e6242129"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4137703Z",
+      "finished_utc": "2026-09-23T08:17:30.4252443Z",
+      "duration_ms": 11.474,
+      "status": 200,
+      "request_id": "a8ebef7ef467fc8767788f9d01c81979"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4252443Z",
+      "finished_utc": "2026-09-23T08:17:30.4382096Z",
+      "duration_ms": 12.965,
+      "status": 200,
+      "request_id": "a89bcdb55411e128605f5813dcb21848"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4382096Z",
+      "finished_utc": "2026-09-23T08:17:30.4496614Z",
+      "duration_ms": 11.451,
+      "status": 200,
+      "request_id": "a4e5dd72afab65205e1dcd479f53d9c7"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4496614Z",
+      "finished_utc": "2026-09-23T08:17:30.4628805Z",
+      "duration_ms": 13.219,
+      "status": 200,
+      "request_id": "785e6a24087f0662b3e4d10bb6df855a"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4628805Z",
+      "finished_utc": "2026-09-23T08:17:30.4739749Z",
+      "duration_ms": 11.094,
+      "status": 200,
+      "request_id": "90e78f98d701b5744c6620bf8beb0a41"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4739749Z",
+      "finished_utc": "2026-09-23T08:17:30.4872539Z",
+      "duration_ms": 13.279,
+      "status": 200,
+      "request_id": "ff5487728afbb95a6d80632376fe12b2"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.4872539Z",
+      "finished_utc": "2026-09-23T08:17:30.498743Z",
+      "duration_ms": 11.489,
+      "status": 200,
+      "request_id": "a1c15d08da2d748c994432a9003dd353"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.498743Z",
+      "finished_utc": "2026-09-23T08:17:30.5125265Z",
+      "duration_ms": 13.783,
+      "status": 200,
+      "request_id": "85e2f5865cd36b7532ef33181aca57bb"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5125265Z",
+      "finished_utc": "2026-09-23T08:17:30.5243331Z",
+      "duration_ms": 11.806,
+      "status": 200,
+      "request_id": "cd5ec3b58bc2b5126f1cde769bceed52"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5243331Z",
+      "finished_utc": "2026-09-23T08:17:30.5368706Z",
+      "duration_ms": 12.537,
+      "status": 200,
+      "request_id": "c888e86fa66c5d7afb8b96c60ca0b339"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5368706Z",
+      "finished_utc": "2026-09-23T08:17:30.5485692Z",
+      "duration_ms": 11.698,
+      "status": 200,
+      "request_id": "54dc6c36ad3dab6325dd6678b571cbc0"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5485692Z",
+      "finished_utc": "2026-09-23T08:17:30.5611231Z",
+      "duration_ms": 12.553,
+      "status": 200,
+      "request_id": "eae8958eabcf748d32990e38ad8f396f"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5611231Z",
+      "finished_utc": "2026-09-23T08:17:30.5730401Z",
+      "duration_ms": 11.917,
+      "status": 200,
+      "request_id": "81ce20bf4853cd101465971fd7331d2f"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5730401Z",
+      "finished_utc": "2026-09-23T08:17:30.5865169Z",
+      "duration_ms": 13.476,
+      "status": 200,
+      "request_id": "69a1a8b7c58c77b19c83307bd09de32f"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5865169Z",
+      "finished_utc": "2026-09-23T08:17:30.5970723Z",
+      "duration_ms": 10.555,
+      "status": 200,
+      "request_id": "b79bc493cac4b30851c1286ad23d4d49"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.5970723Z",
+      "finished_utc": "2026-09-23T08:17:30.6098838Z",
+      "duration_ms": 12.811,
+      "status": 200,
+      "request_id": "049a6ed7bb6b75c17d1e9c02aabff5b4"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.6098838Z",
+      "finished_utc": "2026-09-23T08:17:30.6224665Z",
+      "duration_ms": 12.582,
+      "status": 200,
+      "request_id": "0aff75cad0d7aac03f8d10efd62fbc33"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.6224665Z",
+      "finished_utc": "2026-09-23T08:17:30.6352036Z",
+      "duration_ms": 12.737,
+      "status": 200,
+      "request_id": "574cb384c7cf91c5f610ee5d1848ed8a"
+    },
+    {
+      "kind": "tracks_page",
+      "started_utc": "2026-09-23T08:17:30.6352036Z",
+      "finished_utc": "2026-09-23T08:17:30.6474577Z",
+      "duration_ms": 12.254,
+      "status": 200,
+      "request_id": "700eb855d7c3493512acc3888f20a499"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6474577Z",
+      "finished_utc": "2026-09-23T08:17:30.6605132Z",
+      "duration_ms": 13.055,
+      "status": 200,
+      "request_id": "2799b4dd711772996384d3a9b91e156f"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6605132Z",
+      "finished_utc": "2026-09-23T08:17:30.6700766Z",
+      "duration_ms": 9.563,
+      "status": 200,
+      "request_id": "831c07cfd7edbd7aae94f27a884deb62"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6700766Z",
+      "finished_utc": "2026-09-23T08:17:30.6792356Z",
+      "duration_ms": 9.159,
+      "status": 200,
+      "request_id": "4fb3037dc73fb775de975985c3df1a05"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6792356Z",
+      "finished_utc": "2026-09-23T08:17:30.6889416Z",
+      "duration_ms": 9.706,
+      "status": 200,
+      "request_id": "033e8b2c05a53e46ba3cd8c9177bb66a"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6889416Z",
+      "finished_utc": "2026-09-23T08:17:30.6983538Z",
+      "duration_ms": 9.412,
+      "status": 200,
+      "request_id": "efd20276919b15e119196c936a44c8f1"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.6983538Z",
+      "finished_utc": "2026-09-23T08:17:30.7070302Z",
+      "duration_ms": 8.676,
+      "status": 200,
+      "request_id": "ecf0841e057de5de042ea1adf00e0764"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7070302Z",
+      "finished_utc": "2026-09-23T08:17:30.7148255Z",
+      "duration_ms": 7.795,
+      "status": 200,
+      "request_id": "481d2a59e493212b239baba8ff9ab1bd"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7148255Z",
+      "finished_utc": "2026-09-23T08:17:30.7210626Z",
+      "duration_ms": 6.237,
+      "status": 200,
+      "request_id": "f53906683c76f4029c676b122e0e4012"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7210626Z",
+      "finished_utc": "2026-09-23T08:17:30.7393415Z",
+      "duration_ms": 18.278,
+      "status": 200,
+      "request_id": "3401703a10618671579761288547b05d"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7393415Z",
+      "finished_utc": "2026-09-23T08:17:30.7472858Z",
+      "duration_ms": 7.944,
+      "status": 200,
+      "request_id": "84a1755b1798afecc82738b5a52582da"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7472858Z",
+      "finished_utc": "2026-09-23T08:17:30.7551791Z",
+      "duration_ms": 7.893,
+      "status": 200,
+      "request_id": "70d6374716ad38a837d40c448e1d5f5e"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7551791Z",
+      "finished_utc": "2026-09-23T08:17:30.7632876Z",
+      "duration_ms": 8.108,
+      "status": 200,
+      "request_id": "b8362b24fa2062373a0396fdf78b7ac9"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7632876Z",
+      "finished_utc": "2026-09-23T08:17:30.7711957Z",
+      "duration_ms": 7.908,
+      "status": 200,
+      "request_id": "74e2ad772ccbafe4181bbde0b5f78b72"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7711957Z",
+      "finished_utc": "2026-09-23T08:17:30.7788694Z",
+      "duration_ms": 7.673,
+      "status": 200,
+      "request_id": "fb5fa235c047ce23087058eab148e89e"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7788694Z",
+      "finished_utc": "2026-09-23T08:17:30.7878021Z",
+      "duration_ms": 8.932,
+      "status": 200,
+      "request_id": "c7dc326de1b37c46a074f262c1c124ec"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7878021Z",
+      "finished_utc": "2026-09-23T08:17:30.7942666Z",
+      "duration_ms": 6.464,
+      "status": 200,
+      "request_id": "7e306d01affbc6c147122d1321fb5782"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.7942666Z",
+      "finished_utc": "2026-09-23T08:17:30.8033706Z",
+      "duration_ms": 9.104,
+      "status": 200,
+      "request_id": "319974c69f590190f73c3cd10458dfee"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8033706Z",
+      "finished_utc": "2026-09-23T08:17:30.811243Z",
+      "duration_ms": 7.872,
+      "status": 200,
+      "request_id": "c24e8421d61a43159dd8bce4033800c5"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.811243Z",
+      "finished_utc": "2026-09-23T08:17:30.8192774Z",
+      "duration_ms": 8.034,
+      "status": 200,
+      "request_id": "fed6fe42966c1279537211b202e254d3"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8192774Z",
+      "finished_utc": "2026-09-23T08:17:30.8268968Z",
+      "duration_ms": 7.619,
+      "status": 200,
+      "request_id": "810b684722da1019de691f2e5a4141ac"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8268968Z",
+      "finished_utc": "2026-09-23T08:17:30.834389Z",
+      "duration_ms": 7.492,
+      "status": 200,
+      "request_id": "42d7e021f4db2b6307b978ea193d1635"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.834389Z",
+      "finished_utc": "2026-09-23T08:17:30.8417424Z",
+      "duration_ms": 7.353,
+      "status": 200,
+      "request_id": "535220cda0a5533b51ace36da785a6a9"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8417424Z",
+      "finished_utc": "2026-09-23T08:17:30.8491763Z",
+      "duration_ms": 7.433,
+      "status": 200,
+      "request_id": "30c8ce8ce2b4dc3741ee27138751ffd9"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8491763Z",
+      "finished_utc": "2026-09-23T08:17:30.8557973Z",
+      "duration_ms": 6.621,
+      "status": 200,
+      "request_id": "745a5d0ae5bb953a87b031710ebe240f"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8557973Z",
+      "finished_utc": "2026-09-23T08:17:30.8623371Z",
+      "duration_ms": 6.539,
+      "status": 200,
+      "request_id": "3f19acb1affdeb302d1f7a82ee5e3122"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8623371Z",
+      "finished_utc": "2026-09-23T08:17:30.8707442Z",
+      "duration_ms": 8.407,
+      "status": 200,
+      "request_id": "a795628909e3af1e6201eec7e67ab65e"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8707442Z",
+      "finished_utc": "2026-09-23T08:17:30.878526Z",
+      "duration_ms": 7.781,
+      "status": 200,
+      "request_id": "94a49154df8493746fa00bb5e5629816"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.878526Z",
+      "finished_utc": "2026-09-23T08:17:30.8860589Z",
+      "duration_ms": 7.532,
+      "status": 200,
+      "request_id": "66c458d1805ba6a5cb23264318419dd1"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8860589Z",
+      "finished_utc": "2026-09-23T08:17:30.8951903Z",
+      "duration_ms": 9.131,
+      "status": 200,
+      "request_id": "7f96c89ede5ed6405c1a9094ada01597"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.8951903Z",
+      "finished_utc": "2026-09-23T08:17:30.903678Z",
+      "duration_ms": 8.487,
+      "status": 200,
+      "request_id": "bcd133fe62c561a2a75d742f6f7fbc96"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.903678Z",
+      "finished_utc": "2026-09-23T08:17:30.9116832Z",
+      "duration_ms": 8.005,
+      "status": 200,
+      "request_id": "0c48ad70293641a06c9a6040356148a2"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9116832Z",
+      "finished_utc": "2026-09-23T08:17:30.918725Z",
+      "duration_ms": 7.041,
+      "status": 200,
+      "request_id": "e3730f02872f18a7e191e004a32eeb25"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.918725Z",
+      "finished_utc": "2026-09-23T08:17:30.9287802Z",
+      "duration_ms": 10.055,
+      "status": 200,
+      "request_id": "f0c8706d3d35f3bde4b87bb9dd053261"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9287802Z",
+      "finished_utc": "2026-09-23T08:17:30.9368293Z",
+      "duration_ms": 8.049,
+      "status": 200,
+      "request_id": "d917ce57a89b546712666a11881483ed"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9368293Z",
+      "finished_utc": "2026-09-23T08:17:30.9453688Z",
+      "duration_ms": 8.539,
+      "status": 200,
+      "request_id": "21b54f0e8f53cc34b48da4409198c6cc"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9453688Z",
+      "finished_utc": "2026-09-23T08:17:30.9524138Z",
+      "duration_ms": 7.045,
+      "status": 200,
+      "request_id": "65011a6d03754cba09d212a5704b7928"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9524138Z",
+      "finished_utc": "2026-09-23T08:17:30.9610717Z",
+      "duration_ms": 8.657,
+      "status": 200,
+      "request_id": "c24d461e440426331439629c872a117d"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9610717Z",
+      "finished_utc": "2026-09-23T08:17:30.9685009Z",
+      "duration_ms": 7.429,
+      "status": 200,
+      "request_id": "7dda51a54766ee2faae4b389f7b38c47"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9685009Z",
+      "finished_utc": "2026-09-23T08:17:30.976398Z",
+      "duration_ms": 7.897,
+      "status": 200,
+      "request_id": "4bc2e1270f06b405d52295cfe1e8c2ed"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.976398Z",
+      "finished_utc": "2026-09-23T08:17:30.9834042Z",
+      "duration_ms": 7.006,
+      "status": 200,
+      "request_id": "bdf6b07cad2e000b598907f648ef3a8c"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9834042Z",
+      "finished_utc": "2026-09-23T08:17:30.9904219Z",
+      "duration_ms": 7.017,
+      "status": 200,
+      "request_id": "4a0bebaf2d2514dbf34a229ad1af24a0"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9904219Z",
+      "finished_utc": "2026-09-23T08:17:30.9982376Z",
+      "duration_ms": 7.815,
+      "status": 200,
+      "request_id": "ec938db5e839bb2f0e9d3e5eaed24d32"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:30.9982376Z",
+      "finished_utc": "2026-09-23T08:17:31.0064213Z",
+      "duration_ms": 8.183,
+      "status": 200,
+      "request_id": "0667d94096177a80ec19c6b471688050"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0064213Z",
+      "finished_utc": "2026-09-23T08:17:31.0139262Z",
+      "duration_ms": 7.504,
+      "status": 200,
+      "request_id": "1a01ed0de5c28369f1ca04b70c1e4f5c"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0139262Z",
+      "finished_utc": "2026-09-23T08:17:31.021843Z",
+      "duration_ms": 7.916,
+      "status": 200,
+      "request_id": "4c53c640c623fb373215b336274de08f"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.021843Z",
+      "finished_utc": "2026-09-23T08:17:31.0297656Z",
+      "duration_ms": 7.922,
+      "status": 200,
+      "request_id": "d627a96ddb2a8f789107c32ec3a67804"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0297656Z",
+      "finished_utc": "2026-09-23T08:17:31.0376563Z",
+      "duration_ms": 7.89,
+      "status": 200,
+      "request_id": "454604882c5d10d22780e647f60b5e58"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0376563Z",
+      "finished_utc": "2026-09-23T08:17:31.0460336Z",
+      "duration_ms": 8.377,
+      "status": 200,
+      "request_id": "d19bdda938eacbe710c53d2e15b524f2"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0460336Z",
+      "finished_utc": "2026-09-23T08:17:31.0541512Z",
+      "duration_ms": 8.117,
+      "status": 200,
+      "request_id": "c66b23fa5d087756abf9da5e769dc1ed"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0541512Z",
+      "finished_utc": "2026-09-23T08:17:31.0624002Z",
+      "duration_ms": 8.249,
+      "status": 200,
+      "request_id": "50f220923d02318d0520866395c043f8"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0624002Z",
+      "finished_utc": "2026-09-23T08:17:31.0710551Z",
+      "duration_ms": 8.654,
+      "status": 200,
+      "request_id": "5335fbf222a02ed7358a09b004fcba89"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0710551Z",
+      "finished_utc": "2026-09-23T08:17:31.0792332Z",
+      "duration_ms": 8.178,
+      "status": 200,
+      "request_id": "483c8d48a0ebab393fcc8188ecabd3e3"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0792332Z",
+      "finished_utc": "2026-09-23T08:17:31.0874463Z",
+      "duration_ms": 8.213,
+      "status": 200,
+      "request_id": "1bec64388bf3e7cf654a6c475ee17364"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0874463Z",
+      "finished_utc": "2026-09-23T08:17:31.0955122Z",
+      "duration_ms": 8.065,
+      "status": 200,
+      "request_id": "0dc5887e2157b002dd11ed5e24841fea"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.0955122Z",
+      "finished_utc": "2026-09-23T08:17:31.103332Z",
+      "duration_ms": 7.819,
+      "status": 200,
+      "request_id": "26e73b59bf04232089a2d32de3ef91db"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.103332Z",
+      "finished_utc": "2026-09-23T08:17:31.1109384Z",
+      "duration_ms": 7.606,
+      "status": 200,
+      "request_id": "9829f8fdc15c867bd7f20f54d9050009"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1109384Z",
+      "finished_utc": "2026-09-23T08:17:31.1182653Z",
+      "duration_ms": 7.326,
+      "status": 200,
+      "request_id": "8995755d32bd12bf4d80d8ac166203c0"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1182653Z",
+      "finished_utc": "2026-09-23T08:17:31.1250461Z",
+      "duration_ms": 6.78,
+      "status": 200,
+      "request_id": "61b9d27169f15d9efc3b18c12ac25a1d"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1250461Z",
+      "finished_utc": "2026-09-23T08:17:31.1324766Z",
+      "duration_ms": 7.43,
+      "status": 200,
+      "request_id": "43f8eee5e181d014d8ea1e088b1546b3"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1324766Z",
+      "finished_utc": "2026-09-23T08:17:31.1394626Z",
+      "duration_ms": 6.986,
+      "status": 200,
+      "request_id": "0e329a4df76197f51ac2cd696e267042"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1394626Z",
+      "finished_utc": "2026-09-23T08:17:31.1464115Z",
+      "duration_ms": 6.948,
+      "status": 200,
+      "request_id": "894f55e48a4b2c94b88ed2a30ee0bd69"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1464115Z",
+      "finished_utc": "2026-09-23T08:17:31.1540079Z",
+      "duration_ms": 7.596,
+      "status": 200,
+      "request_id": "4ba971da37a1f41321fb0c8f93522889"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1540079Z",
+      "finished_utc": "2026-09-23T08:17:31.1620697Z",
+      "duration_ms": 8.061,
+      "status": 200,
+      "request_id": "7435276d78072b991da36f2b500ec650"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1620697Z",
+      "finished_utc": "2026-09-23T08:17:31.1700801Z",
+      "duration_ms": 8.01,
+      "status": 200,
+      "request_id": "59a34b71510013a44d8fc6a096e0c39f"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1700801Z",
+      "finished_utc": "2026-09-23T08:17:31.1778755Z",
+      "duration_ms": 7.795,
+      "status": 200,
+      "request_id": "4daf5ed44c994267fb0b26b6ca025f00"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1778755Z",
+      "finished_utc": "2026-09-23T08:17:31.1858466Z",
+      "duration_ms": 7.971,
+      "status": 200,
+      "request_id": "fc5a7560d6f80bfb5d1f7784ebba11a8"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1858466Z",
+      "finished_utc": "2026-09-23T08:17:31.1936494Z",
+      "duration_ms": 7.802,
+      "status": 200,
+      "request_id": "9332316e5478a46543094a64fc3efb6e"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.1936494Z",
+      "finished_utc": "2026-09-23T08:17:31.2013746Z",
+      "duration_ms": 7.725,
+      "status": 200,
+      "request_id": "d8d82c1404f521a59ab4495b9e2fe886"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2013746Z",
+      "finished_utc": "2026-09-23T08:17:31.2092792Z",
+      "duration_ms": 7.904,
+      "status": 200,
+      "request_id": "b66f131405f2efb96c8a05e5a5dcf9c0"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2092792Z",
+      "finished_utc": "2026-09-23T08:17:31.216546Z",
+      "duration_ms": 7.266,
+      "status": 200,
+      "request_id": "ffae00fdcce04e3b61c0e7bb4860d0a1"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.216546Z",
+      "finished_utc": "2026-09-23T08:17:31.2243734Z",
+      "duration_ms": 7.827,
+      "status": 200,
+      "request_id": "18dd5507427ed9105047460e5cf95f1d"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2243734Z",
+      "finished_utc": "2026-09-23T08:17:31.2318326Z",
+      "duration_ms": 7.459,
+      "status": 200,
+      "request_id": "ab4096951cb8823cd907b89027755728"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2318326Z",
+      "finished_utc": "2026-09-23T08:17:31.2395993Z",
+      "duration_ms": 7.766,
+      "status": 200,
+      "request_id": "7adb81c507e4f5a264ef7c7b57e546fc"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2395993Z",
+      "finished_utc": "2026-09-23T08:17:31.2468411Z",
+      "duration_ms": 7.241,
+      "status": 200,
+      "request_id": "c1bc4bb4db2d6df2ccceae577a56cad7"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2468411Z",
+      "finished_utc": "2026-09-23T08:17:31.2544156Z",
+      "duration_ms": 7.574,
+      "status": 200,
+      "request_id": "4be5198d0c6ec566d8990343aca478cc"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2544156Z",
+      "finished_utc": "2026-09-23T08:17:31.2630546Z",
+      "duration_ms": 8.639,
+      "status": 200,
+      "request_id": "f2c68f0b3a990d9260c0c60557682919"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2630546Z",
+      "finished_utc": "2026-09-23T08:17:31.2719558Z",
+      "duration_ms": 8.901,
+      "status": 200,
+      "request_id": "91ef113a47e93b5668489b145db26465"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2719558Z",
+      "finished_utc": "2026-09-23T08:17:31.2795252Z",
+      "duration_ms": 7.569,
+      "status": 200,
+      "request_id": "8710568d2095edca7da97cc0ba156b35"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2795252Z",
+      "finished_utc": "2026-09-23T08:17:31.2871206Z",
+      "duration_ms": 7.595,
+      "status": 200,
+      "request_id": "f077ca7497e4f98ad42c3f8a44255413"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2871206Z",
+      "finished_utc": "2026-09-23T08:17:31.2950798Z",
+      "duration_ms": 7.959,
+      "status": 200,
+      "request_id": "6062cd6bf04eb434eafcd175b567c3e3"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.2950798Z",
+      "finished_utc": "2026-09-23T08:17:31.3019024Z",
+      "duration_ms": 6.822,
+      "status": 200,
+      "request_id": "bdbf601e83138087febd5df3071531ff"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3019024Z",
+      "finished_utc": "2026-09-23T08:17:31.3113009Z",
+      "duration_ms": 9.398,
+      "status": 200,
+      "request_id": "2c9f02fe8d7f832b125df943c5eedced"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3113009Z",
+      "finished_utc": "2026-09-23T08:17:31.3203551Z",
+      "duration_ms": 9.054,
+      "status": 200,
+      "request_id": "afb51d5de544239c52688d9346d9e3e0"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3203551Z",
+      "finished_utc": "2026-09-23T08:17:31.328381Z",
+      "duration_ms": 8.025,
+      "status": 200,
+      "request_id": "df181613cba46396bcfebc7449feeb0a"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.328381Z",
+      "finished_utc": "2026-09-23T08:17:31.3366295Z",
+      "duration_ms": 8.248,
+      "status": 200,
+      "request_id": "bbbb3c96f2c0d3ffa718c18efcf301a9"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3366295Z",
+      "finished_utc": "2026-09-23T08:17:31.3442826Z",
+      "duration_ms": 7.653,
+      "status": 200,
+      "request_id": "bc010ab85583986aa63fa5ea71472b1f"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3442826Z",
+      "finished_utc": "2026-09-23T08:17:31.3529429Z",
+      "duration_ms": 8.66,
+      "status": 200,
+      "request_id": "03a1b75a0a9606b96fedbb41d8c5407a"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3529429Z",
+      "finished_utc": "2026-09-23T08:17:31.3614959Z",
+      "duration_ms": 8.553,
+      "status": 200,
+      "request_id": "caa30a8537f07bf4c32ba3c19369a856"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3614959Z",
+      "finished_utc": "2026-09-23T08:17:31.3688302Z",
+      "duration_ms": 7.334,
+      "status": 200,
+      "request_id": "68db3351c6e446f2e5d9e2420c5374ad"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3688302Z",
+      "finished_utc": "2026-09-23T08:17:31.3765108Z",
+      "duration_ms": 7.68,
+      "status": 200,
+      "request_id": "7664249585c9816d9f74c8d2ce01ae6e"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3765108Z",
+      "finished_utc": "2026-09-23T08:17:31.3831786Z",
+      "duration_ms": 6.667,
+      "status": 200,
+      "request_id": "1ec98a656cb0abccdf264ecc2fd8f2a8"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3831786Z",
+      "finished_utc": "2026-09-23T08:17:31.3902245Z",
+      "duration_ms": 7.045,
+      "status": 200,
+      "request_id": "23a3c635e4021716db29245cac8661b0"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3902245Z",
+      "finished_utc": "2026-09-23T08:17:31.3977983Z",
+      "duration_ms": 7.573,
+      "status": 200,
+      "request_id": "b991381b5ce7447f5dd754a302fe19bf"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.3977983Z",
+      "finished_utc": "2026-09-23T08:17:31.4053551Z",
+      "duration_ms": 7.556,
+      "status": 200,
+      "request_id": "bec93c1d52a0e5e5f01ae8ebb504d4fe"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.4053551Z",
+      "finished_utc": "2026-09-23T08:17:31.4131631Z",
+      "duration_ms": 7.808,
+      "status": 200,
+      "request_id": "f97bda07191c171b7eeb7db988cc1b12"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.4131631Z",
+      "finished_utc": "2026-09-23T08:17:31.4207452Z",
+      "duration_ms": 7.582,
+      "status": 200,
+      "request_id": "575ce45e9134e914acc671a420281817"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.4207452Z",
+      "finished_utc": "2026-09-23T08:17:31.4289696Z",
+      "duration_ms": 8.224,
+      "status": 200,
+      "request_id": "0fe8ef73623a718acb7cbb2dcb6f31a4"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.4289696Z",
+      "finished_utc": "2026-09-23T08:17:31.43682Z",
+      "duration_ms": 7.85,
+      "status": 200,
+      "request_id": "af046f91852cf6a20dbf45be93529499"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.43682Z",
+      "finished_utc": "2026-09-23T08:17:31.4450168Z",
+      "duration_ms": 8.196,
+      "status": 200,
+      "request_id": "4c1c79557b2daf1edb0b6f6b9e38dcef"
+    },
+    {
+      "kind": "artists_page",
+      "started_utc": "2026-09-23T08:17:31.4450168Z",
+      "finished_utc": "2026-09-23T08:17:31.4538388Z",
+      "duration_ms": 8.822,
+      "status": 200,
+      "request_id": "2c3c4dda13e8e5b150c2a77c8898f16f"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.4538388Z",
+      "finished_utc": "2026-09-23T08:17:31.4624596Z",
+      "duration_ms": 8.62,
+      "status": 200,
+      "request_id": "e53caacb25d123e4c1c7427d14c6016e"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.4624596Z",
+      "finished_utc": "2026-09-23T08:17:31.4708078Z",
+      "duration_ms": 8.348,
+      "status": 200,
+      "request_id": "d6cb8296b5eef3c73201d262503b2521"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.4708078Z",
+      "finished_utc": "2026-09-23T08:17:31.478316Z",
+      "duration_ms": 7.508,
+      "status": 200,
+      "request_id": "5e8cec7b1437dd8bc012beefad3930b4"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.478316Z",
+      "finished_utc": "2026-09-23T08:17:31.4861438Z",
+      "duration_ms": 7.827,
+      "status": 200,
+      "request_id": "40926feddfea9653c736ff625064707f"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.4861438Z",
+      "finished_utc": "2026-09-23T08:17:31.4939785Z",
+      "duration_ms": 7.834,
+      "status": 200,
+      "request_id": "9f103ba1617cd2e53725a7a347e6eed7"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.4939785Z",
+      "finished_utc": "2026-09-23T08:17:31.5025007Z",
+      "duration_ms": 8.522,
+      "status": 200,
+      "request_id": "6a073c7d4a42b71053a5987eb726f836"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5025007Z",
+      "finished_utc": "2026-09-23T08:17:31.5084628Z",
+      "duration_ms": 5.962,
+      "status": 200,
+      "request_id": "c59c3790460786b1dabc9a8d90accb8e"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5084628Z",
+      "finished_utc": "2026-09-23T08:17:31.5147268Z",
+      "duration_ms": 6.264,
+      "status": 200,
+      "request_id": "c2700783546ad6f8ee80a3661ca3d324"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5147268Z",
+      "finished_utc": "2026-09-23T08:17:31.5206141Z",
+      "duration_ms": 5.887,
+      "status": 200,
+      "request_id": "da803f7ff791d53b32da03dad7a05ad7"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5206141Z",
+      "finished_utc": "2026-09-23T08:17:31.5269939Z",
+      "duration_ms": 6.379,
+      "status": 200,
+      "request_id": "702d3c194af9ed00b012ae0b2ff3cc26"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5269939Z",
+      "finished_utc": "2026-09-23T08:17:31.5323718Z",
+      "duration_ms": 5.377,
+      "status": 200,
+      "request_id": "ee457fcc1a9219fefd4e1db2e505d3ce"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5323718Z",
+      "finished_utc": "2026-09-23T08:17:31.5384933Z",
+      "duration_ms": 6.121,
+      "status": 200,
+      "request_id": "ccfcf61313a6ca012ba5a349ec53162c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5384933Z",
+      "finished_utc": "2026-09-23T08:17:31.5446675Z",
+      "duration_ms": 6.174,
+      "status": 200,
+      "request_id": "e0bf408e2cfd8e88e7c6e14a00d28f53"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5446675Z",
+      "finished_utc": "2026-09-23T08:17:31.5503762Z",
+      "duration_ms": 5.708,
+      "status": 200,
+      "request_id": "689abbc0c04fc2e679faebfa3e11bcdb"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5503762Z",
+      "finished_utc": "2026-09-23T08:17:31.5565468Z",
+      "duration_ms": 6.17,
+      "status": 200,
+      "request_id": "c6a74e3b8ef3ca2b7fa7a177ab49d390"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5565468Z",
+      "finished_utc": "2026-09-23T08:17:31.5628687Z",
+      "duration_ms": 6.321,
+      "status": 200,
+      "request_id": "4d15fd10f31f39558b79a2ca2c663522"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5628687Z",
+      "finished_utc": "2026-09-23T08:17:31.5693895Z",
+      "duration_ms": 6.52,
+      "status": 200,
+      "request_id": "be9f5a7fc1fee1e9e1c389b588203026"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5693895Z",
+      "finished_utc": "2026-09-23T08:17:31.5744243Z",
+      "duration_ms": 5.034,
+      "status": 200,
+      "request_id": "d7e893d98ed679e30db89e495e6885a9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5744243Z",
+      "finished_utc": "2026-09-23T08:17:31.5808917Z",
+      "duration_ms": 6.467,
+      "status": 200,
+      "request_id": "be4f09f75088fd762e178366106dd604"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5808917Z",
+      "finished_utc": "2026-09-23T08:17:31.5881904Z",
+      "duration_ms": 7.298,
+      "status": 200,
+      "request_id": "72fb465a9498f1f81c6066dfcf13be8d"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5881904Z",
+      "finished_utc": "2026-09-23T08:17:31.5952607Z",
+      "duration_ms": 7.07,
+      "status": 200,
+      "request_id": "9b40f2c16f3be43d0c303b2b186db0aa"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.5952607Z",
+      "finished_utc": "2026-09-23T08:17:31.6016505Z",
+      "duration_ms": 6.389,
+      "status": 200,
+      "request_id": "c2420903433b7cb03d512eaef3767729"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6016505Z",
+      "finished_utc": "2026-09-23T08:17:31.6077695Z",
+      "duration_ms": 6.119,
+      "status": 200,
+      "request_id": "55818b38fd5792e1ff04fbf20a13e3af"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6077695Z",
+      "finished_utc": "2026-09-23T08:17:31.6144663Z",
+      "duration_ms": 6.696,
+      "status": 200,
+      "request_id": "9a73ef8341d46d8a94d6c4fc1fbcee23"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6144663Z",
+      "finished_utc": "2026-09-23T08:17:31.6213683Z",
+      "duration_ms": 6.902,
+      "status": 200,
+      "request_id": "f46c8b88f6e1e6d08143aee7feab2506"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6213683Z",
+      "finished_utc": "2026-09-23T08:17:31.6280499Z",
+      "duration_ms": 6.681,
+      "status": 200,
+      "request_id": "5b5a20c959ee17cea5aa7bd1d4ce8919"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6280499Z",
+      "finished_utc": "2026-09-23T08:17:31.6334793Z",
+      "duration_ms": 5.429,
+      "status": 200,
+      "request_id": "8b5c42c406d1f7c498a8e5f95bcd6661"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6334793Z",
+      "finished_utc": "2026-09-23T08:17:31.6398796Z",
+      "duration_ms": 6.4,
+      "status": 200,
+      "request_id": "e7c6f96e8b1043ad32ce6b268156ee9c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6398796Z",
+      "finished_utc": "2026-09-23T08:17:31.6459527Z",
+      "duration_ms": 6.073,
+      "status": 200,
+      "request_id": "fa6ccb13fdac52812d07c9b14bbd430b"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6459527Z",
+      "finished_utc": "2026-09-23T08:17:31.6522529Z",
+      "duration_ms": 6.3,
+      "status": 200,
+      "request_id": "55be945b7e8e889c9e43f9b0ae70a2e1"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6522529Z",
+      "finished_utc": "2026-09-23T08:17:31.6577331Z",
+      "duration_ms": 5.48,
+      "status": 200,
+      "request_id": "9d77b08ec4150891aed5851913074716"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6577331Z",
+      "finished_utc": "2026-09-23T08:17:31.6640713Z",
+      "duration_ms": 6.338,
+      "status": 200,
+      "request_id": "044d344b643af4cba53393f368d02330"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6640713Z",
+      "finished_utc": "2026-09-23T08:17:31.6703946Z",
+      "duration_ms": 6.323,
+      "status": 200,
+      "request_id": "2ff51614ef028803861df2ed09fc253c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6703946Z",
+      "finished_utc": "2026-09-23T08:17:31.6763693Z",
+      "duration_ms": 5.974,
+      "status": 200,
+      "request_id": "e40ca72454f285ad311549b26fe92f51"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6763693Z",
+      "finished_utc": "2026-09-23T08:17:31.6822414Z",
+      "duration_ms": 5.872,
+      "status": 200,
+      "request_id": "a8db5fd5b1b1c6aa3573acea8b9b8d0e"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6822414Z",
+      "finished_utc": "2026-09-23T08:17:31.6886035Z",
+      "duration_ms": 6.362,
+      "status": 200,
+      "request_id": "00047c6b68559b144fbec050bbea0c5c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6886035Z",
+      "finished_utc": "2026-09-23T08:17:31.6949944Z",
+      "duration_ms": 6.39,
+      "status": 200,
+      "request_id": "327f0b3df35124274b0c943223aa3ff3"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.6949944Z",
+      "finished_utc": "2026-09-23T08:17:31.7010819Z",
+      "duration_ms": 6.087,
+      "status": 200,
+      "request_id": "0c394ce8213ea2a06409ae48436925bb"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7010819Z",
+      "finished_utc": "2026-09-23T08:17:31.7065384Z",
+      "duration_ms": 5.456,
+      "status": 200,
+      "request_id": "b2aa9b73791138830de43f0b9a71b817"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7065384Z",
+      "finished_utc": "2026-09-23T08:17:31.7122651Z",
+      "duration_ms": 5.726,
+      "status": 200,
+      "request_id": "a7678ba56d878e58188700e03388de16"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7122651Z",
+      "finished_utc": "2026-09-23T08:17:31.7182191Z",
+      "duration_ms": 5.954,
+      "status": 200,
+      "request_id": "8015066e29718183141adb54cf051262"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7182191Z",
+      "finished_utc": "2026-09-23T08:17:31.7239989Z",
+      "duration_ms": 5.779,
+      "status": 200,
+      "request_id": "6b353c0496318d663a967d71a86fd4b8"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7239989Z",
+      "finished_utc": "2026-09-23T08:17:31.7303296Z",
+      "duration_ms": 6.33,
+      "status": 200,
+      "request_id": "9237bb413973c595bee2ce408e72fd2d"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7303296Z",
+      "finished_utc": "2026-09-23T08:17:31.7371055Z",
+      "duration_ms": 6.775,
+      "status": 200,
+      "request_id": "4472ecebddcb20695d2d8eba871f62a9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7371055Z",
+      "finished_utc": "2026-09-23T08:17:31.7433387Z",
+      "duration_ms": 6.233,
+      "status": 200,
+      "request_id": "c720fee475a43ad5c8c4bfaf1b9a088e"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7433387Z",
+      "finished_utc": "2026-09-23T08:17:31.7495325Z",
+      "duration_ms": 6.193,
+      "status": 200,
+      "request_id": "7281b99bac82382d8e02e4b1d2feb2ad"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7495325Z",
+      "finished_utc": "2026-09-23T08:17:31.7562448Z",
+      "duration_ms": 6.712,
+      "status": 200,
+      "request_id": "32665dfadee61d49d50cb3b57f974a6d"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7562448Z",
+      "finished_utc": "2026-09-23T08:17:31.7620526Z",
+      "duration_ms": 5.807,
+      "status": 200,
+      "request_id": "ada8f373a9d37d3ee181e640d0eb5eb7"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7620526Z",
+      "finished_utc": "2026-09-23T08:17:31.7679014Z",
+      "duration_ms": 5.848,
+      "status": 200,
+      "request_id": "2eae86ba818b85842511c83fae5f8bd4"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7679014Z",
+      "finished_utc": "2026-09-23T08:17:31.7731686Z",
+      "duration_ms": 5.267,
+      "status": 200,
+      "request_id": "10e0a551bb374710113b72653f57e160"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7731686Z",
+      "finished_utc": "2026-09-23T08:17:31.7790883Z",
+      "duration_ms": 5.919,
+      "status": 200,
+      "request_id": "1f27d838cdc15c4f76207470aa265071"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7790883Z",
+      "finished_utc": "2026-09-23T08:17:31.785404Z",
+      "duration_ms": 6.315,
+      "status": 200,
+      "request_id": "3b93fc4d260fafe0fa0391c0bf2d1c79"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.785404Z",
+      "finished_utc": "2026-09-23T08:17:31.7901799Z",
+      "duration_ms": 4.775,
+      "status": 200,
+      "request_id": "d8d051fab796f56f1ff1955926dc99ec"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7901799Z",
+      "finished_utc": "2026-09-23T08:17:31.7967291Z",
+      "duration_ms": 6.549,
+      "status": 200,
+      "request_id": "9226ae024f071051e79bce82c0258bc0"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.7967291Z",
+      "finished_utc": "2026-09-23T08:17:31.8031041Z",
+      "duration_ms": 6.375,
+      "status": 200,
+      "request_id": "b4f91b45b06f03037ce7ea1c9415eb13"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8031041Z",
+      "finished_utc": "2026-09-23T08:17:31.809002Z",
+      "duration_ms": 5.897,
+      "status": 200,
+      "request_id": "88d783b38f87e3a06057335d02af8803"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.809002Z",
+      "finished_utc": "2026-09-23T08:17:31.8146806Z",
+      "duration_ms": 5.678,
+      "status": 200,
+      "request_id": "216a0f821add9d5fa5207b2be9f84e64"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8146806Z",
+      "finished_utc": "2026-09-23T08:17:31.8208537Z",
+      "duration_ms": 6.173,
+      "status": 200,
+      "request_id": "6a0a0e451f3d88dcdf9e2a709e559582"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8208537Z",
+      "finished_utc": "2026-09-23T08:17:31.8267247Z",
+      "duration_ms": 5.871,
+      "status": 200,
+      "request_id": "6a3144288c2ccb460953afdabc15be24"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8267247Z",
+      "finished_utc": "2026-09-23T08:17:31.83233Z",
+      "duration_ms": 5.605,
+      "status": 200,
+      "request_id": "76157c03ac34aaa1b6c1e0e93ca38574"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.83233Z",
+      "finished_utc": "2026-09-23T08:17:31.8385957Z",
+      "duration_ms": 6.265,
+      "status": 200,
+      "request_id": "19a76007ec033469e931de26c61e5678"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8385957Z",
+      "finished_utc": "2026-09-23T08:17:31.8445808Z",
+      "duration_ms": 5.985,
+      "status": 200,
+      "request_id": "74b82fa4df119fb0fedd9993b5164c78"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8445808Z",
+      "finished_utc": "2026-09-23T08:17:31.8497879Z",
+      "duration_ms": 5.207,
+      "status": 200,
+      "request_id": "429a05d39f4f34946e53411b12b1d6b9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8497879Z",
+      "finished_utc": "2026-09-23T08:17:31.8559416Z",
+      "duration_ms": 6.153,
+      "status": 200,
+      "request_id": "dd3a38fe22dbc49149918a180d88364c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8559416Z",
+      "finished_utc": "2026-09-23T08:17:31.8618302Z",
+      "duration_ms": 5.888,
+      "status": 200,
+      "request_id": "b2c0590a3ba5b1e43ce2e1e161c61c85"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8618302Z",
+      "finished_utc": "2026-09-23T08:17:31.8671352Z",
+      "duration_ms": 5.305,
+      "status": 200,
+      "request_id": "9db1c8219aac524ae5ad57554d6d712f"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8671352Z",
+      "finished_utc": "2026-09-23T08:17:31.8729757Z",
+      "duration_ms": 5.84,
+      "status": 200,
+      "request_id": "59f074f3b1476dee5c156acd58eef3ca"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8729757Z",
+      "finished_utc": "2026-09-23T08:17:31.8788059Z",
+      "duration_ms": 5.83,
+      "status": 200,
+      "request_id": "e580d3532152401ae9aaecf2365db4ee"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8788059Z",
+      "finished_utc": "2026-09-23T08:17:31.8850575Z",
+      "duration_ms": 6.251,
+      "status": 200,
+      "request_id": "8754f29d33ad98e83295f88b3d43bf31"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8850575Z",
+      "finished_utc": "2026-09-23T08:17:31.8907054Z",
+      "duration_ms": 5.647,
+      "status": 200,
+      "request_id": "2838dc89dbc1f18f5055d8b11677b221"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8907054Z",
+      "finished_utc": "2026-09-23T08:17:31.8967031Z",
+      "duration_ms": 5.997,
+      "status": 200,
+      "request_id": "779da1d4678305847a8505d0e7e14130"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.8967031Z",
+      "finished_utc": "2026-09-23T08:17:31.9032661Z",
+      "duration_ms": 6.563,
+      "status": 200,
+      "request_id": "7bee5e5f8ed1e54cc1bbf0011902a4b8"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9032661Z",
+      "finished_utc": "2026-09-23T08:17:31.9097096Z",
+      "duration_ms": 6.443,
+      "status": 200,
+      "request_id": "abfe21cfcfcceffdcf5718d3c2b07f74"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9097096Z",
+      "finished_utc": "2026-09-23T08:17:31.9151175Z",
+      "duration_ms": 5.407,
+      "status": 200,
+      "request_id": "74429ce9089fdd35f2efd9ca5c1b090c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9151175Z",
+      "finished_utc": "2026-09-23T08:17:31.9210493Z",
+      "duration_ms": 5.931,
+      "status": 200,
+      "request_id": "7e9201fad3ce4195c148b81ff42e2187"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9210493Z",
+      "finished_utc": "2026-09-23T08:17:31.9270724Z",
+      "duration_ms": 6.023,
+      "status": 200,
+      "request_id": "918070b0a8d48abe7bd98a089baf1eee"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9270724Z",
+      "finished_utc": "2026-09-23T08:17:31.932612Z",
+      "duration_ms": 5.539,
+      "status": 200,
+      "request_id": "f8bb78b11e10a74209a41f6df909da41"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.932612Z",
+      "finished_utc": "2026-09-23T08:17:31.938564Z",
+      "duration_ms": 5.952,
+      "status": 200,
+      "request_id": "f9de252f4e1945d59070b62262e4619f"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.938564Z",
+      "finished_utc": "2026-09-23T08:17:31.9446459Z",
+      "duration_ms": 6.081,
+      "status": 200,
+      "request_id": "f3ddcfa82d0dde1f565b839e0fe5b261"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9446459Z",
+      "finished_utc": "2026-09-23T08:17:31.950191Z",
+      "duration_ms": 5.545,
+      "status": 200,
+      "request_id": "681b7ccfcdd008df282444ccfd6069d3"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.950191Z",
+      "finished_utc": "2026-09-23T08:17:31.9561442Z",
+      "duration_ms": 5.953,
+      "status": 200,
+      "request_id": "89229846d28ed61ec0778b6bd0393e0d"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9561442Z",
+      "finished_utc": "2026-09-23T08:17:31.9622102Z",
+      "duration_ms": 6.066,
+      "status": 200,
+      "request_id": "22c2dea5a3721c5f1260592935ba5bce"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9622102Z",
+      "finished_utc": "2026-09-23T08:17:31.9680999Z",
+      "duration_ms": 5.889,
+      "status": 200,
+      "request_id": "ba695521f549787c7fbfa8d71865106c"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9680999Z",
+      "finished_utc": "2026-09-23T08:17:31.9737115Z",
+      "duration_ms": 5.611,
+      "status": 200,
+      "request_id": "625562b9459912af7d0b9cd8ec2546f9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9737115Z",
+      "finished_utc": "2026-09-23T08:17:31.9798003Z",
+      "duration_ms": 6.088,
+      "status": 200,
+      "request_id": "3253ce0b42bf90cc45bbb00120340af6"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9798003Z",
+      "finished_utc": "2026-09-23T08:17:31.9857453Z",
+      "duration_ms": 5.945,
+      "status": 200,
+      "request_id": "92165d6b4c608e37583971f09766e0de"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9857453Z",
+      "finished_utc": "2026-09-23T08:17:31.9909047Z",
+      "duration_ms": 5.159,
+      "status": 200,
+      "request_id": "3062ed3e095bcada753c6552ecc7be1b"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9909047Z",
+      "finished_utc": "2026-09-23T08:17:31.9977455Z",
+      "duration_ms": 6.84,
+      "status": 200,
+      "request_id": "577ca19f6f38bb77c1caf42cf0ae9b72"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:31.9977455Z",
+      "finished_utc": "2026-09-23T08:17:32.0041923Z",
+      "duration_ms": 6.446,
+      "status": 200,
+      "request_id": "fd1c698218a920388b4ba730bf054d79"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0041923Z",
+      "finished_utc": "2026-09-23T08:17:32.0107053Z",
+      "duration_ms": 6.513,
+      "status": 200,
+      "request_id": "4896511ce0b11776149ff92b4757d2ba"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0107053Z",
+      "finished_utc": "2026-09-23T08:17:32.0159053Z",
+      "duration_ms": 5.2,
+      "status": 200,
+      "request_id": "d1eca1fbab357baebdaaf804606d44b9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0159053Z",
+      "finished_utc": "2026-09-23T08:17:32.0221998Z",
+      "duration_ms": 6.294,
+      "status": 200,
+      "request_id": "883b468f09aa436f946ee38566e1070b"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0221998Z",
+      "finished_utc": "2026-09-23T08:17:32.028894Z",
+      "duration_ms": 6.694,
+      "status": 200,
+      "request_id": "cc6a88d9c4d87832648551ffac2dbba0"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.028894Z",
+      "finished_utc": "2026-09-23T08:17:32.0361679Z",
+      "duration_ms": 7.273,
+      "status": 200,
+      "request_id": "0d318c31372db2ff28f01250276e0813"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0361679Z",
+      "finished_utc": "2026-09-23T08:17:32.041297Z",
+      "duration_ms": 5.129,
+      "status": 200,
+      "request_id": "ca9234554c25010fd58c788da21f1cbb"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.041297Z",
+      "finished_utc": "2026-09-23T08:17:32.0475181Z",
+      "duration_ms": 6.221,
+      "status": 200,
+      "request_id": "317b49c2197b88ed508d7abfef4442b9"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0475181Z",
+      "finished_utc": "2026-09-23T08:17:32.0538365Z",
+      "duration_ms": 6.318,
+      "status": 200,
+      "request_id": "3134e89cadbf62352a2423e17e8e6aa6"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0538365Z",
+      "finished_utc": "2026-09-23T08:17:32.0588919Z",
+      "duration_ms": 5.055,
+      "status": 200,
+      "request_id": "77378474cde259448917e71bb41fdd66"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0588919Z",
+      "finished_utc": "2026-09-23T08:17:32.0649619Z",
+      "duration_ms": 6.07,
+      "status": 200,
+      "request_id": "5323003723106cf658c510ebb0fb74c8"
+    },
+    {
+      "kind": "albums_page",
+      "started_utc": "2026-09-23T08:17:32.0649619Z",
+      "finished_utc": "2026-09-23T08:17:32.071163Z",
+      "duration_ms": 6.201,
+      "status": 200,
+      "request_id": "a8fa7417ed96e16be7f1bcac1fb7f100"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.071163Z",
+      "finished_utc": "2026-09-23T08:17:32.0790157Z",
+      "duration_ms": 7.852,
+      "status": 200,
+      "request_id": "d368847cda02191878eb0d22bafb5325"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.0790157Z",
+      "finished_utc": "2026-09-23T08:17:32.0947285Z",
+      "duration_ms": 15.712,
+      "status": 200,
+      "request_id": "2ca9a588a576a9541a5e458a44fe85cd"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.0947285Z",
+      "finished_utc": "2026-09-23T08:17:32.1044911Z",
+      "duration_ms": 9.762,
+      "status": 200,
+      "request_id": "7cb9761bcce6691ef8fa267a85eb38ae"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1044911Z",
+      "finished_utc": "2026-09-23T08:17:32.1122486Z",
+      "duration_ms": 7.757,
+      "status": 200,
+      "request_id": "ce9d22d4b0abe79960df11f13c3495c0"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1122486Z",
+      "finished_utc": "2026-09-23T08:17:32.1206307Z",
+      "duration_ms": 8.382,
+      "status": 200,
+      "request_id": "77fdb467f5a52fc97bce56f203e92d55"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1206307Z",
+      "finished_utc": "2026-09-23T08:17:32.1292855Z",
+      "duration_ms": 8.654,
+      "status": 200,
+      "request_id": "ad88a7e5f91776ea43362351a019306d"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1292855Z",
+      "finished_utc": "2026-09-23T08:17:32.1366549Z",
+      "duration_ms": 7.369,
+      "status": 200,
+      "request_id": "16f01128cc0e287ab804aa0e1d873df0"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1366549Z",
+      "finished_utc": "2026-09-23T08:17:32.1426563Z",
+      "duration_ms": 6.001,
+      "status": 200,
+      "request_id": "f40edbc86e07cc56fbad1dff5ff74805"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1426563Z",
+      "finished_utc": "2026-09-23T08:17:32.1485593Z",
+      "duration_ms": 5.903,
+      "status": 200,
+      "request_id": "1c3594df26bfc7ba75d20a4680a179bc"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1485593Z",
+      "finished_utc": "2026-09-23T08:17:32.1546743Z",
+      "duration_ms": 6.115,
+      "status": 200,
+      "request_id": "1a21f7228e6b9bffed47152e53760961"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1546743Z",
+      "finished_utc": "2026-09-23T08:17:32.1606525Z",
+      "duration_ms": 5.978,
+      "status": 200,
+      "request_id": "6a40e99138ad661f6c780742039b4236"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1606525Z",
+      "finished_utc": "2026-09-23T08:17:32.1655755Z",
+      "duration_ms": 4.923,
+      "status": 200,
+      "request_id": "9ae968559cfc7aa9cb162aea04667e02"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1655755Z",
+      "finished_utc": "2026-09-23T08:17:32.1713681Z",
+      "duration_ms": 5.792,
+      "status": 200,
+      "request_id": "50adf7b3f66cf0fb98a212aa936e1401"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1713681Z",
+      "finished_utc": "2026-09-23T08:17:32.1772884Z",
+      "duration_ms": 5.92,
+      "status": 200,
+      "request_id": "c2047930033a7b7ec774637cd8ecc8b4"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1772884Z",
+      "finished_utc": "2026-09-23T08:17:32.1820325Z",
+      "duration_ms": 4.744,
+      "status": 200,
+      "request_id": "611278947e2ae76ed4ab90bf59bf4dcd"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1820325Z",
+      "finished_utc": "2026-09-23T08:17:32.187907Z",
+      "duration_ms": 5.874,
+      "status": 200,
+      "request_id": "c5aaee05c187678809bf0b95bc1ce224"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.187907Z",
+      "finished_utc": "2026-09-23T08:17:32.1942731Z",
+      "duration_ms": 6.366,
+      "status": 200,
+      "request_id": "98b62fe94865fd16111cac55e2ea125f"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1942731Z",
+      "finished_utc": "2026-09-23T08:17:32.1997706Z",
+      "duration_ms": 5.497,
+      "status": 200,
+      "request_id": "55d8c2b9b13036ea43387d1ce8f59d67"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.1997706Z",
+      "finished_utc": "2026-09-23T08:17:32.2057106Z",
+      "duration_ms": 5.94,
+      "status": 200,
+      "request_id": "be9a2d1b052b91f640edfd057c9c668b"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2057106Z",
+      "finished_utc": "2026-09-23T08:17:32.2120354Z",
+      "duration_ms": 6.324,
+      "status": 200,
+      "request_id": "01ab846766786b9cde501b6d2ab194fd"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2120354Z",
+      "finished_utc": "2026-09-23T08:17:32.2180043Z",
+      "duration_ms": 5.968,
+      "status": 200,
+      "request_id": "38fdfc97f96ef83380d695b300ba1e1a"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2180043Z",
+      "finished_utc": "2026-09-23T08:17:32.2243553Z",
+      "duration_ms": 6.351,
+      "status": 200,
+      "request_id": "e1acc321fd862c084a5700a05fca0724"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2243553Z",
+      "finished_utc": "2026-09-23T08:17:32.2305909Z",
+      "duration_ms": 6.235,
+      "status": 200,
+      "request_id": "d523f67d618c230e1bf4d72c088a35a7"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2305909Z",
+      "finished_utc": "2026-09-23T08:17:32.236974Z",
+      "duration_ms": 6.383,
+      "status": 200,
+      "request_id": "5fa77632a13466e7a1fc28f1d454d181"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.236974Z",
+      "finished_utc": "2026-09-23T08:17:32.2433185Z",
+      "duration_ms": 6.344,
+      "status": 200,
+      "request_id": "5a40428c2bef7f7718687d17ab302f66"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2433185Z",
+      "finished_utc": "2026-09-23T08:17:32.2488078Z",
+      "duration_ms": 5.489,
+      "status": 200,
+      "request_id": "81fe140e794e2b191fba227297fbe74b"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2488078Z",
+      "finished_utc": "2026-09-23T08:17:32.2547103Z",
+      "duration_ms": 5.902,
+      "status": 200,
+      "request_id": "30c815bf591b449c9ac6c5ffb51a3b82"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2547103Z",
+      "finished_utc": "2026-09-23T08:17:32.2611348Z",
+      "duration_ms": 6.424,
+      "status": 200,
+      "request_id": "fa42d88d74fe8045710c1e2eb231427e"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2611348Z",
+      "finished_utc": "2026-09-23T08:17:32.2664014Z",
+      "duration_ms": 5.266,
+      "status": 200,
+      "request_id": "b39ac549674bc2730c26178c70ee0ee5"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2664014Z",
+      "finished_utc": "2026-09-23T08:17:32.2725654Z",
+      "duration_ms": 6.164,
+      "status": 200,
+      "request_id": "1e3ebe110b69ef2cbe596addea37bff3"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2725654Z",
+      "finished_utc": "2026-09-23T08:17:32.278413Z",
+      "duration_ms": 5.847,
+      "status": 200,
+      "request_id": "2ca310b11ae6a01b2e3f202eca0a5b8c"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.278413Z",
+      "finished_utc": "2026-09-23T08:17:32.2837615Z",
+      "duration_ms": 5.348,
+      "status": 200,
+      "request_id": "669ea005cee30e9b1aabd4ae0c3a5c6c"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2837615Z",
+      "finished_utc": "2026-09-23T08:17:32.2897285Z",
+      "duration_ms": 5.967,
+      "status": 200,
+      "request_id": "180851d161fbd0c88b444e7e05948d72"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2897285Z",
+      "finished_utc": "2026-09-23T08:17:32.2959295Z",
+      "duration_ms": 6.201,
+      "status": 200,
+      "request_id": "9d7880c81c7bfb5596f37f5f550d69e1"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.2959295Z",
+      "finished_utc": "2026-09-23T08:17:32.3022381Z",
+      "duration_ms": 6.308,
+      "status": 200,
+      "request_id": "0ad1a69c7e778c7cdc15a1dee96c55c6"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3022381Z",
+      "finished_utc": "2026-09-23T08:17:32.3069619Z",
+      "duration_ms": 4.723,
+      "status": 200,
+      "request_id": "9ad4fe8d3481d3d0d80b6770ca6253a9"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3069619Z",
+      "finished_utc": "2026-09-23T08:17:32.3129691Z",
+      "duration_ms": 6.007,
+      "status": 200,
+      "request_id": "e7b44aab6f264d7999ff63bcb8c217f9"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3129691Z",
+      "finished_utc": "2026-09-23T08:17:32.3193328Z",
+      "duration_ms": 6.363,
+      "status": 200,
+      "request_id": "1729b07481c0f9fc9373667a0ff725a6"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3193328Z",
+      "finished_utc": "2026-09-23T08:17:32.3242416Z",
+      "duration_ms": 4.908,
+      "status": 200,
+      "request_id": "be27f72d09ae9e8d03b961df2597408a"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3242416Z",
+      "finished_utc": "2026-09-23T08:17:32.3302823Z",
+      "duration_ms": 6.04,
+      "status": 200,
+      "request_id": "1d91715cf891ceb4dafb37d7014860fa"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3302823Z",
+      "finished_utc": "2026-09-23T08:17:32.3364458Z",
+      "duration_ms": 6.163,
+      "status": 200,
+      "request_id": "9decbd03ccddd6c99c308db48b620308"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3364458Z",
+      "finished_utc": "2026-09-23T08:17:32.3415027Z",
+      "duration_ms": 5.056,
+      "status": 200,
+      "request_id": "25e3c2362f7271942022e6c47ca86f05"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3415027Z",
+      "finished_utc": "2026-09-23T08:17:32.3478571Z",
+      "duration_ms": 6.354,
+      "status": 200,
+      "request_id": "e48f93af3c59f3e80852fe7dd428c5c7"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3478571Z",
+      "finished_utc": "2026-09-23T08:17:32.3535637Z",
+      "duration_ms": 5.706,
+      "status": 200,
+      "request_id": "99ada9107fe0334c23d5644fc3f24be4"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3535637Z",
+      "finished_utc": "2026-09-23T08:17:32.3593361Z",
+      "duration_ms": 5.772,
+      "status": 200,
+      "request_id": "14784582266a4e60f7142b9393fb790d"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3593361Z",
+      "finished_utc": "2026-09-23T08:17:32.3647815Z",
+      "duration_ms": 5.445,
+      "status": 200,
+      "request_id": "72a87b6504c00debf23480817a2e15e1"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3647815Z",
+      "finished_utc": "2026-09-23T08:17:32.3715649Z",
+      "duration_ms": 6.783,
+      "status": 200,
+      "request_id": "f6e8d2c4e853b4ac86456b9abb2a1709"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3715649Z",
+      "finished_utc": "2026-09-23T08:17:32.3775026Z",
+      "duration_ms": 5.937,
+      "status": 200,
+      "request_id": "e0fbd6e108c235abcf968f885b2a4099"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3775026Z",
+      "finished_utc": "2026-09-23T08:17:32.3828205Z",
+      "duration_ms": 5.317,
+      "status": 200,
+      "request_id": "595065862caccf8d9da8b1a75a6526fb"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3828205Z",
+      "finished_utc": "2026-09-23T08:17:32.3892195Z",
+      "duration_ms": 6.399,
+      "status": 200,
+      "request_id": "bb8aa4dbaf51a44576f5c9b18c17c235"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3892195Z",
+      "finished_utc": "2026-09-23T08:17:32.3958582Z",
+      "duration_ms": 6.638,
+      "status": 200,
+      "request_id": "55ec6d0f7f9d56b55ba1ca074d484682"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.3958582Z",
+      "finished_utc": "2026-09-23T08:17:32.402089Z",
+      "duration_ms": 6.23,
+      "status": 200,
+      "request_id": "9e897cee1363e18fc9c012329a529fdb"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.402089Z",
+      "finished_utc": "2026-09-23T08:17:32.4074265Z",
+      "duration_ms": 5.337,
+      "status": 200,
+      "request_id": "8bb934a87634fd996372e847fb8b0847"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4074265Z",
+      "finished_utc": "2026-09-23T08:17:32.4130356Z",
+      "duration_ms": 5.609,
+      "status": 200,
+      "request_id": "2fc6ac6ea1ba533c429edf66bb0a440e"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4130356Z",
+      "finished_utc": "2026-09-23T08:17:32.4178226Z",
+      "duration_ms": 4.787,
+      "status": 200,
+      "request_id": "0cc3053dfa953fc8f7ab5ef8d7ab6546"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4178226Z",
+      "finished_utc": "2026-09-23T08:17:32.4237666Z",
+      "duration_ms": 5.944,
+      "status": 200,
+      "request_id": "efe5769365f030b08924cd648d376326"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4237666Z",
+      "finished_utc": "2026-09-23T08:17:32.4294946Z",
+      "duration_ms": 5.728,
+      "status": 200,
+      "request_id": "b4d12ca0f23c45b8d0622ca5f0e40f0e"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4294946Z",
+      "finished_utc": "2026-09-23T08:17:32.4361442Z",
+      "duration_ms": 6.649,
+      "status": 200,
+      "request_id": "87d33e82e20524dd42d49eb93c2d9fb1"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4361442Z",
+      "finished_utc": "2026-09-23T08:17:32.4423352Z",
+      "duration_ms": 6.191,
+      "status": 200,
+      "request_id": "783f76c63314925b13da98849c8e788f"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4423352Z",
+      "finished_utc": "2026-09-23T08:17:32.4479799Z",
+      "duration_ms": 5.644,
+      "status": 200,
+      "request_id": "2e0f172226606890e17ce195b2bf8321"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4479799Z",
+      "finished_utc": "2026-09-23T08:17:32.4540691Z",
+      "duration_ms": 6.089,
+      "status": 200,
+      "request_id": "a024e01a6e3f6cbf89737da5e9959cef"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4540691Z",
+      "finished_utc": "2026-09-23T08:17:32.4606716Z",
+      "duration_ms": 6.602,
+      "status": 200,
+      "request_id": "e3cd3f88c31cdc34bd2f06d2ccc7d251"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4606716Z",
+      "finished_utc": "2026-09-23T08:17:32.4659616Z",
+      "duration_ms": 5.29,
+      "status": 200,
+      "request_id": "9e4144e1ca610dac541c6c076fd6eb4d"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4659616Z",
+      "finished_utc": "2026-09-23T08:17:32.4717745Z",
+      "duration_ms": 5.812,
+      "status": 200,
+      "request_id": "03201247a7740074ff5b42c2a6c8e8cc"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4717745Z",
+      "finished_utc": "2026-09-23T08:17:32.4771807Z",
+      "duration_ms": 5.406,
+      "status": 200,
+      "request_id": "6af8f4428c4e9cd8b10da1281aa683de"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4771807Z",
+      "finished_utc": "2026-09-23T08:17:32.4817658Z",
+      "duration_ms": 4.585,
+      "status": 200,
+      "request_id": "63fde09110334564dcab59781bb9160b"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4817658Z",
+      "finished_utc": "2026-09-23T08:17:32.4887341Z",
+      "duration_ms": 6.968,
+      "status": 200,
+      "request_id": "43a766748b6c11c31766110d5f99c9c2"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4887341Z",
+      "finished_utc": "2026-09-23T08:17:32.4948629Z",
+      "duration_ms": 6.128,
+      "status": 200,
+      "request_id": "d0f86289bb6da9d27a7e9a9c9f7df081"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4948629Z",
+      "finished_utc": "2026-09-23T08:17:32.4997724Z",
+      "duration_ms": 4.909,
+      "status": 200,
+      "request_id": "91da656ee3ca7f4c52cdf8533eeb5b80"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.4997724Z",
+      "finished_utc": "2026-09-23T08:17:32.5057048Z",
+      "duration_ms": 5.932,
+      "status": 200,
+      "request_id": "20e7d0ed8142c7cf4b053395d4029531"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5057048Z",
+      "finished_utc": "2026-09-23T08:17:32.5113643Z",
+      "duration_ms": 5.659,
+      "status": 200,
+      "request_id": "4f9f76638a1b0c6bff62137e12ed672b"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5113643Z",
+      "finished_utc": "2026-09-23T08:17:32.5163388Z",
+      "duration_ms": 4.974,
+      "status": 200,
+      "request_id": "d89c6a98e9ac2980c7422b88e0485cfe"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5163388Z",
+      "finished_utc": "2026-09-23T08:17:32.5220418Z",
+      "duration_ms": 5.703,
+      "status": 200,
+      "request_id": "c50397cac5a79c7cb605ea959e649137"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5220418Z",
+      "finished_utc": "2026-09-23T08:17:32.5278924Z",
+      "duration_ms": 5.85,
+      "status": 200,
+      "request_id": "299f5021fa6f261e780b332e56f2d332"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5278924Z",
+      "finished_utc": "2026-09-23T08:17:32.5326929Z",
+      "duration_ms": 4.8,
+      "status": 200,
+      "request_id": "171be6e57950ba7f4e37d2040157b82a"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5326929Z",
+      "finished_utc": "2026-09-23T08:17:32.5387432Z",
+      "duration_ms": 6.05,
+      "status": 200,
+      "request_id": "f377bcbd81f09323b5357d532a6fb298"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5387432Z",
+      "finished_utc": "2026-09-23T08:17:32.5444605Z",
+      "duration_ms": 5.717,
+      "status": 200,
+      "request_id": "de4541a505b465056636803cd76a2789"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5444605Z",
+      "finished_utc": "2026-09-23T08:17:32.5496033Z",
+      "duration_ms": 5.142,
+      "status": 200,
+      "request_id": "b55a21d9b66d00d6d209c6ea2c248e83"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5496033Z",
+      "finished_utc": "2026-09-23T08:17:32.5556442Z",
+      "duration_ms": 6.04,
+      "status": 200,
+      "request_id": "b816c99007a09531e99566eb11ebf44f"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5556442Z",
+      "finished_utc": "2026-09-23T08:17:32.5608994Z",
+      "duration_ms": 5.255,
+      "status": 200,
+      "request_id": "d4f52819067cfa0748d037aee7778cd3"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5608994Z",
+      "finished_utc": "2026-09-23T08:17:32.5657093Z",
+      "duration_ms": 4.809,
+      "status": 200,
+      "request_id": "e5ce79a088040945743c126550621abd"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5657093Z",
+      "finished_utc": "2026-09-23T08:17:32.5718196Z",
+      "duration_ms": 6.11,
+      "status": 200,
+      "request_id": "26a1e1057c9f17050880aa7844a702d4"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5718196Z",
+      "finished_utc": "2026-09-23T08:17:32.57723Z",
+      "duration_ms": 5.41,
+      "status": 200,
+      "request_id": "50fd1db4abe528d512b50e6db651654f"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.57723Z",
+      "finished_utc": "2026-09-23T08:17:32.5830094Z",
+      "duration_ms": 5.779,
+      "status": 200,
+      "request_id": "e473026fa3a6c571b15aa7bc9e177b26"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5830094Z",
+      "finished_utc": "2026-09-23T08:17:32.5890583Z",
+      "duration_ms": 6.048,
+      "status": 200,
+      "request_id": "09faa4851471e07de0d69e7220737091"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5890583Z",
+      "finished_utc": "2026-09-23T08:17:32.5948549Z",
+      "duration_ms": 5.796,
+      "status": 200,
+      "request_id": "5f63b1539693cb0a30b935ff5d1ab96c"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.5948549Z",
+      "finished_utc": "2026-09-23T08:17:32.6001167Z",
+      "duration_ms": 5.261,
+      "status": 200,
+      "request_id": "697d801b7b96f81d4bc086efa3b829cf"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6001167Z",
+      "finished_utc": "2026-09-23T08:17:32.6061745Z",
+      "duration_ms": 6.057,
+      "status": 200,
+      "request_id": "b1a91d6159841e3f7bb744a7da9d34ac"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6061745Z",
+      "finished_utc": "2026-09-23T08:17:32.6123361Z",
+      "duration_ms": 6.161,
+      "status": 200,
+      "request_id": "dc68a8fefbb8d0e3d2210c8a0a689acb"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6123361Z",
+      "finished_utc": "2026-09-23T08:17:32.6182237Z",
+      "duration_ms": 5.887,
+      "status": 200,
+      "request_id": "505c7b4f642113d6c4f679f559e72c10"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6182237Z",
+      "finished_utc": "2026-09-23T08:17:32.6241961Z",
+      "duration_ms": 5.972,
+      "status": 200,
+      "request_id": "112ac64fd092a3fe1945d2aa87cc07e5"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6241961Z",
+      "finished_utc": "2026-09-23T08:17:32.6303663Z",
+      "duration_ms": 6.17,
+      "status": 200,
+      "request_id": "47985e609775e509788d547e9d3513a7"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6303663Z",
+      "finished_utc": "2026-09-23T08:17:32.6362597Z",
+      "duration_ms": 5.893,
+      "status": 200,
+      "request_id": "856d7adbff4c67f9eedb6b49980d6eca"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6362597Z",
+      "finished_utc": "2026-09-23T08:17:32.6413858Z",
+      "duration_ms": 5.126,
+      "status": 200,
+      "request_id": "98433e31f65608f3c6d5491545753748"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6413858Z",
+      "finished_utc": "2026-09-23T08:17:32.6459123Z",
+      "duration_ms": 4.526,
+      "status": 200,
+      "request_id": "e4b75aaab2ab73e3e42d63a84e782926"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6459123Z",
+      "finished_utc": "2026-09-23T08:17:32.6527615Z",
+      "duration_ms": 6.849,
+      "status": 200,
+      "request_id": "b9f9556ab70df29f44f3f4679d0ea30c"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6527615Z",
+      "finished_utc": "2026-09-23T08:17:32.6577316Z",
+      "duration_ms": 4.97,
+      "status": 200,
+      "request_id": "b353bc7978c31b26dcd09d0838b41b01"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6577316Z",
+      "finished_utc": "2026-09-23T08:17:32.6627968Z",
+      "duration_ms": 5.065,
+      "status": 200,
+      "request_id": "ef15945ed73d7924d9f5c63b39d89ea2"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.6627968Z",
+      "finished_utc": "2026-09-23T08:17:32.669601Z",
+      "duration_ms": 6.804,
+      "status": 200,
+      "request_id": "5e10c1409ebaeb1d798992e0edff40f2"
+    },
+    {
+      "kind": "track_detail",
+      "started_utc": "2026-09-23T08:17:32.669601Z",
+      "finished_utc": "2026-09-23T08:17:32.6748029Z",
+      "duration_ms": 5.201,
+      "status": 200,
+      "request_id": "f97b827748aeac238370fe2a361e873a"
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6748029Z",
+      "finished_utc": "2026-09-23T08:17:32.6816082Z",
+      "duration_ms": 6.805
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6816082Z",
+      "finished_utc": "2026-09-23T08:17:32.683147Z",
+      "duration_ms": 1.538
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.683147Z",
+      "finished_utc": "2026-09-23T08:17:32.6851421Z",
+      "duration_ms": 1.995
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6851421Z",
+      "finished_utc": "2026-09-23T08:17:32.6866084Z",
+      "duration_ms": 1.466
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6866084Z",
+      "finished_utc": "2026-09-23T08:17:32.6876543Z",
+      "duration_ms": 1.045
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6876543Z",
+      "finished_utc": "2026-09-23T08:17:32.6892854Z",
+      "duration_ms": 1.631
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6892854Z",
+      "finished_utc": "2026-09-23T08:17:32.6892854Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6892854Z",
+      "finished_utc": "2026-09-23T08:17:32.6900443Z",
+      "duration_ms": 0.758
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6900443Z",
+      "finished_utc": "2026-09-23T08:17:32.690727Z",
+      "duration_ms": 0.682
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.690727Z",
+      "finished_utc": "2026-09-23T08:17:32.6912888Z",
+      "duration_ms": 0.561
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6912888Z",
+      "finished_utc": "2026-09-23T08:17:32.6918564Z",
+      "duration_ms": 0.567
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6918564Z",
+      "finished_utc": "2026-09-23T08:17:32.6933807Z",
+      "duration_ms": 1.524
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6933807Z",
+      "finished_utc": "2026-09-23T08:17:32.6940958Z",
+      "duration_ms": 0.715
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6940958Z",
+      "finished_utc": "2026-09-23T08:17:32.6940958Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6940958Z",
+      "finished_utc": "2026-09-23T08:17:32.6947336Z",
+      "duration_ms": 0.637
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6947336Z",
+      "finished_utc": "2026-09-23T08:17:32.6953247Z",
+      "duration_ms": 0.591
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6953247Z",
+      "finished_utc": "2026-09-23T08:17:32.6958864Z",
+      "duration_ms": 0.561
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6958864Z",
+      "finished_utc": "2026-09-23T08:17:32.6958864Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6958864Z",
+      "finished_utc": "2026-09-23T08:17:32.6965769Z",
+      "duration_ms": 0.69
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6965769Z",
+      "finished_utc": "2026-09-23T08:17:32.697236Z",
+      "duration_ms": 0.659
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.697236Z",
+      "finished_utc": "2026-09-23T08:17:32.697236Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.697236Z",
+      "finished_utc": "2026-09-23T08:17:32.6978Z",
+      "duration_ms": 0.564
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6978Z",
+      "finished_utc": "2026-09-23T08:17:32.6978Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6978Z",
+      "finished_utc": "2026-09-23T08:17:32.6983312Z",
+      "duration_ms": 0.531
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6983312Z",
+      "finished_utc": "2026-09-23T08:17:32.698869Z",
+      "duration_ms": 0.537
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.698869Z",
+      "finished_utc": "2026-09-23T08:17:32.698869Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.698869Z",
+      "finished_utc": "2026-09-23T08:17:32.69943Z",
+      "duration_ms": 0.561
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.69943Z",
+      "finished_utc": "2026-09-23T08:17:32.6999653Z",
+      "duration_ms": 0.535
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.6999653Z",
+      "finished_utc": "2026-09-23T08:17:32.7011725Z",
+      "duration_ms": 1.207
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7011725Z",
+      "finished_utc": "2026-09-23T08:17:32.7023285Z",
+      "duration_ms": 1.156
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7023285Z",
+      "finished_utc": "2026-09-23T08:17:32.7030671Z",
+      "duration_ms": 0.738
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7030671Z",
+      "finished_utc": "2026-09-23T08:17:32.7030671Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7030671Z",
+      "finished_utc": "2026-09-23T08:17:32.7035948Z",
+      "duration_ms": 0.527
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7035948Z",
+      "finished_utc": "2026-09-23T08:17:32.704225Z",
+      "duration_ms": 0.63
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.704225Z",
+      "finished_utc": "2026-09-23T08:17:32.704225Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.704225Z",
+      "finished_utc": "2026-09-23T08:17:32.704773Z",
+      "duration_ms": 0.548
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.704773Z",
+      "finished_utc": "2026-09-23T08:17:32.704773Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.704773Z",
+      "finished_utc": "2026-09-23T08:17:32.7053838Z",
+      "duration_ms": 0.61
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7053838Z",
+      "finished_utc": "2026-09-23T08:17:32.7053838Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7053838Z",
+      "finished_utc": "2026-09-23T08:17:32.7060542Z",
+      "duration_ms": 0.67
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7060542Z",
+      "finished_utc": "2026-09-23T08:17:32.7060542Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7060542Z",
+      "finished_utc": "2026-09-23T08:17:32.7067117Z",
+      "duration_ms": 0.657
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7067117Z",
+      "finished_utc": "2026-09-23T08:17:32.7073881Z",
+      "duration_ms": 0.676
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7073881Z",
+      "finished_utc": "2026-09-23T08:17:32.7073881Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7073881Z",
+      "finished_utc": "2026-09-23T08:17:32.7079317Z",
+      "duration_ms": 0.543
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7079317Z",
+      "finished_utc": "2026-09-23T08:17:32.708942Z",
+      "duration_ms": 1.01
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.708942Z",
+      "finished_utc": "2026-09-23T08:17:32.7094489Z",
+      "duration_ms": 0.506
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7094489Z",
+      "finished_utc": "2026-09-23T08:17:32.7100327Z",
+      "duration_ms": 0.583
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7100327Z",
+      "finished_utc": "2026-09-23T08:17:32.7107272Z",
+      "duration_ms": 0.694
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7107272Z",
+      "finished_utc": "2026-09-23T08:17:32.7107272Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7107272Z",
+      "finished_utc": "2026-09-23T08:17:32.7114334Z",
+      "duration_ms": 0.706
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7114334Z",
+      "finished_utc": "2026-09-23T08:17:32.7114334Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7114334Z",
+      "finished_utc": "2026-09-23T08:17:32.712107Z",
+      "duration_ms": 0.673
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.712107Z",
+      "finished_utc": "2026-09-23T08:17:32.7126504Z",
+      "duration_ms": 0.543
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7126504Z",
+      "finished_utc": "2026-09-23T08:17:32.7126504Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7126504Z",
+      "finished_utc": "2026-09-23T08:17:32.7131966Z",
+      "duration_ms": 0.546
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7131966Z",
+      "finished_utc": "2026-09-23T08:17:32.7131966Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7131966Z",
+      "finished_utc": "2026-09-23T08:17:32.7139Z",
+      "duration_ms": 0.703
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7139Z",
+      "finished_utc": "2026-09-23T08:17:32.7139Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7139Z",
+      "finished_utc": "2026-09-23T08:17:32.7145298Z",
+      "duration_ms": 0.629
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7145298Z",
+      "finished_utc": "2026-09-23T08:17:32.7145298Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7145298Z",
+      "finished_utc": "2026-09-23T08:17:32.7151888Z",
+      "duration_ms": 0.659
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7151888Z",
+      "finished_utc": "2026-09-23T08:17:32.7151888Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7151888Z",
+      "finished_utc": "2026-09-23T08:17:32.7158377Z",
+      "duration_ms": 0.648
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7158377Z",
+      "finished_utc": "2026-09-23T08:17:32.7158377Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7158377Z",
+      "finished_utc": "2026-09-23T08:17:32.7165114Z",
+      "duration_ms": 0.673
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7165114Z",
+      "finished_utc": "2026-09-23T08:17:32.7171746Z",
+      "duration_ms": 0.663
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7171746Z",
+      "finished_utc": "2026-09-23T08:17:32.71846Z",
+      "duration_ms": 1.285
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.71846Z",
+      "finished_utc": "2026-09-23T08:17:32.7191384Z",
+      "duration_ms": 0.678
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7191384Z",
+      "finished_utc": "2026-09-23T08:17:32.7191384Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7191384Z",
+      "finished_utc": "2026-09-23T08:17:32.7196831Z",
+      "duration_ms": 0.544
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7196831Z",
+      "finished_utc": "2026-09-23T08:17:32.7196831Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7196831Z",
+      "finished_utc": "2026-09-23T08:17:32.7202525Z",
+      "duration_ms": 0.569
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7202525Z",
+      "finished_utc": "2026-09-23T08:17:32.720818Z",
+      "duration_ms": 0.565
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.720818Z",
+      "finished_utc": "2026-09-23T08:17:32.720818Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.720818Z",
+      "finished_utc": "2026-09-23T08:17:32.7214071Z",
+      "duration_ms": 0.589
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7214071Z",
+      "finished_utc": "2026-09-23T08:17:32.7214071Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7214071Z",
+      "finished_utc": "2026-09-23T08:17:32.722062Z",
+      "duration_ms": 0.654
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.722062Z",
+      "finished_utc": "2026-09-23T08:17:32.722062Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.722062Z",
+      "finished_utc": "2026-09-23T08:17:32.7227247Z",
+      "duration_ms": 0.662
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7227247Z",
+      "finished_utc": "2026-09-23T08:17:32.7227247Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7227247Z",
+      "finished_utc": "2026-09-23T08:17:32.7234195Z",
+      "duration_ms": 0.694
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7234195Z",
+      "finished_utc": "2026-09-23T08:17:32.7234195Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7234195Z",
+      "finished_utc": "2026-09-23T08:17:32.7240465Z",
+      "duration_ms": 0.627
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7240465Z",
+      "finished_utc": "2026-09-23T08:17:32.7240465Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7240465Z",
+      "finished_utc": "2026-09-23T08:17:32.7246125Z",
+      "duration_ms": 0.566
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7246125Z",
+      "finished_utc": "2026-09-23T08:17:32.7256611Z",
+      "duration_ms": 1.048
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7256611Z",
+      "finished_utc": "2026-09-23T08:17:32.7261736Z",
+      "duration_ms": 0.512
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7261736Z",
+      "finished_utc": "2026-09-23T08:17:32.7267777Z",
+      "duration_ms": 0.604
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7267777Z",
+      "finished_utc": "2026-09-23T08:17:32.7274628Z",
+      "duration_ms": 0.685
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7274628Z",
+      "finished_utc": "2026-09-23T08:17:32.7274628Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7274628Z",
+      "finished_utc": "2026-09-23T08:17:32.7280813Z",
+      "duration_ms": 0.618
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7280813Z",
+      "finished_utc": "2026-09-23T08:17:32.7280813Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7280813Z",
+      "finished_utc": "2026-09-23T08:17:32.7286523Z",
+      "duration_ms": 0.571
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7286523Z",
+      "finished_utc": "2026-09-23T08:17:32.7286523Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7286523Z",
+      "finished_utc": "2026-09-23T08:17:32.7298879Z",
+      "duration_ms": 1.235
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7298879Z",
+      "finished_utc": "2026-09-23T08:17:32.7298879Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7298879Z",
+      "finished_utc": "2026-09-23T08:17:32.7305432Z",
+      "duration_ms": 0.655
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7305432Z",
+      "finished_utc": "2026-09-23T08:17:32.7305432Z",
+      "duration_ms": 0
+    },
+    {
+      "kind": "track_resolution",
+      "started_utc": "2026-09-23T08:17:32.7305432Z",
+      "finished_utc": "2026-09-23T08:17:32.7312514Z",
+      "duration_ms": 0.708
+    }
+  ],
+  "summary": {
+    "albums_page": {
+      "p50_ms": 6.1035,
+      "p95_ms": 7.508,
+      "p99_ms": 8.522
+    },
+    "artists_page": {
+      "p50_ms": 7.881,
+      "p95_ms": 9.412,
+      "p99_ms": 13.055
+    },
+    "track_detail": {
+      "p50_ms": 5.9345,
+      "p95_ms": 7.757,
+      "p99_ms": 9.762
+    },
+    "track_resolution": {
+      "p50_ms": 0.5665,
+      "p95_ms": 1.466,
+      "p99_ms": 1.995
+    },
+    "tracks_page": {
+      "p50_ms": 13.094999999999999,
+      "p95_ms": 15.127,
+      "p99_ms": 16.467
+    }
+  }
+}

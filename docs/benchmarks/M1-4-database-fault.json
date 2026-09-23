@@ -1,0 +1,25 @@
+{
+  "before": {
+    "tracks": 200,
+    "health": 200,
+    "ready": 200,
+    "track_stream_head": 200,
+    "demo_metadata": 200
+  },
+  "limitation": "Manual probe did not capture individual request timestamps",
+  "after": {
+    "tracks": 200,
+    "ready": 200,
+    "track_stream_head": 200
+  },
+  "method": "Stopped dedicated PostgreSQL 17.11 test cluster process, then restarted and observed WAL recovery",
+  "during": {
+    "health": 200,
+    "track_stream": 503,
+    "demo_metadata": 200,
+    "catalog_error": "catalog_unavailable",
+    "tracks": 503,
+    "ready": 503
+  },
+  "test_date": "2026-09-23"
+}

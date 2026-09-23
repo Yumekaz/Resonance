@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resonance Library</title>
+  <link rel="stylesheet" href="/library.css">
+  <script src="/library.js" defer></script>
+</head>
+<body>
+  <header><div><p class="eyebrow">PROJECT RESONANCE</p><h1>Library</h1></div><a href="/demo">Diagnostic player</a></header>
+  <main>
+    <nav aria-label="Library views"><button data-view="tracks" aria-current="page">Tracks</button><button data-view="artists">Artists</button><button data-view="albums">Albums</button></nav>
+    <p id="view-title" class="section-title">Tracks</p>
+    <p id="status" role="status">Loading library…</p>
+    <ul id="items" aria-label="Catalog entries"></ul>
+    <button id="more" type="button" hidden>Load more</button>
+  </main>
+  <aside aria-label="Persistent player">
+    <div class="now"><img id="cover" alt="" hidden><div><span class="eyebrow">NOW PLAYING</span><strong id="now-title">Choose an available track</strong><span id="now-credit"></span></div></div>
+    <audio id="audio" controls preload="metadata"></audio>
+    <p id="player-error" role="alert" hidden></p>
+  </aside>
+</body>
+</html>

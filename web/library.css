@@ -1,0 +1,31 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #101714; color: #f1f7ef; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; padding-bottom: 138px; }
+header { display: flex; justify-content: space-between; align-items: end; gap: 1rem; padding: 2rem clamp(1rem,4vw,4rem); border-bottom: 1px solid #334c3a; }
+h1 { margin: .2rem 0 0; font-size: clamp(2rem,5vw,3.5rem); }
+.eyebrow { font-size: .7rem; letter-spacing: .17em; color: #a7d4ab; font-weight: 700; }
+a { color: #b3f0aa; }
+main { max-width: 980px; margin: auto; padding: 1.5rem clamp(1rem,4vw,4rem); }
+nav { display: flex; flex-wrap: wrap; gap: .5rem; }
+button { font: inherit; cursor: pointer; border: 1px solid #45614b; border-radius: .7rem; background: #203127; color: #f1f7ef; padding: .65rem 1rem; }
+button[aria-current=page] { background: #b3f0aa; color: #112319; font-weight: 700; }
+button:disabled { cursor: default; opacity: .55; }
+button:focus-visible, a:focus-visible, audio:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.section-title { font-size: 1.3rem; font-weight: 700; margin: 2rem 0 1rem; }
+#status { color: #b6c7b9; min-height: 1.5rem; }
+ul { padding: 0; list-style: none; }
+li { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding: .7rem 0; border-bottom: 1px solid #2d4433; }
+.item-title { border: 0; background: transparent; padding: .35rem .2rem; text-align: left; font-weight: 650; }
+.item-title:hover { color: #b3f0aa; }
+.item-subtitle { color: #b6c7b9; font-size: .9rem; }
+.badge { color: #ffb4a8; font-size: .8rem; }
+.back { margin-right: .7rem; }
+aside { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1rem clamp(1rem,4vw,4rem); border-top: 1px solid #48634d; background: #1b2920; box-shadow: 0 -12px 40px #0006; }
+.now { display: flex; align-items: center; gap: .8rem; min-width: 0; }
+.now img { width: 54px; height: 54px; object-fit: cover; border-radius: .3rem; }
+.now div { display: grid; min-width: 0; }
+.now strong, .now span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#now-credit { color: #b6c7b9; font-size: .85rem; }
+audio { width: min(100%, 380px); }
+#player-error { color: #ffb4a8; width: 100%; margin: 0; }
+@media(max-width:650px) { header { align-items: start; flex-direction: column; } aside { align-items: stretch; } audio { width: 100%; } body { padding-bottom: 200px; } }

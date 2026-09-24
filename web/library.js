@@ -47,6 +47,7 @@ function addItem(item) {
   if (view === 'tracks' && !item.available) button.disabled = true;
   li.append(button, node('span', sublabel(item), 'item-subtitle'));
   if (view === 'tracks' && !item.available) li.append(node('span', 'Unavailable', 'badge'));
+  if (view === 'tracks') window.resonanceUser?.decorateTrackRow(li, item);
   items.append(li);
 }
 
@@ -73,6 +74,8 @@ async function load(reset = false) {
 }
 
 function selectView(nextView) {
+  if (['queue', 'playlists', 'favorites', 'history'].includes(nextView) && window.resonanceUser) { window.resonanceUser.selectView(nextView); return; }
+  window.resonanceUser?.onBrowseView(nextView);
   view = nextView;
   group = null;
   title.textContent = nextView[0].toUpperCase() + nextView.slice(1);
@@ -89,8 +92,9 @@ function openGroup(kind, item) {
   load(true);
 }
 
-function playTrack(track) {
+function playTrack(track, selection = null) {
   if (!track.available) return;
+  window.resonanceUser?.setPlayback(track, selection);
   playerError.hidden = true;
   nowTitle.textContent = track.title || 'Untitled track';
   nowCredit.textContent = track.artist_credit || 'Unknown artist';
@@ -106,4 +110,5 @@ function playTrack(track) {
 nav.addEventListener('click', event => { const button = event.target.closest('button[data-view]'); if (button) selectView(button.dataset.view); });
 more.addEventListener('click', () => load());
 audio.addEventListener('error', () => { playerError.textContent = 'This audio is unavailable or cannot be decoded by this browser.'; playerError.hidden = false; });
+window.resonanceBrowse = { playTrack, selectView, load };
 selectView('tracks');

@@ -1,0 +1,614 @@
+{
+  "cache": "warm/uncontrolled",
+  "command": "go run ./cmd/m15burst -track \u003ctrack-id\u003e -items 100 -count 100 -ready-file \u003cpath\u003e -start-file \u003cpath\u003e -out \u003cpath\u003e",
+  "count": 100,
+  "date_utc": "2026-09-24T05:37:52.3078143Z",
+  "go_version": "go1.25.0",
+  "operation": "queue reorder of bounded duplicate Track occurrences",
+  "p50_ms": 50.583,
+  "p95_ms": 61.221,
+  "p99_ms": 65.518,
+  "queue_items": 100,
+  "samples": [
+    {
+      "started_utc": "2026-09-24T05:37:47.2876734Z",
+      "finished_utc": "2026-09-24T05:37:47.3477064Z",
+      "duration_ms": 60.033,
+      "revision": 128
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.3482559Z",
+      "finished_utc": "2026-09-24T05:37:47.4069372Z",
+      "duration_ms": 58.681,
+      "revision": 129
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.4069372Z",
+      "finished_utc": "2026-09-24T05:37:47.4631206Z",
+      "duration_ms": 56.183,
+      "revision": 130
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.4631206Z",
+      "finished_utc": "2026-09-24T05:37:47.5241756Z",
+      "duration_ms": 61.055,
+      "revision": 131
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.5241756Z",
+      "finished_utc": "2026-09-24T05:37:47.5897942Z",
+      "duration_ms": 65.618,
+      "revision": 132
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.5897942Z",
+      "finished_utc": "2026-09-24T05:37:47.6524549Z",
+      "duration_ms": 62.66,
+      "revision": 133
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.6524549Z",
+      "finished_utc": "2026-09-24T05:37:47.7103939Z",
+      "duration_ms": 57.939,
+      "revision": 134
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.7103939Z",
+      "finished_utc": "2026-09-24T05:37:47.7638449Z",
+      "duration_ms": 53.451,
+      "revision": 135
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.7638449Z",
+      "finished_utc": "2026-09-24T05:37:47.8192436Z",
+      "duration_ms": 55.398,
+      "revision": 136
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.8192436Z",
+      "finished_utc": "2026-09-24T05:37:47.8774684Z",
+      "duration_ms": 58.224,
+      "revision": 137
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.8774684Z",
+      "finished_utc": "2026-09-24T05:37:47.9319528Z",
+      "duration_ms": 54.484,
+      "revision": 138
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.9319528Z",
+      "finished_utc": "2026-09-24T05:37:47.9899881Z",
+      "duration_ms": 58.035,
+      "revision": 139
+    },
+    {
+      "started_utc": "2026-09-24T05:37:47.9899881Z",
+      "finished_utc": "2026-09-24T05:37:48.0421434Z",
+      "duration_ms": 52.155,
+      "revision": 140
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.0421434Z",
+      "finished_utc": "2026-09-24T05:37:48.0942726Z",
+      "duration_ms": 52.129,
+      "revision": 141
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.0942726Z",
+      "finished_utc": "2026-09-24T05:37:48.1474753Z",
+      "duration_ms": 53.202,
+      "revision": 142
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.1474753Z",
+      "finished_utc": "2026-09-24T05:37:48.1994939Z",
+      "duration_ms": 52.018,
+      "revision": 143
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.1994939Z",
+      "finished_utc": "2026-09-24T05:37:48.2535096Z",
+      "duration_ms": 54.015,
+      "revision": 144
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.2535096Z",
+      "finished_utc": "2026-09-24T05:37:48.3171449Z",
+      "duration_ms": 63.635,
+      "revision": 145
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.3171449Z",
+      "finished_utc": "2026-09-24T05:37:48.3720316Z",
+      "duration_ms": 54.886,
+      "revision": 146
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.3720316Z",
+      "finished_utc": "2026-09-24T05:37:48.423782Z",
+      "duration_ms": 51.75,
+      "revision": 147
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.423782Z",
+      "finished_utc": "2026-09-24T05:37:48.4765351Z",
+      "duration_ms": 52.753,
+      "revision": 148
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.4765351Z",
+      "finished_utc": "2026-09-24T05:37:48.5187113Z",
+      "duration_ms": 42.176,
+      "revision": 149
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.5191919Z",
+      "finished_utc": "2026-09-24T05:37:48.5603632Z",
+      "duration_ms": 41.171,
+      "revision": 150
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.5603632Z",
+      "finished_utc": "2026-09-24T05:37:48.6059436Z",
+      "duration_ms": 45.58,
+      "revision": 151
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.6059436Z",
+      "finished_utc": "2026-09-24T05:37:48.6480693Z",
+      "duration_ms": 42.125,
+      "revision": 152
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.6484845Z",
+      "finished_utc": "2026-09-24T05:37:48.6920765Z",
+      "duration_ms": 43.592,
+      "revision": 153
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.6920765Z",
+      "finished_utc": "2026-09-24T05:37:48.7341256Z",
+      "duration_ms": 42.049,
+      "revision": 154
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.7341256Z",
+      "finished_utc": "2026-09-24T05:37:48.7807873Z",
+      "duration_ms": 46.661,
+      "revision": 155
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.7807873Z",
+      "finished_utc": "2026-09-24T05:37:48.8238927Z",
+      "duration_ms": 43.105,
+      "revision": 156
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.8242537Z",
+      "finished_utc": "2026-09-24T05:37:48.8738885Z",
+      "duration_ms": 49.634,
+      "revision": 157
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.8738885Z",
+      "finished_utc": "2026-09-24T05:37:48.9293528Z",
+      "duration_ms": 55.464,
+      "revision": 158
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.9293528Z",
+      "finished_utc": "2026-09-24T05:37:48.9746317Z",
+      "duration_ms": 45.278,
+      "revision": 159
+    },
+    {
+      "started_utc": "2026-09-24T05:37:48.9746317Z",
+      "finished_utc": "2026-09-24T05:37:49.0182953Z",
+      "duration_ms": 43.663,
+      "revision": 160
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.0189038Z",
+      "finished_utc": "2026-09-24T05:37:49.0632881Z",
+      "duration_ms": 44.384,
+      "revision": 161
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.0632881Z",
+      "finished_utc": "2026-09-24T05:37:49.1074326Z",
+      "duration_ms": 44.144,
+      "revision": 162
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.1074326Z",
+      "finished_utc": "2026-09-24T05:37:49.1536252Z",
+      "duration_ms": 46.192,
+      "revision": 163
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.1536252Z",
+      "finished_utc": "2026-09-24T05:37:49.195361Z",
+      "duration_ms": 41.735,
+      "revision": 164
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.195361Z",
+      "finished_utc": "2026-09-24T05:37:49.2395288Z",
+      "duration_ms": 44.167,
+      "revision": 165
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.2395288Z",
+      "finished_utc": "2026-09-24T05:37:49.2800374Z",
+      "duration_ms": 40.508,
+      "revision": 166
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.2800374Z",
+      "finished_utc": "2026-09-24T05:37:49.3212662Z",
+      "duration_ms": 41.228,
+      "revision": 167
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.3212662Z",
+      "finished_utc": "2026-09-24T05:37:49.3615326Z",
+      "duration_ms": 40.266,
+      "revision": 168
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.3615326Z",
+      "finished_utc": "2026-09-24T05:37:49.4028176Z",
+      "duration_ms": 41.285,
+      "revision": 169
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.4028176Z",
+      "finished_utc": "2026-09-24T05:37:49.4444252Z",
+      "duration_ms": 41.607,
+      "revision": 170
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.4444252Z",
+      "finished_utc": "2026-09-24T05:37:49.5001639Z",
+      "duration_ms": 55.738,
+      "revision": 171
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.5001639Z",
+      "finished_utc": "2026-09-24T05:37:49.553957Z",
+      "duration_ms": 53.793,
+      "revision": 172
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.553957Z",
+      "finished_utc": "2026-09-24T05:37:49.6064696Z",
+      "duration_ms": 52.512,
+      "revision": 173
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.6064696Z",
+      "finished_utc": "2026-09-24T05:37:49.6676909Z",
+      "duration_ms": 61.221,
+      "revision": 174
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.6676909Z",
+      "finished_utc": "2026-09-24T05:37:49.7248024Z",
+      "duration_ms": 57.111,
+      "revision": 175
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.7248024Z",
+      "finished_utc": "2026-09-24T05:37:49.7842459Z",
+      "duration_ms": 59.443,
+      "revision": 176
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.7842459Z",
+      "finished_utc": "2026-09-24T05:37:49.8454627Z",
+      "duration_ms": 61.216,
+      "revision": 177
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.8454627Z",
+      "finished_utc": "2026-09-24T05:37:49.8914325Z",
+      "duration_ms": 45.969,
+      "revision": 178
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.8914325Z",
+      "finished_utc": "2026-09-24T05:37:49.9403155Z",
+      "duration_ms": 48.883,
+      "revision": 179
+    },
+    {
+      "started_utc": "2026-09-24T05:37:49.9403155Z",
+      "finished_utc": "2026-09-24T05:37:50.0036891Z",
+      "duration_ms": 63.373,
+      "revision": 180
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.0043539Z",
+      "finished_utc": "2026-09-24T05:37:50.0455247Z",
+      "duration_ms": 41.17,
+      "revision": 181
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.0455247Z",
+      "finished_utc": "2026-09-24T05:37:50.0892237Z",
+      "duration_ms": 43.699,
+      "revision": 182
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.0892237Z",
+      "finished_utc": "2026-09-24T05:37:50.1302436Z",
+      "duration_ms": 41.019,
+      "revision": 183
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.1302436Z",
+      "finished_utc": "2026-09-24T05:37:50.1717978Z",
+      "duration_ms": 41.554,
+      "revision": 184
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.1717978Z",
+      "finished_utc": "2026-09-24T05:37:50.2187968Z",
+      "duration_ms": 46.999,
+      "revision": 185
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.2187968Z",
+      "finished_utc": "2026-09-24T05:37:50.2704295Z",
+      "duration_ms": 51.632,
+      "revision": 186
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.2704295Z",
+      "finished_utc": "2026-09-24T05:37:50.3204365Z",
+      "duration_ms": 50.007,
+      "revision": 187
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.3204365Z",
+      "finished_utc": "2026-09-24T05:37:50.370872Z",
+      "duration_ms": 50.435,
+      "revision": 188
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.370872Z",
+      "finished_utc": "2026-09-24T05:37:50.4273781Z",
+      "duration_ms": 56.506,
+      "revision": 189
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.4273781Z",
+      "finished_utc": "2026-09-24T05:37:50.4745022Z",
+      "duration_ms": 47.124,
+      "revision": 190
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.4745022Z",
+      "finished_utc": "2026-09-24T05:37:50.5265295Z",
+      "duration_ms": 52.027,
+      "revision": 191
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.5265295Z",
+      "finished_utc": "2026-09-24T05:37:50.5778156Z",
+      "duration_ms": 51.286,
+      "revision": 192
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.5778156Z",
+      "finished_utc": "2026-09-24T05:37:50.6280285Z",
+      "duration_ms": 50.212,
+      "revision": 193
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.6280285Z",
+      "finished_utc": "2026-09-24T05:37:50.6748073Z",
+      "duration_ms": 46.778,
+      "revision": 194
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.6748073Z",
+      "finished_utc": "2026-09-24T05:37:50.7344014Z",
+      "duration_ms": 59.594,
+      "revision": 195
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.7344014Z",
+      "finished_utc": "2026-09-24T05:37:50.7791651Z",
+      "duration_ms": 44.763,
+      "revision": 196
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.7791651Z",
+      "finished_utc": "2026-09-24T05:37:50.8231674Z",
+      "duration_ms": 44.002,
+      "revision": 197
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.8231674Z",
+      "finished_utc": "2026-09-24T05:37:50.8802422Z",
+      "duration_ms": 57.074,
+      "revision": 198
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.8802422Z",
+      "finished_utc": "2026-09-24T05:37:50.9457607Z",
+      "duration_ms": 65.518,
+      "revision": 199
+    },
+    {
+      "started_utc": "2026-09-24T05:37:50.9457607Z",
+      "finished_utc": "2026-09-24T05:37:51.0060117Z",
+      "duration_ms": 60.251,
+      "revision": 200
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.0060117Z",
+      "finished_utc": "2026-09-24T05:37:51.0636491Z",
+      "duration_ms": 57.637,
+      "revision": 201
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.0636491Z",
+      "finished_utc": "2026-09-24T05:37:51.1033532Z",
+      "duration_ms": 39.704,
+      "revision": 202
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.1033532Z",
+      "finished_utc": "2026-09-24T05:37:51.1447558Z",
+      "duration_ms": 41.402,
+      "revision": 203
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.1447558Z",
+      "finished_utc": "2026-09-24T05:37:51.1879082Z",
+      "duration_ms": 43.152,
+      "revision": 204
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.1879082Z",
+      "finished_utc": "2026-09-24T05:37:51.2282409Z",
+      "duration_ms": 40.332,
+      "revision": 205
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.2282409Z",
+      "finished_utc": "2026-09-24T05:37:51.2674672Z",
+      "duration_ms": 39.226,
+      "revision": 206
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.2674672Z",
+      "finished_utc": "2026-09-24T05:37:51.303947Z",
+      "duration_ms": 36.479,
+      "revision": 207
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.303947Z",
+      "finished_utc": "2026-09-24T05:37:51.3404563Z",
+      "duration_ms": 36.509,
+      "revision": 208
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.3404563Z",
+      "finished_utc": "2026-09-24T05:37:51.3916783Z",
+      "duration_ms": 51.222,
+      "revision": 209
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.3916783Z",
+      "finished_utc": "2026-09-24T05:37:51.4416551Z",
+      "duration_ms": 49.976,
+      "revision": 210
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.4416551Z",
+      "finished_utc": "2026-09-24T05:37:51.4867966Z",
+      "duration_ms": 45.141,
+      "revision": 211
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.4867966Z",
+      "finished_utc": "2026-09-24T05:37:51.5435328Z",
+      "duration_ms": 56.736,
+      "revision": 212
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.5439015Z",
+      "finished_utc": "2026-09-24T05:37:51.5924849Z",
+      "duration_ms": 48.583,
+      "revision": 213
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.5929247Z",
+      "finished_utc": "2026-09-24T05:37:51.6421735Z",
+      "duration_ms": 49.248,
+      "revision": 214
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.6421735Z",
+      "finished_utc": "2026-09-24T05:37:51.6959062Z",
+      "duration_ms": 53.732,
+      "revision": 215
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.6967295Z",
+      "finished_utc": "2026-09-24T05:37:51.7474605Z",
+      "duration_ms": 50.731,
+      "revision": 216
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.7474605Z",
+      "finished_utc": "2026-09-24T05:37:51.8039826Z",
+      "duration_ms": 56.522,
+      "revision": 217
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.8039826Z",
+      "finished_utc": "2026-09-24T05:37:51.8606587Z",
+      "duration_ms": 56.676,
+      "revision": 218
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.8606587Z",
+      "finished_utc": "2026-09-24T05:37:51.9130396Z",
+      "duration_ms": 52.38,
+      "revision": 219
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.9130396Z",
+      "finished_utc": "2026-09-24T05:37:51.9665587Z",
+      "duration_ms": 53.519,
+      "revision": 220
+    },
+    {
+      "started_utc": "2026-09-24T05:37:51.9665587Z",
+      "finished_utc": "2026-09-24T05:37:52.0189755Z",
+      "duration_ms": 52.416,
+      "revision": 221
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.0189755Z",
+      "finished_utc": "2026-09-24T05:37:52.0647707Z",
+      "duration_ms": 45.795,
+      "revision": 222
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.0647707Z",
+      "finished_utc": "2026-09-24T05:37:52.1137007Z",
+      "duration_ms": 48.93,
+      "revision": 223
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.1137007Z",
+      "finished_utc": "2026-09-24T05:37:52.1525547Z",
+      "duration_ms": 38.854,
+      "revision": 224
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.1525547Z",
+      "finished_utc": "2026-09-24T05:37:52.2077015Z",
+      "duration_ms": 55.146,
+      "revision": 225
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.2077015Z",
+      "finished_utc": "2026-09-24T05:37:52.2601728Z",
+      "duration_ms": 52.471,
+      "revision": 226
+    },
+    {
+      "started_utc": "2026-09-24T05:37:52.2601728Z",
+      "finished_utc": "2026-09-24T05:37:52.3078143Z",
+      "duration_ms": 47.641,
+      "revision": 227
+    }
+  ]
+}

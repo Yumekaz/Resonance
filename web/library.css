@@ -12,6 +12,13 @@ button[aria-current=page] { background: #b3f0aa; color: #112319; font-weight: 70
 button:disabled { cursor: default; opacity: .55; }
 button:focus-visible, a:focus-visible, audio:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 .section-title { font-size: 1.3rem; font-weight: 700; margin: 2rem 0 1rem; }
+.view-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin: .7rem 0; }
+.view-controls[hidden] { display: none; }
+input, select { font: inherit; min-width: 150px; padding: .55rem; border: 1px solid #45614b; border-radius: .5rem; background: #17251b; color: #f1f7ef; }
+.item-actions { display: inline-flex; flex-wrap: wrap; gap: .4rem; margin-left: auto; }
+.item-actions button { padding: .35rem .65rem; font-size: .85rem; }
+.player-controls { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+.player-controls button { padding: .45rem .7rem; }
 #status { color: #b6c7b9; min-height: 1.5rem; }
 ul { padding: 0; list-style: none; }
 li { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding: .7rem 0; border-bottom: 1px solid #2d4433; }

@@ -60,7 +60,10 @@ func validateSchemaContract(ctx context.Context, q queryer) error {
 	if err := validateLibraryContract(ctx, q); err != nil {
 		return err
 	}
-	return validateGroupingContract(ctx, q)
+	if err := validateGroupingContract(ctx, q); err != nil {
+		return err
+	}
+	return validateUserLibraryContract(ctx, q)
 }
 
 func validateGroupingContract(ctx context.Context, q queryer) error {

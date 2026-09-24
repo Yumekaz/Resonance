@@ -76,7 +76,7 @@ func TestEmptyMigrationAndIdempotence(t *testing.T) {
 		t.Fatal(err)
 	}
 	var count int
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 6 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 7 {
 		t.Fatalf("migrations=%d error=%v", count, err)
 	}
 }
@@ -159,7 +159,7 @@ func TestM12MigrationOnPopulatedCore(t *testing.T) {
 	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM media_locations WHERE id='legacy-location' AND root_id IS NULL").Scan(&count); err != nil || count != 1 {
 		t.Fatalf("legacy row lost: %d %v", count, err)
 	}
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 6 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 7 {
 		t.Fatalf("migration count: %d %v", count, err)
 	}
 }

@@ -1,8 +1,8 @@
-# Project Resonance — M1.4 local catalog and playback
+# Project Resonance — M1.5 personal library
 
 One Go server streams one configured WAV file to a browser player. M0 is a local/LAN experiment with no authentication or Internet access feature.
 
-M1.1 adds PostgreSQL metadata foundations, M1.2 adds host-only folder enrollment, M1.3A adds authoritative foreground reconciliation, and M1.4 adds conservative Artist/Album grouping, browsable Tracks, and direct playback from enrolled files. With `RESONANCE_DATABASE_URL`, `/` opens the library and `/demo` retains the M0 diagnostic player. Without a database, the accepted M0 demo remains at `/` and `/ready` reports the catalog as unconfigured. See the [PostgreSQL runbook](docs/runbooks/M1-1-postgres.md), [library runbook](docs/runbooks/M1-2-library.md), and [M1.4 API contract](docs/api/M1-4-catalog.md).
+M1.1 adds PostgreSQL metadata foundations, M1.2 adds host-only folder enrollment, M1.3A adds authoritative foreground reconciliation, M1.4 adds catalog browsing and indexed playback, and M1.5 adds a durable queue, playlists, Track favorites, and meaningful listening history. With `RESONANCE_DATABASE_URL`, `/` opens the library and `/demo` retains the M0 diagnostic player. Without a database, the accepted M0 demo remains at `/` and `/ready` reports the catalog as unconfigured. See the [PostgreSQL runbook](docs/runbooks/M1-1-postgres.md), [library runbook](docs/runbooks/M1-2-library.md), [catalog contract](docs/api/M1-4-catalog.md), and [M1.5 user-library contract](docs/api/M1-5-user-library.md).
 
 ## Requirements
 
@@ -30,6 +30,7 @@ Open <http://127.0.0.1:8080/>. The default listener is loopback. For a phone on 
 - `GET /api/v1/demo-track`: logical ID, title, and stream URL.
 - `GET /media/demo-track`: full `200`, or single bounded/open-ended/suffix Range `206` with exact length and inclusive `Content-Range`.
 - `GET /api/v1/tracks`, `/artists`, `/albums` and detail/navigation routes: paginated local catalog browsing. `GET` and `HEAD /api/v1/tracks/{id}/stream` resolve an indexed Track under enrolled roots and use the same byte-serving function as `/media/demo-track`. See the [M1.4 contract](docs/api/M1-4-catalog.md).
+- `/api/v1/queue`, `/playlists`, `/favorites`, `/listening-sessions`, and `/history`: durable Track-based user-library state. Natural audio end reports completion and advances the queue in one transaction. The database stores selection, while browser play/pause/buffering/position remain client-owned. See the [M1.5 contract](docs/api/M1-5-user-library.md).
 - Unsatisfiable ranges return `416` with `Content-Range: bytes */size`. Malformed single-byte syntax returns `400`. Reversed intervals return `416`.
 - Multiple ranges (including repeated Range fields) and unsupported units are ignored as a whole, returning full `200`; they are never partially interpreted.
 - `HEAD` ignores Range and returns full representation headers without a body.
@@ -56,6 +57,8 @@ Keep a freshly built server running on `127.0.0.1:8080` for E2E. Tests require t
 
 The M1.4 browser test requires a migrated and scanned catalog server with a 300-second WAV titled `long` and a tagged MP3 with Artist `Browser Artist`, Album `Browser Album`, and title `Browser Song`. Set `RESONANCE_M14_E2E=1` and run `npx playwright test tests/e2e/library.spec.js`. It remains skipped during the unconfigured M0 demo run.
 
+The M1.5 browser test uses that catalog plus a generated two-second `Short.wav`. Set `RESONANCE_M15_E2E=1` and run `npx playwright test tests/e2e/user-library.spec.js`. It covers queue placement and controls, stale-tab selection fencing, lost-response and version-conflict retries, natural-end history, playlist/favorite create/edit/reorder/delete, seek-to-end behavior, reload persistence, and decoder failure without fabricated history.
+
 The integration command requires the dedicated `RESONANCE_TEST_DATABASE_URL` described in the PostgreSQL runbook. To enroll and scan a host directory, apply migrations and use `go run . library add -path <directory> -name <name>`, followed by `go run . library scan <root-id>`. The web client cannot enroll paths.
 
 Windows tests create a junction through a fixed PowerShell command to verify containment. A separate file-symlink test explicitly skips if Windows denies symlink creation. The application itself launches no child processes. `go test -race ./...` additionally requires a working CGO/C compiler toolchain; it is not silently treated as passed when unavailable.
@@ -69,3 +72,5 @@ go run ./cmd/bench -url http://127.0.0.1:8080/media/demo-track -count 100 -out d
 The harness measures one full response, one first range, and 100 seeded random ranges. It validates status, Content-Range, Content-Length, and consumed byte counts. Invalid responses fail the run. Median averages the middle pair; p95 uses nearest rank. HTTP timings are separate from the browser's seek-to-playing event measurement. See [the benchmark report](docs/benchmarks/M0.md) for actual results and limitations.
 
 For indexed media, point the same harness at `/api/v1/tracks/{id}/stream`; `go run ./cmd/m14measure -track <track-id> -out docs/benchmarks/M1-4-queries.json` measures catalog pages, detail, and Track resolution with raw per-request timings. See [M1.4 benchmark evidence](docs/benchmarks/M1-4.md).
+
+M1.5 queue, playlist, favorite, history, and read/Range overlap commands and raw results are in [M1-5.md](docs/benchmarks/M1-5.md). The benchmark uses a dedicated PostgreSQL test schema and makes no latency SLO claim.

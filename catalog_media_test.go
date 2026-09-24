@@ -31,7 +31,7 @@ func catalogWorkspaceTempDir(t *testing.T) string {
 }
 
 func TestPublicCatalogStructsHaveNoHostPathFields(t *testing.T) {
-	for _, value := range []any{storage.CatalogTrack{}, storage.CatalogArtist{}, storage.CatalogAlbum{}} {
+	for _, value := range []any{storage.CatalogTrack{}, storage.CatalogArtist{}, storage.CatalogAlbum{}, storage.QueueSnapshot{}, storage.QueueItem{}, storage.Playlist{}, storage.PlaylistDetail{}, storage.PlaylistItem{}, storage.FavoriteTrack{}, storage.PlaybackSession{}, storage.HistoryItem{}} {
 		typ := reflect.TypeOf(value)
 		for i := 0; i < typ.NumField(); i++ {
 			field := typ.Field(i)

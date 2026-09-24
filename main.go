@@ -70,6 +70,32 @@ func run() error {
 	if err != nil || !info.Mode().IsRegular() {
 		return errors.New("configured media must be a readable regular file")
 	}
+	if catalogStore != nil {
+		cleanupCtx, cleanupCancel := context.WithTimeout(context.Background(), 5*time.Second)
+		_, cleanupErr := catalogStore.PruneExpiredReceipts(cleanupCtx, 10)
+		cleanupCancel()
+		if cleanupErr != nil {
+			return errors.New("mutation receipt cleanup failed during startup")
+		}
+		workerCtx, stopWorker := context.WithCancel(context.Background())
+		defer stopWorker()
+		go func() {
+			ticker := time.NewTicker(time.Hour)
+			defer ticker.Stop()
+			for {
+				select {
+				case <-workerCtx.Done():
+					return
+				case <-ticker.C:
+					ctx, cancel := context.WithTimeout(workerCtx, 10*time.Second)
+					if _, err := catalogStore.PruneExpiredReceipts(ctx, 10); err != nil {
+						log.Print("mutation receipt cleanup unavailable")
+					}
+					cancel()
+				}
+			}
+		}()
+	}
 	server := &http.Server{
 		Addr:              *addr,
 		Handler:           newHandlerWithCatalog(*media, *title, os.Stdout, ready, catalogStore),

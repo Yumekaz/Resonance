@@ -1,0 +1,26 @@
+{
+  "during": {
+    "/api/v1/demo-track": 200,
+    "/api/v1/favorites": 503,
+    "/health": 200,
+    "/api/v1/history": 503,
+    "/api/v1/queue": 503,
+    "/ready": 503,
+    "/api/v1/playlists": 503
+  },
+  "database_stopped_utc": "2026-09-24T11:16:13.9549085+05:30",
+  "opened_stream_expected_bytes": 26460044,
+  "test_date_utc": "2026-09-24T11:16:13.2204783+05:30",
+  "opened_stream_status": 200,
+  "opened_stream_received_bytes": 26460044,
+  "database_recovered_utc": "2026-09-24T05:46:41.0983668+00:00",
+  "after": {
+    "/api/v1/history": 200,
+    "/health": 200,
+    "/api/v1/favorites": 200,
+    "/api/v1/queue": 200,
+    "/ready": 200,
+    "/api/v1/playlists": 200,
+    "/api/v1/demo-track": 200
+  }
+}

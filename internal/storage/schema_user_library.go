@@ -1,0 +1,54 @@
+package storage
+
+import "context"
+
+// 0007 is checked independently of the migration ledger. These are the public
+// product-state tables and their complete column/constraint/index inventory.
+func validateUserLibraryContract(ctx context.Context, q queryer) error {
+	columns := []string{
+		"active_queue|singleton|boolean|true|true", "active_queue|revision|bigint|true|0", "active_queue|current_item_id|text|false|", "active_queue|selection_token|uuid|false|", "active_queue|selection_state|text|true|'stopped'::text", "active_queue|created_at|timestamp with time zone|true|now()", "active_queue|updated_at|timestamp with time zone|true|now()",
+		"queue_items|id|text|true|", "queue_items|track_id|text|true|", "queue_items|position|bigint|true|", "queue_items|created_at|timestamp with time zone|true|now()", "queue_items|last_skip_code|text|false|", "queue_items|last_skipped_at|timestamp with time zone|false|",
+		"playlists|id|text|true|", "playlists|name|text|true|", "playlists|revision|bigint|true|0", "playlists|created_at|timestamp with time zone|true|now()", "playlists|updated_at|timestamp with time zone|true|now()",
+		"playlist_items|id|text|true|", "playlist_items|playlist_id|text|true|", "playlist_items|track_id|text|true|", "playlist_items|position|bigint|true|", "playlist_items|created_at|timestamp with time zone|true|now()",
+		"favorite_tracks|track_id|text|true|", "favorite_tracks|created_at|timestamp with time zone|true|now()",
+		"playback_sessions|id|uuid|true|", "playback_sessions|track_id|text|true|", "playback_sessions|queue_item_id|text|false|", "playback_sessions|selection_token|uuid|false|", "playback_sessions|client_instance_id|uuid|true|", "playback_sessions|started_at|timestamp with time zone|true|now()", "playback_sessions|meaningful_at|timestamp with time zone|false|", "playback_sessions|completed_at|timestamp with time zone|false|", "playback_sessions|ended_at|timestamp with time zone|false|", "playback_sessions|last_sequence|bigint|true|0", "playback_sessions|listened_ms|bigint|true|0", "playback_sessions|last_position_ms|bigint|true|0", "playback_sessions|reported_duration_ms|bigint|false|", "playback_sessions|seek_count|bigint|true|0", "playback_sessions|terminal_reason|text|false|",
+		"mutation_receipts|operation_scope|text|true|", "mutation_receipts|idempotency_key|uuid|true|", "mutation_receipts|canonical_request|bytea|true|", "mutation_receipts|response_status|integer|true|", "mutation_receipts|response_body|bytea|true|", "mutation_receipts|created_at|timestamp with time zone|true|now()", "mutation_receipts|expires_at|timestamp with time zone|true|(now() + '7 days'::interval)", "mutation_receipts|last_replayed_at|timestamp with time zone|false|",
+	}
+	if err := matchContract(ctx, q, `SELECT c.relname||'|'||a.attname||'|'||format_type(a.atttypid,a.atttypmod)||'|'||a.attnotnull::text||'|'||coalesce(pg_get_expr(d.adbin,d.adrelid),'') FROM pg_attribute a JOIN pg_class c ON c.oid=a.attrelid LEFT JOIN pg_attrdef d ON d.adrelid=a.attrelid AND d.adnum=a.attnum WHERE c.oid IN (to_regclass('active_queue'),to_regclass('queue_items'),to_regclass('playlists'),to_regclass('playlist_items'),to_regclass('favorite_tracks'),to_regclass('playback_sessions'),to_regclass('mutation_receipts')) AND c.relkind='r' AND a.attnum>0 AND NOT a.attisdropped`, columns); err != nil {
+		return err
+	}
+	constraints := []string{
+		"active_queue|active_queue_pkey|PRIMARY KEY (singleton)", "active_queue|active_queue_singleton_check|CHECK (singleton)", "active_queue|active_queue_revision_check|CHECK ((revision >= 0))", "active_queue|active_queue_selection_state_check|CHECK ((selection_state = ANY (ARRAY['stopped'::text, 'selected'::text])))", "active_queue|active_queue_selection_check|CHECK ((((selection_state = 'stopped'::text) AND (selection_token IS NULL)) OR ((selection_state = 'selected'::text) AND (current_item_id IS NOT NULL) AND (selection_token IS NOT NULL))))", "active_queue|active_queue_current_item_fkey|FOREIGN KEY (current_item_id) REFERENCES queue_items(id) DEFERRABLE INITIALLY DEFERRED",
+		"queue_items|queue_items_pkey|PRIMARY KEY (id)", "queue_items|queue_items_id_check|CHECK (((length(id) >= 1) AND (length(id) <= 128)))", "queue_items|queue_items_track_id_fkey|FOREIGN KEY (track_id) REFERENCES tracks(id) ON DELETE RESTRICT", "queue_items|queue_items_position_check|CHECK ((" + "\"position\"" + " >= 0))", "queue_items|queue_items_last_skip_code_check|CHECK (((last_skip_code IS NULL) OR (last_skip_code = ANY (ARRAY['track_unavailable'::text, 'resolver_failed'::text]))))", "queue_items|queue_items_skip_pair|CHECK (((last_skip_code IS NULL) = (last_skipped_at IS NULL)))", "queue_items|queue_items_position_key|UNIQUE (" + "\"position\"" + ") DEFERRABLE INITIALLY DEFERRED",
+		"playlists|playlists_pkey|PRIMARY KEY (id)", "playlists|playlists_id_check|CHECK (((length(id) >= 1) AND (length(id) <= 128)))", "playlists|playlists_name_check|CHECK (((length(btrim(name)) >= 1) AND (length(btrim(name)) <= 256)))", "playlists|playlists_revision_check|CHECK ((revision >= 0))",
+		"playlist_items|playlist_items_pkey|PRIMARY KEY (id)", "playlist_items|playlist_items_id_check|CHECK (((length(id) >= 1) AND (length(id) <= 128)))", "playlist_items|playlist_items_playlist_id_fkey|FOREIGN KEY (playlist_id) REFERENCES playlists(id) ON DELETE CASCADE", "playlist_items|playlist_items_track_id_fkey|FOREIGN KEY (track_id) REFERENCES tracks(id) ON DELETE RESTRICT", "playlist_items|playlist_items_position_check|CHECK ((" + "\"position\"" + " >= 0))", "playlist_items|playlist_items_position_key|UNIQUE (playlist_id, " + "\"position\"" + ") DEFERRABLE INITIALLY DEFERRED",
+		"favorite_tracks|favorite_tracks_pkey|PRIMARY KEY (track_id)", "favorite_tracks|favorite_tracks_track_id_fkey|FOREIGN KEY (track_id) REFERENCES tracks(id) ON DELETE RESTRICT",
+		"playback_sessions|playback_sessions_pkey|PRIMARY KEY (id)", "playback_sessions|playback_sessions_track_id_fkey|FOREIGN KEY (track_id) REFERENCES tracks(id) ON DELETE RESTRICT", "playback_sessions|playback_sessions_last_sequence_check|CHECK ((last_sequence >= 0))", "playback_sessions|playback_sessions_listened_ms_check|CHECK ((listened_ms >= 0))", "playback_sessions|playback_sessions_last_position_ms_check|CHECK ((last_position_ms >= 0))", "playback_sessions|playback_sessions_reported_duration_ms_check|CHECK (((reported_duration_ms IS NULL) OR (reported_duration_ms > 0)))", "playback_sessions|playback_sessions_seek_count_check|CHECK ((seek_count >= 0))", "playback_sessions|playback_sessions_terminal_reason_check|CHECK (((terminal_reason IS NULL) OR (terminal_reason = ANY (ARRAY['ended'::text, 'interrupted'::text, 'stopped'::text, 'decoder_error'::text, 'disconnected'::text]))))", "playback_sessions|playback_sessions_completion_check|CHECK (((completed_at IS NULL) OR ((ended_at IS NOT NULL) AND (terminal_reason = 'ended'::text))))", "playback_sessions|playback_sessions_queue_pair|CHECK (((queue_item_id IS NULL) = (selection_token IS NULL)))",
+		"mutation_receipts|mutation_receipts_pkey|PRIMARY KEY (operation_scope, idempotency_key)", "mutation_receipts|mutation_receipts_operation_scope_check|CHECK (((length(operation_scope) >= 1) AND (length(operation_scope) <= 80)))", "mutation_receipts|mutation_receipts_canonical_request_check|CHECK ((octet_length(canonical_request) <= 262144))", "mutation_receipts|mutation_receipts_response_status_check|CHECK (((response_status >= 200) AND (response_status <= 299)))", "mutation_receipts|mutation_receipts_response_body_check|CHECK ((octet_length(response_body) <= 16384))", "mutation_receipts|mutation_receipts_expiry_check|CHECK ((expires_at > created_at))",
+	}
+	if err := matchContract(ctx, q, `SELECT c.relname||'|'||k.conname||'|'||pg_get_constraintdef(k.oid) FROM pg_constraint k JOIN pg_class c ON c.oid=k.conrelid LEFT JOIN pg_index i ON i.indexrelid=k.conindid WHERE c.oid IN (to_regclass('active_queue'),to_regclass('queue_items'),to_regclass('playlists'),to_regclass('playlist_items'),to_regclass('favorite_tracks'),to_regclass('playback_sessions'),to_regclass('mutation_receipts')) AND k.convalidated AND (k.conindid=0 OR (i.indisvalid AND i.indisready))`, constraints); err != nil {
+		return err
+	}
+	if err := matchContract(ctx, q, `SELECT c.relname||'|'||x.relname||'|'||i.indisunique::text||'|'||i.indisprimary::text||'|'||i.indnkeyatts::text||'|'||(SELECT string_agg(pg_get_indexdef(i.indexrelid,k.n,true),',' ORDER BY k.n) FROM generate_series(1,i.indnkeyatts) k(n))||'|'||coalesce(pg_get_expr(i.indpred,i.indrelid),'') FROM pg_index i JOIN pg_class c ON c.oid=i.indrelid JOIN pg_class x ON x.oid=i.indexrelid JOIN pg_am am ON am.oid=x.relam WHERE x.oid IN (to_regclass('active_queue_pkey'),to_regclass('queue_items_pkey'),to_regclass('queue_items_position_key'),to_regclass('queue_items_track_idx'),to_regclass('playlists_pkey'),to_regclass('playlists_created_idx'),to_regclass('playlist_items_pkey'),to_regclass('playlist_items_position_key'),to_regclass('playlist_items_track_idx'),to_regclass('favorite_tracks_pkey'),to_regclass('favorite_tracks_created_idx'),to_regclass('playback_sessions_pkey'),to_regclass('playback_sessions_recent_idx'),to_regclass('playback_sessions_client_open_idx'),to_regclass('mutation_receipts_pkey'),to_regclass('mutation_receipts_expiry_idx')) AND i.indisvalid AND i.indisready AND i.indnatts=i.indnkeyatts AND am.amname='btree'`, []string{
+		"active_queue|active_queue_pkey|true|true|1|singleton|", "queue_items|queue_items_pkey|true|true|1|id|", "queue_items|queue_items_position_key|true|false|1|\"position\"|", "queue_items|queue_items_track_idx|false|false|1|track_id|", "playlists|playlists_pkey|true|true|1|id|", "playlists|playlists_created_idx|false|false|2|created_at,id|", "playlist_items|playlist_items_pkey|true|true|1|id|", "playlist_items|playlist_items_position_key|true|false|2|playlist_id,\"position\"|", "playlist_items|playlist_items_track_idx|false|false|1|track_id|", "favorite_tracks|favorite_tracks_pkey|true|true|1|track_id|", "favorite_tracks|favorite_tracks_created_idx|false|false|2|created_at,track_id|", "playback_sessions|playback_sessions_pkey|true|true|1|id|", "playback_sessions|playback_sessions_recent_idx|false|false|2|started_at,id|", "playback_sessions|playback_sessions_client_open_idx|false|false|2|client_instance_id,started_at|(ended_at IS NULL)", "mutation_receipts|mutation_receipts_pkey|true|true|2|operation_scope,idempotency_key|", "mutation_receipts|mutation_receipts_expiry_idx|false|false|1|expires_at|",
+	}); err != nil {
+		return err
+	}
+	rows, err := q.Query(ctx, "SELECT singleton FROM active_queue WHERE singleton=true")
+	if err != nil {
+		return ErrSchemaMismatch
+	}
+	defer rows.Close()
+	count := 0
+	for rows.Next() {
+		var singleton bool
+		if err := rows.Scan(&singleton); err != nil || !singleton {
+			return ErrSchemaMismatch
+		}
+		count++
+	}
+	if rows.Err() != nil || count != 1 {
+		return ErrSchemaMismatch
+	}
+	return nil
+}

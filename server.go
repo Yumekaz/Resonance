@@ -20,7 +20,7 @@ import (
 	"resonance/internal/storage"
 )
 
-//go:embed web/index.html web/app.js web/style.css web/library.html web/library.js web/library.css
+//go:embed web/index.html web/app.js web/style.css web/library.html web/library.js web/user-library.js web/library.css
 var webAssets embed.FS
 
 type track struct {
@@ -70,6 +70,26 @@ func newHandlerWithCatalog(mediaPath, title string, logOutput io.Writer, ready f
 	mux.HandleFunc("GET /api/v1/tracks/{id}/stream", a.catalogStream)
 	mux.HandleFunc("HEAD /api/v1/tracks/{id}/stream", a.catalogStream)
 	mux.HandleFunc("GET /api/v1/tracks/{id}/artwork", a.catalogArtwork)
+	mux.HandleFunc("GET /api/v1/queue", a.queueRead)
+	mux.HandleFunc("POST /api/v1/queue/items", a.queueAdd)
+	mux.HandleFunc("DELETE /api/v1/queue/items/{item_id}", a.queueRemove)
+	mux.HandleFunc("PUT /api/v1/queue/order", a.queueOrder)
+	mux.HandleFunc("DELETE /api/v1/queue", a.queueClear)
+	mux.HandleFunc("POST /api/v1/queue/advance", a.queueAdvance)
+	mux.HandleFunc("GET /api/v1/playlists", a.playlistsList)
+	mux.HandleFunc("POST /api/v1/playlists", a.playlistCreate)
+	mux.HandleFunc("GET /api/v1/playlists/{id}", a.playlistRead)
+	mux.HandleFunc("PATCH /api/v1/playlists/{id}", a.playlistRename)
+	mux.HandleFunc("DELETE /api/v1/playlists/{id}", a.playlistDelete)
+	mux.HandleFunc("POST /api/v1/playlists/{id}/items", a.playlistAdd)
+	mux.HandleFunc("DELETE /api/v1/playlists/{id}/items/{item_id}", a.playlistRemove)
+	mux.HandleFunc("PUT /api/v1/playlists/{id}/order", a.playlistOrder)
+	mux.HandleFunc("GET /api/v1/favorites", a.favoritesList)
+	mux.HandleFunc("PUT /api/v1/favorites/tracks/{track_id}", a.favoriteSet)
+	mux.HandleFunc("DELETE /api/v1/favorites/tracks/{track_id}", a.favoriteSet)
+	mux.HandleFunc("POST /api/v1/listening-sessions", a.sessionStart)
+	mux.HandleFunc("PUT /api/v1/listening-sessions/{id}/report", a.sessionReport)
+	mux.HandleFunc("GET /api/v1/history", a.historyList)
 	assets, _ := fs.Sub(webAssets, "web")
 	if store != nil {
 		mux.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {

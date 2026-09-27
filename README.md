@@ -2,7 +2,7 @@
 
 One Go server streams one configured WAV file to a browser player. M0 is a local/LAN experiment with no authentication or Internet access feature.
 
-M1.1 adds PostgreSQL metadata foundations, M1.2 adds host-only folder enrollment, M1.3A adds authoritative foreground reconciliation, M1.4 adds catalog browsing and indexed playback, and M1.5 adds a durable queue, playlists, Track favorites, and meaningful listening history. With `RESONANCE_DATABASE_URL`, `/` opens the library and `/demo` retains the M0 diagnostic player. Without a database, the accepted M0 demo remains at `/` and `/ready` reports the catalog as unconfigured. See the [PostgreSQL runbook](docs/runbooks/M1-1-postgres.md), [library runbook](docs/runbooks/M1-2-library.md), [catalog contract](docs/api/M1-4-catalog.md), and [M1.5 user-library contract](docs/api/M1-5-user-library.md).
+M1.1 adds PostgreSQL metadata foundations, M1.2 adds host-only folder enrollment, M1.3A adds authoritative foreground reconciliation, M1.4 adds catalog browsing and indexed playback, M1.5 adds durable queue/playlists/favorites/history, and M1.6 adds best-effort filesystem hints with recovery through the same authoritative scanner. With `RESONANCE_DATABASE_URL`, `/` opens the library and `/demo` retains the M0 diagnostic player. Without a database, the M0 demo remains at `/` and `/ready` reports the catalog as unconfigured. See the [PostgreSQL runbook](docs/runbooks/M1-1-postgres.md), [library runbook](docs/runbooks/M1-2-library.md), [catalog contract](docs/api/M1-4-catalog.md), [M1.5 user-library contract](docs/api/M1-5-user-library.md), and [M1.6 status and recovery contract](docs/api/M1-6-library-status.md).
 
 ## Requirements
 
@@ -27,10 +27,12 @@ Open <http://127.0.0.1:8080/>. The default listener is loopback. For a phone on 
 
 - `GET /health`: status/version JSON (server liveness, not codec validation).
 - `GET /ready`: PostgreSQL, migration, and grouping-backfill readiness. Returns `503` when the catalog dependency is unconfigured, unavailable, incompatible, or incompletely backfilled.
+- `GET /api/v1/library/status`: path-free watcher, root-verification, dirty-work, scan, and recovery diagnostics. Watcher failure alone does not change readiness.
 - `GET /api/v1/demo-track`: logical ID, title, and stream URL.
 - `GET /media/demo-track`: full `200`, or single bounded/open-ended/suffix Range `206` with exact length and inclusive `Content-Range`.
 - `GET /api/v1/tracks`, `/artists`, `/albums` and detail/navigation routes: paginated local catalog browsing. `GET` and `HEAD /api/v1/tracks/{id}/stream` resolve an indexed Track under enrolled roots and use the same byte-serving function as `/media/demo-track`. See the [M1.4 contract](docs/api/M1-4-catalog.md).
 - `/api/v1/queue`, `/playlists`, `/favorites`, `/listening-sessions`, and `/history`: durable Track-based user-library state. Natural audio end reports completion and advances the queue in one transaction. The database stores selection, while browser play/pause/buffering/position remain client-owned. See the [M1.5 contract](docs/api/M1-5-user-library.md).
+- `go run . library verify <root-id>`: explicit host-side identity verification or rebind for an enrolled root. Migration 0008 marks existing roots unverified; scans cannot reconcile absence until host verification succeeds.
 - Unsatisfiable ranges return `416` with `Content-Range: bytes */size`. Malformed single-byte syntax returns `400`. Reversed intervals return `416`.
 - Multiple ranges (including repeated Range fields) and unsupported units are ignored as a whole, returning full `200`; they are never partially interpreted.
 - `HEAD` ignores Range and returns full representation headers without a body.

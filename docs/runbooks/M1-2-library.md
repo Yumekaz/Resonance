@@ -51,6 +51,20 @@ go test -p 1 -tags=integration -count=1 ./internal/storage ./internal/library
 
 The `-p 1` setting keeps destructive database fault tests serial on this Windows test host. Tests create isolated PostgreSQL schemas and workspace-local temporary library directories.
 
+## M1.6 root verification and watcher recovery
+
+Migration 0008 marks previously enrolled roots `unverified` because their old rows contain no persistent identity evidence. Before the first automatic or manual scan after migration, verify each root from the server host:
+
+```powershell
+go run . library list
+go run . library verify <root-id>
+go run . library enable <root-id>
+```
+
+The verify command pins the root object currently reached through the enrolled path. It requires nonzero birth evidence in addition to an object ID; on platforms or filesystems where that evidence is unavailable, the root remains unverified and cannot perform destructive reconciliation. If the path later resolves to a different object, the scanner suppresses the whole publication, preserves the previous catalog, and quarantines the still-matching root record. A transient permission or I/O error reading identity also suppresses publication but retries without quarantine. Run `library verify <root-id>` again only after confirming an intentional replacement of the host directory. Watcher events cannot verify or rebind roots.
+
+The watcher is a latency hint; scans remain authoritative. `/api/v1/library/status` reports path-free watch coverage, root verification, dirty/retry state, scan authority, and recovery counters. `/health` stays process liveness and `/ready` stays database/schema/catalog readiness. If notifications are unavailable, root coverage is degraded, or PostgreSQL is interrupted, startup/periodic scans and bounded retries restore convergence after recovery.
+
 ## Benchmark
 
 Create the controlled corpus and enroll it in a clean migrated test database:

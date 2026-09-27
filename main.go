@@ -5,12 +5,16 @@ import (
 	"errors"
 	"flag"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
+	"resonance/internal/library"
 	"resonance/internal/storage"
 )
 
@@ -70,6 +74,12 @@ func run() error {
 	if err != nil || !info.Mode().IsRegular() {
 		return errors.New("configured media must be a readable regular file")
 	}
+	signalCtx, signalStop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer signalStop()
+	workerCtx, stopWorkers := context.WithCancel(context.Background())
+	defer stopWorkers()
+	var coordinator *library.Coordinator
+	var coordinatorDone chan struct{}
 	if catalogStore != nil {
 		cleanupCtx, cleanupCancel := context.WithTimeout(context.Background(), 5*time.Second)
 		_, cleanupErr := catalogStore.PruneExpiredReceipts(cleanupCtx, 10)
@@ -77,8 +87,6 @@ func run() error {
 		if cleanupErr != nil {
 			return errors.New("mutation receipt cleanup failed during startup")
 		}
-		workerCtx, stopWorker := context.WithCancel(context.Background())
-		defer stopWorker()
 		go func() {
 			ticker := time.NewTicker(time.Hour)
 			defer ticker.Stop()
@@ -95,17 +103,60 @@ func run() error {
 				}
 			}
 		}()
+		scanner := &library.Scanner{Store: catalogStore, Log: slog.Default()}
+		coordinator, err = library.NewCoordinator(library.CoordinatorOptions{
+			Store: catalogStore, Scanner: scanner, Logger: slog.Default(),
+		})
+		if err != nil {
+			return errors.New("library coordinator configuration failed")
+		}
+		coordinatorDone = make(chan struct{})
+		go func() {
+			defer close(coordinatorDone)
+			_ = coordinator.Run(workerCtx)
+		}()
 	}
 	server := &http.Server{
 		Addr:              *addr,
-		Handler:           newHandlerWithCatalog(*media, *title, os.Stdout, ready, catalogStore),
+		Handler:           newHandlerWithCoordinator(*media, *title, os.Stdout, ready, catalogStore, coordinator),
 		ReadHeaderTimeout: 5 * time.Second,
 		IdleTimeout:       60 * time.Second,
 		MaxHeaderBytes:    16 * 1024,
 	}
 	log.Printf("Resonance listening on %s", *addr)
-	if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-		return errors.New("HTTP server stopped or could not listen")
+	listenErrors := make(chan error, 1)
+	go func() { listenErrors <- server.ListenAndServe() }()
+	var serverErr error
+	select {
+	case <-signalCtx.Done():
+	case serverErr = <-listenErrors:
+		if !errors.Is(serverErr, http.ErrServerClosed) {
+			serverErr = errors.New("HTTP server stopped or could not listen")
+		} else {
+			serverErr = nil
+		}
+	}
+	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
+	shutdownErr := server.Shutdown(shutdownCtx)
+	if shutdownErr != nil {
+		_ = server.Close()
+	}
+	shutdownCancel()
+	stopWorkers()
+	if coordinatorDone != nil {
+		select {
+		case <-coordinatorDone:
+		case <-time.After(9 * time.Second):
+			if serverErr == nil {
+				serverErr = errors.New("library coordinator did not stop cleanly")
+			}
+		}
+	}
+	if serverErr != nil {
+		return serverErr
+	}
+	if shutdownErr != nil && !errors.Is(shutdownErr, context.DeadlineExceeded) {
+		return errors.New("HTTP server shutdown failed")
 	}
 	return nil
 }

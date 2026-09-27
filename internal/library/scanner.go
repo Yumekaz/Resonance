@@ -33,6 +33,9 @@ type Scanner struct {
 	openDir func(*os.Root, string) (*os.File, error)
 	// nativeIdentity can be replaced by a deterministic fake in tests.
 	nativeIdentity NativeIdentityProvider
+	// rootIdentity and afterTraversal are narrow seams for root-fence race tests.
+	rootIdentity   func(*os.Root) (storage.NativeIdentity, bool, error)
+	afterTraversal func()
 }
 
 type ScanResult struct {
@@ -41,10 +44,11 @@ type ScanResult struct {
 	Status    string `json:"status"`
 	ErrorCode string `json:"error_code,omitempty"`
 	storage.ScanCounts
-	DurationMS           float64 `json:"duration_ms"`
-	PublishTransactionMS float64 `json:"publish_transaction_ms"`
-	SQLStatements        int64   `json:"sql_statements"`
-	RowsAffected         int64   `json:"rows_affected"`
+	DurationMS           float64  `json:"duration_ms"`
+	PublishTransactionMS float64  `json:"publish_transaction_ms"`
+	SQLStatements        int64    `json:"sql_statements"`
+	RowsAffected         int64    `json:"rows_affected"`
+	WatchedDirectories   []string `json:"-"`
 	errorsRecorded       int64
 	entriesVisited       int64
 }
@@ -61,6 +65,7 @@ type scanState struct {
 	seenSHA       map[[32]byte]struct{}
 	metadataBySHA map[[32]byte]storage.ImportMetadata
 	fileFences    []fileFence
+	directories   []string
 }
 
 type fileFence struct {
@@ -141,8 +146,33 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 		finalErr = errors.New("library root unavailable")
 		return result, finalErr
 	}
+	identityA, identityOK, identityErr := s.captureRootIdentity(root)
+	if identityErr != nil {
+		result.Status = "failed"
+		result.ErrorCode = "root_unavailable"
+		finalErr = storage.ErrRootUnavailable
+		return result, finalErr
+	}
+	if !identityOK || !storage.RootIdentityEqual(rootRecord.Identity, &identityA) {
+		s.quarantineRoot(rootRecord)
+		result.Status = "failed"
+		if !identityOK {
+			result.ErrorCode = "root_identity_unavailable"
+			finalErr = storage.ErrRootIdentityUnavailable
+		} else {
+			result.ErrorCode = "root_identity_mismatch"
+			finalErr = storage.ErrRootIdentityMismatch
+		}
+		return result, finalErr
+	}
 	canonicalBefore, err := os.Stat(rootRecord.CanonicalPath)
 	if err != nil || !os.SameFile(rootBefore, canonicalBefore) {
+		if err == nil {
+			s.quarantineRoot(rootRecord)
+			result.ErrorCode = "root_identity_mismatch"
+			finalErr = storage.ErrRootIdentityMismatch
+			return result, finalErr
+		}
 		result.Status = "failed"
 		result.ErrorCode = "root_unavailable"
 		finalErr = errors.New("library root unavailable")
@@ -186,6 +216,9 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 			}
 		}
 	}
+	if s.afterTraversal != nil {
+		s.afterTraversal()
+	}
 	if err := state.recheckStagedFiles(root); err != nil {
 		if errors.Is(err, context.Canceled) {
 			result.Status = "canceled"
@@ -194,37 +227,6 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 			result.Status = "failed"
 			result.ErrorCode = "database_unavailable"
 		}
-		finalErr = err
-		return result, err
-	}
-	rootAfter, err := root.Stat(".")
-	if err != nil || !rootAfter.IsDir() {
-		result.Status = "failed"
-		result.ErrorCode = "root_unavailable"
-		finalErr = errors.New("library root unavailable")
-		return result, finalErr
-	}
-	canonicalAfter, err := os.Stat(rootRecord.CanonicalPath)
-	if err != nil || !os.SameFile(rootBefore, canonicalAfter) || !os.SameFile(rootBefore, rootAfter) {
-		result.Status = "failed"
-		result.ErrorCode = "root_unavailable"
-		finalErr = errors.New("library root changed during scan")
-		return result, finalErr
-	}
-	if !sameDirectoryToken(rootBefore, rootAfter) {
-		state.incomplete = true
-		if err := state.recordFileError(".", "directory_changed_during_scan", "transient", nil); err != nil {
-			result.Status = "failed"
-			result.ErrorCode = "database_unavailable"
-			finalErr = err
-			return result, err
-		}
-	}
-	traversalComplete = !state.incomplete
-	result.TraversalComplete = traversalComplete
-	if err := ctx.Err(); err != nil {
-		result.Status = "canceled"
-		result.ErrorCode = "canceled"
 		finalErr = err
 		return result, err
 	}
@@ -253,8 +255,43 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 		}
 		return result, finalErr
 	}
+	traversalComplete = !state.incomplete
+	result.TraversalComplete = traversalComplete
+	if err := s.verifyRootEnd(ctx, rootRecord, identityA, rootBefore); err != nil {
+		if errors.Is(err, storage.ErrRootIdentityMismatch) || errors.Is(err, storage.ErrRootIdentityUnavailable) {
+			s.quarantineRoot(rootRecord)
+			result.ErrorCode = "root_identity_mismatch"
+			if errors.Is(err, storage.ErrRootIdentityUnavailable) {
+				result.ErrorCode = "root_identity_unavailable"
+			}
+		} else {
+			result.ErrorCode = "root_unavailable"
+		}
+		result.Status = "failed"
+		finalErr = err
+		return result, err
+	}
+	rootAfter, err := root.Stat(".")
+	if err != nil || !sameDirectoryToken(rootBefore, rootAfter) {
+		state.incomplete = true
+		traversalComplete = false
+		result.TraversalComplete = false
+		if err := state.recordFileError(".", "directory_changed_during_scan", "transient", nil); err != nil {
+			result.Status = "failed"
+			result.ErrorCode = "database_unavailable"
+			finalErr = err
+			return result, err
+		}
+	}
+	result.WatchedDirectories = append([]string(nil), state.directories...)
+	if err := ctx.Err(); err != nil {
+		result.Status = "canceled"
+		result.ErrorCode = "canceled"
+		finalErr = err
+		return result, err
+	}
 	publishStarted := time.Now()
-	counts, err := s.Store.PublishScan(ctx, rootID, runID, snapshot.LastSuccessfulScanID, observations, traversalComplete, result.ScanCounts)
+	counts, err := s.Store.PublishScan(ctx, rootID, runID, snapshot.LastSuccessfulScanID, identityA, observations, traversalComplete, result.ScanCounts)
 	result.PublishTransactionMS = float64(time.Since(publishStarted).Microseconds()) / 1000
 	if err != nil {
 		resolveCtx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
@@ -280,6 +317,9 @@ func (s *Scanner) Scan(ctx context.Context, rootID string) (result ScanResult, f
 		result.ErrorCode = "publish_failed"
 		if errors.Is(err, storage.ErrRootDisabled) {
 			result.ErrorCode = "root_disabled"
+		} else if errors.Is(err, storage.ErrRootIdentityMismatch) || errors.Is(err, storage.ErrRootUnverified) {
+			result.ErrorCode = "root_identity_mismatch"
+			s.quarantineRoot(rootRecord)
 		}
 		finalErr = fmt.Errorf("scan observations could not be published: %w", err)
 		return result, finalErr
@@ -305,6 +345,64 @@ func recordTraversalEntry(result *ScanResult) error {
 	return nil
 }
 
+func (s *Scanner) captureRootIdentity(root *os.Root) (storage.NativeIdentity, bool, error) {
+	if s.rootIdentity != nil {
+		return s.rootIdentity(root)
+	}
+	return rootIdentityFromOpenRoot(root)
+}
+
+func (s *Scanner) quarantineRoot(root storage.LibraryRoot) {
+	if root.Identity == nil {
+		return
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+	changed, err := s.Store.QuarantineRootIfIdentity(ctx, root.ID, *root.Identity)
+	if err != nil {
+		if s.Log != nil {
+			s.Log.Warn("root_quarantine_failed", "root_id", root.ID, "code", "database_unavailable")
+		}
+		return
+	}
+	if changed && s.Log != nil {
+		s.Log.Warn("root_quarantined", "root_id", root.ID, "code", "root_identity_mismatch")
+	}
+}
+
+func (s *Scanner) verifyRootEnd(ctx context.Context, root storage.LibraryRoot, identityA storage.NativeIdentity, rootBefore os.FileInfo) error {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+	reopened, err := os.OpenRoot(root.CanonicalPath)
+	if err != nil {
+		return fmt.Errorf("%w: reopen failed", storage.ErrRootUnavailable)
+	}
+	defer reopened.Close()
+	identityB, ok, err := s.captureRootIdentity(reopened)
+	if err != nil {
+		return fmt.Errorf("%w: end identity read failed", storage.ErrRootUnavailable)
+	}
+	if !ok {
+		return fmt.Errorf("%w: end identity unavailable", storage.ErrRootIdentityUnavailable)
+	}
+	if !storage.RootIdentityEqual(&identityA, &identityB) || !storage.RootIdentityEqual(root.Identity, &identityB) {
+		return storage.ErrRootIdentityMismatch
+	}
+	endInfo, err := reopened.Stat(".")
+	if err != nil || !endInfo.IsDir() || !os.SameFile(rootBefore, endInfo) {
+		return storage.ErrRootIdentityMismatch
+	}
+	pathInfo, err := os.Stat(root.CanonicalPath)
+	if err != nil {
+		return fmt.Errorf("%w: path stat failed", storage.ErrRootUnavailable)
+	}
+	if !os.SameFile(endInfo, pathInfo) {
+		return storage.ErrRootIdentityMismatch
+	}
+	return nil
+}
+
 func (st *scanState) walk(ctx context.Context, root *os.Root, dir string, depth int) error {
 	if err := ctx.Err(); err != nil {
 		return err
@@ -312,6 +410,7 @@ func (st *scanState) walk(ctx context.Context, root *os.Root, dir string, depth 
 	if depth > maxDepth {
 		return errLimit
 	}
+	st.directories = append(st.directories, filepath.ToSlash(dir))
 	openDir := st.scanner.openDir
 	if openDir == nil {
 		openDir = func(r *os.Root, name string) (*os.File, error) { return r.Open(name) }

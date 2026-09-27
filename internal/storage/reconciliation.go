@@ -313,7 +313,7 @@ func (s *Store) MarkScanPublishing(ctx context.Context, runID string) error {
 	return nil
 }
 
-func (s *Store) PublishScan(ctx context.Context, rootID, runID string, expectedGeneration *string, observations []ScanObservation, traversalComplete bool, counts ScanCounts) (ScanCounts, error) {
+func (s *Store) PublishScan(ctx context.Context, rootID, runID string, expectedGeneration *string, expectedRootIdentity NativeIdentity, observations []ScanObservation, traversalComplete bool, counts ScanCounts) (ScanCounts, error) {
 	tx, err := s.pool.Begin(ctx)
 	if err != nil {
 		return counts, err
@@ -321,11 +321,22 @@ func (s *Store) PublishScan(ctx context.Context, rootID, runID string, expectedG
 	defer tx.Rollback(ctx)
 	var enabled bool
 	var currentGeneration *string
-	if err := tx.QueryRow(ctx, `SELECT enabled,last_successful_scan_id::text FROM library_roots WHERE id=$1 FOR UPDATE`, rootID).Scan(&enabled, &currentGeneration); err != nil {
+	var verificationState string
+	var identityKind, identityScope *string
+	var identityID, birthToken []byte
+	if err := tx.QueryRow(ctx, `SELECT enabled,last_successful_scan_id::text,verification_state,root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token
+		FROM library_roots WHERE id=$1 FOR UPDATE`, rootID).Scan(&enabled, &currentGeneration, &verificationState, &identityKind, &identityScope, &identityID, &birthToken); err != nil {
 		return counts, err
 	}
 	if !enabled {
 		return counts, ErrRootDisabled
+	}
+	if verificationState != "verified" || identityKind == nil || identityScope == nil || identityID == nil {
+		return counts, ErrRootUnverified
+	}
+	currentIdentity := NativeIdentity{Kind: *identityKind, Scope: *identityScope, ID: identityID, BirthToken: birthToken}
+	if !sameRootIdentity(&currentIdentity, &expectedRootIdentity) {
+		return counts, ErrRootIdentityMismatch
 	}
 	if !sameStringPtr(expectedGeneration, currentGeneration) {
 		return counts, ErrStaleScan

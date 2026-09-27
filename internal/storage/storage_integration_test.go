@@ -6,8 +6,10 @@ import (
 	"context"
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -76,7 +78,7 @@ func TestEmptyMigrationAndIdempotence(t *testing.T) {
 		t.Fatal(err)
 	}
 	var count int
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 7 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 8 {
 		t.Fatalf("migrations=%d error=%v", count, err)
 	}
 }
@@ -159,8 +161,175 @@ func TestM12MigrationOnPopulatedCore(t *testing.T) {
 	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM media_locations WHERE id='legacy-location' AND root_id IS NULL").Scan(&count); err != nil || count != 1 {
 		t.Fatalf("legacy row lost: %d %v", count, err)
 	}
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 7 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 8 {
 		t.Fatalf("migration count: %d %v", count, err)
+	}
+}
+
+func TestM16PopulatedSevenToEightMigrationRequiresRootVerification(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.migrateTo(ctx, 7); err != nil {
+		t.Fatal(err)
+	}
+	rootID := "00000000-0000-4000-8000-000000000081"
+	if _, err := s.pool.Exec(ctx, `INSERT INTO library_roots(id,name,canonical_path,path_key) VALUES($1,'existing','private/music','private/music')`, rootID); err != nil {
+		t.Fatal(err)
+	}
+	title := "Preserved"
+	if err := s.InsertTrack(ctx, Track{ID: "m16-track", Title: &title}); err != nil {
+		t.Fatal(err)
+	}
+	var hash [32]byte
+	hash[0] = 16
+	if err := s.InsertMediaObject(ctx, MediaObject{ID: "m16-object", TrackID: "m16-track", SHA256: hash, Format: "wav", ByteLength: 24}); err != nil {
+		t.Fatal(err)
+	}
+	relative := "song.wav"
+	if _, err := s.pool.Exec(ctx, `INSERT INTO media_locations(id,media_object_id,local_path,root_id,relative_path) VALUES('m16-location','m16-object',$1,$2,$3)`, `private\music\song.wav`, rootID, relative); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	var state string
+	var verifiedAt *time.Time
+	var identityKind *string
+	if err := s.pool.QueryRow(ctx, `SELECT verification_state,verified_at,root_identity_kind FROM library_roots WHERE id=$1`, rootID).Scan(&state, &verifiedAt, &identityKind); err != nil {
+		t.Fatal(err)
+	}
+	if state != "unverified" || verifiedAt != nil || identityKind != nil {
+		t.Fatalf("migration fabricated root verification evidence: state=%q verified_at=%v identity=%v", state, verifiedAt, identityKind)
+	}
+	var count int
+	if err := s.pool.QueryRow(ctx, `SELECT count(*) FROM media_locations WHERE id='m16-location' AND availability='available'`).Scan(&count); err != nil || count != 1 {
+		t.Fatalf("populated catalog row changed during 0008: %d %v", count, err)
+	}
+	if err := s.Ready(ctx); err != nil {
+		t.Fatalf("ready rejected complete 0008 schema: %v", err)
+	}
+}
+
+func TestM16RootVerificationEnableMismatchAndExplicitRebind(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	root, err := s.AddRoot(ctx, "verified root", "private/root")
+	if err != nil || root.VerificationState != "unverified" {
+		t.Fatalf("new root without evidence was treated as verified: %#v %v", root, err)
+	}
+	if _, err := s.VerifyRootIdentity(ctx, root.ID, NativeIdentity{}); !errors.Is(err, ErrRootIdentityUnavailable) {
+		t.Fatalf("empty identity evidence was accepted: %v", err)
+	}
+	first := NativeIdentity{Kind: "test", Scope: "volume", ID: []byte{1}, BirthToken: []byte{9}}
+	verified, err := s.VerifyRootIdentity(ctx, root.ID, first)
+	if err != nil || verified.VerificationState != "verified" {
+		t.Fatalf("host verification failed: %#v %v", verified, err)
+	}
+	if err := s.DisableRoot(ctx, root.ID); err != nil {
+		t.Fatal(err)
+	}
+	second := NativeIdentity{Kind: "test", Scope: "another-volume", ID: []byte{2}, BirthToken: []byte{8}}
+	if _, err := s.EnableRoot(ctx, root.ID, second); !errors.Is(err, ErrRootIdentityMismatch) {
+		t.Fatalf("different root object was enabled: %v", err)
+	}
+	state, err := s.GetRoot(ctx, root.ID)
+	if err != nil || state.VerificationState != "quarantined" || state.Enabled {
+		t.Fatalf("root mismatch did not quarantine: %#v %v", state, err)
+	}
+	if _, err := s.EnableRoot(ctx, root.ID, first); !errors.Is(err, ErrRootIdentityMismatch) {
+		t.Fatalf("quarantined root was silently re-enabled: %v", err)
+	}
+	if _, err := s.VerifyRootIdentity(ctx, root.ID, second); err != nil {
+		t.Fatal(err)
+	}
+	enabled, err := s.EnableRoot(ctx, root.ID, second)
+	if err != nil || !enabled.Enabled || enabled.VerificationState != "verified" {
+		t.Fatalf("explicit rebind did not restore root: %#v %v", enabled, err)
+	}
+	public, err := s.ListRoots(ctx)
+	if err != nil || len(public) != 1 {
+		t.Fatalf("public root list failed: %#v %v", public, err)
+	}
+	encoded, err := json.Marshal(public[0])
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(encoded), "private/root") || strings.Contains(string(encoded), "root_identity") || strings.Contains(string(encoded), "another-volume") {
+		t.Fatalf("root listing disclosed private path or identity: %s", encoded)
+	}
+}
+
+func TestM16EmptySevenToEightMigration(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.migrateTo(ctx, 7); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	var roots, versions int
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM library_roots").Scan(&roots); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&versions); err != nil {
+		t.Fatal(err)
+	}
+	if roots != 0 || versions != 8 {
+		t.Fatalf("empty 0007 to 0008 migration: roots=%d versions=%d", roots, versions)
+	}
+	if err := s.Ready(ctx); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestM16MigrationRollbackAndRetryAfterPartialDDL(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.migrateTo(ctx, 7); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, "CREATE INDEX library_roots_enabled_verification_idx ON library_roots(id)"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err == nil {
+		t.Fatal("expected 0008 index conflict")
+	}
+	var columns, constraints, version int
+	if err := s.pool.QueryRow(ctx, `SELECT
+		(SELECT count(*) FROM information_schema.columns WHERE table_schema=current_schema() AND table_name='library_roots' AND column_name IN ('root_identity_kind','verification_state')),
+		(SELECT count(*) FROM pg_constraint WHERE conname='library_roots_identity_kind_scope_check'),
+		(SELECT count(*) FROM schema_migrations WHERE version=8)`).Scan(&columns, &constraints, &version); err != nil {
+		t.Fatal(err)
+	}
+	if columns != 0 || constraints != 0 || version != 0 {
+		t.Fatalf("partial 0008 DDL survived failure: columns=%d constraints=%d version=%d", columns, constraints, version)
+	}
+	if _, err := s.pool.Exec(ctx, "DROP INDEX library_roots_enabled_verification_idx"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatalf("0008 retry failed: %v", err)
+	}
+	if err := s.Ready(ctx); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestM16SchemaContractRejectsRootFenceDrift(t *testing.T) {
+	s, _ := isolatedStore(t)
+	ctx := context.Background()
+	if err := s.Migrate(ctx); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.pool.Exec(ctx, "ALTER TABLE library_roots DROP CONSTRAINT library_roots_verification_evidence_check"); err != nil {
+		t.Fatal(err)
+	}
+	if !errors.Is(s.Ready(ctx), ErrSchemaMismatch) {
+		t.Fatal("readiness accepted missing root-verification constraint")
 	}
 }
 

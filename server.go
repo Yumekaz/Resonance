@@ -17,6 +17,7 @@ import (
 	"strings"
 	"time"
 
+	"resonance/internal/library"
 	"resonance/internal/storage"
 )
 
@@ -32,10 +33,11 @@ type track struct {
 }
 
 type app struct {
-	tracks map[string]track
-	log    *slog.Logger
-	ready  func(context.Context) error
-	store  *storage.Store
+	tracks      map[string]track
+	log         *slog.Logger
+	ready       func(context.Context) error
+	store       *storage.Store
+	coordinator *library.Coordinator
 }
 
 func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
@@ -47,15 +49,21 @@ func newHandlerWithReadiness(mediaPath, title string, logOutput io.Writer, ready
 }
 
 func newHandlerWithCatalog(mediaPath, title string, logOutput io.Writer, ready func(context.Context) error, store *storage.Store) http.Handler {
+	return newHandlerWithCoordinator(mediaPath, title, logOutput, ready, store, nil)
+}
+
+func newHandlerWithCoordinator(mediaPath, title string, logOutput io.Writer, ready func(context.Context) error, store *storage.Store, coordinator *library.Coordinator) http.Handler {
 	a := &app{
-		tracks: map[string]track{"demo-track": {ID: "demo-track", Title: title, StreamURL: "/media/demo-track", root: filepath.Dir(mediaPath), filename: filepath.Base(mediaPath)}},
-		log:    slog.New(slog.NewJSONHandler(logOutput, nil)),
-		ready:  ready,
-		store:  store,
+		tracks:      map[string]track{"demo-track": {ID: "demo-track", Title: title, StreamURL: "/media/demo-track", root: filepath.Dir(mediaPath), filename: filepath.Base(mediaPath)}},
+		log:         slog.New(slog.NewJSONHandler(logOutput, nil)),
+		ready:       ready,
+		store:       store,
+		coordinator: coordinator,
 	}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", a.health)
 	mux.HandleFunc("GET /ready", a.readiness)
+	mux.HandleFunc("GET /api/v1/library/status", a.libraryStatus)
 	mux.HandleFunc("GET /api/v1/demo-track", a.metadata)
 	mux.HandleFunc("GET /media/{id}", a.media)
 	mux.HandleFunc("GET /api/v1/tracks", a.tracksList)
@@ -109,6 +117,24 @@ func newHandlerWithCatalog(mediaPath, title string, logOutput io.Writer, ready f
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		mux.ServeHTTP(w, r)
 	})
+}
+
+func (a *app) libraryStatus(w http.ResponseWriter, r *http.Request) {
+	if a.coordinator == nil {
+		jsonResponseStatus(w, http.StatusServiceUnavailable, map[string]string{"status": "unconfigured", "watcher_state": "unavailable"})
+		return
+	}
+	status := a.coordinator.Status()
+	if a.ready != nil {
+		ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
+		if err := a.ready(ctx); err != nil {
+			status.DatabaseState = "degraded"
+		} else {
+			status.DatabaseState = "available"
+		}
+		cancel()
+	}
+	jsonResponse(w, status)
 }
 
 func (a *app) readiness(w http.ResponseWriter, r *http.Request) {

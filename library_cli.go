@@ -19,7 +19,7 @@ import (
 
 func runLibrary(args []string, out, logOut io.Writer) error {
 	if len(args) == 0 {
-		return errors.New("usage: resonance library <add|list|scan|disable>")
+		return errors.New("usage: resonance library <add|list|scan|disable|enable|verify>")
 	}
 	databaseURL := os.Getenv("RESONANCE_DATABASE_URL")
 	if databaseURL == "" {
@@ -49,7 +49,16 @@ func runLibrary(args []string, out, logOut io.Writer) error {
 		if err != nil {
 			return err
 		}
-		root, err := store.AddRoot(ctx, *name, canonical)
+		identity, hasIdentity, err := library.CaptureRootIdentity(canonical)
+		if err != nil {
+			return errors.New("root identity capture failed")
+		}
+		var root storage.LibraryRoot
+		if hasIdentity {
+			root, err = store.AddRootWithIdentity(ctx, *name, canonical, identity)
+		} else {
+			root, err = store.AddRoot(ctx, *name, canonical)
+		}
 		if err != nil {
 			if errors.Is(err, storage.ErrRootOverlap) {
 				return err
@@ -77,6 +86,46 @@ func runLibrary(args []string, out, logOut io.Writer) error {
 			return errors.New("root disable failed")
 		}
 		return emit(map[string]string{"id": args[1], "status": "disabled"})
+	case "verify":
+		if len(args) != 2 {
+			return errors.New("usage: resonance library verify <root-id>")
+		}
+		root, err := store.GetRoot(ctx, args[1])
+		if err != nil {
+			return err
+		}
+		identity, ok, err := library.CaptureRootIdentity(root.CanonicalPath)
+		if err != nil {
+			return errors.New("root identity verification failed")
+		}
+		if !ok {
+			return storage.ErrRootIdentityUnavailable
+		}
+		verified, err := store.VerifyRootIdentity(ctx, root.ID, identity)
+		if err != nil {
+			return errors.New("root identity verification failed")
+		}
+		return emit(verified)
+	case "enable":
+		if len(args) != 2 {
+			return errors.New("usage: resonance library enable <root-id>")
+		}
+		root, err := store.GetRoot(ctx, args[1])
+		if err != nil {
+			return err
+		}
+		identity, ok, err := library.CaptureRootIdentity(root.CanonicalPath)
+		if err != nil {
+			return errors.New("root identity check failed")
+		}
+		if !ok {
+			return storage.ErrRootIdentityUnavailable
+		}
+		enabled, err := store.EnableRoot(ctx, root.ID, identity)
+		if err != nil {
+			return err
+		}
+		return emit(enabled)
 	case "scan":
 		if len(args) != 2 {
 			return errors.New("usage: resonance library scan <root-id>")
@@ -89,7 +138,7 @@ func runLibrary(args []string, out, logOut io.Writer) error {
 			_ = emit(result)
 		}
 		if err != nil {
-			if errors.Is(err, storage.ErrScanRunning) || errors.Is(err, storage.ErrRootDisabled) || errors.Is(err, storage.ErrRootNotFound) {
+			if errors.Is(err, storage.ErrScanRunning) || errors.Is(err, storage.ErrRootDisabled) || errors.Is(err, storage.ErrRootNotFound) || errors.Is(err, storage.ErrRootUnverified) || errors.Is(err, storage.ErrRootQuarantined) || errors.Is(err, storage.ErrRootIdentityMismatch) {
 				return err
 			}
 			if strings.Contains(err.Error(), "database") {
@@ -102,6 +151,6 @@ func runLibrary(args []string, out, logOut io.Writer) error {
 		}
 		return nil
 	default:
-		return errors.New("usage: resonance library <add|list|scan|disable>")
+		return errors.New("usage: resonance library <add|list|scan|disable|enable|verify>")
 	}
 }

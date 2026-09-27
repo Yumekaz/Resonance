@@ -55,7 +55,7 @@ func TestM15PopulatedUpgradeAndExactContract(t *testing.T) {
 		t.Fatal(err)
 	}
 	var count int
-	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 7 {
+	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 8 {
 		t.Fatalf("version count %d %v", count, err)
 	}
 	if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM tracks WHERE id=$1", track).Scan(&count); err != nil || count != 1 {

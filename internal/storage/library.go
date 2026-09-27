@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"bytes"
 	"context"
 	"crypto/rand"
 	"errors"
@@ -17,17 +18,25 @@ import (
 var ErrRootOverlap = errors.New("library root overlaps an enrolled root")
 var ErrRootNotFound = errors.New("library root not found")
 var ErrRootDisabled = errors.New("library root is disabled")
+var ErrRootUnverified = errors.New("library root identity is unverified")
+var ErrRootQuarantined = errors.New("library root identity is quarantined")
+var ErrRootIdentityMismatch = errors.New("library root identity mismatch")
+var ErrRootIdentityUnavailable = errors.New("library root identity unavailable")
+var ErrRootUnavailable = errors.New("library root unavailable")
 var ErrScanRunning = errors.New("scan already running for this root")
 
 const enrollmentLockKey int64 = 0x6c6962726f6f7473
 const scanWorkerLockKey int64 = 0x7363616e776f726b
 
 type LibraryRoot struct {
-	ID                   string  `json:"id"`
-	Name                 string  `json:"name"`
-	Enabled              bool    `json:"enabled"`
-	CanonicalPath        string  `json:"-"`
-	LastSuccessfulScanID *string `json:"-"`
+	ID                   string          `json:"id"`
+	Name                 string          `json:"name"`
+	Enabled              bool            `json:"enabled"`
+	VerificationState    string          `json:"verification_state"`
+	VerifiedAt           *time.Time      `json:"verified_at,omitempty"`
+	CanonicalPath        string          `json:"-"`
+	LastSuccessfulScanID *string         `json:"-"`
+	Identity             *NativeIdentity `json:"-"`
 }
 
 func newUUID() (string, error) {
@@ -68,6 +77,17 @@ func pathsOverlap(a, b string) bool {
 }
 
 func (s *Store) AddRoot(ctx context.Context, name, canonicalPath string) (LibraryRoot, error) {
+	return s.addRoot(ctx, name, canonicalPath, nil)
+}
+
+func (s *Store) AddRootWithIdentity(ctx context.Context, name, canonicalPath string, identity NativeIdentity) (LibraryRoot, error) {
+	if !validRootIdentity(&identity) {
+		return LibraryRoot{}, ErrRootIdentityUnavailable
+	}
+	return s.addRoot(ctx, name, canonicalPath, &identity)
+}
+
+func (s *Store) addRoot(ctx context.Context, name, canonicalPath string, identity *NativeIdentity) (LibraryRoot, error) {
 	name = strings.TrimSpace(name)
 	if name == "" || len(name) > 128 || canonicalPath == "" {
 		return LibraryRoot{}, errors.New("invalid root configuration")
@@ -104,26 +124,102 @@ func (s *Store) AddRoot(ctx context.Context, name, canonicalPath string) (Librar
 		return LibraryRoot{}, err
 	}
 	rows.Close()
-	_, err = tx.Exec(ctx, "INSERT INTO library_roots(id,name,canonical_path,path_key) VALUES($1,$2,$3,$4)", id, name, canonicalPath, pathKey(canonicalPath))
+	verificationState := "unverified"
+	var kind, scope any
+	var objectID, birthToken []byte
+	if identity != nil {
+		verificationState = "verified"
+		kind, scope = identity.Kind, identity.Scope
+		objectID, birthToken = identity.ID, identity.BirthToken
+		if len(birthToken) == 0 {
+			birthToken = nil
+		}
+	}
+	var hasIdentityColumns bool
+	if err := tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM information_schema.columns WHERE table_schema=current_schema() AND table_name='library_roots' AND column_name='root_identity_kind')`).Scan(&hasIdentityColumns); err != nil {
+		return LibraryRoot{}, err
+	}
+	if !hasIdentityColumns {
+		if identity != nil {
+			return LibraryRoot{}, ErrRootIdentityUnavailable
+		}
+		_, err = tx.Exec(ctx, `INSERT INTO library_roots(id,name,canonical_path,path_key) VALUES($1,$2,$3,$4)`, id, name, canonicalPath, pathKey(canonicalPath))
+	} else {
+		_, err = tx.Exec(ctx, `INSERT INTO library_roots(id,name,canonical_path,path_key,root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at)
+			VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,CASE WHEN $9='verified' THEN now() END)`, id, name, canonicalPath, pathKey(canonicalPath), kind, scope, objectID, birthToken, verificationState)
+	}
 	if err != nil {
 		return LibraryRoot{}, err
 	}
 	if err := tx.Commit(ctx); err != nil {
 		return LibraryRoot{}, err
 	}
-	return LibraryRoot{ID: id, Name: name, Enabled: true, CanonicalPath: canonicalPath}, nil
+	root := LibraryRoot{ID: id, Name: name, Enabled: true, CanonicalPath: canonicalPath, VerificationState: verificationState}
+	if identity != nil {
+		copyIdentity := cloneRootIdentity(identity)
+		root.Identity = &copyIdentity
+		now := time.Now().UTC()
+		root.VerifiedAt = &now
+	}
+	return root, nil
 }
 
 func (s *Store) ListRoots(ctx context.Context) ([]LibraryRoot, error) {
-	rows, err := s.pool.Query(ctx, "SELECT id::text,name,enabled FROM library_roots ORDER BY created_at,id")
+	roots, err := s.listRoots(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for i := range roots {
+		roots[i].CanonicalPath = ""
+		roots[i].Identity = nil
+	}
+	return roots, nil
+}
+
+// ListRootsForReconciliation returns host-only root bindings for the scanner
+// coordinator. Public/CLI root listings use ListRoots, which omits both path
+// and native identity evidence.
+func (s *Store) ListRootsForReconciliation(ctx context.Context) ([]LibraryRoot, error) {
+	return s.listRoots(ctx)
+}
+
+func (s *Store) listRoots(ctx context.Context) ([]LibraryRoot, error) {
+	rows, err := s.pool.Query(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots ORDER BY created_at,id`)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 	result := []LibraryRoot{}
 	for rows.Next() {
-		var root LibraryRoot
-		if err := rows.Scan(&root.ID, &root.Name, &root.Enabled); err != nil {
+		root, err := scanLibraryRoot(rows)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, root)
+	}
+	return result, rows.Err()
+}
+
+// ListRootsAfter returns a bounded page ordered by stable root ID. The
+// coordinator uses it to advance in-memory full-sweep cursors without
+// retaining a path-bearing or unbounded work queue.
+func (s *Store) ListRootsAfter(ctx context.Context, afterID string, limit int) ([]LibraryRoot, error) {
+	if limit < 1 || limit > 256 {
+		return nil, errors.New("invalid root page size")
+	}
+	rows, err := s.pool.Query(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots WHERE id::text > $1 ORDER BY id::text LIMIT $2`, afterID, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	result := make([]LibraryRoot, 0, limit)
+	for rows.Next() {
+		root, err := scanLibraryRoot(rows)
+		if err != nil {
 			return nil, err
 		}
 		result = append(result, root)
@@ -136,11 +232,138 @@ func (s *Store) GetRoot(ctx context.Context, id string) (LibraryRoot, error) {
 		return LibraryRoot{}, ErrRootNotFound
 	}
 	var root LibraryRoot
-	err := s.pool.QueryRow(ctx, "SELECT id::text,name,enabled,canonical_path FROM library_roots WHERE id=$1", id).Scan(&root.ID, &root.Name, &root.Enabled, &root.CanonicalPath)
+	root, err := scanLibraryRoot(s.pool.QueryRow(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots WHERE id=$1`, id))
 	if errors.Is(err, pgx.ErrNoRows) {
 		return LibraryRoot{}, ErrRootNotFound
 	}
 	return root, err
+}
+
+type libraryRootScanner interface{ Scan(...any) error }
+
+func scanLibraryRoot(row libraryRootScanner) (LibraryRoot, error) {
+	var root LibraryRoot
+	var identityKind, identityScope *string
+	var identityID, birthToken []byte
+	err := row.Scan(&root.ID, &root.Name, &root.Enabled, &root.CanonicalPath, &root.LastSuccessfulScanID,
+		&identityKind, &identityScope, &identityID, &birthToken, &root.VerificationState, &root.VerifiedAt)
+	if err != nil {
+		return LibraryRoot{}, err
+	}
+	if identityKind != nil && identityScope != nil && identityID != nil {
+		root.Identity = &NativeIdentity{Kind: *identityKind, Scope: *identityScope, ID: bytes.Clone(identityID), BirthToken: bytes.Clone(birthToken)}
+	}
+	return root, nil
+}
+
+func validRootIdentity(identity *NativeIdentity) bool {
+	return identity != nil && len(identity.Kind) > 0 && len(identity.Kind) <= 64 && len(identity.Scope) > 0 && len(identity.Scope) <= 256 && len(identity.ID) > 0 && len(identity.ID) <= 256 && len(identity.BirthToken) <= 256
+}
+
+func cloneRootIdentity(identity *NativeIdentity) NativeIdentity {
+	return NativeIdentity{Kind: identity.Kind, Scope: identity.Scope, ID: bytes.Clone(identity.ID), BirthToken: bytes.Clone(identity.BirthToken)}
+}
+
+func sameRootIdentity(a, b *NativeIdentity) bool {
+	return validRootIdentity(a) && validRootIdentity(b) && a.Kind == b.Kind && a.Scope == b.Scope && bytes.Equal(a.ID, b.ID) && bytes.Equal(a.BirthToken, b.BirthToken)
+}
+
+func RootIdentityEqual(a, b *NativeIdentity) bool { return sameRootIdentity(a, b) }
+
+func (s *Store) VerifyRootIdentity(ctx context.Context, id string, identity NativeIdentity) (LibraryRoot, error) {
+	if !validUUID(id) {
+		return LibraryRoot{}, ErrRootNotFound
+	}
+	if !validRootIdentity(&identity) {
+		return LibraryRoot{}, ErrRootIdentityUnavailable
+	}
+	if len(identity.BirthToken) == 0 {
+		identity.BirthToken = nil
+	}
+	tx, err := s.pool.Begin(ctx)
+	if err != nil {
+		return LibraryRoot{}, err
+	}
+	defer tx.Rollback(ctx)
+	root, err := scanLibraryRoot(tx.QueryRow(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots WHERE id=$1 FOR UPDATE`, id))
+	if errors.Is(err, pgx.ErrNoRows) {
+		return LibraryRoot{}, ErrRootNotFound
+	}
+	if err != nil {
+		return LibraryRoot{}, err
+	}
+	if _, err = tx.Exec(ctx, `UPDATE library_roots SET root_identity_kind=$2,root_identity_scope=$3,root_identity_id=$4,
+		root_identity_birth_token=$5,verification_state='verified',verified_at=now() WHERE id=$1`, id, identity.Kind, identity.Scope, identity.ID, identity.BirthToken); err != nil {
+		return LibraryRoot{}, err
+	}
+	if err = tx.Commit(ctx); err != nil {
+		return LibraryRoot{}, err
+	}
+	copyIdentity := cloneRootIdentity(&identity)
+	root.Identity = &copyIdentity
+	root.VerificationState = "verified"
+	now := time.Now().UTC()
+	root.VerifiedAt = &now
+	return root, nil
+}
+
+func (s *Store) EnableRoot(ctx context.Context, id string, current NativeIdentity) (LibraryRoot, error) {
+	if !validUUID(id) {
+		return LibraryRoot{}, ErrRootNotFound
+	}
+	tx, err := s.pool.Begin(ctx)
+	if err != nil {
+		return LibraryRoot{}, err
+	}
+	defer tx.Rollback(ctx)
+	root, err := scanLibraryRoot(tx.QueryRow(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots WHERE id=$1 FOR UPDATE`, id))
+	if errors.Is(err, pgx.ErrNoRows) {
+		return LibraryRoot{}, ErrRootNotFound
+	}
+	if err != nil {
+		return LibraryRoot{}, err
+	}
+	if root.VerificationState == "unverified" {
+		return LibraryRoot{}, ErrRootUnverified
+	}
+	if root.VerificationState == "quarantined" || !sameRootIdentity(root.Identity, &current) {
+		if root.VerificationState == "verified" {
+			if _, err = tx.Exec(ctx, "UPDATE library_roots SET verification_state='quarantined' WHERE id=$1", id); err != nil {
+				return LibraryRoot{}, err
+			}
+			if err = tx.Commit(ctx); err != nil {
+				return LibraryRoot{}, err
+			}
+		}
+		return LibraryRoot{}, ErrRootIdentityMismatch
+	}
+	if _, err = tx.Exec(ctx, "UPDATE library_roots SET enabled=true WHERE id=$1", id); err != nil {
+		return LibraryRoot{}, err
+	}
+	if err = tx.Commit(ctx); err != nil {
+		return LibraryRoot{}, err
+	}
+	root.Enabled = true
+	return root, nil
+}
+
+func (s *Store) QuarantineRootIfIdentity(ctx context.Context, id string, expected NativeIdentity) (bool, error) {
+	if !validUUID(id) || !validRootIdentity(&expected) {
+		return false, ErrRootIdentityMismatch
+	}
+	tag, err := s.pool.Exec(ctx, `UPDATE library_roots SET verification_state='quarantined'
+		WHERE id=$1 AND verification_state='verified' AND root_identity_kind=$2 AND root_identity_scope=$3
+		AND root_identity_id=$4 AND root_identity_birth_token IS NOT DISTINCT FROM $5`, id, expected.Kind, expected.Scope, expected.ID, expected.BirthToken)
+	if err != nil {
+		return false, err
+	}
+	return tag.RowsAffected() == 1, nil
 }
 
 func (s *Store) DisableRoot(ctx context.Context, id string) error {
@@ -220,8 +443,9 @@ func (s *Store) BeginScan(ctx context.Context, rootID string) (*ScanLease, strin
 		lease.Close()
 		return nil, "", LibraryRoot{}, err
 	}
-	var root LibraryRoot
-	err = tx.QueryRow(ctx, "SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text FROM library_roots WHERE id=$1", rootID).Scan(&root.ID, &root.Name, &root.Enabled, &root.CanonicalPath, &root.LastSuccessfulScanID)
+	root, err := scanLibraryRoot(tx.QueryRow(ctx, `SELECT id::text,name,enabled,canonical_path,last_successful_scan_id::text,
+		root_identity_kind,root_identity_scope,root_identity_id,root_identity_birth_token,verification_state,verified_at
+		FROM library_roots WHERE id=$1`, rootID))
 	if errors.Is(err, pgx.ErrNoRows) {
 		lease.Close()
 		return nil, "", LibraryRoot{}, ErrRootNotFound
@@ -233,6 +457,14 @@ func (s *Store) BeginScan(ctx context.Context, rootID string) (*ScanLease, strin
 	if !root.Enabled {
 		lease.Close()
 		return nil, "", LibraryRoot{}, ErrRootDisabled
+	}
+	if root.VerificationState == "unverified" || root.Identity == nil {
+		lease.Close()
+		return nil, "", LibraryRoot{}, ErrRootUnverified
+	}
+	if root.VerificationState == "quarantined" {
+		lease.Close()
+		return nil, "", LibraryRoot{}, ErrRootQuarantined
 	}
 	runID, err := newUUID()
 	if err != nil {

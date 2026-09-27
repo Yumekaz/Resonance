@@ -98,6 +98,7 @@ func validateGroupingContract(ctx context.Context, q queryer) error {
 func validateLibraryContract(ctx context.Context, q queryer) error {
 	columns := []string{
 		"library_roots|id|uuid|true|", "library_roots|name|text|true|", "library_roots|canonical_path|text|true|", "library_roots|path_key|text|true|", "library_roots|enabled|boolean|true|true", "library_roots|created_at|timestamp with time zone|true|now()", "library_roots|last_successful_scan_id|uuid|false|",
+		"library_roots|root_identity_kind|text|false|", "library_roots|root_identity_scope|text|false|", "library_roots|root_identity_id|bytea|false|", "library_roots|root_identity_birth_token|bytea|false|", "library_roots|verification_state|text|true|'unverified'::text", "library_roots|verified_at|timestamp with time zone|false|",
 		"scan_runs|id|uuid|true|", "scan_runs|root_id|uuid|true|", "scan_runs|status|text|true|", "scan_runs|files_visited|bigint|true|0", "scan_runs|files_supported|bigint|true|0", "scan_runs|imported|bigint|true|0", "scan_runs|skipped|bigint|true|0", "scan_runs|failed|bigint|true|0", "scan_runs|bytes_hashed|bigint|true|0", "scan_runs|metadata_extractions|bigint|true|0", "scan_runs|error_code|text|false|", "scan_runs|started_at|timestamp with time zone|true|now()", "scan_runs|finished_at|timestamp with time zone|false|",
 		"scan_runs|phase|text|true|'discovering'::text", "scan_runs|traversal_complete|boolean|true|false", "scan_runs|observations_applied|boolean|true|false", "scan_runs|absence_reconciled|boolean|true|false", "scan_runs|files_unchanged|bigint|true|0", "scan_runs|files_hashed|bigint|true|0", "scan_runs|stat_changed_same_bytes|bigint|true|0", "scan_runs|changed_bytes|bigint|true|0", "scan_runs|locations_added|bigint|true|0", "scan_runs|locations_moved|bigint|true|0", "scan_runs|locations_unavailable|bigint|true|0", "scan_runs|media_objects_created|bigint|true|0", "scan_runs|tracks_created|bigint|true|0",
 		"scan_errors|id|bigint|true|", "scan_errors|run_id|uuid|true|", "scan_errors|relative_path|text|true|", "scan_errors|code|text|true|", "scan_errors|created_at|timestamp with time zone|true|now()",
@@ -114,6 +115,15 @@ func validateLibraryContract(ctx context.Context, q queryer) error {
 		"library_roots|library_roots_name_check|CHECK (((length(name) >= 1) AND (length(name) <= 128)))",
 		"library_roots|library_roots_canonical_path_check|CHECK ((length(canonical_path) > 0))",
 		"library_roots|library_roots_path_key_key|UNIQUE (path_key)",
+		"library_roots|library_roots_identity_kind_scope_check|CHECK (((root_identity_kind IS NULL) = (root_identity_scope IS NULL)))",
+		"library_roots|library_roots_identity_id_check|CHECK (((root_identity_kind IS NULL) = (root_identity_id IS NULL)))",
+		"library_roots|library_roots_identity_birth_check|CHECK (((root_identity_birth_token IS NULL) OR (root_identity_id IS NOT NULL)))",
+		"library_roots|library_roots_identity_kind_length_check|CHECK (((root_identity_kind IS NULL) OR ((length(root_identity_kind) >= 1) AND (length(root_identity_kind) <= 64))))",
+		"library_roots|library_roots_identity_scope_length_check|CHECK (((root_identity_scope IS NULL) OR ((length(root_identity_scope) >= 1) AND (length(root_identity_scope) <= 256))))",
+		"library_roots|library_roots_identity_id_length_check|CHECK (((root_identity_id IS NULL) OR ((octet_length(root_identity_id) >= 1) AND (octet_length(root_identity_id) <= 256))))",
+		"library_roots|library_roots_identity_birth_length_check|CHECK (((root_identity_birth_token IS NULL) OR ((octet_length(root_identity_birth_token) >= 1) AND (octet_length(root_identity_birth_token) <= 256))))",
+		"library_roots|library_roots_verification_state_check|CHECK ((verification_state = ANY (ARRAY['unverified'::text, 'verified'::text, 'quarantined'::text])))",
+		"library_roots|library_roots_verification_evidence_check|CHECK ((((verification_state = 'unverified'::text) AND (verified_at IS NULL)) OR ((verification_state = ANY (ARRAY['verified'::text, 'quarantined'::text])) AND (root_identity_kind IS NOT NULL) AND (verified_at IS NOT NULL))))",
 		"tracks|tracks_track_number_check|CHECK ((track_number > 0))",
 		"tracks|tracks_disc_number_check|CHECK ((disc_number > 0))",
 		"tracks|tracks_release_year_check|CHECK (((release_year >= 1) AND (release_year <= 9999)))",
@@ -142,7 +152,7 @@ func validateLibraryContract(ctx context.Context, q queryer) error {
 	if err := matchContract(ctx, q, `SELECT c.relname || '|' || k.conname || '|' || pg_get_constraintdef(k.oid)
 		FROM pg_constraint k JOIN pg_class c ON c.oid=k.conrelid LEFT JOIN pg_index i ON i.indexrelid=k.conindid
 		WHERE c.oid IN (to_regclass('library_roots'),to_regclass('tracks'),to_regclass('media_objects'),to_regclass('media_locations'),to_regclass('scan_runs'),to_regclass('scan_errors'))
-		AND k.conname IN ('library_roots_pkey','library_roots_name_check','library_roots_canonical_path_check','library_roots_path_key_key','library_roots_last_successful_scan_fkey','tracks_track_number_check','tracks_disc_number_check','tracks_release_year_check','tracks_title_source_check','tracks_metadata_source_location_fkey','media_objects_artwork_sha256_check','media_locations_root_id_fkey','media_locations_root_pair','media_locations_availability_check','media_locations_availability_state_check','media_locations_observed_size_check','media_locations_native_identity_check','media_locations_last_seen_run_fkey','scan_runs_pkey','scan_runs_root_id_fkey','scan_runs_status_check','scan_runs_phase_check','scan_runs_counters_nonnegative','scan_runs_root_id_id_key','scan_errors_pkey','scan_errors_run_id_fkey','scan_errors_relative_path_check','scan_errors_code_check')
+		AND k.conname IN ('library_roots_pkey','library_roots_name_check','library_roots_canonical_path_check','library_roots_path_key_key','library_roots_identity_kind_scope_check','library_roots_identity_id_check','library_roots_identity_birth_check','library_roots_identity_kind_length_check','library_roots_identity_scope_length_check','library_roots_identity_id_length_check','library_roots_identity_birth_length_check','library_roots_verification_state_check','library_roots_verification_evidence_check','library_roots_last_successful_scan_fkey','tracks_track_number_check','tracks_disc_number_check','tracks_release_year_check','tracks_title_source_check','tracks_metadata_source_location_fkey','media_objects_artwork_sha256_check','media_locations_root_id_fkey','media_locations_root_pair','media_locations_availability_check','media_locations_availability_state_check','media_locations_observed_size_check','media_locations_native_identity_check','media_locations_last_seen_run_fkey','scan_runs_pkey','scan_runs_root_id_fkey','scan_runs_status_check','scan_runs_phase_check','scan_runs_counters_nonnegative','scan_runs_root_id_id_key','scan_errors_pkey','scan_errors_run_id_fkey','scan_errors_relative_path_check','scan_errors_code_check')
 		AND k.convalidated AND (k.conindid=0 OR (i.indisvalid AND i.indisready))`, constraints); err != nil {
 		return err
 	}
@@ -154,13 +164,14 @@ func validateLibraryContract(ctx context.Context, q queryer) error {
 			JOIN pg_attribute a ON a.attrelid=i.indrelid AND a.attnum=k.attnum
 			WHERE k.ordinality <= i.indnkeyatts
 		) AS keys
-		WHERE x.oid IN (to_regclass('media_locations_active_root_relative_idx'),to_regclass('media_locations_root_relative_idx'),to_regclass('media_locations_root_availability_idx'),to_regclass('media_locations_native_lookup_idx'),to_regclass('scan_runs_root_started_idx'),to_regclass('scan_errors_run_idx'))
+		WHERE x.oid IN (to_regclass('media_locations_active_root_relative_idx'),to_regclass('media_locations_root_relative_idx'),to_regclass('media_locations_root_availability_idx'),to_regclass('media_locations_native_lookup_idx'),to_regclass('scan_runs_root_started_idx'),to_regclass('scan_errors_run_idx'),to_regclass('library_roots_enabled_verification_idx'))
 		AND i.indisvalid AND i.indisready AND i.indnatts=i.indnkeyatts AND i.indexprs IS NULL AND am.amname='btree'`, []string{
 		"media_locations|media_locations_active_root_relative_idx|true|2|root_id,relative_path|((root_id IS NOT NULL) AND (availability = 'available'::text))|0 0",
 		"media_locations|media_locations_root_availability_idx|false|2|root_id,availability||0 0",
 		"media_locations|media_locations_native_lookup_idx|false|4|root_id,native_id_kind,native_id_scope,native_id|((availability = 'available'::text) AND (native_id IS NOT NULL))|0 0 0 0",
 		"scan_runs|scan_runs_root_started_idx|false|2|root_id,started_at||0 3",
 		"scan_errors|scan_errors_run_idx|false|1|run_id||0",
+		"library_roots|library_roots_enabled_verification_idx|false|4|verification_state,enabled,created_at,id||0 0 0 0",
 	})
 }
 

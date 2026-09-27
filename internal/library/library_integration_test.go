@@ -16,6 +16,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -144,7 +145,14 @@ func addRoot(t *testing.T, s *storage.Store, path, name string) storage.LibraryR
 	if err != nil {
 		t.Fatal(err)
 	}
-	root, err := s.AddRoot(context.Background(), name, canonical)
+	identity, ok, err := CaptureRootIdentity(canonical)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !ok {
+		t.Skip("filesystem does not provide persistent root identity for authoritative reconciliation")
+	}
+	root, err := s.AddRootWithIdentity(context.Background(), name, canonical, identity)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -162,6 +170,145 @@ func countRows(t *testing.T, pool *pgxpool.Pool, table string) int {
 
 func testScanner(s *storage.Store) *Scanner {
 	return &Scanner{Store: s, Log: slog.New(slog.NewJSONHandler(io.Discard, nil))}
+}
+
+func TestM16ManualScanCannotReconcileUnverifiedRoot(t *testing.T) {
+	s, pool, _ := isolatedLibraryStore(t)
+	dir := testWorkspaceDir(t)
+	canonical, err := CanonicalizeRoot(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	root, err := s.AddRoot(context.Background(), "legacy unverified", canonical)
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, err := testScanner(s).Scan(context.Background(), root.ID)
+	if !errors.Is(err, storage.ErrRootUnverified) || result.RunID != "" {
+		t.Fatalf("unverified root scan was accepted: %#v %v", result, err)
+	}
+	var runs, unavailable int
+	if err := pool.QueryRow(context.Background(), "SELECT count(*) FROM scan_runs WHERE root_id=$1", root.ID).Scan(&runs); err != nil {
+		t.Fatal(err)
+	}
+	if err := pool.QueryRow(context.Background(), "SELECT count(*) FROM media_locations WHERE root_id=$1 AND availability='unavailable'", root.ID).Scan(&unavailable); err != nil {
+		t.Fatal(err)
+	}
+	if runs != 0 || unavailable != 0 {
+		t.Fatalf("unverified scan changed reconciliation state: runs=%d unavailable=%d", runs, unavailable)
+	}
+}
+
+func TestM16ReopenedRootPathFenceSuppressesPublication(t *testing.T) {
+	s, pool, _ := isolatedLibraryStore(t)
+	dir := testWorkspaceDir(t)
+	file := filepath.Join(dir, "fenced.wav")
+	writeFile(t, file, fixtureWAV())
+	root := addRoot(t, s, dir, "path binding fence")
+	first, err := testScanner(s).Scan(context.Background(), root.ID)
+	if err != nil || !first.AbsenceReconciled {
+		t.Fatalf("initial scan: %#v %v", first, err)
+	}
+	locations := locationsForRoot(t, pool, root.ID)
+	if len(locations) != 1 {
+		t.Fatalf("initial location missing: %#v", locations)
+	}
+	if err := os.Remove(file); err != nil {
+		t.Fatal(err)
+	}
+	moved := dir + "-moved"
+	secondScanner := testScanner(s)
+	endCaptures := 0
+	if runtime.GOOS == "windows" {
+		// Windows holds the opened root with sharing that prevents renaming it.
+		// The seam makes the separately reopened end identity disagree so this
+		// platform still verifies that publication consumes identity B.
+		secondScanner.rootIdentity = func(*os.Root) (storage.NativeIdentity, bool, error) {
+			endCaptures++
+			if endCaptures == 1 {
+				return *root.Identity, true, nil
+			}
+			return storage.NativeIdentity{Kind: "windows_file_index", Scope: "rebound-volume", ID: []byte{0xff}, BirthToken: []byte{1}}, true, nil
+		}
+	} else {
+		secondScanner.afterTraversal = func() {
+			if err := os.Rename(dir, moved); err != nil {
+				t.Errorf("rebind root path by moving opened directory: %v", err)
+				return
+			}
+			if err := os.Mkdir(dir, 0700); err != nil {
+				t.Errorf("create replacement root path: %v", err)
+			}
+		}
+	}
+	second, err := secondScanner.Scan(context.Background(), root.ID)
+	if !errors.Is(err, storage.ErrRootIdentityMismatch) || second.ObservationsApplied || second.AbsenceReconciled {
+		t.Fatalf("root path rebind was published: %#v %v", second, err)
+	}
+	if runtime.GOOS == "windows" && endCaptures != 2 {
+		t.Fatalf("reopened root identity captured %d times; expected start and end", endCaptures)
+	}
+	got := locationsForRoot(t, pool, root.ID)
+	if len(got) != 1 || got[0].ID != locations[0].ID || got[0].Availability != "available" {
+		t.Fatalf("failed path fence changed prior catalog state: %#v", got)
+	}
+	var state string
+	if err := pool.QueryRow(context.Background(), "SELECT verification_state FROM library_roots WHERE id=$1", root.ID).Scan(&state); err != nil {
+		t.Fatal(err)
+	}
+	if state != "quarantined" {
+		t.Fatalf("root state after path rebind=%q", state)
+	}
+}
+
+func TestM16TransientRootIdentityReadErrorRetriesWithoutQuarantine(t *testing.T) {
+	s, pool, _ := isolatedLibraryStore(t)
+	dir := testWorkspaceDir(t)
+	file := filepath.Join(dir, "recover.wav")
+	writeFile(t, file, fixtureWAV())
+	root := addRoot(t, s, dir, "temporary identity read failure")
+	if first, err := testScanner(s).Scan(context.Background(), root.ID); err != nil || !first.AbsenceReconciled {
+		t.Fatalf("initial scan: %#v %v", first, err)
+	}
+	if err := os.Remove(file); err != nil {
+		t.Fatal(err)
+	}
+	startFailure := testScanner(s)
+	startFailure.rootIdentity = func(*os.Root) (storage.NativeIdentity, bool, error) {
+		return storage.NativeIdentity{}, false, os.ErrPermission
+	}
+	failed, err := startFailure.Scan(context.Background(), root.ID)
+	if !errors.Is(err, storage.ErrRootUnavailable) || failed.ErrorCode != "root_unavailable" || failed.ObservationsApplied || failed.AbsenceReconciled {
+		t.Fatalf("start identity permission failure was destructive or quarantined: %#v %v", failed, err)
+	}
+	endFailure := testScanner(s)
+	captures := 0
+	endFailure.rootIdentity = func(*os.Root) (storage.NativeIdentity, bool, error) {
+		captures++
+		if captures == 1 {
+			return *root.Identity, true, nil
+		}
+		return storage.NativeIdentity{}, false, os.ErrPermission
+	}
+	failed, err = endFailure.Scan(context.Background(), root.ID)
+	if !errors.Is(err, storage.ErrRootUnavailable) || failed.ErrorCode != "root_unavailable" || failed.ObservationsApplied || failed.AbsenceReconciled || captures != 2 {
+		t.Fatalf("end identity permission failure was destructive or quarantined: %#v %v captures=%d", failed, err, captures)
+	}
+	var state string
+	var available int
+	if err := pool.QueryRow(context.Background(), "SELECT verification_state FROM library_roots WHERE id=$1", root.ID).Scan(&state); err != nil {
+		t.Fatal(err)
+	}
+	if err := pool.QueryRow(context.Background(), "SELECT count(*) FROM media_locations WHERE root_id=$1 AND availability='available'", root.ID).Scan(&available); err != nil {
+		t.Fatal(err)
+	}
+	if state != "verified" || available != 1 {
+		t.Fatalf("temporary identity read failure changed root/catalog: state=%s available=%d", state, available)
+	}
+	recovered, err := testScanner(s).Scan(context.Background(), root.ID)
+	if err != nil || !recovered.AbsenceReconciled || recovered.LocationsUnavailable != 1 {
+		t.Fatalf("complete scan did not converge after permission recovery: %#v %v", recovered, err)
+	}
 }
 
 func TestInitialImportTwoRootsDedupAndRestart(t *testing.T) {

@@ -1,0 +1,1 @@
+{"source_database":"resonance_m1_g1_final","restore_database":"resonance_m1_g1_restore","table_count":19,"row_value_hashes_equal":false,"table_schema_hashes_equal":false,"sequence_state_equal":true,"schema_only_dump_equal_after_pg_dump_token_normalization":true,"source_total_rows":227.0,"restore_total_rows":227.0}

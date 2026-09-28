@@ -1,0 +1,17 @@
+{
+  "attempt_id": "20260928T021816217Z-attempt-01",
+  "campaign": "g1-final-watch-event",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T02:18:16.2172561+00:00",
+  "finished_utc": "2026-09-28T02:18:17.5352734+00:00",
+  "duration_ms": 1199.0,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "copy newly generated tagged fixture into nested directory after server starts",
+    "poll actual catalog and watcher status"
+  ],
+  "source_sha256": "acebd169840f571f4bde82edb5d660247a41920bc94b76771bb2f8f806e08b4e",
+  "response_data": "logical IDs and path-free status only"
+}

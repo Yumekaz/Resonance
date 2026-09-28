@@ -1,0 +1,52 @@
+{
+  "started_utc": "2026-09-28T03:44:24.2652897+00:00",
+  "finished_utc": "2026-09-28T03:45:10.1618488+00:00",
+  "duration_seconds": 45,
+  "sample_interval_ms": 1000,
+  "sample_count": 44,
+  "database_size_bytes_start": null,
+  "database_size_bytes_end": null,
+  "wal_bytes_generated": null,
+  "logical_cpu_count": 16,
+  "workload": "10k catalog page and indexed Range load; first 10s idle then simultaneous 500 catalog/200 Range requests",
+  "watcher_observations": {
+    "end_dirty_roots": 0,
+    "end_database_state": "available",
+    "start_roots_total": 2,
+    "start_roots_watching": 2,
+    "end_roots_watching": 2,
+    "start_dirty_roots": 0,
+    "end_state": "running",
+    "end_roots_total": 2,
+    "start_state": "running",
+    "start_database_state": "available"
+  },
+  "processes": [
+    {
+      "role": "resonance",
+      "process_samples": 44,
+      "working_set_mib_p50": 28.941,
+      "working_set_mib_p95": 47.898,
+      "working_set_mib_p99": 50.254,
+      "handles_p50": 1348,
+      "handles_max": 1351,
+      "cpu_percent_p50": 0,
+      "cpu_percent_p95": 2.299,
+      "cpu_percent_max": 2.9405
+    },
+    {
+      "role": "postgresql",
+      "process_samples": 44,
+      "working_set_mib_p50": 351.785,
+      "working_set_mib_p95": 355.906,
+      "working_set_mib_p99": 356.551,
+      "handles_p50": 2254,
+      "handles_max": 2254,
+      "cpu_percent_p50": 0,
+      "cpu_percent_p95": 5.508,
+      "cpu_percent_max": 6.0708
+    }
+  ],
+  "raw_samples": "resource-samples.jsonl",
+  "limitations": "Per-process working set, handles and CPU are sampled locally; the API exposes watch coverage state but not native watcher-handle count."
+}

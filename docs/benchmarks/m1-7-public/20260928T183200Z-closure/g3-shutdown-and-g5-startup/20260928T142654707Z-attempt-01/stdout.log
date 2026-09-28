@@ -1,0 +1,26 @@
+{"Time":"2026-09-28T19:56:57.3883046+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T19:56:57.4386676+05:30","Action":"run","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse"}
+{"Time":"2026-09-28T19:56:57.4386676+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"=== RUN   TestM17NormalShutdownStreamPersistenceAndLostResponse\n"}
+{"Time":"2026-09-28T19:56:59.2549118+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"    m17_process_windows_integration_test.go:50: HTTP POST /api/v1/playlists status=400: {\"error\":{\"code\":\"invalid_request\",\"message\":\"invalid_request\"}}\n"}
+{"Time":"2026-09-28T19:56:59.2549118+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"         \u003cnil\u003e\n"}
+{"Time":"2026-09-28T19:56:59.3180201+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"--- FAIL: TestM17NormalShutdownStreamPersistenceAndLostResponse (1.89s)\n"}
+{"Time":"2026-09-28T19:56:59.3285606+05:30","Action":"fail","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Elapsed":1.89}
+{"Time":"2026-09-28T19:56:59.3285606+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection"}
+{"Time":"2026-09-28T19:56:59.3285606+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"=== RUN   TestM17ConfiguredStartupRejection\n"}
+{"Time":"2026-09-28T19:56:59.6536923+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable"}
+{"Time":"2026-09-28T19:56:59.6542008+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"=== RUN   TestM17ConfiguredStartupRejection/unreachable\n"}
+{"Time":"2026-09-28T19:56:59.6783197+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"--- PASS: TestM17ConfiguredStartupRejection/unreachable (0.02s)\n"}
+{"Time":"2026-09-28T19:56:59.6783197+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Elapsed":0.02}
+{"Time":"2026-09-28T19:56:59.6783197+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged"}
+{"Time":"2026-09-28T19:56:59.6783197+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"=== RUN   TestM17ConfiguredStartupRejection/damaged\n"}
+{"Time":"2026-09-28T19:56:59.8286768+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"--- PASS: TestM17ConfiguredStartupRejection/damaged (0.15s)\n"}
+{"Time":"2026-09-28T19:56:59.8286768+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Elapsed":0.15}
+{"Time":"2026-09-28T19:56:59.8286768+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending"}
+{"Time":"2026-09-28T19:56:59.8286768+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"=== RUN   TestM17ConfiguredStartupRejection/pending\n"}
+{"Time":"2026-09-28T19:56:59.8999847+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"--- PASS: TestM17ConfiguredStartupRejection/pending (0.07s)\n"}
+{"Time":"2026-09-28T19:56:59.8999847+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Elapsed":0.07}
+{"Time":"2026-09-28T19:56:59.9558631+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"--- PASS: TestM17ConfiguredStartupRejection (0.63s)\n"}
+{"Time":"2026-09-28T19:56:59.9566275+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Elapsed":0.63}
+{"Time":"2026-09-28T19:56:59.9566275+05:30","Action":"output","Package":"resonance","Output":"FAIL\n"}
+{"Time":"2026-09-28T19:56:59.9657995+05:30","Action":"output","Package":"resonance","Output":"FAIL\tresonance\t2.577s\n"}
+{"Time":"2026-09-28T19:56:59.9657995+05:30","Action":"fail","Package":"resonance","Elapsed":2.577}

@@ -1,0 +1,36 @@
+{
+  "attempt_id": "20260928T014612152Z-attempt-01",
+  "campaign": "g1-clean-source-clone",
+  "status": "fail",
+  "exit_code": 128,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:46:12.1527367+00:00",
+  "finished_utc": "2026-09-28T01:46:12.5480527+00:00",
+  "duration_ms": 395.316,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "git.exe",
+    "-c",
+    "safe.directory=*",
+    "clone",
+    "--no-local",
+    "--no-hardlinks",
+    "-b",
+    "main",
+    "<local-path>",
+    "<host-path>"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 180,
+  "child_environment_cleared": false,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

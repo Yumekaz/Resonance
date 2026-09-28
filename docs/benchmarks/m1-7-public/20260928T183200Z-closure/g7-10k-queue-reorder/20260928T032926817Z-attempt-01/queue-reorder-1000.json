@@ -1,0 +1,194 @@
+{
+  "cache": "warm/uncontrolled",
+  "command": "go run ./cmd/m15burst -track <track-id> -items 100 -count 100 -ready-file <path> -start-file <path> -out <path>",
+  "count": 30,
+  "date_utc": "2026-09-28T03:32:19.3278116Z",
+  "go_version": "go1.25.0",
+  "operation": "queue reorder of bounded duplicate Track occurrences",
+  "p50_ms": 311.8355,
+  "p95_ms": 353.102,
+  "p99_ms": 354.295,
+  "queue_items": 1000,
+  "samples": [
+    {
+      "started_utc": "2026-09-28T03:32:09.9525483Z",
+      "finished_utc": "2026-09-28T03:32:10.249778Z",
+      "duration_ms": 297.229,
+      "revision": 1002
+    },
+    {
+      "started_utc": "2026-09-28T03:32:10.249778Z",
+      "finished_utc": "2026-09-28T03:32:10.5284245Z",
+      "duration_ms": 278.646,
+      "revision": 1003
+    },
+    {
+      "started_utc": "2026-09-28T03:32:10.5301664Z",
+      "finished_utc": "2026-09-28T03:32:10.8251238Z",
+      "duration_ms": 294.957,
+      "revision": 1004
+    },
+    {
+      "started_utc": "2026-09-28T03:32:10.8251238Z",
+      "finished_utc": "2026-09-28T03:32:11.1105976Z",
+      "duration_ms": 285.473,
+      "revision": 1005
+    },
+    {
+      "started_utc": "2026-09-28T03:32:11.1105976Z",
+      "finished_utc": "2026-09-28T03:32:11.3918121Z",
+      "duration_ms": 281.214,
+      "revision": 1006
+    },
+    {
+      "started_utc": "2026-09-28T03:32:11.3918121Z",
+      "finished_utc": "2026-09-28T03:32:11.7071426Z",
+      "duration_ms": 315.33,
+      "revision": 1007
+    },
+    {
+      "started_utc": "2026-09-28T03:32:11.7071426Z",
+      "finished_utc": "2026-09-28T03:32:11.9804061Z",
+      "duration_ms": 273.263,
+      "revision": 1008
+    },
+    {
+      "started_utc": "2026-09-28T03:32:11.9804061Z",
+      "finished_utc": "2026-09-28T03:32:12.2843108Z",
+      "duration_ms": 303.904,
+      "revision": 1009
+    },
+    {
+      "started_utc": "2026-09-28T03:32:12.2843108Z",
+      "finished_utc": "2026-09-28T03:32:12.6140609Z",
+      "duration_ms": 329.75,
+      "revision": 1010
+    },
+    {
+      "started_utc": "2026-09-28T03:32:12.614635Z",
+      "finished_utc": "2026-09-28T03:32:12.937732Z",
+      "duration_ms": 323.097,
+      "revision": 1011
+    },
+    {
+      "started_utc": "2026-09-28T03:32:12.937732Z",
+      "finished_utc": "2026-09-28T03:32:13.2528464Z",
+      "duration_ms": 315.114,
+      "revision": 1012
+    },
+    {
+      "started_utc": "2026-09-28T03:32:13.2537547Z",
+      "finished_utc": "2026-09-28T03:32:13.6039809Z",
+      "duration_ms": 350.226,
+      "revision": 1013
+    },
+    {
+      "started_utc": "2026-09-28T03:32:13.6039809Z",
+      "finished_utc": "2026-09-28T03:32:13.9316163Z",
+      "duration_ms": 327.635,
+      "revision": 1014
+    },
+    {
+      "started_utc": "2026-09-28T03:32:13.9316163Z",
+      "finished_utc": "2026-09-28T03:32:14.2529303Z",
+      "duration_ms": 321.314,
+      "revision": 1015
+    },
+    {
+      "started_utc": "2026-09-28T03:32:14.2529303Z",
+      "finished_utc": "2026-09-28T03:32:14.5933468Z",
+      "duration_ms": 340.416,
+      "revision": 1016
+    },
+    {
+      "started_utc": "2026-09-28T03:32:14.5933468Z",
+      "finished_utc": "2026-09-28T03:32:14.8983924Z",
+      "duration_ms": 305.045,
+      "revision": 1017
+    },
+    {
+      "started_utc": "2026-09-28T03:32:14.8983924Z",
+      "finished_utc": "2026-09-28T03:32:15.2092593Z",
+      "duration_ms": 310.866,
+      "revision": 1018
+    },
+    {
+      "started_utc": "2026-09-28T03:32:15.2092593Z",
+      "finished_utc": "2026-09-28T03:32:15.5635546Z",
+      "duration_ms": 354.295,
+      "revision": 1019
+    },
+    {
+      "started_utc": "2026-09-28T03:32:15.5635546Z",
+      "finished_utc": "2026-09-28T03:32:15.87779Z",
+      "duration_ms": 314.235,
+      "revision": 1020
+    },
+    {
+      "started_utc": "2026-09-28T03:32:15.87779Z",
+      "finished_utc": "2026-09-28T03:32:16.1723216Z",
+      "duration_ms": 294.531,
+      "revision": 1021
+    },
+    {
+      "started_utc": "2026-09-28T03:32:16.1723216Z",
+      "finished_utc": "2026-09-28T03:32:16.4728281Z",
+      "duration_ms": 300.506,
+      "revision": 1022
+    },
+    {
+      "started_utc": "2026-09-28T03:32:16.4728281Z",
+      "finished_utc": "2026-09-28T03:32:16.7856335Z",
+      "duration_ms": 312.805,
+      "revision": 1023
+    },
+    {
+      "started_utc": "2026-09-28T03:32:16.7856335Z",
+      "finished_utc": "2026-09-28T03:32:17.0878076Z",
+      "duration_ms": 302.174,
+      "revision": 1024
+    },
+    {
+      "started_utc": "2026-09-28T03:32:17.0878076Z",
+      "finished_utc": "2026-09-28T03:32:17.4224706Z",
+      "duration_ms": 334.663,
+      "revision": 1025
+    },
+    {
+      "started_utc": "2026-09-28T03:32:17.4224706Z",
+      "finished_utc": "2026-09-28T03:32:17.7371561Z",
+      "duration_ms": 314.685,
+      "revision": 1026
+    },
+    {
+      "started_utc": "2026-09-28T03:32:17.7371561Z",
+      "finished_utc": "2026-09-28T03:32:18.0902582Z",
+      "duration_ms": 353.102,
+      "revision": 1027
+    },
+    {
+      "started_utc": "2026-09-28T03:32:18.0919278Z",
+      "finished_utc": "2026-09-28T03:32:18.4136559Z",
+      "duration_ms": 321.728,
+      "revision": 1028
+    },
+    {
+      "started_utc": "2026-09-28T03:32:18.4136559Z",
+      "finished_utc": "2026-09-28T03:32:18.7243912Z",
+      "duration_ms": 310.735,
+      "revision": 1029
+    },
+    {
+      "started_utc": "2026-09-28T03:32:18.7252778Z",
+      "finished_utc": "2026-09-28T03:32:19.0186203Z",
+      "duration_ms": 293.342,
+      "revision": 1030
+    },
+    {
+      "started_utc": "2026-09-28T03:32:19.0186203Z",
+      "finished_utc": "2026-09-28T03:32:19.3278116Z",
+      "duration_ms": 309.191,
+      "revision": 1031
+    }
+  ]
+}

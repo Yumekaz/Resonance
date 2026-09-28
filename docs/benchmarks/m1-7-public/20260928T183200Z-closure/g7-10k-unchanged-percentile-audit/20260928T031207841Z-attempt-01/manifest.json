@@ -1,0 +1,10 @@
+{
+  "attempt_id": "20260928T031207841Z-attempt-01",
+  "campaign": "g7-10k-unchanged-percentile-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:12:07.8415858+00:00",
+  "finished_utc": "2026-09-28T03:12:07.8628893+00:00",
+  "raw_source": "g7-10k-unchanged-scans/scan-samples.jsonl",
+  "method": "median for p50; nearest-rank p95/p99"
+}

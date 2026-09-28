@@ -1,0 +1,10 @@
+{
+  "attempt_id": "20260928T031814735Z-attempt-01",
+  "campaign": "g7-range-write-overlap-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:18:14.7358101+00:00",
+  "finished_utc": "2026-09-28T03:18:14.7787204+00:00",
+  "source_raw": "g7-range-write-request-overlap/range-write-overlap.json",
+  "method": "request intervals; overlap iff max(start)<min(end); median and nearest-rank p95/p99"
+}

@@ -1,0 +1,49 @@
+{
+  "attempt_id": "20260928T135907429Z-attempt-01",
+  "campaign": "g8-serial-postgres-integration-skip-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T13:59:07.4296065+00:00",
+  "finished_utc": "2026-09-28T14:01:04.3798976+00:00",
+  "duration_ms": 116950.291,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-parallel",
+    "1",
+    "-tags=integration",
+    "-count=1",
+    "./..."
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 1800,
+  "child_environment_cleared": true,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOPROXY",
+    "GOROOT",
+    "GOTOOLCHAIN",
+    "PATH",
+    "RESONANCE_TEST_DATABASE_URL",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

@@ -1,0 +1,357 @@
+{
+  "checks": [
+    {
+      "case": "GET /health",
+      "request_id": "ad61980a04ea095c5a79576462238f69",
+      "status": 200
+    },
+    {
+      "case": "GET /ready",
+      "request_id": "7b186e4d0aa59ee5906c98e673648842",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/demo-track",
+      "request_id": "b8f7dd58ae0b8a1fc258c40d2a4aefe3",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/tracks",
+      "request_id": "453ff2b6211a9dc8a5cfbe1aeed4b0f7",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/tracks/trk_00000000000000000000000000000011",
+      "request_id": "35efd7f05d2fd379847b71eded2a7e66",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/artists",
+      "request_id": "1c44e178b34e067e556bf8f630878428",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/artists/art_477bd6c23fa049f695de7bcf0850cbec",
+      "request_id": "50ecd5d1c4dcb72aa077d1f98856e001",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/albums",
+      "request_id": "fa4aaa1f781e06582184c842f7eb3ad8",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/albums/alb_df7e0d2558a84fab9b52cb77642707cb",
+      "request_id": "d5e5cd30e4c7fe8790ece54258971a07",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/artists/art_477bd6c23fa049f695de7bcf0850cbec/albums",
+      "request_id": "febfb4e1ef71a04421b574170ba24a5c",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/artists/art_477bd6c23fa049f695de7bcf0850cbec/tracks",
+      "request_id": "f87960a6652340c139a499ea9d83f56e",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/albums/alb_df7e0d2558a84fab9b52cb77642707cb/tracks",
+      "request_id": "42755a156128a8b27ff15281e89b63f6",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/queue",
+      "request_id": "9d5e1f424c4cbaa019bd23b8b4da13b4",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/playlists",
+      "request_id": "cc02f1a9a0d056a2cfb16ae2afe5dea6",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/favorites",
+      "request_id": "be2730a75b4d156739ca591fa1d2a496",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/history",
+      "request_id": "4a8216be49fba48e743ed4aa61ddb826",
+      "status": 200
+    },
+    {
+      "case": "GET /",
+      "request_id": "71279de934e6c92d322ee9083e5f6646",
+      "status": 200
+    },
+    {
+      "case": "GET /demo",
+      "request_id": "ee068b823863e0deeb8f3ac2f1249f2a",
+      "status": 200
+    },
+    {
+      "case": "GET /app.js",
+      "request_id": "dd2e694b7b847ced339bf645c980702b",
+      "status": 200
+    },
+    {
+      "case": "GET /library.js",
+      "request_id": "036ce650567c2dd5c3a7982a311dd66c",
+      "status": 200
+    },
+    {
+      "case": "GET /user-library.js",
+      "request_id": "d116ae64841de7f826dd84857afc819c",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/library/status",
+      "request_id": "5dfd0273c94be40daa8466518f0d3097",
+      "status": 503
+    },
+    {
+      "case": "GET /api/v1/tracks/trk_00000000000000000000000000000011/artwork",
+      "request_id": "9ba59b22d3c36a79b0c961416b2889f8",
+      "status": 404
+    },
+    {
+      "case": "HEAD /api/v1/tracks/trk_00000000000000000000000000000011/stream",
+      "request_id": "ae3249745df22409f6855616aab02f6e",
+      "status": 200
+    },
+    {
+      "case": "valid range",
+      "request_id": "1e6db150214b05271831100c92554fa1",
+      "status": 206
+    },
+    {
+      "case": "valid range",
+      "request_id": "93846bc977f7fdfcabe5d1263f0c7792",
+      "status": 206
+    },
+    {
+      "case": "POST /api/v1/queue/items",
+      "request_id": "920b216bced664d82d1e4f346edc4261",
+      "status": 201
+    },
+    {
+      "case": "POST /api/v1/queue/items",
+      "request_id": "8b491cca45021692d681eaa8709aec72",
+      "status": 201
+    },
+    {
+      "case": "POST /api/v1/queue/items",
+      "request_id": "0d53d50ffd5054e1d61e0643cd013477",
+      "status": 409
+    },
+    {
+      "case": "PUT /api/v1/queue/order",
+      "request_id": "ac5258cbd6482f10a5bd91d7b59474be",
+      "status": 200
+    },
+    {
+      "case": "PUT /api/v1/queue/order",
+      "request_id": "09ee0d84624ef55610ca695808e9c402",
+      "status": 400
+    },
+    {
+      "case": "POST /api/v1/queue/advance",
+      "request_id": "de715f011171aa6394bd5258b78480a0",
+      "status": 409
+    },
+    {
+      "case": "POST /api/v1/queue/advance",
+      "request_id": "ce52252707005140033aefdbac84b7a1",
+      "status": 200
+    },
+    {
+      "case": "DELETE /api/v1/queue/items/qi_dd89ded935994637982ea7aa7e76c1b6",
+      "request_id": "2284b52c1bc7b26c8a364bab508aac3e",
+      "status": 200
+    },
+    {
+      "case": "DELETE /api/v1/queue",
+      "request_id": "31a0b6358cc13a8a7607536db14d3fe9",
+      "status": 200
+    },
+    {
+      "case": "POST /api/v1/playlists",
+      "request_id": "7d9efed37f9c5ba997c2d229501c7c74",
+      "status": 201
+    },
+    {
+      "case": "GET /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72",
+      "request_id": "a6e1b746afd9974b7a069ad465ee2e21",
+      "status": 200
+    },
+    {
+      "case": "POST /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72/items",
+      "request_id": "9a6ac43bc106e646ce3eb6c76e214535",
+      "status": 201
+    },
+    {
+      "case": "PUT /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72/order",
+      "request_id": "53a0268cb5ee8baa584369cb3fb606e3",
+      "status": 200
+    },
+    {
+      "case": "PATCH /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72",
+      "request_id": "2e7d2067552780ecfcb2dc96544c2146",
+      "status": 200
+    },
+    {
+      "case": "DELETE /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72/items/pi_cc45a525eae441e698658be8257ef8e7",
+      "request_id": "f96098b7a5ec1c60419fb037d2d0ed1d",
+      "status": 200
+    },
+    {
+      "case": "DELETE /api/v1/playlists/pl_476499ff0cff48c490a65b27a267de72",
+      "request_id": "372879a5d5a67961fe24a08d6d7df43d",
+      "status": 204
+    },
+    {
+      "case": "PUT /api/v1/favorites/tracks/trk_00000000000000000000000000000011",
+      "request_id": "8aedb18bb36456a9758e60e8fbd1ac10",
+      "status": 204
+    },
+    {
+      "case": "DELETE /api/v1/favorites/tracks/trk_00000000000000000000000000000011",
+      "request_id": "8c9fe18f4df20a117e207f4bd26a5254",
+      "status": 204
+    },
+    {
+      "case": "POST /api/v1/listening-sessions",
+      "request_id": "69eb32922a389962e4a50a995198d303",
+      "status": 201
+    },
+    {
+      "case": "PUT /api/v1/listening-sessions/00000000-0000-4000-8000-000000000117/report",
+      "request_id": "993cddcc9c62e2be0323491237d64803",
+      "status": 200
+    },
+    {
+      "case": "GET /api/v1/history",
+      "request_id": "acf04fcadf506ef18344bb531cf21024",
+      "status": 200
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "691473a540d27493e3f8e5b4f9a58825",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "8767fbbb353b33926d93cd0c810764ab",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "a303a5ff68cb9a75334e0b31704a3fb0",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "41b19149dc48738db1bf1817a5e966ae",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "b324686480d15455d1003ec7675e79d1",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "f527d53d6aec2a13209a8a38b479ffeb",
+      "status": 301
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "088fd547d280f44bed4058ae56bbe430",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "bd48c2f2f2e9f418d2c7c8c00250f685",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "953891b0ca3001652c85c0b8527cca8c",
+      "status": 400
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "67e549ccc905f2a28a9e625a84698a11",
+      "status": 404
+    },
+    {
+      "case": "malformed/confined request",
+      "request_id": "186215f0baf6afd29e6525fbbac0924e",
+      "status": 400
+    },
+    {
+      "case": "invalid/oversized JSON",
+      "request_id": "50c83f82d1d86e76e7e40f76a00c5f21",
+      "status": 400
+    },
+    {
+      "case": "invalid/oversized JSON",
+      "request_id": "38ea7dc5d396b492856afdd35eea6fa8",
+      "status": 400
+    },
+    {
+      "case": "invalid/oversized JSON",
+      "request_id": "6701c715f3d7152c60306f4c3a5cb668",
+      "status": 400
+    },
+    {
+      "case": "invalid/oversized JSON",
+      "request_id": "3341423bd4ce6c1ef59cf7aa1d207225",
+      "status": 400
+    },
+    {
+      "case": "POST /api/v1/queue/items",
+      "request_id": "72cfc69fbd455a760bf7a0dacf3c91a9",
+      "status": 400
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "85293754ac25acc2d53c0b3830d5503b",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "9a500ab2c6bfe369c791494dda2336f7",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "831def39f2c8bc41b5377b8d2ccfeec6",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "7e50fbbcc71476653dfc94dc9c8ff985",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "cd14e5c80e3806390f6fc648f199176b",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "af9f2acdc3024904eea7cea36ea5ca00",
+      "status": 503
+    },
+    {
+      "case": "private dependency failure",
+      "request_id": "0ef19f0d7c32ae5ad085e4234a61f71e",
+      "status": 503
+    }
+  ],
+  "receipt_canaries_absent": true,
+  "response_header_body_canaries_absent": true,
+  "telemetry_canaries_absent": true
+}

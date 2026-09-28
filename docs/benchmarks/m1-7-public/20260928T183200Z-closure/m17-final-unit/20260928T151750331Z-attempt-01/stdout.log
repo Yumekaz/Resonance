@@ -1,0 +1,452 @@
+{"Time":"2026-09-28T20:47:58.5829382+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/bench"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/fixture"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/fixture","Output":"?   \tresonance/cmd/fixture\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/fixture","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m14measure"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m14measure","Output":"?   \tresonance/cmd/m14measure\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m15burst"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m14measure","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m15burst","Output":"?   \tresonance/cmd/m15burst\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m15burst","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m15catalogbench"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m15catalogbench","Output":"?   \tresonance/cmd/m15catalogbench\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m15catalogbench","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m17corpus"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m17corpus","Output":"?   \tresonance/cmd/m17corpus\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m17corpus","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m17manifest"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m17manifest","Output":"?   \tresonance/cmd/m17manifest\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m17manifest","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/cmd/m17scanbench"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"output","Package":"resonance/cmd/m17scanbench","Output":"?   \tresonance/cmd/m17scanbench\t[no test files]\n"}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"skip","Package":"resonance/cmd/m17scanbench","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.5835002+05:30","Action":"start","Package":"resonance/internal/library"}
+{"Time":"2026-09-28T20:47:58.5840672+05:30","Action":"start","Package":"resonance/internal/m17fixtures"}
+{"Time":"2026-09-28T20:47:58.5840672+05:30","Action":"start","Package":"resonance/internal/metadata"}
+{"Time":"2026-09-28T20:47:58.5840672+05:30","Action":"start","Package":"resonance/internal/storage"}
+{"Time":"2026-09-28T20:47:58.625575+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestCorpus"}
+{"Time":"2026-09-28T20:47:58.625575+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus","Output":"=== RUN   TestCorpus\n"}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.mp3"}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.mp3","Output":"=== RUN   TestCorpus/tagged.mp3\n"}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.mp3","Output":"--- PASS: TestCorpus/tagged.mp3 (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.mp3","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.flac"}
+{"Time":"2026-09-28T20:47:58.6298836+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.flac","Output":"=== RUN   TestCorpus/tagged.flac\n"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.flac","Output":"--- PASS: TestCorpus/tagged.flac (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestCorpus/tagged.flac","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.mp3"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.mp3","Output":"=== RUN   TestCorpus/untagged.mp3\n"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.mp3","Output":"--- PASS: TestCorpus/untagged.mp3 (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.mp3","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.flac"}
+{"Time":"2026-09-28T20:47:58.6304697+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.flac","Output":"=== RUN   TestCorpus/untagged.flac\n"}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.flac","Output":"--- PASS: TestCorpus/untagged.flac (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestCorpus/untagged.flac","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestCorpus","Output":"--- PASS: TestCorpus (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestCorpus","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestUnicodeAndArtwork"}
+{"Time":"2026-09-28T20:47:58.6317662+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestUnicodeAndArtwork","Output":"=== RUN   TestUnicodeAndArtwork\n"}
+{"Time":"2026-09-28T20:47:58.6346336+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestUnicodeAndArtwork","Output":"--- PASS: TestUnicodeAndArtwork (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6346336+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestUnicodeAndArtwork","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6346336+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestFLACArtwork"}
+{"Time":"2026-09-28T20:47:58.6346336+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestFLACArtwork","Output":"=== RUN   TestFLACArtwork\n"}
+{"Time":"2026-09-28T20:47:58.6357991+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestFLACArtwork","Output":"--- PASS: TestFLACArtwork (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestFLACArtwork","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestUnsupportedWAVAndMalformed"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestUnsupportedWAVAndMalformed","Output":"=== RUN   TestUnsupportedWAVAndMalformed\n"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestUnsupportedWAVAndMalformed","Output":"--- PASS: TestUnsupportedWAVAndMalformed (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestUnsupportedWAVAndMalformed","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestMalformedFLACPictureLengthIsRejectedBeforeAllocation"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestMalformedFLACPictureLengthIsRejectedBeforeAllocation","Output":"=== RUN   TestMalformedFLACPictureLengthIsRejectedBeforeAllocation\n"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestMalformedFLACPictureLengthIsRejectedBeforeAllocation","Output":"--- PASS: TestMalformedFLACPictureLengthIsRejectedBeforeAllocation (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestMalformedFLACPictureLengthIsRejectedBeforeAllocation","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestLargeFileReadBound"}
+{"Time":"2026-09-28T20:47:58.6363788+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestLargeFileReadBound","Output":"=== RUN   TestLargeFileReadBound\n"}
+{"Time":"2026-09-28T20:47:58.6429091+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestLargeFileReadBound","Output":"    metadata_test.go:270: 64 MiB sparse MP3: parser read 387 bytes\n"}
+{"Time":"2026-09-28T20:47:58.6465072+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestLargeFileReadBound","Output":"--- PASS: TestLargeFileReadBound (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.6465072+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestLargeFileReadBound","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.6465072+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewNestedPictureAllocation"}
+{"Time":"2026-09-28T20:47:58.6465072+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewNestedPictureAllocation","Output":"=== RUN   TestReviewNestedPictureAllocation\n"}
+{"Time":"2026-09-28T20:47:58.6470837+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewNestedPictureAllocation","Output":"    review_test.go:34: input=87 read=91 allocated=416 error=malformed or oversized metadata block\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewNestedPictureAllocation","Output":"--- PASS: TestReviewNestedPictureAllocation (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewNestedPictureAllocation","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewInvalidDateStaysNull"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewInvalidDateStaysNull","Output":"=== RUN   TestReviewInvalidDateStaysNull\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewInvalidDateStaysNull","Output":"--- PASS: TestReviewInvalidDateStaysNull (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewInvalidDateStaysNull","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewDuplicateFrameWorkBound"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewDuplicateFrameWorkBound","Output":"=== RUN   TestReviewDuplicateFrameWorkBound\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewDuplicateFrameWorkBound","Output":"--- PASS: TestReviewDuplicateFrameWorkBound (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewDuplicateFrameWorkBound","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewContainerLimits"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewContainerLimits","Output":"=== RUN   TestReviewContainerLimits\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewContainerLimits","Output":"--- PASS: TestReviewContainerLimits (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewContainerLimits","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewYearAndUnicodeFLAC"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewYearAndUnicodeFLAC","Output":"=== RUN   TestReviewYearAndUnicodeFLAC\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/m17fixtures","Test":"TestScaleCorpusDistinctTagsAndManifest"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Test":"TestScaleCorpusDistinctTagsAndManifest","Output":"=== RUN   TestScaleCorpusDistinctTagsAndManifest\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewYearAndUnicodeFLAC","Output":"--- PASS: TestReviewYearAndUnicodeFLAC (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewYearAndUnicodeFLAC","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewAdditionalID3Variants"}
+{"Time":"2026-09-28T20:47:58.6476376+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewAdditionalID3Variants","Output":"=== RUN   TestReviewAdditionalID3Variants\n"}
+{"Time":"2026-09-28T20:47:58.6493476+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority"}
+{"Time":"2026-09-28T20:47:58.6493476+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority","Output":"=== RUN   TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority\n"}
+{"Time":"2026-09-28T20:47:58.6570995+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewAdditionalID3Variants","Output":"--- PASS: TestReviewAdditionalID3Variants (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.6570995+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewAdditionalID3Variants","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.6582285+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewUnsupportedDispatchAndFlags"}
+{"Time":"2026-09-28T20:47:58.6589637+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewUnsupportedDispatchAndFlags","Output":"=== RUN   TestReviewUnsupportedDispatchAndFlags\n"}
+{"Time":"2026-09-28T20:47:58.6620388+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewUnsupportedDispatchAndFlags","Output":"--- PASS: TestReviewUnsupportedDispatchAndFlags (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6620388+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewUnsupportedDispatchAndFlags","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6620388+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"TestReviewArtworkSizeLimits"}
+{"Time":"2026-09-28T20:47:58.6620388+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewArtworkSizeLimits","Output":"=== RUN   TestReviewArtworkSizeLimits\n"}
+{"Time":"2026-09-28T20:47:58.6638109+05:30","Action":"run","Package":"resonance/cmd/bench","Test":"TestPercentiles"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"output","Package":"resonance/cmd/bench","Test":"TestPercentiles","Output":"=== RUN   TestPercentiles\n"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"output","Package":"resonance/cmd/bench","Test":"TestPercentiles","Output":"--- PASS: TestPercentiles (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"pass","Package":"resonance/cmd/bench","Test":"TestPercentiles","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"run","Package":"resonance/cmd/bench","Test":"TestRejectIncorrectRangeEvidence"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"output","Package":"resonance/cmd/bench","Test":"TestRejectIncorrectRangeEvidence","Output":"=== RUN   TestRejectIncorrectRangeEvidence\n"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"output","Package":"resonance/cmd/bench","Test":"TestRejectIncorrectRangeEvidence","Output":"--- PASS: TestRejectIncorrectRangeEvidence (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"pass","Package":"resonance/cmd/bench","Test":"TestRejectIncorrectRangeEvidence","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6643871+05:30","Action":"output","Package":"resonance/cmd/bench","Output":"PASS\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"TestReviewArtworkSizeLimits","Output":"--- PASS: TestReviewArtworkSizeLimits (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"TestReviewArtworkSizeLimits","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope","Output":"=== RUN   FuzzMetadataEnvelope\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#0"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#0","Output":"=== RUN   FuzzMetadataEnvelope/seed#0\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#0","Output":"--- PASS: FuzzMetadataEnvelope/seed#0 (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#0","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"run","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#1"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#1","Output":"=== RUN   FuzzMetadataEnvelope/seed#1\n"}
+{"Time":"2026-09-28T20:47:58.6667058+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#1","Output":"--- PASS: FuzzMetadataEnvelope/seed#1 (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6677234+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope/seed#1","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6677234+05:30","Action":"output","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope","Output":"--- PASS: FuzzMetadataEnvelope (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6677234+05:30","Action":"pass","Package":"resonance/internal/metadata","Test":"FuzzMetadataEnvelope","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6677234+05:30","Action":"output","Package":"resonance/internal/metadata","Output":"PASS\n"}
+{"Time":"2026-09-28T20:47:58.6712888+05:30","Action":"output","Package":"resonance/cmd/bench","Output":"ok  \tresonance/cmd/bench\t0.088s\n"}
+{"Time":"2026-09-28T20:47:58.6712888+05:30","Action":"pass","Package":"resonance/cmd/bench","Elapsed":0.088}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"run","Package":"resonance","Test":"TestPublicCatalogStructsHaveNoHostPathFields"}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"output","Package":"resonance","Test":"TestPublicCatalogStructsHaveNoHostPathFields","Output":"=== RUN   TestPublicCatalogStructsHaveNoHostPathFields\n"}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"output","Package":"resonance","Test":"TestPublicCatalogStructsHaveNoHostPathFields","Output":"--- PASS: TestPublicCatalogStructsHaveNoHostPathFields (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"pass","Package":"resonance","Test":"TestPublicCatalogStructsHaveNoHostPathFields","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"run","Package":"resonance","Test":"TestVerifiedArtworkRejectsWrongHashAndMIME"}
+{"Time":"2026-09-28T20:47:58.6730493+05:30","Action":"output","Package":"resonance","Test":"TestVerifiedArtworkRejectsWrongHashAndMIME","Output":"=== RUN   TestVerifiedArtworkRejectsWrongHashAndMIME\n"}
+{"Time":"2026-09-28T20:47:58.6742582+05:30","Action":"output","Package":"resonance/internal/metadata","Output":"ok  \tresonance/internal/metadata\t0.090s\n"}
+{"Time":"2026-09-28T20:47:58.6742582+05:30","Action":"pass","Package":"resonance/internal/metadata","Elapsed":0.09}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestArtistFolderEvidenceRequiresMatchingCredit"}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestArtistFolderEvidenceRequiresMatchingCredit","Output":"=== RUN   TestArtistFolderEvidenceRequiresMatchingCredit\n"}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestArtistFolderEvidenceRequiresMatchingCredit","Output":"--- PASS: TestArtistFolderEvidenceRequiresMatchingCredit (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestArtistFolderEvidenceRequiresMatchingCredit","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestPathsOverlap"}
+{"Time":"2026-09-28T20:47:58.676665+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestPathsOverlap","Output":"=== RUN   TestPathsOverlap\n"}
+{"Time":"2026-09-28T20:47:58.6812665+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestPathsOverlap","Output":"--- PASS: TestPathsOverlap (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestPathsOverlap","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestLibraryRootJSONNeverContainsCanonicalPath"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestLibraryRootJSONNeverContainsCanonicalPath","Output":"=== RUN   TestLibraryRootJSONNeverContainsCanonicalPath\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestLibraryRootJSONNeverContainsCanonicalPath","Output":"--- PASS: TestLibraryRootJSONNeverContainsCanonicalPath (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestLibraryRootJSONNeverContainsCanonicalPath","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestTruncateTextPreservesUTF8"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestTruncateTextPreservesUTF8","Output":"=== RUN   TestTruncateTextPreservesUTF8\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestTruncateTextPreservesUTF8","Output":"--- PASS: TestTruncateTextPreservesUTF8 (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestTruncateTextPreservesUTF8","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestRootIDValidation"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestRootIDValidation","Output":"=== RUN   TestRootIDValidation\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestRootIDValidation","Output":"--- PASS: TestRootIDValidation (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestRootIDValidation","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestMigrationOrderingAndChecksums"}
+{"Time":"2026-09-28T20:47:58.6818319+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestMigrationOrderingAndChecksums","Output":"=== RUN   TestMigrationOrderingAndChecksums\n"}
+{"Time":"2026-09-28T20:47:58.682377+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestMigrationOrderingAndChecksums","Output":"--- PASS: TestMigrationOrderingAndChecksums (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.682377+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestMigrationOrderingAndChecksums","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.682377+05:30","Action":"output","Package":"resonance/internal/storage","Output":"PASS\n"}
+{"Time":"2026-09-28T20:47:58.685495+05:30","Action":"output","Package":"resonance","Test":"TestVerifiedArtworkRejectsWrongHashAndMIME","Output":"--- PASS: TestVerifiedArtworkRejectsWrongHashAndMIME (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.685495+05:30","Action":"pass","Package":"resonance","Test":"TestVerifiedArtworkRejectsWrongHashAndMIME","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.685495+05:30","Action":"run","Package":"resonance","Test":"TestStoredMediaPathValidation"}
+{"Time":"2026-09-28T20:47:58.685495+05:30","Action":"output","Package":"resonance","Test":"TestStoredMediaPathValidation","Output":"=== RUN   TestStoredMediaPathValidation\n"}
+{"Time":"2026-09-28T20:47:58.6860988+05:30","Action":"output","Package":"resonance","Test":"TestStoredMediaPathValidation","Output":"--- PASS: TestStoredMediaPathValidation (0.00s)\n"}
+{"Time":"2026-09-28T20:47:58.6860988+05:30","Action":"pass","Package":"resonance","Test":"TestStoredMediaPathValidation","Elapsed":0}
+{"Time":"2026-09-28T20:47:58.6860988+05:30","Action":"run","Package":"resonance","Test":"TestCatalogOpenRejectsLinksAndChangedNativeEvidence"}
+{"Time":"2026-09-28T20:47:58.6860988+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsLinksAndChangedNativeEvidence","Output":"=== RUN   TestCatalogOpenRejectsLinksAndChangedNativeEvidence\n"}
+{"Time":"2026-09-28T20:47:58.6878282+05:30","Action":"output","Package":"resonance/internal/storage","Output":"ok  \tresonance/internal/storage\t0.103s\n"}
+{"Time":"2026-09-28T20:47:58.6878282+05:30","Action":"pass","Package":"resonance/internal/storage","Elapsed":0.104}
+{"Time":"2026-09-28T20:47:58.6988439+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsLinksAndChangedNativeEvidence","Output":"--- PASS: TestCatalogOpenRejectsLinksAndChangedNativeEvidence (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.6988439+05:30","Action":"pass","Package":"resonance","Test":"TestCatalogOpenRejectsLinksAndChangedNativeEvidence","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.6988439+05:30","Action":"run","Package":"resonance","Test":"TestCatalogOpenRejectsPathReplacementAfterOpen"}
+{"Time":"2026-09-28T20:47:58.6988439+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsPathReplacementAfterOpen","Output":"=== RUN   TestCatalogOpenRejectsPathReplacementAfterOpen\n"}
+{"Time":"2026-09-28T20:47:58.7087325+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsPathReplacementAfterOpen","Output":"--- PASS: TestCatalogOpenRejectsPathReplacementAfterOpen (0.01s)\n"}
+{"Time":"2026-09-28T20:47:58.7087325+05:30","Action":"pass","Package":"resonance","Test":"TestCatalogOpenRejectsPathReplacementAfterOpen","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:58.7087325+05:30","Action":"run","Package":"resonance","Test":"TestCatalogOpenRejectsRedirectedEnrolledRoot"}
+{"Time":"2026-09-28T20:47:58.7087325+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsRedirectedEnrolledRoot","Output":"=== RUN   TestCatalogOpenRejectsRedirectedEnrolledRoot\n"}
+{"Time":"2026-09-28T20:47:59.0071385+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Test":"TestScaleCorpusDistinctTagsAndManifest","Output":"--- PASS: TestScaleCorpusDistinctTagsAndManifest (0.36s)\n"}
+{"Time":"2026-09-28T20:47:59.0071385+05:30","Action":"pass","Package":"resonance/internal/m17fixtures","Test":"TestScaleCorpusDistinctTagsAndManifest","Elapsed":0.36}
+{"Time":"2026-09-28T20:47:59.0071385+05:30","Action":"run","Package":"resonance/internal/m17fixtures","Test":"TestJourneyCorpusKeepsScaleSeparateFromLongPlayback"}
+{"Time":"2026-09-28T20:47:59.0071385+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Test":"TestJourneyCorpusKeepsScaleSeparateFromLongPlayback","Output":"=== RUN   TestJourneyCorpusKeepsScaleSeparateFromLongPlayback\n"}
+{"Time":"2026-09-28T20:47:59.0596665+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority","Output":"--- PASS: TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority (0.41s)\n"}
+{"Time":"2026-09-28T20:47:59.0602304+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority","Elapsed":0.41}
+{"Time":"2026-09-28T20:47:59.0602304+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher"}
+{"Time":"2026-09-28T20:47:59.0602304+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher","Output":"=== RUN   TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher\n"}
+{"Time":"2026-09-28T20:47:59.1805649+05:30","Action":"output","Package":"resonance","Test":"TestCatalogOpenRejectsRedirectedEnrolledRoot","Output":"--- PASS: TestCatalogOpenRejectsRedirectedEnrolledRoot (0.47s)\n"}
+{"Time":"2026-09-28T20:47:59.1805649+05:30","Action":"pass","Package":"resonance","Test":"TestCatalogOpenRejectsRedirectedEnrolledRoot","Elapsed":0.47}
+{"Time":"2026-09-28T20:47:59.1805649+05:30","Action":"run","Package":"resonance","Test":"TestM16DiagnosticsRemainSeparateFromReadiness"}
+{"Time":"2026-09-28T20:47:59.1805649+05:30","Action":"output","Package":"resonance","Test":"TestM16DiagnosticsRemainSeparateFromReadiness","Output":"=== RUN   TestM16DiagnosticsRemainSeparateFromReadiness\n"}
+{"Time":"2026-09-28T20:47:59.1875608+05:30","Action":"output","Package":"resonance","Test":"TestM16DiagnosticsRemainSeparateFromReadiness","Output":"--- PASS: TestM16DiagnosticsRemainSeparateFromReadiness (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.1875608+05:30","Action":"pass","Package":"resonance","Test":"TestM16DiagnosticsRemainSeparateFromReadiness","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.1875608+05:30","Action":"run","Package":"resonance","Test":"TestSharedMediaPreHeaderFailureKeepsErrorResponse"}
+{"Time":"2026-09-28T20:47:59.1875608+05:30","Action":"output","Package":"resonance","Test":"TestSharedMediaPreHeaderFailureKeepsErrorResponse","Output":"=== RUN   TestSharedMediaPreHeaderFailureKeepsErrorResponse\n"}
+{"Time":"2026-09-28T20:47:59.1906449+05:30","Action":"output","Package":"resonance","Test":"TestSharedMediaPreHeaderFailureKeepsErrorResponse","Output":"--- PASS: TestSharedMediaPreHeaderFailureKeepsErrorResponse (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.1906449+05:30","Action":"pass","Package":"resonance","Test":"TestSharedMediaPreHeaderFailureKeepsErrorResponse","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.1906449+05:30","Action":"run","Package":"resonance","Test":"TestReadinessSeparateFromLiveness"}
+{"Time":"2026-09-28T20:47:59.1906449+05:30","Action":"output","Package":"resonance","Test":"TestReadinessSeparateFromLiveness","Output":"=== RUN   TestReadinessSeparateFromLiveness\n"}
+{"Time":"2026-09-28T20:47:59.1917537+05:30","Action":"output","Package":"resonance","Test":"TestReadinessSeparateFromLiveness","Output":"--- PASS: TestReadinessSeparateFromLiveness (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.1917537+05:30","Action":"pass","Package":"resonance","Test":"TestReadinessSeparateFromLiveness","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.1917537+05:30","Action":"run","Package":"resonance","Test":"TestDatabaseFailureDoesNotGateDemo"}
+{"Time":"2026-09-28T20:47:59.1917537+05:30","Action":"output","Package":"resonance","Test":"TestDatabaseFailureDoesNotGateDemo","Output":"=== RUN   TestDatabaseFailureDoesNotGateDemo\n"}
+{"Time":"2026-09-28T20:47:59.195651+05:30","Action":"output","Package":"resonance","Test":"TestDatabaseFailureDoesNotGateDemo","Output":"--- PASS: TestDatabaseFailureDoesNotGateDemo (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.195651+05:30","Action":"pass","Package":"resonance","Test":"TestDatabaseFailureDoesNotGateDemo","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.195651+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics"}
+{"Time":"2026-09-28T20:47:59.195651+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics","Output":"=== RUN   TestReviewHTTPRangeSemantics\n"}
+{"Time":"2026-09-28T20:47:59.1973351+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_Range"}
+{"Time":"2026-09-28T20:47:59.1973351+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_Range","Output":"=== RUN   TestReviewHTTPRangeSemantics/HEAD_ignores_Range\n"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_Range","Output":"--- PASS: TestReviewHTTPRangeSemantics/HEAD_ignores_Range (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_Range","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range","Output":"=== RUN   TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range\n"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range","Output":"--- PASS: TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/HEAD_ignores_invalid_Range","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unmatched_If-Range"}
+{"Time":"2026-09-28T20:47:59.1984216+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unmatched_If-Range","Output":"=== RUN   TestReviewHTTPRangeSemantics/unmatched_If-Range\n"}
+{"Time":"2026-09-28T20:47:59.1996783+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unmatched_If-Range","Output":"--- PASS: TestReviewHTTPRangeSemantics/unmatched_If-Range (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.1996783+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unmatched_If-Range","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.1996783+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unknown_unit"}
+{"Time":"2026-09-28T20:47:59.1996783+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unknown_unit","Output":"=== RUN   TestReviewHTTPRangeSemantics/unknown_unit\n"}
+{"Time":"2026-09-28T20:47:59.201372+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unknown_unit","Output":"--- PASS: TestReviewHTTPRangeSemantics/unknown_unit (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.201372+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/unknown_unit","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.201372+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/multiple_ranges"}
+{"Time":"2026-09-28T20:47:59.201372+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/multiple_ranges","Output":"=== RUN   TestReviewHTTPRangeSemantics/multiple_ranges\n"}
+{"Time":"2026-09-28T20:47:59.2019457+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/multiple_ranges","Output":"--- PASS: TestReviewHTTPRangeSemantics/multiple_ranges (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.2019457+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/multiple_ranges","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.2019457+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_end"}
+{"Time":"2026-09-28T20:47:59.2019457+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_end","Output":"=== RUN   TestReviewHTTPRangeSemantics/large_end\n"}
+{"Time":"2026-09-28T20:47:59.2030903+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_end","Output":"--- PASS: TestReviewHTTPRangeSemantics/large_end (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.2030903+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_end","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.2030903+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_suffix"}
+{"Time":"2026-09-28T20:47:59.2030903+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_suffix","Output":"=== RUN   TestReviewHTTPRangeSemantics/large_suffix\n"}
+{"Time":"2026-09-28T20:47:59.2036448+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_suffix","Output":"--- PASS: TestReviewHTTPRangeSemantics/large_suffix (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.2036448+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_suffix","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.2036448+05:30","Action":"run","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_start"}
+{"Time":"2026-09-28T20:47:59.2036448+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_start","Output":"=== RUN   TestReviewHTTPRangeSemantics/large_start\n"}
+{"Time":"2026-09-28T20:47:59.2041812+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_start","Output":"--- PASS: TestReviewHTTPRangeSemantics/large_start (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.204766+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics/large_start","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.2064253+05:30","Action":"output","Package":"resonance","Test":"TestReviewHTTPRangeSemantics","Output":"--- PASS: TestReviewHTTPRangeSemantics (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.2064253+05:30","Action":"pass","Package":"resonance","Test":"TestReviewHTTPRangeSemantics","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.2064253+05:30","Action":"run","Package":"resonance","Test":"TestReviewAllRequestsHaveIDs"}
+{"Time":"2026-09-28T20:47:59.2064253+05:30","Action":"output","Package":"resonance","Test":"TestReviewAllRequestsHaveIDs","Output":"=== RUN   TestReviewAllRequestsHaveIDs\n"}
+{"Time":"2026-09-28T20:47:59.3328969+05:30","Action":"output","Package":"resonance","Test":"TestReviewAllRequestsHaveIDs","Output":"--- PASS: TestReviewAllRequestsHaveIDs (0.12s)\n"}
+{"Time":"2026-09-28T20:47:59.3328969+05:30","Action":"pass","Package":"resonance","Test":"TestReviewAllRequestsHaveIDs","Elapsed":0.12}
+{"Time":"2026-09-28T20:47:59.3328969+05:30","Action":"run","Package":"resonance","Test":"TestReviewAlreadyCanceledDoesNotStream"}
+{"Time":"2026-09-28T20:47:59.3328969+05:30","Action":"output","Package":"resonance","Test":"TestReviewAlreadyCanceledDoesNotStream","Output":"=== RUN   TestReviewAlreadyCanceledDoesNotStream\n"}
+{"Time":"2026-09-28T20:47:59.3394634+05:30","Action":"output","Package":"resonance","Test":"TestReviewAlreadyCanceledDoesNotStream","Output":"--- PASS: TestReviewAlreadyCanceledDoesNotStream (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.3394634+05:30","Action":"pass","Package":"resonance","Test":"TestReviewAlreadyCanceledDoesNotStream","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.3394634+05:30","Action":"run","Package":"resonance","Test":"TestReviewRealDisconnect"}
+{"Time":"2026-09-28T20:47:59.3394634+05:30","Action":"output","Package":"resonance","Test":"TestReviewRealDisconnect","Output":"=== RUN   TestReviewRealDisconnect\n"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher","Output":"--- PASS: TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher (0.31s)\n"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorOverflowRequestsSweepAndRecreatesWatcher","Elapsed":0.31}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorStatusContainsNoFilesystemPaths"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorStatusContainsNoFilesystemPaths","Output":"=== RUN   TestCoordinatorStatusContainsNoFilesystemPaths\n"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorStatusContainsNoFilesystemPaths","Output":"--- PASS: TestCoordinatorStatusContainsNoFilesystemPaths (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorStatusContainsNoFilesystemPaths","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorWatcherStartupFailureStillScansAndRecovers"}
+{"Time":"2026-09-28T20:47:59.3712141+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorWatcherStartupFailureStillScansAndRecovers","Output":"=== RUN   TestCoordinatorWatcherStartupFailureStillScansAndRecovers\n"}
+{"Time":"2026-09-28T20:47:59.3897773+05:30","Action":"output","Package":"resonance","Test":"TestReviewRealDisconnect","Output":"--- PASS: TestReviewRealDisconnect (0.04s)\n"}
+{"Time":"2026-09-28T20:47:59.3942571+05:30","Action":"pass","Package":"resonance","Test":"TestReviewRealDisconnect","Elapsed":0.04}
+{"Time":"2026-09-28T20:47:59.3942571+05:30","Action":"run","Package":"resonance","Test":"TestReviewErrorRepresentation"}
+{"Time":"2026-09-28T20:47:59.3942571+05:30","Action":"output","Package":"resonance","Test":"TestReviewErrorRepresentation","Output":"=== RUN   TestReviewErrorRepresentation\n"}
+{"Time":"2026-09-28T20:47:59.3942571+05:30","Action":"output","Package":"resonance","Test":"TestReviewErrorRepresentation","Output":"--- PASS: TestReviewErrorRepresentation (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.3942571+05:30","Action":"pass","Package":"resonance","Test":"TestReviewErrorRepresentation","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.3949319+05:30","Action":"run","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape"}
+{"Time":"2026-09-28T20:47:59.3949319+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"=== RUN   TestReviewMediaSymlinkCannotEscape\n"}
+{"Time":"2026-09-28T20:47:59.3954515+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"    review_test.go:150: symlink creation unavailable: symlink <local-path>"}
+{"Time":"2026-09-28T20:47:59.4011552+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"--- SKIP: TestReviewMediaSymlinkCannotEscape (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.4011552+05:30","Action":"skip","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.4011552+05:30","Action":"run","Package":"resonance","Test":"TestReviewStaticAssetsAreEmbedded"}
+{"Time":"2026-09-28T20:47:59.4011552+05:30","Action":"output","Package":"resonance","Test":"TestReviewStaticAssetsAreEmbedded","Output":"=== RUN   TestReviewStaticAssetsAreEmbedded\n"}
+{"Time":"2026-09-28T20:47:59.4141427+05:30","Action":"output","Package":"resonance","Test":"TestReviewStaticAssetsAreEmbedded","Output":"--- PASS: TestReviewStaticAssetsAreEmbedded (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.4141427+05:30","Action":"pass","Package":"resonance","Test":"TestReviewStaticAssetsAreEmbedded","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"run","Package":"resonance","Test":"TestReviewCopyStopsOnReadFailure"}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"output","Package":"resonance","Test":"TestReviewCopyStopsOnReadFailure","Output":"=== RUN   TestReviewCopyStopsOnReadFailure\n"}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"output","Package":"resonance","Test":"TestReviewCopyStopsOnReadFailure","Output":"--- PASS: TestReviewCopyStopsOnReadFailure (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"pass","Package":"resonance","Test":"TestReviewCopyStopsOnReadFailure","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"run","Package":"resonance","Test":"TestReviewTelemetrySeparatesRequestedAndSelected"}
+{"Time":"2026-09-28T20:47:59.4147988+05:30","Action":"output","Package":"resonance","Test":"TestReviewTelemetrySeparatesRequestedAndSelected","Output":"=== RUN   TestReviewTelemetrySeparatesRequestedAndSelected\n"}
+{"Time":"2026-09-28T20:47:59.4295286+05:30","Action":"output","Package":"resonance","Test":"TestReviewTelemetrySeparatesRequestedAndSelected","Output":"--- PASS: TestReviewTelemetrySeparatesRequestedAndSelected (0.02s)\n"}
+{"Time":"2026-09-28T20:47:59.4302505+05:30","Action":"pass","Package":"resonance","Test":"TestReviewTelemetrySeparatesRequestedAndSelected","Elapsed":0.02}
+{"Time":"2026-09-28T20:47:59.4302505+05:30","Action":"run","Package":"resonance","Test":"TestReviewTruncationAbortsAndLogsIncomplete"}
+{"Time":"2026-09-28T20:47:59.4302505+05:30","Action":"output","Package":"resonance","Test":"TestReviewTruncationAbortsAndLogsIncomplete","Output":"=== RUN   TestReviewTruncationAbortsAndLogsIncomplete\n"}
+{"Time":"2026-09-28T20:47:59.4472993+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Test":"TestJourneyCorpusKeepsScaleSeparateFromLongPlayback","Output":"--- PASS: TestJourneyCorpusKeepsScaleSeparateFromLongPlayback (0.44s)\n"}
+{"Time":"2026-09-28T20:47:59.4472993+05:30","Action":"pass","Package":"resonance/internal/m17fixtures","Test":"TestJourneyCorpusKeepsScaleSeparateFromLongPlayback","Elapsed":0.44}
+{"Time":"2026-09-28T20:47:59.4472993+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Output":"PASS\n"}
+{"Time":"2026-09-28T20:47:59.448653+05:30","Action":"output","Package":"resonance","Test":"TestReviewTruncationAbortsAndLogsIncomplete","Output":"--- PASS: TestReviewTruncationAbortsAndLogsIncomplete (0.02s)\n"}
+{"Time":"2026-09-28T20:47:59.448653+05:30","Action":"pass","Package":"resonance","Test":"TestReviewTruncationAbortsAndLogsIncomplete","Elapsed":0.02}
+{"Time":"2026-09-28T20:47:59.448653+05:30","Action":"run","Package":"resonance","Test":"TestReviewWindowsStyleClientPaths"}
+{"Time":"2026-09-28T20:47:59.448653+05:30","Action":"output","Package":"resonance","Test":"TestReviewWindowsStyleClientPaths","Output":"=== RUN   TestReviewWindowsStyleClientPaths\n"}
+{"Time":"2026-09-28T20:47:59.4577783+05:30","Action":"output","Package":"resonance","Test":"TestReviewWindowsStyleClientPaths","Output":"--- PASS: TestReviewWindowsStyleClientPaths (0.01s)\n"}
+{"Time":"2026-09-28T20:47:59.4577783+05:30","Action":"pass","Package":"resonance","Test":"TestReviewWindowsStyleClientPaths","Elapsed":0.01}
+{"Time":"2026-09-28T20:47:59.4577783+05:30","Action":"run","Package":"resonance","Test":"TestWindowsJunctionContainment"}
+{"Time":"2026-09-28T20:47:59.4577783+05:30","Action":"output","Package":"resonance","Test":"TestWindowsJunctionContainment","Output":"=== RUN   TestWindowsJunctionContainment\n"}
+{"Time":"2026-09-28T20:47:59.4639749+05:30","Action":"output","Package":"resonance/internal/m17fixtures","Output":"ok  \tresonance/internal/m17fixtures\t0.880s\n"}
+{"Time":"2026-09-28T20:47:59.4639749+05:30","Action":"pass","Package":"resonance/internal/m17fixtures","Elapsed":0.88}
+{"Time":"2026-09-28T20:47:59.4956611+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorWatcherStartupFailureStillScansAndRecovers","Output":"--- PASS: TestCoordinatorWatcherStartupFailureStillScansAndRecovers (0.12s)\n"}
+{"Time":"2026-09-28T20:47:59.4956611+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorWatcherStartupFailureStillScansAndRecovers","Elapsed":0.12}
+{"Time":"2026-09-28T20:47:59.4956611+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning"}
+{"Time":"2026-09-28T20:47:59.4956611+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning","Output":"=== RUN   TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning\n"}
+{"Time":"2026-09-28T20:47:59.6039679+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning","Output":"--- PASS: TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning (0.11s)\n"}
+{"Time":"2026-09-28T20:47:59.6050012+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorPermissionDeniedWatchDegradesCoverageButKeepsScanning","Elapsed":0.11}
+{"Time":"2026-09-28T20:47:59.6050012+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair"}
+{"Time":"2026-09-28T20:47:59.6050012+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair","Output":"=== RUN   TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair\n"}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair","Output":"--- PASS: TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorWatchStatusRecoversAfterLossAndCoverageRepair","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorEpochRetainsEventsAcrossPublication"}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorEpochRetainsEventsAcrossPublication","Output":"=== RUN   TestCoordinatorEpochRetainsEventsAcrossPublication\n"}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorEpochRetainsEventsAcrossPublication","Output":"--- PASS: TestCoordinatorEpochRetainsEventsAcrossPublication (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorEpochRetainsEventsAcrossPublication","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.663979+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState","Output":"=== RUN   TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState\n"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState","Output":"--- PASS: TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorRemovedOrDisabledRootDoesNotMisreportWatchState","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches","Output":"=== RUN   TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches\n"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches","Output":"--- PASS: TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches (0.00s)\n"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorScanResultImmediatelyDropsOfflineAndDisabledWatches","Elapsed":0}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorHardCapsExposeDegradationAndGlobalSweep"}
+{"Time":"2026-09-28T20:47:59.6645969+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorHardCapsExposeDegradationAndGlobalSweep","Output":"=== RUN   TestCoordinatorHardCapsExposeDegradationAndGlobalSweep\n"}
+{"Time":"2026-09-28T20:47:59.7234038+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorHardCapsExposeDegradationAndGlobalSweep","Output":"--- PASS: TestCoordinatorHardCapsExposeDegradationAndGlobalSweep (0.11s)\n"}
+{"Time":"2026-09-28T20:47:59.724425+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorHardCapsExposeDegradationAndGlobalSweep","Elapsed":0.11}
+{"Time":"2026-09-28T20:47:59.724425+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher"}
+{"Time":"2026-09-28T20:47:59.724425+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher","Output":"=== RUN   TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher\n"}
+{"Time":"2026-09-28T20:47:59.8267674+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher","Output":"--- PASS: TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher (0.11s)\n"}
+{"Time":"2026-09-28T20:47:59.8282705+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorShutdownCancelsActiveScanAndClosesWatcher","Elapsed":0.11}
+{"Time":"2026-09-28T20:47:59.8282705+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorManualScanLeaseContentionRetries"}
+{"Time":"2026-09-28T20:47:59.8282705+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorManualScanLeaseContentionRetries","Output":"=== RUN   TestCoordinatorManualScanLeaseContentionRetries\n"}
+{"Time":"2026-09-28T20:48:00.0601752+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorManualScanLeaseContentionRetries","Output":"--- PASS: TestCoordinatorManualScanLeaseContentionRetries (0.23s)\n"}
+{"Time":"2026-09-28T20:48:00.062714+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorManualScanLeaseContentionRetries","Elapsed":0.23}
+{"Time":"2026-09-28T20:48:00.062714+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent"}
+{"Time":"2026-09-28T20:48:00.062714+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent","Output":"=== RUN   TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent\n"}
+{"Time":"2026-09-28T20:48:00.2607314+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent","Output":"--- PASS: TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent (0.20s)\n"}
+{"Time":"2026-09-28T20:48:00.2614618+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorPeriodicSweepRunsWithoutAnyWatcherEvent","Elapsed":0.2}
+{"Time":"2026-09-28T20:48:00.2614618+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorRootOfflineThenMatchingReturnRetries"}
+{"Time":"2026-09-28T20:48:00.2614618+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRootOfflineThenMatchingReturnRetries","Output":"=== RUN   TestCoordinatorRootOfflineThenMatchingReturnRetries\n"}
+{"Time":"2026-09-28T20:48:00.301572+05:30","Action":"output","Package":"resonance","Test":"TestWindowsJunctionContainment","Output":"--- PASS: TestWindowsJunctionContainment (0.84s)\n"}
+{"Time":"2026-09-28T20:48:00.301572+05:30","Action":"pass","Package":"resonance","Test":"TestWindowsJunctionContainment","Elapsed":0.84}
+{"Time":"2026-09-28T20:48:00.301572+05:30","Action":"run","Package":"resonance","Test":"TestHealthAndMetadata"}
+{"Time":"2026-09-28T20:48:00.301572+05:30","Action":"output","Package":"resonance","Test":"TestHealthAndMetadata","Output":"=== RUN   TestHealthAndMetadata\n"}
+{"Time":"2026-09-28T20:48:00.3031755+05:30","Action":"output","Package":"resonance","Test":"TestHealthAndMetadata","Output":"--- PASS: TestHealthAndMetadata (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3031755+05:30","Action":"pass","Package":"resonance","Test":"TestHealthAndMetadata","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3031755+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges"}
+{"Time":"2026-09-28T20:48:00.3031755+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges","Output":"=== RUN   TestMediaRanges\n"}
+{"Time":"2026-09-28T20:48:00.3042319+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/full"}
+{"Time":"2026-09-28T20:48:00.3042319+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/full","Output":"=== RUN   TestMediaRanges/full\n"}
+{"Time":"2026-09-28T20:48:00.3047793+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/full","Output":"--- PASS: TestMediaRanges/full (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3047793+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/full","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3047793+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/bounded"}
+{"Time":"2026-09-28T20:48:00.3047793+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/bounded","Output":"=== RUN   TestMediaRanges/bounded\n"}
+{"Time":"2026-09-28T20:48:00.3053062+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/bounded","Output":"--- PASS: TestMediaRanges/bounded (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3053062+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/bounded","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3053062+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/open"}
+{"Time":"2026-09-28T20:48:00.3053062+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/open","Output":"=== RUN   TestMediaRanges/open\n"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/open","Output":"--- PASS: TestMediaRanges/open (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/open","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/suffix"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/suffix","Output":"=== RUN   TestMediaRanges/suffix\n"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/suffix","Output":"--- PASS: TestMediaRanges/suffix (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/suffix","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/clamped"}
+{"Time":"2026-09-28T20:48:00.3058533+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/clamped","Output":"=== RUN   TestMediaRanges/clamped\n"}
+{"Time":"2026-09-28T20:48:00.3064071+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/clamped","Output":"--- PASS: TestMediaRanges/clamped (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3064071+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/clamped","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3064071+05:30","Action":"run","Package":"resonance","Test":"TestMediaRanges/tiny"}
+{"Time":"2026-09-28T20:48:00.3064071+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/tiny","Output":"=== RUN   TestMediaRanges/tiny\n"}
+{"Time":"2026-09-28T20:48:00.3069602+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges/tiny","Output":"--- PASS: TestMediaRanges/tiny (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3069602+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges/tiny","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3086355+05:30","Action":"output","Package":"resonance","Test":"TestMediaRanges","Output":"--- PASS: TestMediaRanges (0.01s)\n"}
+{"Time":"2026-09-28T20:48:00.3086355+05:30","Action":"pass","Package":"resonance","Test":"TestMediaRanges","Elapsed":0.01}
+{"Time":"2026-09-28T20:48:00.3086355+05:30","Action":"run","Package":"resonance","Test":"TestMediaHead"}
+{"Time":"2026-09-28T20:48:00.3086355+05:30","Action":"output","Package":"resonance","Test":"TestMediaHead","Output":"=== RUN   TestMediaHead\n"}
+{"Time":"2026-09-28T20:48:00.310771+05:30","Action":"output","Package":"resonance","Test":"TestMediaHead","Output":"--- PASS: TestMediaHead (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.310771+05:30","Action":"pass","Package":"resonance","Test":"TestMediaHead","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.310771+05:30","Action":"run","Package":"resonance","Test":"TestInvalidRangesAndUnknownID"}
+{"Time":"2026-09-28T20:48:00.310771+05:30","Action":"output","Package":"resonance","Test":"TestInvalidRangesAndUnknownID","Output":"=== RUN   TestInvalidRangesAndUnknownID\n"}
+{"Time":"2026-09-28T20:48:00.3147091+05:30","Action":"output","Package":"resonance","Test":"TestInvalidRangesAndUnknownID","Output":"--- PASS: TestInvalidRangesAndUnknownID (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3147091+05:30","Action":"pass","Package":"resonance","Test":"TestInvalidRangesAndUnknownID","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3147091+05:30","Action":"run","Package":"resonance","Test":"TestEmptyMissingAndTruncated"}
+{"Time":"2026-09-28T20:48:00.3147091+05:30","Action":"output","Package":"resonance","Test":"TestEmptyMissingAndTruncated","Output":"=== RUN   TestEmptyMissingAndTruncated\n"}
+{"Time":"2026-09-28T20:48:00.3183612+05:30","Action":"output","Package":"resonance","Test":"TestEmptyMissingAndTruncated","Output":"--- PASS: TestEmptyMissingAndTruncated (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3183612+05:30","Action":"pass","Package":"resonance","Test":"TestEmptyMissingAndTruncated","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3183612+05:30","Action":"run","Package":"resonance","Test":"TestCancellationTelemetry"}
+{"Time":"2026-09-28T20:48:00.3183612+05:30","Action":"output","Package":"resonance","Test":"TestCancellationTelemetry","Output":"=== RUN   TestCancellationTelemetry\n"}
+{"Time":"2026-09-28T20:48:00.3221783+05:30","Action":"output","Package":"resonance","Test":"TestCancellationTelemetry","Output":"--- PASS: TestCancellationTelemetry (0.00s)\n"}
+{"Time":"2026-09-28T20:48:00.3221783+05:30","Action":"pass","Package":"resonance","Test":"TestCancellationTelemetry","Elapsed":0}
+{"Time":"2026-09-28T20:48:00.3221783+05:30","Action":"output","Package":"resonance","Output":"PASS\n"}
+{"Time":"2026-09-28T20:48:00.327802+05:30","Action":"output","Package":"resonance","Output":"ok  \tresonance\t1.744s\n"}
+{"Time":"2026-09-28T20:48:00.327802+05:30","Action":"pass","Package":"resonance","Elapsed":1.745}
+{"Time":"2026-09-28T20:48:01.6659807+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRootOfflineThenMatchingReturnRetries","Output":"--- PASS: TestCoordinatorRootOfflineThenMatchingReturnRetries (1.40s)\n"}
+{"Time":"2026-09-28T20:48:01.6659807+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorRootOfflineThenMatchingReturnRetries","Elapsed":1.4}
+{"Time":"2026-09-28T20:48:01.6659807+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorConfigurationDisableCancelsActiveScan"}
+{"Time":"2026-09-28T20:48:01.6659807+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorConfigurationDisableCancelsActiveScan","Output":"=== RUN   TestCoordinatorConfigurationDisableCancelsActiveScan\n"}
+{"Time":"2026-09-28T20:48:01.8714292+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorConfigurationDisableCancelsActiveScan","Output":"--- PASS: TestCoordinatorConfigurationDisableCancelsActiveScan (0.21s)\n"}
+{"Time":"2026-09-28T20:48:01.8719698+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorConfigurationDisableCancelsActiveScan","Elapsed":0.21}
+{"Time":"2026-09-28T20:48:01.8719698+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorRetriesFailedScanAndRecovers"}
+{"Time":"2026-09-28T20:48:01.8719698+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRetriesFailedScanAndRecovers","Output":"=== RUN   TestCoordinatorRetriesFailedScanAndRecovers\n"}
+{"Time":"2026-09-28T20:48:02.5763834+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRetriesFailedScanAndRecovers","Output":"--- PASS: TestCoordinatorRetriesFailedScanAndRecovers (0.70s)\n"}
+{"Time":"2026-09-28T20:48:02.5763834+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorRetriesFailedScanAndRecovers","Elapsed":0.7}
+{"Time":"2026-09-28T20:48:02.5769284+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorDirtyCapacityUsesPagedFairSweep"}
+{"Time":"2026-09-28T20:48:02.5769284+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorDirtyCapacityUsesPagedFairSweep","Output":"=== RUN   TestCoordinatorDirtyCapacityUsesPagedFairSweep\n"}
+{"Time":"2026-09-28T20:48:03.2831223+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorDirtyCapacityUsesPagedFairSweep","Output":"--- PASS: TestCoordinatorDirtyCapacityUsesPagedFairSweep (0.71s)\n"}
+{"Time":"2026-09-28T20:48:03.2831223+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorDirtyCapacityUsesPagedFairSweep","Elapsed":0.71}
+{"Time":"2026-09-28T20:48:03.2831223+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCoordinatorRefreshDisablesAndRemovesRootWatches"}
+{"Time":"2026-09-28T20:48:03.2831223+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRefreshDisablesAndRemovesRootWatches","Output":"=== RUN   TestCoordinatorRefreshDisablesAndRemovesRootWatches\n"}
+{"Time":"2026-09-28T20:48:03.2842383+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCoordinatorRefreshDisablesAndRemovesRootWatches","Output":"--- PASS: TestCoordinatorRefreshDisablesAndRemovesRootWatches (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.2842383+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCoordinatorRefreshDisablesAndRemovesRootWatches","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.2842383+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestWindowsNativeIdentityComesFromStableOpenHandleEvidence"}
+{"Time":"2026-09-28T20:48:03.2842383+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsNativeIdentityComesFromStableOpenHandleEvidence","Output":"=== RUN   TestWindowsNativeIdentityComesFromStableOpenHandleEvidence\n"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsNativeIdentityComesFromStableOpenHandleEvidence","Output":"--- PASS: TestWindowsNativeIdentityComesFromStableOpenHandleEvidence (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestWindowsNativeIdentityComesFromStableOpenHandleEvidence","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestRootIdentityRequiresNonzeroBirthEvidence"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestRootIdentityRequiresNonzeroBirthEvidence","Output":"=== RUN   TestRootIdentityRequiresNonzeroBirthEvidence\n"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestRootIdentityRequiresNonzeroBirthEvidence","Output":"--- PASS: TestRootIdentityRequiresNonzeroBirthEvidence (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestRootIdentityRequiresNonzeroBirthEvidence","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases"}
+{"Time":"2026-09-28T20:48:03.2859385+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases","Output":"=== RUN   TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases\n"}
+{"Time":"2026-09-28T20:48:03.6351248+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases","Output":"--- PASS: TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases (0.35s)\n"}
+{"Time":"2026-09-28T20:48:03.6351248+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases","Elapsed":0.35}
+{"Time":"2026-09-28T20:48:03.6351248+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths"}
+{"Time":"2026-09-28T20:48:03.6351248+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths","Output":"=== RUN   TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths\n"}
+{"Time":"2026-09-28T20:48:03.6366738+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths","Output":"--- PASS: TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6366738+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestWindowsEnrollmentRejectsDeviceAndAlternateStreamPaths","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6366738+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames"}
+{"Time":"2026-09-28T20:48:03.6366738+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames","Output":"=== RUN   TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames\n"}
+{"Time":"2026-09-28T20:48:03.6372201+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames","Output":"--- PASS: TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6372201+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestWindowsRootRejectsTraversalAbsoluteAndDeviceNames","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6372201+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM16RealWindowsDirectoryWatcher"}
+{"Time":"2026-09-28T20:48:03.6372201+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM16RealWindowsDirectoryWatcher","Output":"=== RUN   TestM16RealWindowsDirectoryWatcher\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM16RealWindowsDirectoryWatcher","Output":"--- PASS: TestM16RealWindowsDirectoryWatcher (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM16RealWindowsDirectoryWatcher","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestDatabaseFailurePreservesCancellation"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestDatabaseFailurePreservesCancellation","Output":"=== RUN   TestDatabaseFailurePreservesCancellation\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestDatabaseFailurePreservesCancellation","Output":"--- PASS: TestDatabaseFailurePreservesCancellation (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestDatabaseFailurePreservesCancellation","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestTraversalEntryLimitIncludesNonFiles"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestTraversalEntryLimitIncludesNonFiles","Output":"=== RUN   TestTraversalEntryLimitIncludesNonFiles\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestTraversalEntryLimitIncludesNonFiles","Output":"--- PASS: TestTraversalEntryLimitIncludesNonFiles (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestTraversalEntryLimitIncludesNonFiles","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestPCMEnvelope"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestPCMEnvelope","Output":"=== RUN   TestPCMEnvelope\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestPCMEnvelope","Output":"--- PASS: TestPCMEnvelope (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestPCMEnvelope","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestCanonicalizeRoot"}
+{"Time":"2026-09-28T20:48:03.6399276+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCanonicalizeRoot","Output":"=== RUN   TestCanonicalizeRoot\n"}
+{"Time":"2026-09-28T20:48:03.6447888+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestCanonicalizeRoot","Output":"--- PASS: TestCanonicalizeRoot (0.00s)\n"}
+{"Time":"2026-09-28T20:48:03.6447888+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestCanonicalizeRoot","Elapsed":0}
+{"Time":"2026-09-28T20:48:03.6447888+05:30","Action":"output","Package":"resonance/internal/library","Output":"PASS\n"}
+{"Time":"2026-09-28T20:48:03.6490392+05:30","Action":"output","Package":"resonance/internal/library","Output":"ok  \tresonance/internal/library\t5.065s\n"}
+{"Time":"2026-09-28T20:48:03.6490392+05:30","Action":"pass","Package":"resonance/internal/library","Elapsed":5.066}

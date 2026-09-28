@@ -1,0 +1,25 @@
+{"Time":"2026-09-28T19:58:39.45664+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T19:58:39.5191921+05:30","Action":"run","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse"}
+{"Time":"2026-09-28T19:58:39.5191921+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"=== RUN   TestM17NormalShutdownStreamPersistenceAndLostResponse\n"}
+{"Time":"2026-09-28T19:59:02.4828619+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"    m17_process_windows_integration_test.go:58: production server did not shut down\n"}
+{"Time":"2026-09-28T19:59:02.5968104+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"--- FAIL: TestM17NormalShutdownStreamPersistenceAndLostResponse (23.08s)\n"}
+{"Time":"2026-09-28T19:59:02.5968104+05:30","Action":"fail","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Elapsed":23.08}
+{"Time":"2026-09-28T19:59:02.5968104+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection"}
+{"Time":"2026-09-28T19:59:02.5968104+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"=== RUN   TestM17ConfiguredStartupRejection\n"}
+{"Time":"2026-09-28T19:59:03.166695+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable"}
+{"Time":"2026-09-28T19:59:03.166695+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"=== RUN   TestM17ConfiguredStartupRejection/unreachable\n"}
+{"Time":"2026-09-28T19:59:03.5482052+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"--- PASS: TestM17ConfiguredStartupRejection/unreachable (0.38s)\n"}
+{"Time":"2026-09-28T19:59:03.5482052+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Elapsed":0.38}
+{"Time":"2026-09-28T19:59:03.5482052+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged"}
+{"Time":"2026-09-28T19:59:03.5482052+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"=== RUN   TestM17ConfiguredStartupRejection/damaged\n"}
+{"Time":"2026-09-28T19:59:04.1566785+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"--- PASS: TestM17ConfiguredStartupRejection/damaged (0.61s)\n"}
+{"Time":"2026-09-28T19:59:04.1566785+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Elapsed":0.61}
+{"Time":"2026-09-28T19:59:04.1566785+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending"}
+{"Time":"2026-09-28T19:59:04.1566785+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"=== RUN   TestM17ConfiguredStartupRejection/pending\n"}
+{"Time":"2026-09-28T19:59:04.5525088+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"--- PASS: TestM17ConfiguredStartupRejection/pending (0.40s)\n"}
+{"Time":"2026-09-28T19:59:04.5525088+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Elapsed":0.4}
+{"Time":"2026-09-28T19:59:04.6579166+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"--- PASS: TestM17ConfiguredStartupRejection (2.06s)\n"}
+{"Time":"2026-09-28T19:59:04.6579166+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Elapsed":2.06}
+{"Time":"2026-09-28T19:59:04.6579166+05:30","Action":"output","Package":"resonance","Output":"FAIL\n"}
+{"Time":"2026-09-28T19:59:04.6746766+05:30","Action":"output","Package":"resonance","Output":"FAIL\tresonance\t25.218s\n"}
+{"Time":"2026-09-28T19:59:04.6746766+05:30","Action":"fail","Package":"resonance","Elapsed":25.218}

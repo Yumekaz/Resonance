@@ -1,0 +1,29 @@
+{
+  "attempt_id": "20260928T015014130Z-attempt-01",
+  "campaign": "g1-postgresql-direct-start",
+  "status": "started",
+  "pid": 14696,
+  "exit_code": null,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:50:14.1301089+00:00",
+  "finished_utc": "2026-09-28T01:50:14.9598498+00:00",
+  "duration_ms": 700,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "postgres.exe",
+    "-D",
+    "<isolated-cluster>",
+    "-p",
+    "55439",
+    "-h",
+    "127.0.0.1",
+    "-c",
+    "max_connections=30"
+  ],
+  "working_directory": "<explicit PostgreSQL 17.11 binary directory>",
+  "child_environment_cleared": "RESONANCE_* and PG* removed; PATH explicitly set",
+  "server_stdout": "postgres.stdout.log",
+  "server_stderr": "postgres.stderr.log",
+  "notes": "Used direct foreground-server executable in a hidden child because pg_ctl could not create a restricted token in this sandbox (error 87). Cluster itself is fresh."
+}

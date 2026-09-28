@@ -1,0 +1,4 @@
+npm error code UNABLE_TO_VERIFY_LEAF_SIGNATURE
+npm error errno UNABLE_TO_VERIFY_LEAF_SIGNATURE
+npm error request to https://registry.npmjs.org/playwright-core/-/playwright-core-1.55.1.tgz failed, reason: unable to verify the first certificate
+npm error A complete log of this run can be found in: <host-path>

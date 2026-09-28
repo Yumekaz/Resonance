@@ -1,0 +1,10 @@
+2026/09/28 19:08:41 Resonance listening on 127.0.0.1:18085
+2026/09/28 19:08:41 INFO reconciliation_sweep_scheduled cycle_id=1 trigger=startup
+2026/09/28 19:08:42 INFO reconciliation_scan_started cycle_id=1 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=configuration
+2026/09/28 19:08:42 INFO scan_started run_id=4f00edc6-7c28-407b-a184-87bb831a778d root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 19:08:42 INFO scan_finished run_id=4f00edc6-7c28-407b-a184-87bb831a778d root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=11 files_supported=11 files_unchanged=10 files_hashed=1 imported=1 locations_added=1 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=176444 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=99.847 publish_transaction_ms=12.866 grouping_ms=0 sql_statements=45 rows_affected=37
+2026/09/28 19:08:42 INFO reconciliation_scan_finished cycle_id=1 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=99.847
+2026/09/28 19:08:43 INFO reconciliation_scan_started cycle_id=2 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=watch_coverage_refresh
+2026/09/28 19:08:43 INFO scan_started run_id=345a7235-5fae-430c-a241-1352e37c33dd root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 19:08:43 INFO scan_finished run_id=345a7235-5fae-430c-a241-1352e37c33dd root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=11 files_supported=11 files_unchanged=11 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=107.196 publish_transaction_ms=15.772 grouping_ms=0 sql_statements=45 rows_affected=37
+2026/09/28 19:08:43 INFO reconciliation_scan_finished cycle_id=2 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=107.196

@@ -1,0 +1,7 @@
+unchanged scan 1 exited 
+At <host-path>
++ ...   if ($exitCode -ne 0) { throw "unchanged scan $i exited $exitCode" }
++                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (unchanged scan 1 exited :String) [], RuntimeException
+    + FullyQualifiedErrorId : unchanged scan 1 exited 
+ 

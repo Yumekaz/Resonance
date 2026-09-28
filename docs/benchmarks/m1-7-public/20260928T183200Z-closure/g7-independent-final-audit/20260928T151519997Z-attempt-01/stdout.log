@@ -1,0 +1,1 @@
+{"status": "pass", "scan_samples": 30, "request_samples": 42177, "scan_percentiles": {"count": 30, "p50_ms": 14720.6455, "p95_ms": 42292.931, "p99_ms": 44804.962}, "watcher_percentiles": {"count": 30, "p50_ms": 892.408, "p95_ms": 914.114, "p99_ms": 1006.416}, "every_sample_each_kind_overlaps_discovery_and_publication": true}

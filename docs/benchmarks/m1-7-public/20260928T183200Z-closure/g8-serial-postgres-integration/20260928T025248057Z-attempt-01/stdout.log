@@ -1,0 +1,13 @@
+FAIL	resonance [setup failed]
+FAIL	resonance/internal/library [setup failed]
+ok  	resonance/cmd/bench	0.050s
+?   	resonance/cmd/fixture	[no test files]
+?   	resonance/cmd/m14measure	[no test files]
+?   	resonance/cmd/m15burst	[no test files]
+?   	resonance/cmd/m15catalogbench	[no test files]
+?   	resonance/cmd/m17corpus	[no test files]
+?   	resonance/cmd/m17manifest	[no test files]
+ok  	resonance/internal/m17fixtures	0.678s
+ok  	resonance/internal/metadata	0.077s
+ok  	resonance/internal/storage	33.744s
+FAIL

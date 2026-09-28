@@ -1,0 +1,49 @@
+{
+  "attempt_id": "20260928T034911458Z-attempt-01",
+  "campaign": "g7-growth-after",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T03:49:11.4581142+00:00",
+  "finished_utc": "2026-09-28T03:49:12.0035082+00:00",
+  "duration_ms": 545.394,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "psql.exe",
+    "-X",
+    "-A",
+    "-t",
+    "-v",
+    "ON_ERROR_STOP=1",
+    "-h",
+    "127.0.0.1",
+    "-p",
+    "55439",
+    "-U",
+    "resonance",
+    "-d",
+    "resonance_m17_scale_growth",
+    "-c",
+    "SELECT pg_database_size(current_database())::text || '|' || pg_wal_lsn_diff(pg_current_wal_lsn(),'0/511AFCA0'::pg_lsn)::bigint::text || '|' || pg_current_wal_lsn()::text;"
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 60,
+  "child_environment_cleared": true,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "PGPASSWORD",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

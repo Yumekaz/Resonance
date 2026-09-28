@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+NameError: name 'utf' is not defined
+Get-ChildItem : Python parse failure: m17_audit_benchmarks.py
+At <local-path>| ForEach- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Python parse fa...t_benchmarks.py:String) [Get-ChildItem], RuntimeExc 
+   eption
+    + FullyQualifiedErrorId : Python parse failure: m17_audit_benchmarks.py,Microsoft.PowerShell.Commands.GetChildItem 
+   Command
+ 

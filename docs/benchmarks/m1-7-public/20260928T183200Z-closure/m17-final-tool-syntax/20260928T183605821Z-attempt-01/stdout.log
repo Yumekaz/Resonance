@@ -1,0 +1,31 @@
+{
+    "parsed_files":  [
+                         "m1-2-benchmark.ps1",
+                         "m1-2-corpus.ps1",
+                         "m1-3a-benchmark.ps1",
+                         "m1-4-publication-benchmark.ps1",
+                         "m1-7-attempt.ps1",
+                         "m17-browser-closure.ps1",
+                         "m17-check-evidence-tools.ps1",
+                         "m17-http-probe.ps1",
+                         "m17-outage-recovery.ps1",
+                         "m17-repeat-scan.ps1",
+                         "m17-resource-sample.ps1",
+                         "m17-restore-probe.ps1",
+                         "m17-run-go.ps1",
+                         "m17-seed-restore-state.ps1",
+                         "m17-signal-child.ps1",
+                         "m17-start-background.ps1",
+                         "m17-symlink-capability.ps1",
+                         "m17_audit_benchmarks.py",
+                         "m17_candidate_fingerprint.py",
+                         "m17_export_evidence.py",
+                         "m17_validate_export.py",
+                         "web/app.js",
+                         "web/library.js",
+                         "web/user-library.js",
+                         "tools/m17-decode-corpus.js"
+                     ],
+    "status":  "pass",
+    "note":  "Syntax checks; behavior is covered by separately recorded campaigns."
+}

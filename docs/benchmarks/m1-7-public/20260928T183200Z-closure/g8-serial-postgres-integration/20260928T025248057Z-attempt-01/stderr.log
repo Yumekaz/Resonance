@@ -1,0 +1,14 @@
+go: downloading github.com/fsnotify/fsnotify v1.10.1
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+go: writing go.mod cache: mkdir <host-path>
+# resonance
+internal\library\coordinator.go:16:2: mkdir <host-path>
+# resonance/internal/library
+internal\library\coordinator.go:16:2: mkdir <host-path>

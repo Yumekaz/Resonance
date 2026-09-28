@@ -1,0 +1,48 @@
+{
+  "attempt_id": "20260928T015419962Z-attempt-01",
+  "campaign": "g1-schema-readiness",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:54:19.9626991+00:00",
+  "finished_utc": "2026-09-28T01:54:20.4867943+00:00",
+  "duration_ms": 524.095,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "psql.exe",
+    "-X",
+    "-A",
+    "-t",
+    "-v",
+    "ON_ERROR_STOP=1",
+    "-h",
+    "127.0.0.1",
+    "-p",
+    "55439",
+    "-U",
+    "resonance",
+    "-d",
+    "resonance_m1",
+    "-c",
+    "SELECT 'migrations='||count(*)||',max='||max(version) FROM schema_migrations; SELECT 'grouping='||rule_version||',completed='||completed FROM catalog_grouping_state WHERE singleton; SELECT 'active_queue_rows='||count(*) FROM active_queue; SELECT 'tracks='||count(*)||',objects='||(SELECT count(*) FROM media_objects)||',locations='||(SELECT count(*) FROM media_locations) FROM tracks;"
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 60,
+  "child_environment_cleared": true,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "PGPASSWORD",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

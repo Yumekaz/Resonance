@@ -1,0 +1,17 @@
+{
+  "album_memberships": 10000,
+  "attempts": [
+    {
+      "duration_ms": 16488.463,
+      "finished_utc": "2026-09-28T14:47:50.1851467Z",
+      "index": 1,
+      "log": "2026/09/28 20:17:50 database migrations applied\n",
+      "started_utc": "2026-09-28T14:47:33.6966837Z",
+      "success": true
+    }
+  ],
+  "dataset": "10k synthetic faithful historical v5 catalog rows; grouping evidence in 100-track Artist folders and ten-track Albums; no playback claim",
+  "ledger_versions": 8,
+  "raw_identity_metadata_digest_unchanged": true,
+  "ready": true
+}

@@ -1,0 +1,31 @@
+{
+  "attempt_id": "20260928T182949828Z-attempt-01",
+  "campaign": "m17-final-tool-syntax",
+  "status": "fail",
+  "exit_code": 1,
+  "timed_out": false,
+  "started_utc": "2026-09-28T18:29:49.8289576+00:00",
+  "finished_utc": "2026-09-28T18:29:50.8832482+00:00",
+  "duration_ms": 1054.291,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-File",
+    "<local-path>"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 120,
+  "child_environment_cleared": false,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

@@ -1,0 +1,69 @@
+{"Time":"2026-09-28T20:17:26.7353609+05:30","Action":"start","Package":"resonance/internal/storage"}
+{"Time":"2026-09-28T20:17:26.7753108+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17NaturalEndBackendTerminationAndRetry"}
+{"Time":"2026-09-28T20:17:26.7758308+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17NaturalEndBackendTerminationAndRetry","Output":"=== RUN   TestM17NaturalEndBackendTerminationAndRetry\n"}
+{"Time":"2026-09-28T20:17:27.7129378+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17NaturalEndBackendTerminationAndRetry","Output":"    m17_session_crash_integration_test.go:41: late receipt backend killed; pre-retry queue/session/receipt rollback verified; original ended key retried and replayed once\n"}
+{"Time":"2026-09-28T20:17:27.7821005+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17NaturalEndBackendTerminationAndRetry","Output":"--- PASS: TestM17NaturalEndBackendTerminationAndRetry (1.01s)\n"}
+{"Time":"2026-09-28T20:17:27.7821005+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17NaturalEndBackendTerminationAndRetry","Elapsed":1.01}
+{"Time":"2026-09-28T20:17:27.7821005+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix"}
+{"Time":"2026-09-28T20:17:27.7826066+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix\n"}
+{"Time":"2026-09-28T20:17:27.7826066+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8"}
+{"Time":"2026-09-28T20:17:27.7826066+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8\n"}
+{"Time":"2026-09-28T20:17:28.4057054+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8 (0.62s)\n"}
+{"Time":"2026-09-28T20:17:28.4057054+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Elapsed":0.62}
+{"Time":"2026-09-28T20:17:28.4057054+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8"}
+{"Time":"2026-09-28T20:17:28.4057054+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8\n"}
+{"Time":"2026-09-28T20:17:29.15399+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8 (0.75s)\n"}
+{"Time":"2026-09-28T20:17:29.15399+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Elapsed":0.75}
+{"Time":"2026-09-28T20:17:29.15399+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8"}
+{"Time":"2026-09-28T20:17:29.15399+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8\n"}
+{"Time":"2026-09-28T20:17:29.7286481+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8 (0.57s)\n"}
+{"Time":"2026-09-28T20:17:29.7286481+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Elapsed":0.57}
+{"Time":"2026-09-28T20:17:29.7286481+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8"}
+{"Time":"2026-09-28T20:17:29.7286481+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8\n"}
+{"Time":"2026-09-28T20:17:30.3095094+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8 (0.58s)\n"}
+{"Time":"2026-09-28T20:17:30.3095094+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Elapsed":0.58}
+{"Time":"2026-09-28T20:17:30.310015+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8"}
+{"Time":"2026-09-28T20:17:30.310015+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8\n"}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8 (0.61s)\n"}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Elapsed":0.61}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix (3.13s)\n"}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Elapsed":3.13}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17MigrationBackendInterruptionRollbackAndRetry"}
+{"Time":"2026-09-28T20:17:30.9157697+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17MigrationBackendInterruptionRollbackAndRetry","Output":"=== RUN   TestM17MigrationBackendInterruptionRollbackAndRetry\n"}
+{"Time":"2026-09-28T20:17:31.6660325+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17MigrationBackendInterruptionRollbackAndRetry","Output":"--- PASS: TestM17MigrationBackendInterruptionRollbackAndRetry (0.75s)\n"}
+{"Time":"2026-09-28T20:17:31.6660325+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17MigrationBackendInterruptionRollbackAndRetry","Elapsed":0.75}
+{"Time":"2026-09-28T20:17:31.6660325+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17BackfillBackendInterruptionAndRetry"}
+{"Time":"2026-09-28T20:17:31.6660325+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17BackfillBackendInterruptionAndRetry","Output":"=== RUN   TestM17BackfillBackendInterruptionAndRetry\n"}
+{"Time":"2026-09-28T20:17:32.3747126+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17BackfillBackendInterruptionAndRetry","Output":"--- PASS: TestM17BackfillBackendInterruptionAndRetry (0.71s)\n"}
+{"Time":"2026-09-28T20:17:32.3747126+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17BackfillBackendInterruptionAndRetry","Elapsed":0.71}
+{"Time":"2026-09-28T20:17:32.3747126+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17MigrationCLIAtTenThousandTracks"}
+{"Time":"2026-09-28T20:17:32.375218+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17MigrationCLIAtTenThousandTracks","Output":"=== RUN   TestM17MigrationCLIAtTenThousandTracks\n"}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17MigrationCLIAtTenThousandTracks","Output":"--- PASS: TestM17MigrationCLIAtTenThousandTracks (17.98s)\n"}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17MigrationCLIAtTenThousandTracks","Elapsed":17.98}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix"}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Output":"=== RUN   TestM17DamagedSchemaMatrix\n"}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index"}
+{"Time":"2026-09-28T20:17:50.3567816+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_receipt_index\n"}
+{"Time":"2026-09-28T20:17:50.774358+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_receipt_index (0.42s)\n"}
+{"Time":"2026-09-28T20:17:50.774358+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Elapsed":0.42}
+{"Time":"2026-09-28T20:17:50.774358+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton"}
+{"Time":"2026-09-28T20:17:50.774358+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_queue_singleton\n"}
+{"Time":"2026-09-28T20:17:51.3051106+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_queue_singleton (0.53s)\n"}
+{"Time":"2026-09-28T20:17:51.3056836+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Elapsed":0.53}
+{"Time":"2026-09-28T20:17:51.3056836+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum"}
+{"Time":"2026-09-28T20:17:51.3056836+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Output":"=== RUN   TestM17DamagedSchemaMatrix/wrong_ledger_checksum\n"}
+{"Time":"2026-09-28T20:17:51.681555+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Output":"--- PASS: TestM17DamagedSchemaMatrix/wrong_ledger_checksum (0.38s)\n"}
+{"Time":"2026-09-28T20:17:51.681555+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Elapsed":0.38}
+{"Time":"2026-09-28T20:17:51.681555+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence"}
+{"Time":"2026-09-28T20:17:51.681555+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_root_fence\n"}
+{"Time":"2026-09-28T20:17:52.0953354+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_root_fence (0.41s)\n"}
+{"Time":"2026-09-28T20:17:52.0953354+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Elapsed":0.41}
+{"Time":"2026-09-28T20:17:52.0953354+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping"}
+{"Time":"2026-09-28T20:17:52.0953354+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Output":"=== RUN   TestM17DamagedSchemaMatrix/incomplete_grouping\n"}
+{"Time":"2026-09-28T20:17:52.5207418+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Output":"--- PASS: TestM17DamagedSchemaMatrix/incomplete_grouping (0.43s)\n"}
+{"Time":"2026-09-28T20:17:52.5207418+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Elapsed":0.43}
+{"Time":"2026-09-28T20:17:52.5207418+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Output":"--- PASS: TestM17DamagedSchemaMatrix (2.16s)\n"}
+{"Time":"2026-09-28T20:17:52.5207418+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Elapsed":2.16}
+{"Time":"2026-09-28T20:17:52.5212563+05:30","Action":"output","Package":"resonance/internal/storage","Output":"PASS\n"}
+{"Time":"2026-09-28T20:17:52.5259567+05:30","Action":"output","Package":"resonance/internal/storage","Output":"ok  \tresonance/internal/storage\t25.791s\n"}
+{"Time":"2026-09-28T20:17:52.5259567+05:30","Action":"pass","Package":"resonance/internal/storage","Elapsed":25.791}

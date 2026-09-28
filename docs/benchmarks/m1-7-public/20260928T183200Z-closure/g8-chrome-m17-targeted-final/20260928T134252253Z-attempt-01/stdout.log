@@ -1,0 +1,5 @@
+
+Running 1 test using 1 worker
+
+[1A[2K[1/1] tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history
+[1A[2K  1 passed (8.5s)

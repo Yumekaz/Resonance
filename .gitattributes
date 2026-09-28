@@ -1,2 +1,6 @@
 # Embedded migration checksums must not vary with checkout line endings.
 internal/storage/migrations/*.sql text eol=lf
+# Treat Windows line endings as line endings during whitespace checks.
+* whitespace=cr-at-eol
+# Preserve sanitized evidence bytes, including whitespace emitted by tools.
+docs/benchmarks/m1-7-public/** -whitespace

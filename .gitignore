@@ -1,8 +1,16 @@
 # Generated local media and build output
 data/
+docs/benchmarks/m1-7-attempts/**/corpus/
+# Raw M1.7 attempt logs can contain host-local paths; keep them local-only until sanitized exports exist.
+docs/benchmarks/m1-7-attempts/**
+# Intermediate sanitized snapshots retained locally; final indexed export is public.
+docs/benchmarks/m1-7-public/20260928T182708676Z/
+docs/benchmarks/m1-7-public/20260928T182756172Z/
 bin/
 *.exe
 node_modules/
+__pycache__/
+*.pyc
 playwright-report/
 test-results/
 .env

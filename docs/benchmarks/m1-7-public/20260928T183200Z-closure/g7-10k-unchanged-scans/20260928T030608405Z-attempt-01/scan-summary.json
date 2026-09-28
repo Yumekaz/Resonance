@@ -1,0 +1,16 @@
+{
+  "architecture": "amd64",
+  "cache_state": "warm process and PostgreSQL caches; OS cache not reset",
+  "command": "go run ./cmd/m17scanbench -root <root-id> -repetitions 30",
+  "dataset": "10,000 short tagged distinct MP3 files; 100 Artists; 1,000 Albums",
+  "date_utc": "2026-09-28T03:11:29.1100975Z",
+  "go_version": "go1.25.0",
+  "os": "windows",
+  "p50_ms": 10419.3275,
+  "p95_ms": 12560.618,
+  "p99_ms": 13086.605,
+  "percentile_method": "median p50; nearest-rank p95/p99; scanner-reported duration_ms",
+  "raw_samples": "scan-samples.jsonl",
+  "repetitions": 30,
+  "root_id": "d0159173-e2e3-4ca6-9b07-47a08cebc79f"
+}

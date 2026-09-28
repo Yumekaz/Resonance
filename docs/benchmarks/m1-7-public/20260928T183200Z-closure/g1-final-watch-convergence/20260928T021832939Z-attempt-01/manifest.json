@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20260928T021832939Z-attempt-01",
+  "campaign": "g1-final-watch-convergence",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T02:18:32.9396337+00:00",
+  "finished_utc": "2026-09-28T02:18:33.0285634+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "GET actual /api/v1/tracks and /api/v1/library/status after nested file event"
+  ],
+  "response_data": "path-free"
+}

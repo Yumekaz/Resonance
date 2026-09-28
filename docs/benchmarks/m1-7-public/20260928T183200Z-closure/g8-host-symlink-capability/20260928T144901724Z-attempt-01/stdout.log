@@ -1,0 +1,12 @@
+{"created":false,"win32_error":1314,"used_allow_unprivileged_create":true,"requirement":"Run tests in an elevated Administrator console with SeCreateSymbolicLinkPrivilege, or enable Windows Developer Mode for unprivileged symbolic link creation. No system policy was changed."}
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State   
+============================= ==================================== ========
+SeShutdownPrivilege           Shut down the system                 Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled 
+SeUndockPrivilege             Remove computer from docking station Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Disabled
+SeTimeZonePrivilege           Change the time zone                 Disabled

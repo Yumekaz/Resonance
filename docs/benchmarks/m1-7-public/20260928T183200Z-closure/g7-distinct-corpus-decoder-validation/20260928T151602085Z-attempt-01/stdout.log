@@ -1,0 +1,1 @@
+{"date_utc":"2026-09-28T15:16:13.636Z","fixtures":10000,"unique_sha256":10000,"encoded_bytes":44037871,"decoded":10000,"failures":0,"decoder":"Chrome Web Audio decodeAudioData; fresh browser profile; all 10000 MP3 files","limitation":"One browser codec implementation; no claim of audible human playback"}

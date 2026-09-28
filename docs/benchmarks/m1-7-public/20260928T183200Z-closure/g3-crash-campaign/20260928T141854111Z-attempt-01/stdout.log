@@ -1,0 +1,27 @@
+{"Time":"2026-09-28T19:48:57.7372837+05:30","Action":"start","Package":"resonance/internal/library"}
+{"Time":"2026-09-28T19:48:57.8297731+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign"}
+{"Time":"2026-09-28T19:48:57.8297731+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign","Output":"=== RUN   TestM17PublicationCrashCampaign\n"}
+{"Time":"2026-09-28T19:48:57.8297731+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/discovery"}
+{"Time":"2026-09-28T19:48:57.8297731+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/discovery","Output":"=== RUN   TestM17PublicationCrashCampaign/discovery\n"}
+{"Time":"2026-09-28T19:48:59.4069418+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/discovery","Output":"    m17_crash_integration_test.go:81: discovery: pre-retry state inspected; atomic authority/recovery assertions passed\n"}
+{"Time":"2026-09-28T19:48:59.4730175+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/discovery","Output":"--- PASS: TestM17PublicationCrashCampaign/discovery (1.64s)\n"}
+{"Time":"2026-09-28T19:48:59.4735633+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/discovery","Elapsed":1.64}
+{"Time":"2026-09-28T19:48:59.4735633+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/publication"}
+{"Time":"2026-09-28T19:48:59.4735633+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/publication","Output":"=== RUN   TestM17PublicationCrashCampaign/publication\n"}
+{"Time":"2026-09-28T19:49:48.8215885+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/publication","Output":"    m17_crash_integration_test.go:81: publication: pre-retry state inspected; atomic authority/recovery assertions passed\n"}
+{"Time":"2026-09-28T19:49:48.9080742+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/publication","Output":"--- PASS: TestM17PublicationCrashCampaign/publication (49.43s)\n"}
+{"Time":"2026-09-28T19:49:48.9080742+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/publication","Elapsed":49.43}
+{"Time":"2026-09-28T19:49:48.9080742+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/commit_without_delivery"}
+{"Time":"2026-09-28T19:49:48.9080742+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/commit_without_delivery","Output":"=== RUN   TestM17PublicationCrashCampaign/commit_without_delivery\n"}
+{"Time":"2026-09-28T19:49:50.0563539+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/commit_without_delivery","Output":"    m17_crash_integration_test.go:81: commit_without_delivery: pre-retry state inspected; atomic authority/recovery assertions passed\n"}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/commit_without_delivery","Output":"--- PASS: TestM17PublicationCrashCampaign/commit_without_delivery (1.24s)\n"}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign/commit_without_delivery","Elapsed":1.24}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign","Output":"--- PASS: TestM17PublicationCrashCampaign (52.32s)\n"}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17PublicationCrashCampaign","Elapsed":52.32}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17DirtyWorkHardCrashAndStartupSweep"}
+{"Time":"2026-09-28T19:49:50.1461751+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17DirtyWorkHardCrashAndStartupSweep","Output":"=== RUN   TestM17DirtyWorkHardCrashAndStartupSweep\n"}
+{"Time":"2026-09-28T19:49:53.4222062+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17DirtyWorkHardCrashAndStartupSweep","Output":"--- PASS: TestM17DirtyWorkHardCrashAndStartupSweep (3.28s)\n"}
+{"Time":"2026-09-28T19:49:53.4222062+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17DirtyWorkHardCrashAndStartupSweep","Elapsed":3.28}
+{"Time":"2026-09-28T19:49:53.4227104+05:30","Action":"output","Package":"resonance/internal/library","Output":"PASS\n"}
+{"Time":"2026-09-28T19:49:53.4294138+05:30","Action":"output","Package":"resonance/internal/library","Output":"ok  \tresonance/internal/library\t55.692s\n"}
+{"Time":"2026-09-28T19:49:53.4294138+05:30","Action":"pass","Package":"resonance/internal/library","Elapsed":55.692}

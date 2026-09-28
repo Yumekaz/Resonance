@@ -1,0 +1,16 @@
+{
+  "attempt_id": "20260928T023544562Z-attempt-01",
+  "campaign": "g6-pg-recovery-after-stop-debug",
+  "status": "pass",
+  "exit_code": 0,
+  "pid": 18548,
+  "started_utc": "2026-09-28T02:35:44.5622683+00:00",
+  "finished_utc": "2026-09-28T02:35:45.6659823+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "start the owned PostgreSQL 17.11 process directly after pg_ctl outage attempt"
+  ],
+  "working_directory": "<disposable cluster>",
+  "ready": true,
+  "notes": "G6 recovery only; the stop-attempt exit status is retained separately."
+}

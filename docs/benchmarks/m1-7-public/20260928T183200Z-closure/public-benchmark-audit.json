@@ -1,0 +1,767 @@
+{
+  "status": "pass",
+  "scan_samples": 30,
+  "request_samples": 42177,
+  "positive_interval_request_samples": 42174,
+  "unresolved_intervals_retained_but_not_claimed": [
+    {
+      "sample": 6,
+      "kind": "range",
+      "request_id": "4d0d8e4a35b963127f4868ca05903f60",
+      "reason": "equal wall-clock timestamps; no positive interval can be proven; retained in raw artifact and excluded from overlap/latency claims"
+    },
+    {
+      "sample": 15,
+      "kind": "range",
+      "request_id": "3116f0109a2cebeef22e6bd7817b4c2d",
+      "reason": "equal wall-clock timestamps; no positive interval can be proven; retained in raw artifact and excluded from overlap/latency claims"
+    },
+    {
+      "sample": 27,
+      "kind": "range",
+      "request_id": "315856746aaef19f3c42656b977d9718",
+      "reason": "equal wall-clock timestamps; no positive interval can be proven; retained in raw artifact and excluded from overlap/latency claims"
+    }
+  ],
+  "prior_summary_overlap_count_corrections": {
+    "scan": {
+      "catalog": 0,
+      "range": 3,
+      "queue_reorder": 0
+    },
+    "discovery": {
+      "catalog": 0,
+      "range": 3,
+      "queue_reorder": 0
+    },
+    "publication": {
+      "catalog": 0,
+      "range": 0,
+      "queue_reorder": 0
+    }
+  },
+  "scan_percentiles": {
+    "count": 30,
+    "p50_ms": 14720.6455,
+    "p95_ms": 42292.931,
+    "p99_ms": 44804.962
+  },
+  "watcher_percentiles": {
+    "count": 30,
+    "p50_ms": 892.408,
+    "p95_ms": 914.114,
+    "p99_ms": 1006.416
+  },
+  "every_sample_each_kind_overlaps_discovery_and_publication": true,
+  "actual_interval_overlap_counts": {
+    "scan": {
+      "range": 34865,
+      "catalog": 6283,
+      "queue_reorder": 1019
+    },
+    "discovery": {
+      "range": 18303,
+      "catalog": 3444,
+      "queue_reorder": 503
+    },
+    "publication": {
+      "range": 2559,
+      "catalog": 477,
+      "queue_reorder": 93
+    }
+  },
+  "per_sample": [
+    {
+      "index": 1,
+      "overlaps": {
+        "scan": {
+          "range": 1910,
+          "catalog": 161,
+          "queue_reorder": 82
+        },
+        "discovery": {
+          "range": 350,
+          "catalog": 26,
+          "queue_reorder": 14
+        },
+        "publication": {
+          "range": 37,
+          "catalog": 4,
+          "queue_reorder": 2
+        }
+      }
+    },
+    {
+      "index": 2,
+      "overlaps": {
+        "scan": {
+          "range": 2993,
+          "catalog": 542,
+          "queue_reorder": 95
+        },
+        "discovery": {
+          "range": 339,
+          "catalog": 30,
+          "queue_reorder": 16
+        },
+        "publication": {
+          "range": 85,
+          "catalog": 18,
+          "queue_reorder": 2
+        }
+      }
+    },
+    {
+      "index": 3,
+      "overlaps": {
+        "scan": {
+          "range": 1034,
+          "catalog": 207,
+          "queue_reorder": 23
+        },
+        "discovery": {
+          "range": 609,
+          "catalog": 126,
+          "queue_reorder": 13
+        },
+        "publication": {
+          "range": 84,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 4,
+      "overlaps": {
+        "scan": {
+          "range": 1049,
+          "catalog": 202,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 617,
+          "catalog": 122,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 85,
+          "catalog": 17,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 5,
+      "overlaps": {
+        "scan": {
+          "range": 1060,
+          "catalog": 199,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 620,
+          "catalog": 121,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "catalog": 17,
+          "range": 89,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 6,
+      "overlaps": {
+        "scan": {
+          "range": 1038,
+          "catalog": 199,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 604,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "catalog": 17,
+          "range": 85,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 7,
+      "overlaps": {
+        "scan": {
+          "range": 1059,
+          "catalog": 202,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 611,
+          "catalog": 121,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "catalog": 18,
+          "range": 94,
+          "queue_reorder": 4
+        }
+      }
+    },
+    {
+      "index": 8,
+      "overlaps": {
+        "scan": {
+          "range": 1151,
+          "catalog": 208,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 675,
+          "catalog": 124,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 86,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 9,
+      "overlaps": {
+        "scan": {
+          "range": 1026,
+          "catalog": 191,
+          "queue_reorder": 29
+        },
+        "discovery": {
+          "range": 599,
+          "catalog": 116,
+          "queue_reorder": 16
+        },
+        "publication": {
+          "range": 81,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 10,
+      "overlaps": {
+        "scan": {
+          "range": 1054,
+          "catalog": 197,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 619,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 78,
+          "catalog": 14,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 11,
+      "overlaps": {
+        "scan": {
+          "range": 1056,
+          "catalog": 196,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 628,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "catalog": 16,
+          "range": 84,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 12,
+      "overlaps": {
+        "scan": {
+          "range": 1089,
+          "catalog": 203,
+          "queue_reorder": 32
+        },
+        "discovery": {
+          "range": 633,
+          "catalog": 123,
+          "queue_reorder": 18
+        },
+        "publication": {
+          "range": 89,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 13,
+      "overlaps": {
+        "scan": {
+          "range": 1001,
+          "catalog": 189,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 594,
+          "catalog": 116,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 78,
+          "catalog": 15,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 14,
+      "overlaps": {
+        "scan": {
+          "range": 1015,
+          "catalog": 194,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 592,
+          "catalog": 117,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 80,
+          "catalog": 15,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 15,
+      "overlaps": {
+        "scan": {
+          "range": 1035,
+          "catalog": 194,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 612,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 79,
+          "catalog": 14,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 16,
+      "overlaps": {
+        "scan": {
+          "range": 1129,
+          "catalog": 202,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 652,
+          "catalog": 121,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 83,
+          "catalog": 15,
+          "queue_reorder": 4
+        }
+      }
+    },
+    {
+      "index": 17,
+      "overlaps": {
+        "scan": {
+          "range": 1075,
+          "catalog": 200,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 641,
+          "catalog": 123,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 86,
+          "catalog": 15,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 18,
+      "overlaps": {
+        "scan": {
+          "range": 1099,
+          "catalog": 202,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 640,
+          "catalog": 122,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 85,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 19,
+      "overlaps": {
+        "scan": {
+          "range": 1027,
+          "catalog": 195,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 597,
+          "catalog": 118,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 84,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 20,
+      "overlaps": {
+        "scan": {
+          "range": 1100,
+          "catalog": 205,
+          "queue_reorder": 32
+        },
+        "discovery": {
+          "range": 650,
+          "catalog": 125,
+          "queue_reorder": 18
+        },
+        "publication": {
+          "range": 91,
+          "catalog": 18,
+          "queue_reorder": 4
+        }
+      }
+    },
+    {
+      "index": 21,
+      "overlaps": {
+        "scan": {
+          "range": 1048,
+          "catalog": 197,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 611,
+          "catalog": 119,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 91,
+          "catalog": 17,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 22,
+      "overlaps": {
+        "scan": {
+          "range": 1087,
+          "catalog": 202,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 639,
+          "catalog": 122,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 90,
+          "catalog": 17,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 23,
+      "overlaps": {
+        "scan": {
+          "range": 1117,
+          "catalog": 205,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 661,
+          "catalog": 125,
+          "queue_reorder": 18
+        },
+        "publication": {
+          "range": 91,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 24,
+      "overlaps": {
+        "scan": {
+          "range": 1133,
+          "catalog": 205,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 682,
+          "catalog": 124,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 96,
+          "catalog": 18,
+          "queue_reorder": 4
+        }
+      }
+    },
+    {
+      "index": 25,
+      "overlaps": {
+        "scan": {
+          "range": 1066,
+          "catalog": 196,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 628,
+          "catalog": 119,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 92,
+          "catalog": 17,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 26,
+      "overlaps": {
+        "scan": {
+          "range": 1062,
+          "catalog": 197,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 617,
+          "catalog": 119,
+          "queue_reorder": 16
+        },
+        "publication": {
+          "catalog": 18,
+          "range": 95,
+          "queue_reorder": 4
+        }
+      }
+    },
+    {
+      "index": 27,
+      "overlaps": {
+        "scan": {
+          "range": 1081,
+          "catalog": 198,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 637,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 90,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 28,
+      "overlaps": {
+        "scan": {
+          "range": 1105,
+          "catalog": 202,
+          "queue_reorder": 31
+        },
+        "discovery": {
+          "range": 649,
+          "catalog": 122,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 93,
+          "catalog": 17,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 29,
+      "overlaps": {
+        "scan": {
+          "range": 1081,
+          "catalog": 198,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 653,
+          "catalog": 123,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 86,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    },
+    {
+      "index": 30,
+      "overlaps": {
+        "scan": {
+          "range": 1085,
+          "catalog": 195,
+          "queue_reorder": 30
+        },
+        "discovery": {
+          "range": 644,
+          "catalog": 120,
+          "queue_reorder": 17
+        },
+        "publication": {
+          "range": 92,
+          "catalog": 16,
+          "queue_reorder": 3
+        }
+      }
+    }
+  ],
+  "request_percentiles": {
+    "range": {
+      "count": 34868,
+      "p50_ms": 8.1286,
+      "p95_ms": 15.4183,
+      "p99_ms": 19.3433
+    },
+    "scan_range": {
+      "count": 34865,
+      "p50_ms": 8.1286,
+      "p95_ms": 15.4183,
+      "p99_ms": 19.3433
+    },
+    "discovery_range": {
+      "count": 18303,
+      "p50_ms": 8.3329,
+      "p95_ms": 13.0966,
+      "p99_ms": 16.8015
+    },
+    "catalog": {
+      "count": 6284,
+      "p50_ms": 67.3614,
+      "p95_ms": 90.0549,
+      "p99_ms": 267.3485
+    },
+    "scan_catalog": {
+      "count": 6283,
+      "p50_ms": 67.362,
+      "p95_ms": 90.0549,
+      "p99_ms": 267.3485
+    },
+    "discovery_catalog": {
+      "count": 3444,
+      "p50_ms": 66.80520000000001,
+      "p95_ms": 84.0465,
+      "p99_ms": 242.6905
+    },
+    "queue_reorder": {
+      "count": 1022,
+      "p50_ms": 449.1201,
+      "p95_ms": 594.1419,
+      "p99_ms": 726.2933
+    },
+    "scan_queue_reorder": {
+      "count": 1019,
+      "p50_ms": 449.7282,
+      "p95_ms": 596.6676,
+      "p99_ms": 726.2933
+    },
+    "discovery_queue_reorder": {
+      "count": 503,
+      "p50_ms": 510.515,
+      "p95_ms": 640.3878,
+      "p99_ms": 769.4308
+    },
+    "publication_range": {
+      "count": 2559,
+      "p50_ms": 7.8883,
+      "p95_ms": 9.6579,
+      "p99_ms": 18.0755
+    },
+    "publication_catalog": {
+      "count": 477,
+      "p50_ms": 69.3515,
+      "p95_ms": 80.1542,
+      "p99_ms": 102.7758
+    },
+    "publication_queue_reorder": {
+      "count": 93,
+      "p50_ms": 429.1155,
+      "p95_ms": 555.6096,
+      "p99_ms": 726.2933
+    }
+  },
+  "publication_wrapper_percentiles": {
+    "count": 30,
+    "p50_ms": 5768.6235,
+    "p95_ms": 35009.028,
+    "p99_ms": 37487.584
+  },
+  "postgresql_observed_publication_core_percentiles": {
+    "count": 30,
+    "p50_ms": 1159.1115,
+    "p95_ms": 1255.063,
+    "p99_ms": 1264.841
+  },
+  "playlist_5000_percentiles": {
+    "count": 30,
+    "p50_ms": 915.5995,
+    "p95_ms": 1020.137,
+    "p99_ms": 1824.395
+  }
+}

@@ -1,0 +1,24 @@
+2026-09-28 07:20:14.362 IST [14696] LOG:  starting PostgreSQL 17.11 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit
+2026-09-28 07:20:14.365 IST [14696] LOG:  listening on IPv4 address "127.0.0.1", port 55439
+2026-09-28 07:20:14.446 IST [17308] LOG:  database system was shut down at 2026-09-28 07:19:06 IST
+2026-09-28 07:20:14.490 IST [14696] LOG:  database system is ready to accept connections
+2026-09-28 07:25:14.435 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:27:17.561 IST [9192] LOG:  checkpoint complete: wrote 1144 buffers (7.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=122.909 s, sync=0.201 s, total=123.126 s; sync files=424, longest=0.010 s, average=0.001 s; distance=5712 kB, estimate=5712 kB; lsn=0/1B53C78, redo lsn=0/1B08EC0
+2026-09-28 07:29:01.591 IST [23248] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 07:30:14.581 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:30:25.203 IST [9192] LOG:  checkpoint complete: wrote 98 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=10.552 s, sync=0.053 s, total=10.622 s; sync files=65, longest=0.009 s, average=0.001 s; distance=467 kB, estimate=5187 kB; lsn=0/1B7DC88, redo lsn=0/1B7DBF8
+2026-09-28 07:35:14.210 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:37:15.628 IST [9192] LOG:  checkpoint complete: wrote 1117 buffers (6.8%); 0 WAL file(s) added, 0 removed, 1 recycled; write=121.191 s, sync=0.216 s, total=121.419 s; sync files=414, longest=0.002 s, average=0.001 s; distance=5628 kB, estimate=5628 kB; lsn=0/2109588, redo lsn=0/20FCCA8
+2026-09-28 07:45:14.665 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:45:22.566 IST [9192] LOG:  checkpoint complete: wrote 73 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.828 s, sync=0.065 s, total=7.901 s; sync files=40, longest=0.012 s, average=0.002 s; distance=265 kB, estimate=5091 kB; lsn=0/213F300, redo lsn=0/213F2A8
+2026-09-28 07:50:14.581 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:50:16.992 IST [26316] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 07:50:27.831 IST [9192] LOG:  checkpoint complete: wrote 123 buffers (0.8%); 0 WAL file(s) added, 0 removed, 0 recycled; write=13.156 s, sync=0.078 s, total=13.250 s; sync files=86, longest=0.010 s, average=0.001 s; distance=507 kB, estimate=4633 kB; lsn=0/21D9158, redo lsn=0/21BDFA8
+2026-09-28 07:55:14.854 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 07:57:21.159 IST [9192] LOG:  checkpoint complete: wrote 1144 buffers (7.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=126.107 s, sync=0.187 s, total=126.306 s; sync files=441, longest=0.010 s, average=0.001 s; distance=5713 kB, estimate=5713 kB; lsn=0/27526E0, redo lsn=0/2752650
+2026-09-28 08:00:14.173 IST [9192] LOG:  checkpoint starting: time
+2026-09-28 08:00:21.080 IST [9192] LOG:  checkpoint complete: wrote 63 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.864 s, sync=0.037 s, total=6.908 s; sync files=45, longest=0.010 s, average=0.001 s; distance=299 kB, estimate=5172 kB; lsn=0/279D688, redo lsn=0/279D5F8
+2026-09-28 08:04:37.630 IST [14696] LOG:  received immediate shutdown request
+2026-09-28 08:04:37.657 IST [14696] LOG:  database system is shut down

@@ -1,0 +1,22 @@
+{
+  "attempt_id": "20260928T013111226Z-attempt-01",
+  "campaign": "evidence-runner-invocation-failure",
+  "status": "launch_failed",
+  "exit_code": null,
+  "timed_out": false,
+  "started_utc": "20260928T013111226Z",
+  "finished_utc": "20260928T013111226Z",
+  "duration_ms": null,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "PowerShell parameter binding rejected an unquoted -e argument before evidence runner launch"
+  ],
+  "timeout_seconds": 0,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [],
+  "output_redactions": [
+    "local filesystem paths"
+  ],
+  "launch_error": "Prior harness invocation stopped in PowerShell argument binding before the runner or child process started: Parameter cannot be processed because parameter name 'e' is ambiguous. Possible matches include: -Executable -Environment -ErrorAction -ErrorVariable.",
+  "notes": "Invocation failure preserved manually because the attempt tool had not launched."
+}

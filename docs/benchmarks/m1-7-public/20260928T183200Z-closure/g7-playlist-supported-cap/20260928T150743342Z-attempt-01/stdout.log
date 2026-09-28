@@ -1,0 +1,8 @@
+{"Time":"2026-09-28T20:37:46.169238+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:37:46.2054877+05:30","Action":"run","Package":"resonance","Test":"TestM17PlaylistSupportedCapBenchmark"}
+{"Time":"2026-09-28T20:37:46.2054877+05:30","Action":"output","Package":"resonance","Test":"TestM17PlaylistSupportedCapBenchmark","Output":"=== RUN   TestM17PlaylistSupportedCapBenchmark\n"}
+{"Time":"2026-09-28T20:38:17.2368096+05:30","Action":"output","Package":"resonance","Test":"TestM17PlaylistSupportedCapBenchmark","Output":"--- PASS: TestM17PlaylistSupportedCapBenchmark (31.03s)\n"}
+{"Time":"2026-09-28T20:38:17.2368096+05:30","Action":"pass","Package":"resonance","Test":"TestM17PlaylistSupportedCapBenchmark","Elapsed":31.03}
+{"Time":"2026-09-28T20:38:17.2368096+05:30","Action":"output","Package":"resonance","Output":"PASS\n"}
+{"Time":"2026-09-28T20:38:17.2431783+05:30","Action":"output","Package":"resonance","Output":"ok  \tresonance\t31.074s\n"}
+{"Time":"2026-09-28T20:38:17.2431783+05:30","Action":"pass","Package":"resonance","Elapsed":31.074}

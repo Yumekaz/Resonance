@@ -1,0 +1,476 @@
+{
+  "actual_catalog_tracks": 10001,
+  "actual_locations": 10001,
+  "actual_media_objects": 10001,
+  "cache": "warm/uncontrolled; no SLO",
+  "cluster_wal_bytes_during_import_and_samples": 1377601800,
+  "cpu_count": 16,
+  "database_size_bytes_after": 140908211,
+  "database_size_bytes_before": 23017139,
+  "dataset": {
+    "format_version": 1,
+    "mode": "scale",
+    "seed": 20260928,
+    "track_count": 10000,
+    "unique_sha256": 10000,
+    "artist_count": 100,
+    "album_count": 1000,
+    "file_count": 10000,
+    "total_bytes": 44037871,
+    "audio_source_details": "CC0 testdata/metadata/untagged.mp3; four complete source MPEG frames per fixture",
+    "audio_sources_sha256": {
+      "untagged.mp3": "a6bf32d47cb8f4da29fa6dc5b037cb028a2a8d07c49bdf183a71f17c9d2fc802"
+    }
+  },
+  "discovery_core_overlapping_requests": {
+    "catalog": 3444,
+    "queue_reorder": 503,
+    "range": 18306
+  },
+  "go_version": "go1.25.0",
+  "host_arch": "amd64",
+  "host_os": "windows",
+  "initial_scan": {
+    "run_id": "417cfa6a-3fd1-4919-a59e-d032fb4c2dd5",
+    "root_id": "7ac7ce39-c7fb-4b4c-96dc-7cf7de7fe67d",
+    "status": "succeeded",
+    "grouping_ms": 17425.288,
+    "files_visited": 10003,
+    "files_supported": 10001,
+    "imported": 10001,
+    "skipped": 2,
+    "failed": 0,
+    "bytes_hashed": 70497915,
+    "metadata_extractions": 10000,
+    "files_unchanged": 0,
+    "files_hashed": 10001,
+    "stat_changed_same_bytes": 0,
+    "changed_bytes": 0,
+    "locations_added": 10001,
+    "locations_moved": 0,
+    "locations_unavailable": 0,
+    "media_objects_created": 10001,
+    "tracks_created": 10001,
+    "traversal_complete": true,
+    "observations_applied": true,
+    "absence_reconciled": true,
+    "duration_ms": 37142.277,
+    "publish_transaction_ms": 26593.512,
+    "sql_statements": 151239,
+    "rows_affected": 91114
+  },
+  "p50_ms": 14720.6455,
+  "p95_ms": 42292.931,
+  "p99_ms": 44804.962,
+  "postgresql": {
+    "fsync": "on",
+    "server_version": "17.11",
+    "shared_buffers": "128MB",
+    "synchronous_commit": "on"
+  },
+  "publication_core_overlapping_requests": {
+    "catalog": 477,
+    "queue_reorder": 93,
+    "range": 2559
+  },
+  "queue_items": 1000,
+  "sample_overlap_checks": [
+    {
+      "discovery": {
+        "catalog": 26,
+        "queue_reorder": 14,
+        "range": 350
+      },
+      "index": 1,
+      "publication": {
+        "catalog": 4,
+        "queue_reorder": 2,
+        "range": 37
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 30,
+        "queue_reorder": 16,
+        "range": 339
+      },
+      "index": 2,
+      "publication": {
+        "catalog": 18,
+        "queue_reorder": 2,
+        "range": 85
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 126,
+        "queue_reorder": 13,
+        "range": 609
+      },
+      "index": 3,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 84
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 122,
+        "queue_reorder": 17,
+        "range": 617
+      },
+      "index": 4,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 85
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 121,
+        "queue_reorder": 17,
+        "range": 620
+      },
+      "index": 5,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 89
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 605
+      },
+      "index": 6,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 85
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 121,
+        "queue_reorder": 17,
+        "range": 611
+      },
+      "index": 7,
+      "publication": {
+        "catalog": 18,
+        "queue_reorder": 4,
+        "range": 94
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 124,
+        "queue_reorder": 17,
+        "range": 675
+      },
+      "index": 8,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 86
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 116,
+        "queue_reorder": 16,
+        "range": 599
+      },
+      "index": 9,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 81
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 619
+      },
+      "index": 10,
+      "publication": {
+        "catalog": 14,
+        "queue_reorder": 3,
+        "range": 78
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 628
+      },
+      "index": 11,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 84
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 123,
+        "queue_reorder": 18,
+        "range": 633
+      },
+      "index": 12,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 89
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 116,
+        "queue_reorder": 17,
+        "range": 594
+      },
+      "index": 13,
+      "publication": {
+        "catalog": 15,
+        "queue_reorder": 3,
+        "range": 78
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 117,
+        "queue_reorder": 17,
+        "range": 592
+      },
+      "index": 14,
+      "publication": {
+        "catalog": 15,
+        "queue_reorder": 3,
+        "range": 80
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 613
+      },
+      "index": 15,
+      "publication": {
+        "catalog": 14,
+        "queue_reorder": 3,
+        "range": 79
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 121,
+        "queue_reorder": 17,
+        "range": 652
+      },
+      "index": 16,
+      "publication": {
+        "catalog": 15,
+        "queue_reorder": 4,
+        "range": 83
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 123,
+        "queue_reorder": 17,
+        "range": 641
+      },
+      "index": 17,
+      "publication": {
+        "catalog": 15,
+        "queue_reorder": 3,
+        "range": 86
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 122,
+        "queue_reorder": 17,
+        "range": 640
+      },
+      "index": 18,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 85
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 118,
+        "queue_reorder": 17,
+        "range": 597
+      },
+      "index": 19,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 84
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 125,
+        "queue_reorder": 18,
+        "range": 650
+      },
+      "index": 20,
+      "publication": {
+        "catalog": 18,
+        "queue_reorder": 4,
+        "range": 91
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 119,
+        "queue_reorder": 17,
+        "range": 611
+      },
+      "index": 21,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 91
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 122,
+        "queue_reorder": 17,
+        "range": 639
+      },
+      "index": 22,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 90
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 125,
+        "queue_reorder": 18,
+        "range": 661
+      },
+      "index": 23,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 91
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 124,
+        "queue_reorder": 17,
+        "range": 682
+      },
+      "index": 24,
+      "publication": {
+        "catalog": 18,
+        "queue_reorder": 4,
+        "range": 96
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 119,
+        "queue_reorder": 17,
+        "range": 628
+      },
+      "index": 25,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 92
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 119,
+        "queue_reorder": 16,
+        "range": 617
+      },
+      "index": 26,
+      "publication": {
+        "catalog": 18,
+        "queue_reorder": 4,
+        "range": 95
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 638
+      },
+      "index": 27,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 90
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 122,
+        "queue_reorder": 17,
+        "range": 649
+      },
+      "index": 28,
+      "publication": {
+        "catalog": 17,
+        "queue_reorder": 3,
+        "range": 93
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 123,
+        "queue_reorder": 17,
+        "range": 653
+      },
+      "index": 29,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 86
+      }
+    },
+    {
+      "discovery": {
+        "catalog": 120,
+        "queue_reorder": 17,
+        "range": 644
+      },
+      "index": 30,
+      "publication": {
+        "catalog": 16,
+        "queue_reorder": 3,
+        "range": 92
+      }
+    }
+  ],
+  "samples": 30,
+  "scan_overlapping_requests": {
+    "catalog": 6283,
+    "queue_reorder": 1019,
+    "range": 34868
+  },
+  "transaction_interval": "PostgreSQL clock_timestamp from first and last active observations of the same schema's publication transaction; discovery core ends at its last observed discovering phase; 2ms polling"
+}

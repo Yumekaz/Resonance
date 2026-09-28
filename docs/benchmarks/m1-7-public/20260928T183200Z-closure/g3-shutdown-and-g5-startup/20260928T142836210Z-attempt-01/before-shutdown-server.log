@@ -1,0 +1,8 @@
+2026/09/28 19:58:40 Resonance listening on 127.0.0.1:57468
+2026/09/28 19:58:40 INFO reconciliation_sweep_scheduled cycle_id=1 trigger=startup
+2026/09/28 19:58:41 INFO reconciliation_scan_started cycle_id=1 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe trigger=configuration
+2026/09/28 19:58:41 INFO reconciliation_scan_finished cycle_id=1 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe status="" error_code=scan_lease_busy traversal_complete=false absence_reconciled=false duration_ms=0
+2026/09/28 19:58:46 INFO reconciliation_scan_started cycle_id=2 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe trigger=configuration
+2026/09/28 19:58:46 INFO reconciliation_scan_finished cycle_id=2 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe status="" error_code=scan_lease_busy traversal_complete=false absence_reconciled=false duration_ms=0
+2026/09/28 19:58:57 INFO reconciliation_scan_started cycle_id=3 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe trigger=configuration
+2026/09/28 19:58:57 INFO reconciliation_scan_finished cycle_id=3 root_id=746d1bc6-a0a1-4a05-a0cf-acb22f4c92fe status="" error_code=scan_lease_busy traversal_complete=false absence_reconciled=false duration_ms=0

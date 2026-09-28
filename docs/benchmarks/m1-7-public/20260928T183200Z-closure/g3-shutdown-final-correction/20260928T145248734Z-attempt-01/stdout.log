@@ -1,0 +1,39 @@
+{"Time":"2026-09-28T20:22:51.0663289+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:22:51.1212961+05:30","Action":"run","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse"}
+{"Time":"2026-09-28T20:22:51.1212961+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"=== RUN   TestM17NormalShutdownStreamPersistenceAndLostResponse\n"}
+{"Time":"2026-09-28T20:23:23.6995887+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"    m17_process_windows_integration_test.go:68: {\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"favorite_persisted\": true,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"media_expected_bytes\": 26460044,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"media_received_bytes\": 4718336,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"original_receipt_replayed_after_restart\": true,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"playlist_persisted\": true,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"queue_persisted\": true,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"shutdown_ms\": 10750.78,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"stream_completed\": false,\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"stream_error\": \"read tcp 127.0.0.1:57771-\\u003e127.0.0.1:57756: wsarecv: An existing connection was forcibly closed by the remote host.\"\n"}
+{"Time":"2026-09-28T20:23:23.7001215+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"        }\n"}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"--- PASS: TestM17NormalShutdownStreamPersistenceAndLostResponse (32.64s)\n"}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"pass","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Elapsed":32.64}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection"}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"=== RUN   TestM17ConfiguredStartupRejection\n"}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable"}
+{"Time":"2026-09-28T20:23:23.7652066+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"=== RUN   TestM17ConfiguredStartupRejection/unreachable\n"}
+{"Time":"2026-09-28T20:23:24.3314594+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"--- PASS: TestM17ConfiguredStartupRejection/unreachable (0.57s)\n"}
+{"Time":"2026-09-28T20:23:24.3321967+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Elapsed":0.57}
+{"Time":"2026-09-28T20:23:24.3321967+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged"}
+{"Time":"2026-09-28T20:23:24.3321967+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"=== RUN   TestM17ConfiguredStartupRejection/damaged\n"}
+{"Time":"2026-09-28T20:23:25.1488837+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"--- PASS: TestM17ConfiguredStartupRejection/damaged (0.82s)\n"}
+{"Time":"2026-09-28T20:23:25.1488837+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Elapsed":0.82}
+{"Time":"2026-09-28T20:23:25.1488837+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending"}
+{"Time":"2026-09-28T20:23:25.1488837+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"=== RUN   TestM17ConfiguredStartupRejection/pending\n"}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"--- PASS: TestM17ConfiguredStartupRejection/pending (0.66s)\n"}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Elapsed":0.66}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"--- PASS: TestM17ConfiguredStartupRejection (2.04s)\n"}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Elapsed":2.04}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"run","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries"}
+{"Time":"2026-09-28T20:23:25.8095462+05:30","Action":"output","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Output":"=== RUN   TestM17AllPublicRoutesPrivacyAndConfinementCanaries\n"}
+{"Time":"2026-09-28T20:23:26.4810994+05:30","Action":"output","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Output":"--- PASS: TestM17AllPublicRoutesPrivacyAndConfinementCanaries (0.67s)\n"}
+{"Time":"2026-09-28T20:23:26.4810994+05:30","Action":"pass","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Elapsed":0.67}
+{"Time":"2026-09-28T20:23:26.481817+05:30","Action":"output","Package":"resonance","Output":"PASS\n"}
+{"Time":"2026-09-28T20:23:26.489932+05:30","Action":"output","Package":"resonance","Output":"ok  \tresonance\t35.424s\n"}
+{"Time":"2026-09-28T20:23:26.489932+05:30","Action":"pass","Package":"resonance","Elapsed":35.424}

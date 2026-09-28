@@ -1,0 +1,16 @@
+2026-09-28 08:08:45.401 IST [7236] LOG:  starting PostgreSQL 17.11 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit
+2026-09-28 08:08:45.404 IST [7236] LOG:  listening on IPv4 address "127.0.0.1", port 55439
+2026-09-28 08:08:45.485 IST [23272] LOG:  database system was interrupted; last known up at 2026-09-28 08:08:05 IST
+2026-09-28 08:08:45.700 IST [14116] FATAL:  the database system is starting up
+2026-09-28 08:08:45.733 IST [10392] FATAL:  the database system is starting up
+2026-09-28 08:08:45.891 IST [1700] FATAL:  the database system is starting up
+2026-09-28 08:08:45.915 IST [20536] FATAL:  the database system is starting up
+2026-09-28 08:08:46.046 IST [11208] FATAL:  the database system is starting up
+2026-09-28 08:08:46.074 IST [23272] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-09-28 08:08:46.081 IST [23272] LOG:  redo starts at 0/27A21B0
+2026-09-28 08:08:46.083 IST [23272] LOG:  invalid record length at 0/27A4800: expected at least 24, got 0
+2026-09-28 08:08:46.083 IST [23272] LOG:  redo done at 0/27A47C8 system usage: CPU: user: 0.00 s, system: 0.01 s, elapsed: 0.00 s
+2026-09-28 08:08:46.091 IST [28304] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-09-28 08:08:46.103 IST [28304] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.014 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=9 kB; lsn=0/27A4800, redo lsn=0/27A4800
+2026-09-28 08:08:46.139 IST [7236] LOG:  database system is ready to accept connections
+2026-09-28 08:12:43.286 IST [22120] FATAL:  terminating connection due to unexpected postmaster exit

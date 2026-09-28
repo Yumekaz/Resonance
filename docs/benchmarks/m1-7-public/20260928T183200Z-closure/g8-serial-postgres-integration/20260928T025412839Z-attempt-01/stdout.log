@@ -1,0 +1,23 @@
+--- FAIL: TestWindowsJunctionContainment (0.00s)
+    review_windows_test.go:26: create junction: exec: "powershell.exe": executable file not found in %PATH% 
+FAIL
+FAIL	resonance	6.712s
+ok  	resonance/cmd/bench	0.062s
+?   	resonance/cmd/fixture	[no test files]
+?   	resonance/cmd/m14measure	[no test files]
+?   	resonance/cmd/m15burst	[no test files]
+?   	resonance/cmd/m15catalogbench	[no test files]
+?   	resonance/cmd/m17corpus	[no test files]
+?   	resonance/cmd/m17manifest	[no test files]
+--- FAIL: TestM16WindowsJunctionIsNotTraversedOrWatched (0.55s)
+    junction_windows_integration_test.go:32: create Windows junction failed: 
+--- FAIL: TestWindowsCanonicalizationCollapsesCaseAndJunctionAliases (0.01s)
+    root_windows_test.go:28: create junction: exec: "powershell.exe": executable file not found in %PATH% 
+--- FAIL: TestWindowsJunctionSkippedDuringScan (0.50s)
+    scanner_windows_integration_test.go:22: create junction: exec: "powershell.exe": executable file not found in %PATH% 
+FAIL
+FAIL	resonance/internal/library	59.047s
+ok  	resonance/internal/m17fixtures	0.762s
+ok  	resonance/internal/metadata	0.056s
+ok  	resonance/internal/storage	35.239s
+FAIL

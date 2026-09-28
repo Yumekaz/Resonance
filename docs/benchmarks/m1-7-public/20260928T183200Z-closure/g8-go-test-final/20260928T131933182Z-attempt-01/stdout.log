@@ -1,0 +1,13 @@
+ok  	resonance	1.275s
+ok  	resonance/cmd/bench	0.078s
+?   	resonance/cmd/fixture	[no test files]
+?   	resonance/cmd/m14measure	[no test files]
+?   	resonance/cmd/m15burst	[no test files]
+?   	resonance/cmd/m15catalogbench	[no test files]
+?   	resonance/cmd/m17corpus	[no test files]
+?   	resonance/cmd/m17manifest	[no test files]
+?   	resonance/cmd/m17scanbench	[no test files]
+ok  	resonance/internal/library	5.110s
+ok  	resonance/internal/m17fixtures	0.821s
+ok  	resonance/internal/metadata	0.125s
+ok  	resonance/internal/storage	0.088s

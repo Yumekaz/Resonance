@@ -1,0 +1,25 @@
+{
+  "album_memberships": 0,
+  "attempts": [
+    {
+      "duration_ms": 10223.152,
+      "finished_utc": "2026-09-28T14:44:48.6687845Z",
+      "index": 1,
+      "log": "2026/09/28 20:14:48 database migration failed; inspect PostgreSQL logs and migration state\n",
+      "started_utc": "2026-09-28T14:44:38.4456316Z",
+      "success": false
+    },
+    {
+      "duration_ms": 10171.726,
+      "finished_utc": "2026-09-28T14:44:58.8405114Z",
+      "index": 2,
+      "log": "2026/09/28 20:14:58 database migration failed; inspect PostgreSQL logs and migration state\n",
+      "started_utc": "2026-09-28T14:44:48.6687845Z",
+      "success": false
+    }
+  ],
+  "dataset": "10k synthetic faithful historical v5 catalog rows; grouping evidence in 100-track Artist folders and ten-track Albums; no playback claim",
+  "ledger_versions": 8,
+  "raw_identity_metadata_digest_unchanged": true,
+  "ready": false
+}

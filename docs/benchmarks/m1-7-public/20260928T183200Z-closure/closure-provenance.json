@@ -1,0 +1,37 @@
+{
+  "supplements": [
+    {
+      "private_source": "g9-public-benchmark-recalculation/20260928T183706589Z-attempt-01/manifest.json",
+      "file": "public-audit-run.json",
+      "original_sha256": "167565abc027d4331e00fa358162a31b990d2ada4f56ff234e881d28fb3f4ad9",
+      "export_sha256": "167565abc027d4331e00fa358162a31b990d2ada4f56ff234e881d28fb3f4ad9"
+    },
+    {
+      "private_source": "g9-public-export/20260928T183620802Z-attempt-01/manifest.json",
+      "file": "export-run.json",
+      "original_sha256": "9511150e5ad957b76b876623aa8dc8af7541754a1eb272e4db05178f9535f4bf",
+      "export_sha256": "9511150e5ad957b76b876623aa8dc8af7541754a1eb272e4db05178f9535f4bf"
+    },
+    {
+      "private_source": "g9-public-benchmark-recalculation/20260928T183706589Z-attempt-01/public-audit.json",
+      "file": "public-benchmark-audit.json",
+      "original_sha256": "6ea88724c77fb3788cc2042ec0c36c9b674155ee0a157700567ce4bc6deb7cc1",
+      "export_sha256": "6ea88724c77fb3788cc2042ec0c36c9b674155ee0a157700567ce4bc6deb7cc1"
+    },
+    {
+      "private_source": "g9-final-public-validation/20260928T183704321Z-attempt-01/manifest.json",
+      "file": "validation-run.json",
+      "original_sha256": "d50acc1cc6af68e1a31daded93a83d2ec81f6d8c90ac571986fb8f0087e3d0fd",
+      "export_sha256": "d50acc1cc6af68e1a31daded93a83d2ec81f6d8c90ac571986fb8f0087e3d0fd"
+    },
+    {
+      "private_source": "g9-final-public-validation/20260928T183704321Z-attempt-01/validation.json",
+      "file": "closure-validation.json",
+      "original_sha256": "e8521b27ee974ff322af95fa32f2eca0a5ba87156def1601b46ced49ea9fd57d",
+      "export_sha256": "e8521b27ee974ff322af95fa32f2eca0a5ba87156def1601b46ced49ea9fd57d"
+    }
+  ],
+  "status": "pass",
+  "note": "Post-export validation artifacts and completed recorder manifests; path/credential-free documents, copied without changing originals.",
+  "date_utc": "2026-09-28T18:37:36.7208138Z"
+}

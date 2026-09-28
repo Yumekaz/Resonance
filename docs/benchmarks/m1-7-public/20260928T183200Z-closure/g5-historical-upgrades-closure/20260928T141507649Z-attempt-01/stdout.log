@@ -1,0 +1,57 @@
+{"Time":"2026-09-28T19:45:10.3482725+05:30","Action":"start","Package":"resonance/internal/storage"}
+{"Time":"2026-09-28T19:45:10.3873725+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix"}
+{"Time":"2026-09-28T19:45:10.3873725+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix\n"}
+{"Time":"2026-09-28T19:45:10.3873725+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8"}
+{"Time":"2026-09-28T19:45:10.3873725+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8\n"}
+{"Time":"2026-09-28T19:45:12.0898783+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Output":"--- PASS: TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8 (1.70s)\n"}
+{"Time":"2026-09-28T19:45:12.0898783+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v2_to_v8","Elapsed":1.7}
+{"Time":"2026-09-28T19:45:12.0898783+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8"}
+{"Time":"2026-09-28T19:45:12.0898783+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8\n"}
+{"Time":"2026-09-28T19:45:12.3209967+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Output":"    m17_upgrade_integration_test.go:28: ERROR: cannot insert multiple commands into a prepared statement (SQLSTATE 42601)\n"}
+{"Time":"2026-09-28T19:45:12.3428929+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Output":"--- FAIL: TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8 (0.25s)\n"}
+{"Time":"2026-09-28T19:45:12.3428929+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v4_to_v8","Elapsed":0.25}
+{"Time":"2026-09-28T19:45:12.3428929+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8"}
+{"Time":"2026-09-28T19:45:12.3428929+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8\n"}
+{"Time":"2026-09-28T19:45:12.5744532+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Output":"    m17_upgrade_integration_test.go:28: ERROR: cannot insert multiple commands into a prepared statement (SQLSTATE 42601)\n"}
+{"Time":"2026-09-28T19:45:12.597986+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Output":"--- FAIL: TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8 (0.25s)\n"}
+{"Time":"2026-09-28T19:45:12.597986+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v5_to_v8","Elapsed":0.25}
+{"Time":"2026-09-28T19:45:12.597986+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8"}
+{"Time":"2026-09-28T19:45:12.597986+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8\n"}
+{"Time":"2026-09-28T19:45:12.8592821+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Output":"    m17_upgrade_integration_test.go:28: ERROR: cannot insert multiple commands into a prepared statement (SQLSTATE 42601)\n"}
+{"Time":"2026-09-28T19:45:12.8965289+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Output":"--- FAIL: TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8 (0.30s)\n"}
+{"Time":"2026-09-28T19:45:12.8965289+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v6_to_v8","Elapsed":0.3}
+{"Time":"2026-09-28T19:45:12.8965289+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8"}
+{"Time":"2026-09-28T19:45:12.8965289+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Output":"=== RUN   TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8\n"}
+{"Time":"2026-09-28T19:45:13.1992163+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Output":"    m17_upgrade_integration_test.go:28: ERROR: cannot insert multiple commands into a prepared statement (SQLSTATE 42601)\n"}
+{"Time":"2026-09-28T19:45:13.2533897+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Output":"--- FAIL: TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8 (0.36s)\n"}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix/v7_to_v8","Elapsed":0.36}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Output":"--- FAIL: TestM17PopulatedHistoricalUpgradeMatrix (2.87s)\n"}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17PopulatedHistoricalUpgradeMatrix","Elapsed":2.87}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix"}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Output":"=== RUN   TestM17DamagedSchemaMatrix\n"}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index"}
+{"Time":"2026-09-28T19:45:13.2539181+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_receipt_index\n"}
+{"Time":"2026-09-28T19:45:13.6658381+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_receipt_index (0.41s)\n"}
+{"Time":"2026-09-28T19:45:13.6666019+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_receipt_index","Elapsed":0.41}
+{"Time":"2026-09-28T19:45:13.6666019+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton"}
+{"Time":"2026-09-28T19:45:13.6666019+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_queue_singleton\n"}
+{"Time":"2026-09-28T19:45:14.0749568+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_queue_singleton (0.41s)\n"}
+{"Time":"2026-09-28T19:45:14.0749568+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_queue_singleton","Elapsed":0.41}
+{"Time":"2026-09-28T19:45:14.0749568+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum"}
+{"Time":"2026-09-28T19:45:14.0749568+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Output":"=== RUN   TestM17DamagedSchemaMatrix/wrong_ledger_checksum\n"}
+{"Time":"2026-09-28T19:45:14.5712961+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Output":"--- PASS: TestM17DamagedSchemaMatrix/wrong_ledger_checksum (0.50s)\n"}
+{"Time":"2026-09-28T19:45:14.5718077+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/wrong_ledger_checksum","Elapsed":0.5}
+{"Time":"2026-09-28T19:45:14.5718077+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence"}
+{"Time":"2026-09-28T19:45:14.5718077+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Output":"=== RUN   TestM17DamagedSchemaMatrix/missing_root_fence\n"}
+{"Time":"2026-09-28T19:45:14.9632603+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Output":"--- PASS: TestM17DamagedSchemaMatrix/missing_root_fence (0.39s)\n"}
+{"Time":"2026-09-28T19:45:14.963776+05:30","Action":"pass","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/missing_root_fence","Elapsed":0.39}
+{"Time":"2026-09-28T19:45:14.963776+05:30","Action":"run","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping"}
+{"Time":"2026-09-28T19:45:14.963776+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Output":"=== RUN   TestM17DamagedSchemaMatrix/incomplete_grouping\n"}
+{"Time":"2026-09-28T19:45:15.3499649+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Output":"    m17_upgrade_integration_test.go:59: damaged schema reported ready\n"}
+{"Time":"2026-09-28T19:45:15.4065829+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Output":"--- FAIL: TestM17DamagedSchemaMatrix/incomplete_grouping (0.44s)\n"}
+{"Time":"2026-09-28T19:45:15.407092+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix/incomplete_grouping","Elapsed":0.44}
+{"Time":"2026-09-28T19:45:15.407092+05:30","Action":"output","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Output":"--- FAIL: TestM17DamagedSchemaMatrix (2.15s)\n"}
+{"Time":"2026-09-28T19:45:15.407092+05:30","Action":"fail","Package":"resonance/internal/storage","Test":"TestM17DamagedSchemaMatrix","Elapsed":2.15}
+{"Time":"2026-09-28T19:45:15.407092+05:30","Action":"output","Package":"resonance/internal/storage","Output":"FAIL\n"}
+{"Time":"2026-09-28T19:45:15.4120319+05:30","Action":"output","Package":"resonance/internal/storage","Output":"FAIL\tresonance/internal/storage\t5.063s\n"}
+{"Time":"2026-09-28T19:45:15.4120319+05:30","Action":"fail","Package":"resonance/internal/storage","Elapsed":5.064}

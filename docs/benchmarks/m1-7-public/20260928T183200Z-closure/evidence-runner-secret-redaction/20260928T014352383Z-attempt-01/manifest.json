@@ -1,0 +1,36 @@
+{
+  "attempt_id": "20260928T014352383Z-attempt-01",
+  "campaign": "evidence-runner-secret-redaction",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:43:52.3839315+00:00",
+  "finished_utc": "2026-09-28T01:43:53.0431625+00:00",
+  "duration_ms": 659.231,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-Command",
+    "[Console]::Write($env:PGPASSWORD)"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 30,
+  "child_environment_cleared": true,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "PGPASSWORD",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

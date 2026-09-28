@@ -1,0 +1,40 @@
+{
+  "attempt_id": "20260928T015042866Z-attempt-01",
+  "campaign": "g1-database-create",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:50:42.8663119+00:00",
+  "finished_utc": "2026-09-28T01:50:43.5792542+00:00",
+  "duration_ms": 712.942,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "createdb.exe",
+    "-h",
+    "127.0.0.1",
+    "-p",
+    "55439",
+    "-U",
+    "resonance",
+    "resonance_m1"
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 60,
+  "child_environment_cleared": true,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "PGPASSWORD",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

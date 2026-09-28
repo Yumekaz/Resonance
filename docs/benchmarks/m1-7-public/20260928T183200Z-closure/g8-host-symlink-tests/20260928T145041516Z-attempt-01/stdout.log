@@ -1,0 +1,18 @@
+{"Time":"2026-09-28T20:20:44.4703883+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:20:44.51371+05:30","Action":"run","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape"}
+{"Time":"2026-09-28T20:20:44.5140449+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"=== RUN   TestReviewMediaSymlinkCannotEscape\n"}
+{"Time":"2026-09-28T20:20:44.516586+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"    review_test.go:150: symlink creation unavailable: symlink <local-path>"}
+{"Time":"2026-09-28T20:20:44.5190808+05:30","Action":"output","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Output":"--- SKIP: TestReviewMediaSymlinkCannotEscape (0.01s)\n"}
+{"Time":"2026-09-28T20:20:44.5190808+05:30","Action":"skip","Package":"resonance","Test":"TestReviewMediaSymlinkCannotEscape","Elapsed":0.01}
+{"Time":"2026-09-28T20:20:44.5190808+05:30","Action":"output","Package":"resonance","Output":"PASS\n"}
+{"Time":"2026-09-28T20:20:44.5238317+05:30","Action":"output","Package":"resonance","Output":"ok  \tresonance\t0.053s\n"}
+{"Time":"2026-09-28T20:20:44.5238317+05:30","Action":"pass","Package":"resonance","Elapsed":0.053}
+{"Time":"2026-09-28T20:20:46.3333951+05:30","Action":"start","Package":"resonance/internal/library"}
+{"Time":"2026-09-28T20:20:46.3817035+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable"}
+{"Time":"2026-09-28T20:20:46.3822657+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable","Output":"=== RUN   TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable\n"}
+{"Time":"2026-09-28T20:20:47.5543972+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable","Output":"    scanner_windows_integration_test.go:84: file symlink creation is unavailable: symlink <local-path>"}
+{"Time":"2026-09-28T20:20:47.6766022+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable","Output":"--- SKIP: TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable (1.29s)\n"}
+{"Time":"2026-09-28T20:20:47.6766022+05:30","Action":"skip","Package":"resonance/internal/library","Test":"TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable","Elapsed":1.29}
+{"Time":"2026-09-28T20:20:47.6766022+05:30","Action":"output","Package":"resonance/internal/library","Output":"PASS\n"}
+{"Time":"2026-09-28T20:20:47.6832108+05:30","Action":"output","Package":"resonance/internal/library","Output":"ok  \tresonance/internal/library\t1.350s\n"}
+{"Time":"2026-09-28T20:20:47.6832108+05:30","Action":"pass","Package":"resonance/internal/library","Elapsed":1.35}

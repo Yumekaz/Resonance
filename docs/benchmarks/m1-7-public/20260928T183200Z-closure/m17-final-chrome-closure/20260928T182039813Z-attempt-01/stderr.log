@@ -1,0 +1,6 @@
+enroll failed; its raw logs are preserved.
+At <local-path>"$Label failed; its raw logs are preserved."}
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (enroll failed; ... are preserved.:String) [], RuntimeException
+    + FullyQualifiedErrorId : enroll failed; its raw logs are preserved.
+ 

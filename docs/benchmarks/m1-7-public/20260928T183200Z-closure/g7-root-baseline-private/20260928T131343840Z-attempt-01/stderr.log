@@ -1,0 +1,3 @@
+ERROR:  column "root_id" does not exist
+LINE 1: SELECT root_id::text || '|' || path FROM library_roots ORDER...
+               ^

@@ -1,0 +1,19 @@
+{
+  "attempt_id": "20260928T015815942Z-attempt-01",
+  "campaign": "g1-watch-event",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:58:15.9425482+00:00",
+  "finished_utc": "2026-09-28T01:58:17.1698437+00:00",
+  "duration_ms": 1104.0,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "copy a newly generated valid tagged Track into a new nested directory after server start",
+    "poll actual /api/v1/tracks and /api/v1/library/status"
+  ],
+  "working_directory": "<isolated M1.7 temp root>",
+  "source_sha256": "671b1de5752c72c9099ab9a408b1d35dca16a7354c6b09b4476a7dfc5c982daa",
+  "response_data": "logical IDs and path-free watcher status only"
+}

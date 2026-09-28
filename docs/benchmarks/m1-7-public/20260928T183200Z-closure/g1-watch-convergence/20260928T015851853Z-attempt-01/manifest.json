@@ -1,0 +1,14 @@
+{
+  "attempt_id": "20260928T015851853Z-attempt-01",
+  "campaign": "g1-watch-convergence",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T01:58:51.8533793+00:00",
+  "finished_utc": "2026-09-28T01:58:51.9604067+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "GET /api/v1/tracks?limit=20",
+    "GET /api/v1/library/status"
+  ],
+  "response_data": "path-free"
+}

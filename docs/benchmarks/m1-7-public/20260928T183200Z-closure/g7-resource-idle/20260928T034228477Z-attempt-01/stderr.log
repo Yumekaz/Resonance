@@ -1,0 +1,7 @@
+Could not read PostgreSQL size and WAL counters.
+At <host-path>
++ ... DE -ne 0) { throw 'Could not read PostgreSQL size and WAL counters.'  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Could not read ...d WAL counters.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Could not read PostgreSQL size and WAL counters.
+ 

@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20260928T022016636Z-attempt-01",
+  "campaign": "g4-stop-app-guard",
+  "status": "fail",
+  "exit_code": 1,
+  "started_utc": "2026-09-28T02:20:16.6361918+00:00",
+  "finished_utc": "2026-09-28T02:20:16.6361918+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "verify process name before stopping validation server"
+  ],
+  "launch_error": "Initial cleanup guard expected process name resonance, but the clean-source build executable is named resonance-final. No process was stopped."
+}

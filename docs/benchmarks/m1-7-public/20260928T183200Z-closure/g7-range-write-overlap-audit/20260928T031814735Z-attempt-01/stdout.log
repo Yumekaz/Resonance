@@ -1,0 +1,1 @@
+{"pairs":30,"actual_interval_overlaps":30,"all_actual_overlapped":true,"range_percentiles_ms":{"p99":92.282,"p50":9.111,"p95":14.636},"write_percentiles_ms":{"p99":315.476,"p50":271.031,"p95":310.504},"report_claims_all":true}

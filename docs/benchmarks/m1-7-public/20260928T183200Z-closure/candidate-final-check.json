@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "source_files": 208,
+  "final_candidate_fingerprint_matches": true,
+  "python_cache_ignored": true,
+  "base_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "compiled_executable_sha256": "e45f035104a31091b1ac7247be1f2a822029ffcc19211edfa4798d3687fd8350",
+  "supplement_hashes": {
+    "candidate-final.json": "0c6f1d0adf8702df47b64ae1ffdfd473c2cd80054fd8386f411cff9a42756026",
+    "candidate-final-run.json": "7f2c96dc399b8015e6e0bd40cc34959012ec91c4d4af9694da3909dae6d5f315"
+  }
+}

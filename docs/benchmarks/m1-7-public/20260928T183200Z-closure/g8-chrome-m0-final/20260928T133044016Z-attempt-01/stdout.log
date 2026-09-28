@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+[1A[2K[1/3] tests\e2e\player.spec.js:3:1 › plays before full transfer and seeks through a new partial response
+[1A[2Ktests\e2e\player.spec.js:3:1 › plays before full transfer and seeks through a new partial response
+{"mediaSize":26460044,"bytesAtPlayback":522806,"target":210,"targetBuffered":false,"seekRequest":"bytes=18513920-","seekContentRange":"bytes 18513920-26460043/26460044","seekToPlayingMs":186.39999997615814,"downloadBytesPerSecond":262144,"latencyMs":20}
+
+[1A[2K[2/3] tests\e2e\player.spec.js:72:1 › shows an unreachable server state
+[1A[2K[3/3] tests\e2e\player.spec.js:80:1 › shows a corrupt media error
+[1A[2K  3 passed (8.3s)

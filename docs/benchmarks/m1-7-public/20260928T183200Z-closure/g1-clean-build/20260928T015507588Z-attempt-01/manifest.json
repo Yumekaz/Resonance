@@ -1,0 +1,41 @@
+{
+  "attempt_id": "20260928T015507588Z-attempt-01",
+  "campaign": "g1-clean-build",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:55:07.5881429+00:00",
+  "finished_utc": "2026-09-28T01:55:11.2722648+00:00",
+  "duration_ms": 3684.122,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "build",
+    "-o",
+    "<host-path>",
+    "."
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 300,
+  "child_environment_cleared": true,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOROOT",
+    "GOTOOLCHAIN",
+    "PATH",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

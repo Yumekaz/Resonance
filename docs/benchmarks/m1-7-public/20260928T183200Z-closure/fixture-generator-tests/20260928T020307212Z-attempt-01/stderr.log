@@ -1,0 +1,4 @@
+# resonance/internal/m17fixtures
+internal\m17fixtures\generate.go:198:115: not enough arguments in call to w.add
+	have (string, []byte, string, string, string, string)
+	want (string, []byte, string, string, string, string, string)

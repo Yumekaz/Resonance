@@ -1,0 +1,17 @@
+{
+  "attempt_id": "20260928T023805070Z-attempt-01",
+  "campaign": "g6-postgres-stale-pid-recovery",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T02:38:05.0709835+00:00",
+  "finished_utc": "2026-09-28T02:38:06.1522701+00:00",
+  "pid": 25948,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "verify recorded postmaster PID absent and pg_isready=2",
+    "remove one stale postmaster.pid in isolated temp cluster",
+    "start owned PostgreSQL 17.11 server directly"
+  ],
+  "ready": true,
+  "notes": "Recovery following forced termination in prior preserved outage attempt."
+}

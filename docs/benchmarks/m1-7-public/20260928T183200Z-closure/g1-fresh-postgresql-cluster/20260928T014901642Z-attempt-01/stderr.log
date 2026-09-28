@@ -1,0 +1,2 @@
+initdb: error: could not create restricted token: error code 87
+initdb: error: could not re-execute with restricted token: error code 3

@@ -1,0 +1,13 @@
+Cloning into '<host-path>'...
+fatal: detected dubious ownership in repository at '<host-path>'
+'<host-path>' is owned by:
+	DESKTOP-QN96BA0/Mihir (<private-sid>)
+but the current user is:
+	DESKTOP-QN96BA0/CodexSandboxOffline (<private-sid>)
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory '<host-path>'
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.

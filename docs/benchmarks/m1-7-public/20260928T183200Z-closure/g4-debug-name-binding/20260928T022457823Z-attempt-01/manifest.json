@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20260928T022457823Z-attempt-01",
+  "campaign": "g4-debug-name-binding",
+  "status": "launch_failed",
+  "exit_code": null,
+  "started_utc": "2026-09-28T02:24:57.8232440+00:00",
+  "finished_utc": "2026-09-28T02:24:57.8232440+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "runner rejected an overlong campaign label before execution"
+  ],
+  "launch_error": "The first psql debug-attempt name exceeded the runner's 48-character Campaign limit and was rejected before child launch."
+}

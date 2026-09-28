@@ -1,0 +1,7 @@
+{
+  "status": "fail",
+  "stage": "before attempt recorder",
+  "observed_tool_error": "Host execution could not read the sandbox-owned temporary PostgreSQL password file: Access denied. The secret was not printed.",
+  "next_attempt": "uses an ignored workspace credential copy",
+  "date_utc": "2026-09-28T14:50:32.8210768Z"
+}

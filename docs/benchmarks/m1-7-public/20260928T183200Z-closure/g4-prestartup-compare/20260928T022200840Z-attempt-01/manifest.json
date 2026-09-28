@@ -1,0 +1,15 @@
+{
+  "attempt_id": "20260928T022200840Z-attempt-01",
+  "campaign": "g4-prestartup-compare",
+  "status": "fail",
+  "exit_code": 1,
+  "started_utc": "2026-09-28T02:22:00.8401657+00:00",
+  "finished_utc": "2026-09-28T02:22:00.8658110+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "compare all public table value hashes and ordered row counts",
+    "compare every table schema hash",
+    "compare public sequence options and last_value/is_called",
+    "compare pg_dump --schema-only output after normalizing random restrict token"
+  ]
+}

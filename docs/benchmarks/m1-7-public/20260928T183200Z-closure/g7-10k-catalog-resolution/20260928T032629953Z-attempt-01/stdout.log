@@ -1,0 +1,5 @@
+artists_page p50/p95/p99 10.880/12.536/14.031 ms
+albums_page p50/p95/p99 32.505/35.600/36.545 ms
+track_detail p50/p95/p99 10.800/14.003/17.007 ms
+track_resolution p50/p95/p99 0.665/1.432/1.906 ms
+tracks_page p50/p95/p99 56.726/79.267/90.576 ms

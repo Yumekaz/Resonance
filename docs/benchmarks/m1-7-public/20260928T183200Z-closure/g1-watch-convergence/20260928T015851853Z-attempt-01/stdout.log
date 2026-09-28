@@ -1,0 +1,14 @@
+{
+  "watcher_state": "running",
+  "database_state": "available",
+  "track_count": 10,
+  "new_track_visible": true,
+  "root": {
+    "absence_reconciled": true,
+    "last_scan_status": "succeeded",
+    "dirty": false,
+    "id": "a91ef059-d341-46e2-8270-955c3ab9a206",
+    "watch_state": "watching",
+    "verification_state": "verified"
+  }
+}

@@ -1,0 +1,1140 @@
+2026-09-28 18:41:28.389 IST [17816] LOG:  starting PostgreSQL 17.11 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit
+2026-09-28 18:41:28.391 IST [17816] LOG:  listening on IPv4 address "127.0.0.1", port 55439
+2026-09-28 18:41:28.511 IST [19636] LOG:  database system was interrupted; last known up at 2026-09-28 09:04:35 IST
+2026-09-28 18:41:29.962 IST [19636] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-09-28 18:41:29.972 IST [19636] LOG:  redo starts at 0/4DF6DB78
+2026-09-28 18:41:30.944 IST [19636] LOG:  invalid record length at 0/54EDCAD0: expected at least 24, got 0
+2026-09-28 18:41:30.945 IST [19636] LOG:  redo done at 0/54EDCA98 system usage: CPU: user: 0.71 s, system: 0.17 s, elapsed: 0.97 s
+2026-09-28 18:41:30.955 IST [10388] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-09-28 18:41:31.425 IST [10388] LOG:  checkpoint complete: wrote 6598 buffers (40.3%); 0 WAL file(s) added, 7 removed, 0 recycled; write=0.161 s, sync=0.280 s, total=0.471 s; sync files=442, longest=0.011 s, average=0.001 s; distance=114107 kB, estimate=114107 kB; lsn=0/54EDCAD0, redo lsn=0/54EDCAD0
+2026-09-28 18:41:31.512 IST [17816] LOG:  database system is ready to accept connections
+2026-09-28 18:41:59.921 IST [25868] FATAL:  password authentication failed for user "resonance"
+2026-09-28 18:41:59.921 IST [25868] DETAIL:  Connection matched file "<host-path>" line 115: "host    all             all             127.0.0.1/32            scram-sha-256"
+2026-09-28 18:43:44.253 IST [21600] ERROR:  column "root_id" does not exist at character 8
+2026-09-28 18:43:44.253 IST [21600] STATEMENT:  SELECT root_id::text || '|' || path FROM library_roots ORDER BY created_at LIMIT 5
+2026-09-28 18:46:30.457 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 18:50:14.278 IST [4204] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:50:14.279 IST [4988] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:50:14.278 IST [29760] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:50:48.116 IST [22388] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:50:48.174 IST [15004] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:51:01.108 IST [10388] LOG:  checkpoint complete: wrote 3122 buffers (19.1%); 0 WAL file(s) added, 4 removed, 0 recycled; write=269.616 s, sync=1.004 s, total=270.652 s; sync files=2730, longest=0.003 s, average=0.001 s; distance=59187 kB, estimate=108615 kB; lsn=0/5A9A69A8, redo lsn=0/588A9908
+2026-09-28 18:51:07.126 IST [15564] ERROR:  injected publish failure
+2026-09-28 18:51:07.126 IST [15564] CONTEXT:  PL/pgSQL function fail_location_insert() line 1 at RAISE
+2026-09-28 18:51:07.126 IST [15564] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path,root_id,relative_path,availability,
+			observed_size,observed_mtime_ns,native_id_kind,native_id_scope,native_id,native_birth_token,state_updated_at)
+			VALUES($1,$2,$3,$4,$5,'available',$6,$7,NULLIF($8,''),NULLIF($9,''),$10,$11,now())
+2026-09-28 18:51:07.959 IST [13784] ERROR:  injected grouping failure
+2026-09-28 18:51:07.959 IST [13784] CONTEXT:  PL/pgSQL function fail_group_insert() line 1 at RAISE
+2026-09-28 18:51:07.959 IST [13784] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:51:19.351 IST [29396] ERROR:  injected interrupted backfill
+2026-09-28 18:51:19.351 IST [29396] CONTEXT:  PL/pgSQL function fail_backfill_insert() line 1 at RAISE
+2026-09-28 18:51:19.351 IST [29396] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:51:21.794 IST [21308] ERROR:  relation "catalog_albums" already exists
+2026-09-28 18:51:21.794 IST [21308] STATEMENT:  -- Local catalog groupings; source identities and raw Track observations remain authoritative.
+	ALTER TABLE tracks ADD COLUMN catalog_title_key text;
+	CREATE TABLE catalog_grouping_state (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    completed boolean NOT NULL DEFAULT false,
+	    completed_at timestamptz
+	);
+	INSERT INTO catalog_grouping_state(singleton,rule_version,completed) VALUES(true,1,false);
+	
+	CREATE TABLE catalog_artists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_credit text NOT NULL CHECK (length(display_credit) BETWEEN 1 AND 2048),
+	    normalized_credit text NOT NULL CHECK (length(normalized_credit) BETWEEN 1 AND 2048),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    source_location_id text REFERENCES media_locations(id),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT catalog_artists_group_key UNIQUE(normalized_credit,evidence_scope,rule_version)
+	);
+	CREATE INDEX catalog_artists_browse_idx ON catalog_artists(normalized_credit,id);
+	
+	CREATE TABLE catalog_albums (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_title text NOT NULL CHECK (length(display_title) BETWEEN 1 AND 2048),
+	    normalized_title text NOT NULL CHECK (length(normalized_title) BETWEEN 1 AND 2048),
+	    album_artist_id text REFERENCES catalog_artists(id),
+	    credit_key text NOT NULL CHECK (length(credit_key) BETWEEN 1 AND 2048),
+	    root_id uuid NOT NULL REFERENCES library_roots(id),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    release_year integer CHECK (release_year BETWEEN 1 AND 9999),
+	    source_location_id text REFERENCES media_locations(id),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE UNIQUE INDEX catalog_albums_identity_idx ON catalog_albums(root_id,evidence_scope,normalized_title,credit_key,COALESCE(release_year,0),rule_version);
+	CREATE INDEX catalog_albums_browse_idx ON catalog_albums(normalized_title,id);
+	
+	CREATE TABLE track_album_memberships (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE CASCADE,
+	    album_id text NOT NULL REFERENCES catalog_albums(id),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_album_title text NOT NULL,
+	    raw_album_artist_credit text,
+	    raw_track_artist_credit text,
+	    raw_release_year integer,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0)
+	);
+	CREATE INDEX track_album_memberships_album_idx ON track_album_memberships(album_id,track_id);
+	
+	CREATE TABLE track_artist_memberships (
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE CASCADE,
+	    artist_id text NOT NULL REFERENCES catalog_artists(id),
+	    role text NOT NULL CHECK (role IN ('track_credit','album_artist_credit')),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_credit text NOT NULL,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    PRIMARY KEY(track_id,role)
+	);
+	CREATE INDEX track_artist_memberships_artist_idx ON track_artist_memberships(artist_id,track_id);
+	CREATE INDEX tracks_browse_idx ON tracks(catalog_title_key,id);
+	
+2026-09-28 18:51:30.033 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 18:51:32.834 IST [17976] ERROR:  new row for relation "tracks" violates check constraint "tracks_id_nonempty"
+2026-09-28 18:51:32.834 IST [17976] DETAIL:  Failing row contains (, null, 2026-09-28 18:51:32.832962+05:30, null, null, null, null, null, null, null, null, null, null).
+2026-09-28 18:51:32.834 IST [17976] STATEMENT:  INSERT INTO tracks(id) VALUES ('')
+2026-09-28 18:51:32.836 IST [17976] ERROR:  insert or update on table "media_objects" violates foreign key constraint "media_objects_track_id_fkey"
+2026-09-28 18:51:32.836 IST [17976] DETAIL:  Key (track_id)=(missing) is not present in table "tracks".
+2026-09-28 18:51:32.836 IST [17976] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','missing',decode(repeat('02',32),'hex'),'MP3',123)
+2026-09-28 18:51:32.837 IST [17976] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_hash_length"
+2026-09-28 18:51:32.837 IST [17976] DETAIL:  Failing row contains (bad, track, \x02, MP3, 123, 2026-09-28 18:51:32.837463+05:30, null, null).
+2026-09-28 18:51:32.837 IST [17976] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode('02','hex'),'MP3',123)
+2026-09-28 18:51:32.838 IST [17976] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_byte_length"
+2026-09-28 18:51:32.838 IST [17976] DETAIL:  Failing row contains (bad, track, \x02020202020202020202020202020202020202020202020202020202020202..., MP3, -1, 2026-09-28 18:51:32.838341+05:30, null, null).
+2026-09-28 18:51:32.838 IST [17976] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('02',32),'hex'),'MP3',-1)
+2026-09-28 18:51:32.840 IST [17976] ERROR:  duplicate key value violates unique constraint "media_objects_sha256_key"
+2026-09-28 18:51:32.840 IST [17976] DETAIL:  Key (sha256)=(\x0101010101010101010101010101010101010101010101010101010101010101) already exists.
+2026-09-28 18:51:32.840 IST [17976] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('01',32),'hex'),'MP3',123)
+2026-09-28 18:51:32.842 IST [17976] ERROR:  insert or update on table "media_locations" violates foreign key constraint "media_locations_media_object_id_fkey"
+2026-09-28 18:51:32.842 IST [17976] DETAIL:  Key (media_object_id)=(missing) is not present in table "media_objects".
+2026-09-28 18:51:32.842 IST [17976] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path) VALUES ('bad','missing','private')
+2026-09-28 18:51:32.843 IST [17976] ERROR:  update or delete on table "tracks" violates foreign key constraint "media_objects_track_id_fkey" on table "media_objects"
+2026-09-28 18:51:32.843 IST [17976] DETAIL:  Key (id)=(track) is still referenced from table "media_objects".
+2026-09-28 18:51:32.843 IST [17976] STATEMENT:  DELETE FROM tracks WHERE id='track'
+2026-09-28 18:51:34.607 IST [6216] ERROR:  relation "media_locations_media_object_id_idx" already exists
+2026-09-28 18:51:34.607 IST [6216] STATEMENT:  -- Forward-only additive migration, safe for populated core tables.
+	CREATE INDEX media_objects_track_id_idx ON media_objects(track_id);
+	CREATE INDEX media_locations_media_object_id_idx ON media_locations(media_object_id);
+	
+2026-09-28 18:51:41.725 IST [20232] ERROR:  relation "library_roots_enabled_verification_idx" already exists
+2026-09-28 18:51:41.725 IST [20232] STATEMENT:  -- M1.6 pins the enrolled directory object independently of its mutable path.
+	-- Existing rows have no trustworthy historical identity and must be verified
+	-- by a host-side operator before a scan can reconcile absence.
+	ALTER TABLE library_roots
+	    ADD COLUMN root_identity_kind text,
+	    ADD COLUMN root_identity_scope text,
+	    ADD COLUMN root_identity_id bytea,
+	    ADD COLUMN root_identity_birth_token bytea,
+	    ADD COLUMN verification_state text NOT NULL DEFAULT 'unverified',
+	    ADD COLUMN verified_at timestamptz,
+	    ADD CONSTRAINT library_roots_identity_kind_scope_check CHECK ((root_identity_kind IS NULL) = (root_identity_scope IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_id_check CHECK ((root_identity_kind IS NULL) = (root_identity_id IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_birth_check CHECK (root_identity_birth_token IS NULL OR root_identity_id IS NOT NULL),
+	    ADD CONSTRAINT library_roots_identity_kind_length_check CHECK (root_identity_kind IS NULL OR length(root_identity_kind) BETWEEN 1 AND 64),
+	    ADD CONSTRAINT library_roots_identity_scope_length_check CHECK (root_identity_scope IS NULL OR length(root_identity_scope) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_id_length_check CHECK (root_identity_id IS NULL OR octet_length(root_identity_id) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_birth_length_check CHECK (root_identity_birth_token IS NULL OR octet_length(root_identity_birth_token) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_verification_state_check CHECK (verification_state IN ('unverified','verified','quarantined')),
+	    ADD CONSTRAINT library_roots_verification_evidence_check CHECK (
+	        (verification_state='unverified' AND verified_at IS NULL)
+	        OR
+	        (verification_state IN ('verified','quarantined') AND root_identity_kind IS NOT NULL AND verified_at IS NOT NULL)
+	    );
+	
+	CREATE INDEX library_roots_enabled_verification_idx
+	    ON library_roots(verification_state,enabled,created_at,id);
+	
+2026-09-28 18:51:44.574 IST [30248] ERROR:  relation "media_locations_native_lookup_idx" already exists
+2026-09-28 18:51:44.574 IST [30248] STATEMENT:  -- M1.3A scan generations: retain old physical occurrences and reconcile only
+	-- after a complete, stable traversal.
+	
+	ALTER TABLE media_locations
+	    ADD COLUMN availability text NOT NULL DEFAULT 'available'
+	        CHECK (availability IN ('available', 'unavailable')),
+	    ADD COLUMN unavailable_reason text,
+	    ADD COLUMN unavailable_at timestamptz,
+	    ADD COLUMN observed_size bigint CHECK (observed_size IS NULL OR observed_size >= 0),
+	    ADD COLUMN observed_mtime_ns bigint,
+	    ADD COLUMN native_id_kind text,
+	    ADD COLUMN native_id_scope text,
+	    ADD COLUMN native_id bytea,
+	    ADD COLUMN native_birth_token bytea,
+	    ADD COLUMN last_seen_run_id uuid,
+	    ADD COLUMN state_updated_at timestamptz NOT NULL DEFAULT now(),
+	    ADD CONSTRAINT media_locations_availability_state_check CHECK (
+	        (availability = 'available' AND unavailable_reason IS NULL AND unavailable_at IS NULL)
+	        OR
+	        (availability = 'unavailable' AND unavailable_reason IS NOT NULL AND unavailable_at IS NOT NULL)
+	    ),
+	    ADD CONSTRAINT media_locations_native_identity_check CHECK (
+	        (native_id_kind IS NULL AND native_id_scope IS NULL AND native_id IS NULL)
+	        OR
+	        (native_id_kind IS NOT NULL AND native_id_scope IS NOT NULL AND native_id IS NOT NULL)
+	    );
+	
+	UPDATE media_locations AS ml
+	SET observed_size = mo.byte_length
+	FROM media_objects AS mo
+	WHERE mo.id = ml.media_object_id;
+	
+	DROP INDEX media_locations_root_relative_idx;
+	CREATE UNIQUE INDEX media_locations_active_root_relative_idx
+	    ON media_locations(root_id, relative_path)
+	    WHERE root_id IS NOT NULL AND availability = 'available';
+	CREATE INDEX media_locations_root_availability_idx
+	    ON media_locations(root_id, availability);
+	CREATE INDEX media_locations_native_lookup_idx
+	    ON media_locations(root_id, native_id_kind, native_id_scope, native_id)
+	    WHERE availability = 'available' AND native_id IS NOT NULL;
+	
+	ALTER TABLE scan_runs
+	    ADD COLUMN phase text NOT NULL DEFAULT 'discovering'
+	        CHECK (phase IN ('discovering', 'publishing', 'finished')),
+	    ADD COLUMN traversal_complete boolean NOT NULL DEFAULT false,
+	    ADD COLUMN observations_applied boolean NOT NULL DEFAULT false,
+	    ADD COLUMN absence_reconciled boolean NOT NULL DEFAULT false,
+	    ADD COLUMN files_unchanged bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN files_hashed bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN stat_changed_same_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN changed_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_added bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_moved bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_unavailable bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN media_objects_created bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN tracks_created bigint NOT NULL DEFAULT 0,
+	    ADD CONSTRAINT scan_runs_counters_nonnegative CHECK (
+	        files_visited >= 0 AND files_supported >= 0 AND imported >= 0 AND skipped >= 0 AND failed >= 0
+	        AND bytes_hashed >= 0 AND metadata_extractions >= 0 AND files_unchanged >= 0 AND files_hashed >= 0
+	        AND stat_changed_same_bytes >= 0 AND changed_bytes >= 0 AND locations_added >= 0
+	        AND locations_moved >= 0 AND locations_unavailable >= 0 AND media_objects_created >= 0 AND tracks_created >= 0
+	    ),
+	    ADD CONSTRAINT scan_runs_root_id_id_key UNIQUE (root_id, id);
+	
+	-- Existing M1.2 runs are terminal history, not active M1.3A traversals.
+	UPDATE scan_runs SET phase = 'finished' WHERE status <> 'running';
+	
+	ALTER TABLE library_roots
+	    ADD COLUMN last_successful_scan_id uuid,
+	    ADD CONSTRAINT library_roots_last_successful_scan_fkey
+	        FOREIGN KEY (id, last_successful_scan_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE media_locations
+	    ADD CONSTRAINT media_locations_last_seen_run_fkey
+	        FOREIGN KEY (root_id, last_seen_run_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE tracks
+	    ADD COLUMN metadata_source_location_id text,
+	    ADD CONSTRAINT tracks_metadata_source_location_fkey
+	        FOREIGN KEY (metadata_source_location_id) REFERENCES media_locations(id)
+	        DEFERRABLE INITIALLY DEFERRED;
+	
+	UPDATE tracks AS t
+	SET metadata_source_location_id = (
+	    SELECT ml.id
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	    ORDER BY ml.created_at, ml.id
+	    LIMIT 1
+	)
+	WHERE EXISTS (
+	    SELECT 1
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	);
+	
+2026-09-28 18:51:45.122 IST [15536] ERROR:  relation "tracks" already exists
+2026-09-28 18:51:45.122 IST [15536] STATEMENT:  -- M1 source-of-truth identities. No demo-track row is inserted.
+	CREATE TABLE tracks (
+	    id text PRIMARY KEY,
+	    title text,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT tracks_id_nonempty CHECK (length(id) BETWEEN 1 AND 128)
+	);
+	
+	CREATE TABLE media_objects (
+	    id text PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    sha256 bytea NOT NULL UNIQUE,
+	    format text NOT NULL,
+	    byte_length bigint NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_objects_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_objects_hash_length CHECK (octet_length(sha256) = 32),
+	    CONSTRAINT media_objects_format_nonempty CHECK (length(format) BETWEEN 1 AND 32),
+	    CONSTRAINT media_objects_byte_length CHECK (byte_length >= 0)
+	);
+	
+	CREATE TABLE media_locations (
+	    id text PRIMARY KEY,
+	    media_object_id text NOT NULL REFERENCES media_objects(id) ON DELETE RESTRICT,
+	    local_path text NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_locations_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_locations_path_nonempty CHECK (length(local_path) > 0)
+	);
+	
+2026-09-28 18:51:47.346 IST [16988] FATAL:  terminating connection due to administrator command
+2026-09-28 18:51:48.672 IST [14352] ERROR:  relation "queue_items" already exists
+2026-09-28 18:51:48.672 IST [14352] STATEMENT:  -- M1.5 single-owner durable user-library state. All references are Track IDs.
+	CREATE TABLE active_queue (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    current_item_id text,
+	    selection_token uuid,
+	    selection_state text NOT NULL DEFAULT 'stopped' CHECK (selection_state IN ('stopped','selected')),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT active_queue_selection_check CHECK (
+	        (selection_state = 'stopped' AND selection_token IS NULL)
+	        OR (selection_state = 'selected' AND current_item_id IS NOT NULL AND selection_token IS NOT NULL)
+	    )
+	);
+	INSERT INTO active_queue(singleton) VALUES(true);
+	
+	CREATE TABLE queue_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    last_skip_code text CHECK (last_skip_code IS NULL OR last_skip_code IN ('track_unavailable','resolver_failed')),
+	    last_skipped_at timestamptz,
+	    CONSTRAINT queue_items_skip_pair CHECK ((last_skip_code IS NULL) = (last_skipped_at IS NULL)),
+	    CONSTRAINT queue_items_position_key UNIQUE(position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX queue_items_track_idx ON queue_items(track_id);
+	ALTER TABLE active_queue ADD CONSTRAINT active_queue_current_item_fkey
+	    FOREIGN KEY (current_item_id) REFERENCES queue_items(id) DEFERRABLE INITIALLY DEFERRED;
+	
+	CREATE TABLE playlists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    name text NOT NULL CHECK (length(btrim(name)) BETWEEN 1 AND 256),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX playlists_created_idx ON playlists(created_at DESC,id DESC);
+	
+	CREATE TABLE playlist_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    playlist_id text NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT playlist_items_position_key UNIQUE(playlist_id,position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX playlist_items_track_idx ON playlist_items(track_id);
+	
+	CREATE TABLE favorite_tracks (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE RESTRICT,
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX favorite_tracks_created_idx ON favorite_tracks(created_at DESC,track_id DESC);
+	
+	CREATE TABLE playback_sessions (
+	    id uuid PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    queue_item_id text,
+	    selection_token uuid,
+	    client_instance_id uuid NOT NULL,
+	    started_at timestamptz NOT NULL DEFAULT now(),
+	    meaningful_at timestamptz,
+	    completed_at timestamptz,
+	    ended_at timestamptz,
+	    last_sequence bigint NOT NULL DEFAULT 0 CHECK (last_sequence >= 0),
+	    listened_ms bigint NOT NULL DEFAULT 0 CHECK (listened_ms >= 0),
+	    last_position_ms bigint NOT NULL DEFAULT 0 CHECK (last_position_ms >= 0),
+	    reported_duration_ms bigint CHECK (reported_duration_ms IS NULL OR reported_duration_ms > 0),
+	    seek_count bigint NOT NULL DEFAULT 0 CHECK (seek_count >= 0),
+	    terminal_reason text CHECK (terminal_reason IS NULL OR terminal_reason IN ('ended','interrupted','stopped','decoder_error','disconnected')),
+	    CONSTRAINT playback_sessions_completion_check CHECK (completed_at IS NULL OR (ended_at IS NOT NULL AND terminal_reason = 'ended')),
+	    CONSTRAINT playback_sessions_queue_pair CHECK ((queue_item_id IS NULL) = (selection_token IS NULL))
+	);
+	CREATE INDEX playback_sessions_recent_idx ON playback_sessions(started_at DESC,id DESC);
+	CREATE INDEX playback_sessions_client_open_idx ON playback_sessions(client_instance_id,started_at DESC) WHERE ended_at IS NULL;
+	
+	CREATE TABLE mutation_receipts (
+	    operation_scope text NOT NULL CHECK (length(operation_scope) BETWEEN 1 AND 80),
+	    idempotency_key uuid NOT NULL,
+	    canonical_request bytea NOT NULL CHECK (octet_length(canonical_request) <= 262144),
+	    response_status integer NOT NULL CHECK (response_status BETWEEN 200 AND 299),
+	    response_body bytea NOT NULL CHECK (octet_length(response_body) <= 16384),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    expires_at timestamptz NOT NULL DEFAULT (now() + interval '7 days'),
+	    last_replayed_at timestamptz,
+	    CONSTRAINT mutation_receipts_expiry_check CHECK (expires_at > created_at),
+	    PRIMARY KEY(operation_scope,idempotency_key)
+	);
+	CREATE INDEX mutation_receipts_expiry_idx ON mutation_receipts(expires_at);
+	
+2026-09-28 18:51:49.666 IST [7156] ERROR:  injected queue failure
+2026-09-28 18:51:49.666 IST [7156] CONTEXT:  PL/pgSQL function fail_queue_update() line 1 at RAISE
+2026-09-28 18:51:49.666 IST [7156] STATEMENT:  UPDATE active_queue SET revision=$1,current_item_id=$2,selection_token=$3,selection_state=$4,updated_at=now() WHERE singleton=true
+2026-09-28 18:52:45.048 IST [19932] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:52:45.048 IST [14448] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:52:45.048 IST [27820] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 18:53:19.125 IST [31168] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:53:19.183 IST [7020] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:53:38.720 IST [30236] ERROR:  injected publish failure
+2026-09-28 18:53:38.720 IST [30236] CONTEXT:  PL/pgSQL function fail_location_insert() line 1 at RAISE
+2026-09-28 18:53:38.720 IST [30236] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path,root_id,relative_path,availability,
+			observed_size,observed_mtime_ns,native_id_kind,native_id_scope,native_id,native_birth_token,state_updated_at)
+			VALUES($1,$2,$3,$4,$5,'available',$6,$7,NULLIF($8,''),NULLIF($9,''),$10,$11,now())
+2026-09-28 18:53:39.923 IST [11140] ERROR:  injected grouping failure
+2026-09-28 18:53:39.923 IST [11140] CONTEXT:  PL/pgSQL function fail_group_insert() line 1 at RAISE
+2026-09-28 18:53:39.923 IST [11140] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:53:52.148 IST [18700] ERROR:  injected interrupted backfill
+2026-09-28 18:53:52.148 IST [18700] CONTEXT:  PL/pgSQL function fail_backfill_insert() line 1 at RAISE
+2026-09-28 18:53:52.148 IST [18700] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:53:54.533 IST [4480] ERROR:  relation "catalog_albums" already exists
+2026-09-28 18:53:54.533 IST [4480] STATEMENT:  -- Local catalog groupings; source identities and raw Track observations remain authoritative.
+	ALTER TABLE tracks ADD COLUMN catalog_title_key text;
+	CREATE TABLE catalog_grouping_state (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    completed boolean NOT NULL DEFAULT false,
+	    completed_at timestamptz
+	);
+	INSERT INTO catalog_grouping_state(singleton,rule_version,completed) VALUES(true,1,false);
+	
+	CREATE TABLE catalog_artists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_credit text NOT NULL CHECK (length(display_credit) BETWEEN 1 AND 2048),
+	    normalized_credit text NOT NULL CHECK (length(normalized_credit) BETWEEN 1 AND 2048),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    source_location_id text REFERENCES media_locations(id),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT catalog_artists_group_key UNIQUE(normalized_credit,evidence_scope,rule_version)
+	);
+	CREATE INDEX catalog_artists_browse_idx ON catalog_artists(normalized_credit,id);
+	
+	CREATE TABLE catalog_albums (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_title text NOT NULL CHECK (length(display_title) BETWEEN 1 AND 2048),
+	    normalized_title text NOT NULL CHECK (length(normalized_title) BETWEEN 1 AND 2048),
+	    album_artist_id text REFERENCES catalog_artists(id),
+	    credit_key text NOT NULL CHECK (length(credit_key) BETWEEN 1 AND 2048),
+	    root_id uuid NOT NULL REFERENCES library_roots(id),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    release_year integer CHECK (release_year BETWEEN 1 AND 9999),
+	    source_location_id text REFERENCES media_locations(id),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE UNIQUE INDEX catalog_albums_identity_idx ON catalog_albums(root_id,evidence_scope,normalized_title,credit_key,COALESCE(release_year,0),rule_version);
+	CREATE INDEX catalog_albums_browse_idx ON catalog_albums(normalized_title,id);
+	
+	CREATE TABLE track_album_memberships (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE CASCADE,
+	    album_id text NOT NULL REFERENCES catalog_albums(id),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_album_title text NOT NULL,
+	    raw_album_artist_credit text,
+	    raw_track_artist_credit text,
+	    raw_release_year integer,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0)
+	);
+	CREATE INDEX track_album_memberships_album_idx ON track_album_memberships(album_id,track_id);
+	
+	CREATE TABLE track_artist_memberships (
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE CASCADE,
+	    artist_id text NOT NULL REFERENCES catalog_artists(id),
+	    role text NOT NULL CHECK (role IN ('track_credit','album_artist_credit')),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_credit text NOT NULL,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    PRIMARY KEY(track_id,role)
+	);
+	CREATE INDEX track_artist_memberships_artist_idx ON track_artist_memberships(artist_id,track_id);
+	CREATE INDEX tracks_browse_idx ON tracks(catalog_title_key,id);
+	
+2026-09-28 18:54:05.568 IST [31548] ERROR:  new row for relation "tracks" violates check constraint "tracks_id_nonempty"
+2026-09-28 18:54:05.568 IST [31548] DETAIL:  Failing row contains (, null, 2026-09-28 18:54:05.567879+05:30, null, null, null, null, null, null, null, null, null, null).
+2026-09-28 18:54:05.568 IST [31548] STATEMENT:  INSERT INTO tracks(id) VALUES ('')
+2026-09-28 18:54:05.570 IST [31548] ERROR:  insert or update on table "media_objects" violates foreign key constraint "media_objects_track_id_fkey"
+2026-09-28 18:54:05.570 IST [31548] DETAIL:  Key (track_id)=(missing) is not present in table "tracks".
+2026-09-28 18:54:05.570 IST [31548] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','missing',decode(repeat('02',32),'hex'),'MP3',123)
+2026-09-28 18:54:05.572 IST [31548] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_hash_length"
+2026-09-28 18:54:05.572 IST [31548] DETAIL:  Failing row contains (bad, track, \x02, MP3, 123, 2026-09-28 18:54:05.571941+05:30, null, null).
+2026-09-28 18:54:05.572 IST [31548] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode('02','hex'),'MP3',123)
+2026-09-28 18:54:05.573 IST [31548] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_byte_length"
+2026-09-28 18:54:05.573 IST [31548] DETAIL:  Failing row contains (bad, track, \x02020202020202020202020202020202020202020202020202020202020202..., MP3, -1, 2026-09-28 18:54:05.572836+05:30, null, null).
+2026-09-28 18:54:05.573 IST [31548] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('02',32),'hex'),'MP3',-1)
+2026-09-28 18:54:05.574 IST [31548] ERROR:  duplicate key value violates unique constraint "media_objects_sha256_key"
+2026-09-28 18:54:05.574 IST [31548] DETAIL:  Key (sha256)=(\x0101010101010101010101010101010101010101010101010101010101010101) already exists.
+2026-09-28 18:54:05.574 IST [31548] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('01',32),'hex'),'MP3',123)
+2026-09-28 18:54:05.576 IST [31548] ERROR:  insert or update on table "media_locations" violates foreign key constraint "media_locations_media_object_id_fkey"
+2026-09-28 18:54:05.576 IST [31548] DETAIL:  Key (media_object_id)=(missing) is not present in table "media_objects".
+2026-09-28 18:54:05.576 IST [31548] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path) VALUES ('bad','missing','private')
+2026-09-28 18:54:05.577 IST [31548] ERROR:  update or delete on table "tracks" violates foreign key constraint "media_objects_track_id_fkey" on table "media_objects"
+2026-09-28 18:54:05.577 IST [31548] DETAIL:  Key (id)=(track) is still referenced from table "media_objects".
+2026-09-28 18:54:05.577 IST [31548] STATEMENT:  DELETE FROM tracks WHERE id='track'
+2026-09-28 18:54:07.364 IST [31516] ERROR:  relation "media_locations_media_object_id_idx" already exists
+2026-09-28 18:54:07.364 IST [31516] STATEMENT:  -- Forward-only additive migration, safe for populated core tables.
+	CREATE INDEX media_objects_track_id_idx ON media_objects(track_id);
+	CREATE INDEX media_locations_media_object_id_idx ON media_locations(media_object_id);
+	
+2026-09-28 18:54:15.012 IST [2980] ERROR:  relation "library_roots_enabled_verification_idx" already exists
+2026-09-28 18:54:15.012 IST [2980] STATEMENT:  -- M1.6 pins the enrolled directory object independently of its mutable path.
+	-- Existing rows have no trustworthy historical identity and must be verified
+	-- by a host-side operator before a scan can reconcile absence.
+	ALTER TABLE library_roots
+	    ADD COLUMN root_identity_kind text,
+	    ADD COLUMN root_identity_scope text,
+	    ADD COLUMN root_identity_id bytea,
+	    ADD COLUMN root_identity_birth_token bytea,
+	    ADD COLUMN verification_state text NOT NULL DEFAULT 'unverified',
+	    ADD COLUMN verified_at timestamptz,
+	    ADD CONSTRAINT library_roots_identity_kind_scope_check CHECK ((root_identity_kind IS NULL) = (root_identity_scope IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_id_check CHECK ((root_identity_kind IS NULL) = (root_identity_id IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_birth_check CHECK (root_identity_birth_token IS NULL OR root_identity_id IS NOT NULL),
+	    ADD CONSTRAINT library_roots_identity_kind_length_check CHECK (root_identity_kind IS NULL OR length(root_identity_kind) BETWEEN 1 AND 64),
+	    ADD CONSTRAINT library_roots_identity_scope_length_check CHECK (root_identity_scope IS NULL OR length(root_identity_scope) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_id_length_check CHECK (root_identity_id IS NULL OR octet_length(root_identity_id) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_birth_length_check CHECK (root_identity_birth_token IS NULL OR octet_length(root_identity_birth_token) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_verification_state_check CHECK (verification_state IN ('unverified','verified','quarantined')),
+	    ADD CONSTRAINT library_roots_verification_evidence_check CHECK (
+	        (verification_state='unverified' AND verified_at IS NULL)
+	        OR
+	        (verification_state IN ('verified','quarantined') AND root_identity_kind IS NOT NULL AND verified_at IS NOT NULL)
+	    );
+	
+	CREATE INDEX library_roots_enabled_verification_idx
+	    ON library_roots(verification_state,enabled,created_at,id);
+	
+2026-09-28 18:54:17.476 IST [22988] ERROR:  relation "media_locations_native_lookup_idx" already exists
+2026-09-28 18:54:17.476 IST [22988] STATEMENT:  -- M1.3A scan generations: retain old physical occurrences and reconcile only
+	-- after a complete, stable traversal.
+	
+	ALTER TABLE media_locations
+	    ADD COLUMN availability text NOT NULL DEFAULT 'available'
+	        CHECK (availability IN ('available', 'unavailable')),
+	    ADD COLUMN unavailable_reason text,
+	    ADD COLUMN unavailable_at timestamptz,
+	    ADD COLUMN observed_size bigint CHECK (observed_size IS NULL OR observed_size >= 0),
+	    ADD COLUMN observed_mtime_ns bigint,
+	    ADD COLUMN native_id_kind text,
+	    ADD COLUMN native_id_scope text,
+	    ADD COLUMN native_id bytea,
+	    ADD COLUMN native_birth_token bytea,
+	    ADD COLUMN last_seen_run_id uuid,
+	    ADD COLUMN state_updated_at timestamptz NOT NULL DEFAULT now(),
+	    ADD CONSTRAINT media_locations_availability_state_check CHECK (
+	        (availability = 'available' AND unavailable_reason IS NULL AND unavailable_at IS NULL)
+	        OR
+	        (availability = 'unavailable' AND unavailable_reason IS NOT NULL AND unavailable_at IS NOT NULL)
+	    ),
+	    ADD CONSTRAINT media_locations_native_identity_check CHECK (
+	        (native_id_kind IS NULL AND native_id_scope IS NULL AND native_id IS NULL)
+	        OR
+	        (native_id_kind IS NOT NULL AND native_id_scope IS NOT NULL AND native_id IS NOT NULL)
+	    );
+	
+	UPDATE media_locations AS ml
+	SET observed_size = mo.byte_length
+	FROM media_objects AS mo
+	WHERE mo.id = ml.media_object_id;
+	
+	DROP INDEX media_locations_root_relative_idx;
+	CREATE UNIQUE INDEX media_locations_active_root_relative_idx
+	    ON media_locations(root_id, relative_path)
+	    WHERE root_id IS NOT NULL AND availability = 'available';
+	CREATE INDEX media_locations_root_availability_idx
+	    ON media_locations(root_id, availability);
+	CREATE INDEX media_locations_native_lookup_idx
+	    ON media_locations(root_id, native_id_kind, native_id_scope, native_id)
+	    WHERE availability = 'available' AND native_id IS NOT NULL;
+	
+	ALTER TABLE scan_runs
+	    ADD COLUMN phase text NOT NULL DEFAULT 'discovering'
+	        CHECK (phase IN ('discovering', 'publishing', 'finished')),
+	    ADD COLUMN traversal_complete boolean NOT NULL DEFAULT false,
+	    ADD COLUMN observations_applied boolean NOT NULL DEFAULT false,
+	    ADD COLUMN absence_reconciled boolean NOT NULL DEFAULT false,
+	    ADD COLUMN files_unchanged bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN files_hashed bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN stat_changed_same_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN changed_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_added bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_moved bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_unavailable bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN media_objects_created bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN tracks_created bigint NOT NULL DEFAULT 0,
+	    ADD CONSTRAINT scan_runs_counters_nonnegative CHECK (
+	        files_visited >= 0 AND files_supported >= 0 AND imported >= 0 AND skipped >= 0 AND failed >= 0
+	        AND bytes_hashed >= 0 AND metadata_extractions >= 0 AND files_unchanged >= 0 AND files_hashed >= 0
+	        AND stat_changed_same_bytes >= 0 AND changed_bytes >= 0 AND locations_added >= 0
+	        AND locations_moved >= 0 AND locations_unavailable >= 0 AND media_objects_created >= 0 AND tracks_created >= 0
+	    ),
+	    ADD CONSTRAINT scan_runs_root_id_id_key UNIQUE (root_id, id);
+	
+	-- Existing M1.2 runs are terminal history, not active M1.3A traversals.
+	UPDATE scan_runs SET phase = 'finished' WHERE status <> 'running';
+	
+	ALTER TABLE library_roots
+	    ADD COLUMN last_successful_scan_id uuid,
+	    ADD CONSTRAINT library_roots_last_successful_scan_fkey
+	        FOREIGN KEY (id, last_successful_scan_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE media_locations
+	    ADD CONSTRAINT media_locations_last_seen_run_fkey
+	        FOREIGN KEY (root_id, last_seen_run_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE tracks
+	    ADD COLUMN metadata_source_location_id text,
+	    ADD CONSTRAINT tracks_metadata_source_location_fkey
+	        FOREIGN KEY (metadata_source_location_id) REFERENCES media_locations(id)
+	        DEFERRABLE INITIALLY DEFERRED;
+	
+	UPDATE tracks AS t
+	SET metadata_source_location_id = (
+	    SELECT ml.id
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	    ORDER BY ml.created_at, ml.id
+	    LIMIT 1
+	)
+	WHERE EXISTS (
+	    SELECT 1
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	);
+	
+2026-09-28 18:54:18.017 IST [30556] ERROR:  relation "tracks" already exists
+2026-09-28 18:54:18.017 IST [30556] STATEMENT:  -- M1 source-of-truth identities. No demo-track row is inserted.
+	CREATE TABLE tracks (
+	    id text PRIMARY KEY,
+	    title text,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT tracks_id_nonempty CHECK (length(id) BETWEEN 1 AND 128)
+	);
+	
+	CREATE TABLE media_objects (
+	    id text PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    sha256 bytea NOT NULL UNIQUE,
+	    format text NOT NULL,
+	    byte_length bigint NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_objects_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_objects_hash_length CHECK (octet_length(sha256) = 32),
+	    CONSTRAINT media_objects_format_nonempty CHECK (length(format) BETWEEN 1 AND 32),
+	    CONSTRAINT media_objects_byte_length CHECK (byte_length >= 0)
+	);
+	
+	CREATE TABLE media_locations (
+	    id text PRIMARY KEY,
+	    media_object_id text NOT NULL REFERENCES media_objects(id) ON DELETE RESTRICT,
+	    local_path text NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_locations_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_locations_path_nonempty CHECK (length(local_path) > 0)
+	);
+	
+2026-09-28 18:54:19.859 IST [18284] FATAL:  terminating connection due to administrator command
+2026-09-28 18:54:21.165 IST [12340] ERROR:  relation "queue_items" already exists
+2026-09-28 18:54:21.165 IST [12340] STATEMENT:  -- M1.5 single-owner durable user-library state. All references are Track IDs.
+	CREATE TABLE active_queue (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    current_item_id text,
+	    selection_token uuid,
+	    selection_state text NOT NULL DEFAULT 'stopped' CHECK (selection_state IN ('stopped','selected')),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT active_queue_selection_check CHECK (
+	        (selection_state = 'stopped' AND selection_token IS NULL)
+	        OR (selection_state = 'selected' AND current_item_id IS NOT NULL AND selection_token IS NOT NULL)
+	    )
+	);
+	INSERT INTO active_queue(singleton) VALUES(true);
+	
+	CREATE TABLE queue_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    last_skip_code text CHECK (last_skip_code IS NULL OR last_skip_code IN ('track_unavailable','resolver_failed')),
+	    last_skipped_at timestamptz,
+	    CONSTRAINT queue_items_skip_pair CHECK ((last_skip_code IS NULL) = (last_skipped_at IS NULL)),
+	    CONSTRAINT queue_items_position_key UNIQUE(position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX queue_items_track_idx ON queue_items(track_id);
+	ALTER TABLE active_queue ADD CONSTRAINT active_queue_current_item_fkey
+	    FOREIGN KEY (current_item_id) REFERENCES queue_items(id) DEFERRABLE INITIALLY DEFERRED;
+	
+	CREATE TABLE playlists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    name text NOT NULL CHECK (length(btrim(name)) BETWEEN 1 AND 256),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX playlists_created_idx ON playlists(created_at DESC,id DESC);
+	
+	CREATE TABLE playlist_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    playlist_id text NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT playlist_items_position_key UNIQUE(playlist_id,position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX playlist_items_track_idx ON playlist_items(track_id);
+	
+	CREATE TABLE favorite_tracks (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE RESTRICT,
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX favorite_tracks_created_idx ON favorite_tracks(created_at DESC,track_id DESC);
+	
+	CREATE TABLE playback_sessions (
+	    id uuid PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    queue_item_id text,
+	    selection_token uuid,
+	    client_instance_id uuid NOT NULL,
+	    started_at timestamptz NOT NULL DEFAULT now(),
+	    meaningful_at timestamptz,
+	    completed_at timestamptz,
+	    ended_at timestamptz,
+	    last_sequence bigint NOT NULL DEFAULT 0 CHECK (last_sequence >= 0),
+	    listened_ms bigint NOT NULL DEFAULT 0 CHECK (listened_ms >= 0),
+	    last_position_ms bigint NOT NULL DEFAULT 0 CHECK (last_position_ms >= 0),
+	    reported_duration_ms bigint CHECK (reported_duration_ms IS NULL OR reported_duration_ms > 0),
+	    seek_count bigint NOT NULL DEFAULT 0 CHECK (seek_count >= 0),
+	    terminal_reason text CHECK (terminal_reason IS NULL OR terminal_reason IN ('ended','interrupted','stopped','decoder_error','disconnected')),
+	    CONSTRAINT playback_sessions_completion_check CHECK (completed_at IS NULL OR (ended_at IS NOT NULL AND terminal_reason = 'ended')),
+	    CONSTRAINT playback_sessions_queue_pair CHECK ((queue_item_id IS NULL) = (selection_token IS NULL))
+	);
+	CREATE INDEX playback_sessions_recent_idx ON playback_sessions(started_at DESC,id DESC);
+	CREATE INDEX playback_sessions_client_open_idx ON playback_sessions(client_instance_id,started_at DESC) WHERE ended_at IS NULL;
+	
+	CREATE TABLE mutation_receipts (
+	    operation_scope text NOT NULL CHECK (length(operation_scope) BETWEEN 1 AND 80),
+	    idempotency_key uuid NOT NULL,
+	    canonical_request bytea NOT NULL CHECK (octet_length(canonical_request) <= 262144),
+	    response_status integer NOT NULL CHECK (response_status BETWEEN 200 AND 299),
+	    response_body bytea NOT NULL CHECK (octet_length(response_body) <= 16384),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    expires_at timestamptz NOT NULL DEFAULT (now() + interval '7 days'),
+	    last_replayed_at timestamptz,
+	    CONSTRAINT mutation_receipts_expiry_check CHECK (expires_at > created_at),
+	    PRIMARY KEY(operation_scope,idempotency_key)
+	);
+	CREATE INDEX mutation_receipts_expiry_idx ON mutation_receipts(expires_at);
+	
+2026-09-28 18:54:22.137 IST [11716] ERROR:  injected queue failure
+2026-09-28 18:54:22.137 IST [11716] CONTEXT:  PL/pgSQL function fail_queue_update() line 1 at RAISE
+2026-09-28 18:54:22.137 IST [11716] STATEMENT:  UPDATE active_queue SET revision=$1,current_item_id=$2,selection_token=$3,selection_state=$4,updated_at=now() WHERE singleton=true
+2026-09-28 18:56:07.027 IST [10388] LOG:  checkpoint complete: wrote 1867 buffers (11.4%); 0 WAL file(s) added, 4 removed, 0 recycled; write=270.032 s, sync=6.011 s, total=276.994 s; sync files=18118, longest=0.005 s, average=0.001 s; distance=68315 kB, estimate=104585 kB; lsn=0/6661E9F0, redo lsn=0/5CB60720
+2026-09-28 18:56:30.048 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 18:56:36.271 IST [15420] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:56:36.339 IST [9136] WARNING:  you don't own a lock of type ExclusiveLock
+2026-09-28 18:56:55.595 IST [29244] ERROR:  injected publish failure
+2026-09-28 18:56:55.595 IST [29244] CONTEXT:  PL/pgSQL function fail_location_insert() line 1 at RAISE
+2026-09-28 18:56:55.595 IST [29244] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path,root_id,relative_path,availability,
+			observed_size,observed_mtime_ns,native_id_kind,native_id_scope,native_id,native_birth_token,state_updated_at)
+			VALUES($1,$2,$3,$4,$5,'available',$6,$7,NULLIF($8,''),NULLIF($9,''),$10,$11,now())
+2026-09-28 18:56:56.518 IST [30252] ERROR:  injected grouping failure
+2026-09-28 18:56:56.518 IST [30252] CONTEXT:  PL/pgSQL function fail_group_insert() line 1 at RAISE
+2026-09-28 18:56:56.518 IST [30252] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:57:07.724 IST [11716] ERROR:  injected interrupted backfill
+2026-09-28 18:57:07.724 IST [11716] CONTEXT:  PL/pgSQL function fail_backfill_insert() line 1 at RAISE
+2026-09-28 18:57:07.724 IST [11716] STATEMENT:  INSERT INTO track_album_memberships(track_id,album_id,source_location_id,raw_album_title,raw_album_artist_credit,raw_track_artist_credit,raw_release_year,evidence_code,rule_version)
+				VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) ON CONFLICT(track_id) DO UPDATE SET album_id=excluded.album_id,source_location_id=excluded.source_location_id,raw_album_title=excluded.raw_album_title,raw_album_artist_credit=excluded.raw_album_artist_credit,raw_track_artist_credit=excluded.raw_track_artist_credit,raw_release_year=excluded.raw_release_year,evidence_code=excluded.evidence_code,rule_version=excluded.rule_version
+2026-09-28 18:57:10.434 IST [9580] ERROR:  relation "catalog_albums" already exists
+2026-09-28 18:57:10.434 IST [9580] STATEMENT:  -- Local catalog groupings; source identities and raw Track observations remain authoritative.
+	ALTER TABLE tracks ADD COLUMN catalog_title_key text;
+	CREATE TABLE catalog_grouping_state (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    completed boolean NOT NULL DEFAULT false,
+	    completed_at timestamptz
+	);
+	INSERT INTO catalog_grouping_state(singleton,rule_version,completed) VALUES(true,1,false);
+	
+	CREATE TABLE catalog_artists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_credit text NOT NULL CHECK (length(display_credit) BETWEEN 1 AND 2048),
+	    normalized_credit text NOT NULL CHECK (length(normalized_credit) BETWEEN 1 AND 2048),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    source_location_id text REFERENCES media_locations(id),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT catalog_artists_group_key UNIQUE(normalized_credit,evidence_scope,rule_version)
+	);
+	CREATE INDEX catalog_artists_browse_idx ON catalog_artists(normalized_credit,id);
+	
+	CREATE TABLE catalog_albums (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    display_title text NOT NULL CHECK (length(display_title) BETWEEN 1 AND 2048),
+	    normalized_title text NOT NULL CHECK (length(normalized_title) BETWEEN 1 AND 2048),
+	    album_artist_id text REFERENCES catalog_artists(id),
+	    credit_key text NOT NULL CHECK (length(credit_key) BETWEEN 1 AND 2048),
+	    root_id uuid NOT NULL REFERENCES library_roots(id),
+	    evidence_scope text NOT NULL CHECK (length(evidence_scope) BETWEEN 1 AND 1024),
+	    release_year integer CHECK (release_year BETWEEN 1 AND 9999),
+	    source_location_id text REFERENCES media_locations(id),
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE UNIQUE INDEX catalog_albums_identity_idx ON catalog_albums(root_id,evidence_scope,normalized_title,credit_key,COALESCE(release_year,0),rule_version);
+	CREATE INDEX catalog_albums_browse_idx ON catalog_albums(normalized_title,id);
+	
+	CREATE TABLE track_album_memberships (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE CASCADE,
+	    album_id text NOT NULL REFERENCES catalog_albums(id),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_album_title text NOT NULL,
+	    raw_album_artist_credit text,
+	    raw_track_artist_credit text,
+	    raw_release_year integer,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('folder','disc_parent')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0)
+	);
+	CREATE INDEX track_album_memberships_album_idx ON track_album_memberships(album_id,track_id);
+	
+	CREATE TABLE track_artist_memberships (
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE CASCADE,
+	    artist_id text NOT NULL REFERENCES catalog_artists(id),
+	    role text NOT NULL CHECK (role IN ('track_credit','album_artist_credit')),
+	    source_location_id text NOT NULL REFERENCES media_locations(id),
+	    raw_credit text NOT NULL,
+	    evidence_code text NOT NULL CHECK (evidence_code IN ('artist_folder','album_scope','track_scope')),
+	    rule_version integer NOT NULL CHECK (rule_version > 0),
+	    PRIMARY KEY(track_id,role)
+	);
+	CREATE INDEX track_artist_memberships_artist_idx ON track_artist_memberships(artist_id,track_id);
+	CREATE INDEX tracks_browse_idx ON tracks(catalog_title_key,id);
+	
+2026-09-28 18:57:21.236 IST [29736] ERROR:  new row for relation "tracks" violates check constraint "tracks_id_nonempty"
+2026-09-28 18:57:21.236 IST [29736] DETAIL:  Failing row contains (, null, 2026-09-28 18:57:21.236081+05:30, null, null, null, null, null, null, null, null, null, null).
+2026-09-28 18:57:21.236 IST [29736] STATEMENT:  INSERT INTO tracks(id) VALUES ('')
+2026-09-28 18:57:21.238 IST [29736] ERROR:  insert or update on table "media_objects" violates foreign key constraint "media_objects_track_id_fkey"
+2026-09-28 18:57:21.238 IST [29736] DETAIL:  Key (track_id)=(missing) is not present in table "tracks".
+2026-09-28 18:57:21.238 IST [29736] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','missing',decode(repeat('02',32),'hex'),'MP3',123)
+2026-09-28 18:57:21.239 IST [29736] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_hash_length"
+2026-09-28 18:57:21.239 IST [29736] DETAIL:  Failing row contains (bad, track, \x02, MP3, 123, 2026-09-28 18:57:21.239412+05:30, null, null).
+2026-09-28 18:57:21.239 IST [29736] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode('02','hex'),'MP3',123)
+2026-09-28 18:57:21.240 IST [29736] ERROR:  new row for relation "media_objects" violates check constraint "media_objects_byte_length"
+2026-09-28 18:57:21.240 IST [29736] DETAIL:  Failing row contains (bad, track, \x02020202020202020202020202020202020202020202020202020202020202..., MP3, -1, 2026-09-28 18:57:21.240156+05:30, null, null).
+2026-09-28 18:57:21.240 IST [29736] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('02',32),'hex'),'MP3',-1)
+2026-09-28 18:57:21.241 IST [29736] ERROR:  duplicate key value violates unique constraint "media_objects_sha256_key"
+2026-09-28 18:57:21.241 IST [29736] DETAIL:  Key (sha256)=(\x0101010101010101010101010101010101010101010101010101010101010101) already exists.
+2026-09-28 18:57:21.241 IST [29736] STATEMENT:  INSERT INTO media_objects(id,track_id,sha256,format,byte_length) VALUES ('bad','track',decode(repeat('01',32),'hex'),'MP3',123)
+2026-09-28 18:57:21.243 IST [29736] ERROR:  insert or update on table "media_locations" violates foreign key constraint "media_locations_media_object_id_fkey"
+2026-09-28 18:57:21.243 IST [29736] DETAIL:  Key (media_object_id)=(missing) is not present in table "media_objects".
+2026-09-28 18:57:21.243 IST [29736] STATEMENT:  INSERT INTO media_locations(id,media_object_id,local_path) VALUES ('bad','missing','private')
+2026-09-28 18:57:21.244 IST [29736] ERROR:  update or delete on table "tracks" violates foreign key constraint "media_objects_track_id_fkey" on table "media_objects"
+2026-09-28 18:57:21.244 IST [29736] DETAIL:  Key (id)=(track) is still referenced from table "media_objects".
+2026-09-28 18:57:21.244 IST [29736] STATEMENT:  DELETE FROM tracks WHERE id='track'
+2026-09-28 18:57:22.983 IST [29376] ERROR:  relation "media_locations_media_object_id_idx" already exists
+2026-09-28 18:57:22.983 IST [29376] STATEMENT:  -- Forward-only additive migration, safe for populated core tables.
+	CREATE INDEX media_objects_track_id_idx ON media_objects(track_id);
+	CREATE INDEX media_locations_media_object_id_idx ON media_locations(media_object_id);
+	
+2026-09-28 18:57:31.220 IST [7660] ERROR:  relation "library_roots_enabled_verification_idx" already exists
+2026-09-28 18:57:31.220 IST [7660] STATEMENT:  -- M1.6 pins the enrolled directory object independently of its mutable path.
+	-- Existing rows have no trustworthy historical identity and must be verified
+	-- by a host-side operator before a scan can reconcile absence.
+	ALTER TABLE library_roots
+	    ADD COLUMN root_identity_kind text,
+	    ADD COLUMN root_identity_scope text,
+	    ADD COLUMN root_identity_id bytea,
+	    ADD COLUMN root_identity_birth_token bytea,
+	    ADD COLUMN verification_state text NOT NULL DEFAULT 'unverified',
+	    ADD COLUMN verified_at timestamptz,
+	    ADD CONSTRAINT library_roots_identity_kind_scope_check CHECK ((root_identity_kind IS NULL) = (root_identity_scope IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_id_check CHECK ((root_identity_kind IS NULL) = (root_identity_id IS NULL)),
+	    ADD CONSTRAINT library_roots_identity_birth_check CHECK (root_identity_birth_token IS NULL OR root_identity_id IS NOT NULL),
+	    ADD CONSTRAINT library_roots_identity_kind_length_check CHECK (root_identity_kind IS NULL OR length(root_identity_kind) BETWEEN 1 AND 64),
+	    ADD CONSTRAINT library_roots_identity_scope_length_check CHECK (root_identity_scope IS NULL OR length(root_identity_scope) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_id_length_check CHECK (root_identity_id IS NULL OR octet_length(root_identity_id) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_identity_birth_length_check CHECK (root_identity_birth_token IS NULL OR octet_length(root_identity_birth_token) BETWEEN 1 AND 256),
+	    ADD CONSTRAINT library_roots_verification_state_check CHECK (verification_state IN ('unverified','verified','quarantined')),
+	    ADD CONSTRAINT library_roots_verification_evidence_check CHECK (
+	        (verification_state='unverified' AND verified_at IS NULL)
+	        OR
+	        (verification_state IN ('verified','quarantined') AND root_identity_kind IS NOT NULL AND verified_at IS NOT NULL)
+	    );
+	
+	CREATE INDEX library_roots_enabled_verification_idx
+	    ON library_roots(verification_state,enabled,created_at,id);
+	
+2026-09-28 18:57:34.245 IST [4272] ERROR:  relation "media_locations_native_lookup_idx" already exists
+2026-09-28 18:57:34.245 IST [4272] STATEMENT:  -- M1.3A scan generations: retain old physical occurrences and reconcile only
+	-- after a complete, stable traversal.
+	
+	ALTER TABLE media_locations
+	    ADD COLUMN availability text NOT NULL DEFAULT 'available'
+	        CHECK (availability IN ('available', 'unavailable')),
+	    ADD COLUMN unavailable_reason text,
+	    ADD COLUMN unavailable_at timestamptz,
+	    ADD COLUMN observed_size bigint CHECK (observed_size IS NULL OR observed_size >= 0),
+	    ADD COLUMN observed_mtime_ns bigint,
+	    ADD COLUMN native_id_kind text,
+	    ADD COLUMN native_id_scope text,
+	    ADD COLUMN native_id bytea,
+	    ADD COLUMN native_birth_token bytea,
+	    ADD COLUMN last_seen_run_id uuid,
+	    ADD COLUMN state_updated_at timestamptz NOT NULL DEFAULT now(),
+	    ADD CONSTRAINT media_locations_availability_state_check CHECK (
+	        (availability = 'available' AND unavailable_reason IS NULL AND unavailable_at IS NULL)
+	        OR
+	        (availability = 'unavailable' AND unavailable_reason IS NOT NULL AND unavailable_at IS NOT NULL)
+	    ),
+	    ADD CONSTRAINT media_locations_native_identity_check CHECK (
+	        (native_id_kind IS NULL AND native_id_scope IS NULL AND native_id IS NULL)
+	        OR
+	        (native_id_kind IS NOT NULL AND native_id_scope IS NOT NULL AND native_id IS NOT NULL)
+	    );
+	
+	UPDATE media_locations AS ml
+	SET observed_size = mo.byte_length
+	FROM media_objects AS mo
+	WHERE mo.id = ml.media_object_id;
+	
+	DROP INDEX media_locations_root_relative_idx;
+	CREATE UNIQUE INDEX media_locations_active_root_relative_idx
+	    ON media_locations(root_id, relative_path)
+	    WHERE root_id IS NOT NULL AND availability = 'available';
+	CREATE INDEX media_locations_root_availability_idx
+	    ON media_locations(root_id, availability);
+	CREATE INDEX media_locations_native_lookup_idx
+	    ON media_locations(root_id, native_id_kind, native_id_scope, native_id)
+	    WHERE availability = 'available' AND native_id IS NOT NULL;
+	
+	ALTER TABLE scan_runs
+	    ADD COLUMN phase text NOT NULL DEFAULT 'discovering'
+	        CHECK (phase IN ('discovering', 'publishing', 'finished')),
+	    ADD COLUMN traversal_complete boolean NOT NULL DEFAULT false,
+	    ADD COLUMN observations_applied boolean NOT NULL DEFAULT false,
+	    ADD COLUMN absence_reconciled boolean NOT NULL DEFAULT false,
+	    ADD COLUMN files_unchanged bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN files_hashed bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN stat_changed_same_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN changed_bytes bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_added bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_moved bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN locations_unavailable bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN media_objects_created bigint NOT NULL DEFAULT 0,
+	    ADD COLUMN tracks_created bigint NOT NULL DEFAULT 0,
+	    ADD CONSTRAINT scan_runs_counters_nonnegative CHECK (
+	        files_visited >= 0 AND files_supported >= 0 AND imported >= 0 AND skipped >= 0 AND failed >= 0
+	        AND bytes_hashed >= 0 AND metadata_extractions >= 0 AND files_unchanged >= 0 AND files_hashed >= 0
+	        AND stat_changed_same_bytes >= 0 AND changed_bytes >= 0 AND locations_added >= 0
+	        AND locations_moved >= 0 AND locations_unavailable >= 0 AND media_objects_created >= 0 AND tracks_created >= 0
+	    ),
+	    ADD CONSTRAINT scan_runs_root_id_id_key UNIQUE (root_id, id);
+	
+	-- Existing M1.2 runs are terminal history, not active M1.3A traversals.
+	UPDATE scan_runs SET phase = 'finished' WHERE status <> 'running';
+	
+	ALTER TABLE library_roots
+	    ADD COLUMN last_successful_scan_id uuid,
+	    ADD CONSTRAINT library_roots_last_successful_scan_fkey
+	        FOREIGN KEY (id, last_successful_scan_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE media_locations
+	    ADD CONSTRAINT media_locations_last_seen_run_fkey
+	        FOREIGN KEY (root_id, last_seen_run_id) REFERENCES scan_runs(root_id, id);
+	
+	ALTER TABLE tracks
+	    ADD COLUMN metadata_source_location_id text,
+	    ADD CONSTRAINT tracks_metadata_source_location_fkey
+	        FOREIGN KEY (metadata_source_location_id) REFERENCES media_locations(id)
+	        DEFERRABLE INITIALLY DEFERRED;
+	
+	UPDATE tracks AS t
+	SET metadata_source_location_id = (
+	    SELECT ml.id
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	    ORDER BY ml.created_at, ml.id
+	    LIMIT 1
+	)
+	WHERE EXISTS (
+	    SELECT 1
+	    FROM media_objects AS mo
+	    JOIN media_locations AS ml ON ml.media_object_id = mo.id
+	    WHERE mo.track_id = t.id
+	);
+	
+2026-09-28 18:57:34.866 IST [12168] ERROR:  relation "tracks" already exists
+2026-09-28 18:57:34.866 IST [12168] STATEMENT:  -- M1 source-of-truth identities. No demo-track row is inserted.
+	CREATE TABLE tracks (
+	    id text PRIMARY KEY,
+	    title text,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT tracks_id_nonempty CHECK (length(id) BETWEEN 1 AND 128)
+	);
+	
+	CREATE TABLE media_objects (
+	    id text PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    sha256 bytea NOT NULL UNIQUE,
+	    format text NOT NULL,
+	    byte_length bigint NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_objects_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_objects_hash_length CHECK (octet_length(sha256) = 32),
+	    CONSTRAINT media_objects_format_nonempty CHECK (length(format) BETWEEN 1 AND 32),
+	    CONSTRAINT media_objects_byte_length CHECK (byte_length >= 0)
+	);
+	
+	CREATE TABLE media_locations (
+	    id text PRIMARY KEY,
+	    media_object_id text NOT NULL REFERENCES media_objects(id) ON DELETE RESTRICT,
+	    local_path text NOT NULL,
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT media_locations_id_nonempty CHECK (length(id) BETWEEN 1 AND 128),
+	    CONSTRAINT media_locations_path_nonempty CHECK (length(local_path) > 0)
+	);
+	
+2026-09-28 18:57:36.932 IST [19444] FATAL:  terminating connection due to administrator command
+2026-09-28 18:57:38.238 IST [14720] ERROR:  relation "queue_items" already exists
+2026-09-28 18:57:38.238 IST [14720] STATEMENT:  -- M1.5 single-owner durable user-library state. All references are Track IDs.
+	CREATE TABLE active_queue (
+	    singleton boolean PRIMARY KEY DEFAULT true CHECK (singleton),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    current_item_id text,
+	    selection_token uuid,
+	    selection_state text NOT NULL DEFAULT 'stopped' CHECK (selection_state IN ('stopped','selected')),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT active_queue_selection_check CHECK (
+	        (selection_state = 'stopped' AND selection_token IS NULL)
+	        OR (selection_state = 'selected' AND current_item_id IS NOT NULL AND selection_token IS NOT NULL)
+	    )
+	);
+	INSERT INTO active_queue(singleton) VALUES(true);
+	
+	CREATE TABLE queue_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    last_skip_code text CHECK (last_skip_code IS NULL OR last_skip_code IN ('track_unavailable','resolver_failed')),
+	    last_skipped_at timestamptz,
+	    CONSTRAINT queue_items_skip_pair CHECK ((last_skip_code IS NULL) = (last_skipped_at IS NULL)),
+	    CONSTRAINT queue_items_position_key UNIQUE(position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX queue_items_track_idx ON queue_items(track_id);
+	ALTER TABLE active_queue ADD CONSTRAINT active_queue_current_item_fkey
+	    FOREIGN KEY (current_item_id) REFERENCES queue_items(id) DEFERRABLE INITIALLY DEFERRED;
+	
+	CREATE TABLE playlists (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    name text NOT NULL CHECK (length(btrim(name)) BETWEEN 1 AND 256),
+	    revision bigint NOT NULL DEFAULT 0 CHECK (revision >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    updated_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX playlists_created_idx ON playlists(created_at DESC,id DESC);
+	
+	CREATE TABLE playlist_items (
+	    id text PRIMARY KEY CHECK (length(id) BETWEEN 1 AND 128),
+	    playlist_id text NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    position bigint NOT NULL CHECK (position >= 0),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    CONSTRAINT playlist_items_position_key UNIQUE(playlist_id,position) DEFERRABLE INITIALLY DEFERRED
+	);
+	CREATE INDEX playlist_items_track_idx ON playlist_items(track_id);
+	
+	CREATE TABLE favorite_tracks (
+	    track_id text PRIMARY KEY REFERENCES tracks(id) ON DELETE RESTRICT,
+	    created_at timestamptz NOT NULL DEFAULT now()
+	);
+	CREATE INDEX favorite_tracks_created_idx ON favorite_tracks(created_at DESC,track_id DESC);
+	
+	CREATE TABLE playback_sessions (
+	    id uuid PRIMARY KEY,
+	    track_id text NOT NULL REFERENCES tracks(id) ON DELETE RESTRICT,
+	    queue_item_id text,
+	    selection_token uuid,
+	    client_instance_id uuid NOT NULL,
+	    started_at timestamptz NOT NULL DEFAULT now(),
+	    meaningful_at timestamptz,
+	    completed_at timestamptz,
+	    ended_at timestamptz,
+	    last_sequence bigint NOT NULL DEFAULT 0 CHECK (last_sequence >= 0),
+	    listened_ms bigint NOT NULL DEFAULT 0 CHECK (listened_ms >= 0),
+	    last_position_ms bigint NOT NULL DEFAULT 0 CHECK (last_position_ms >= 0),
+	    reported_duration_ms bigint CHECK (reported_duration_ms IS NULL OR reported_duration_ms > 0),
+	    seek_count bigint NOT NULL DEFAULT 0 CHECK (seek_count >= 0),
+	    terminal_reason text CHECK (terminal_reason IS NULL OR terminal_reason IN ('ended','interrupted','stopped','decoder_error','disconnected')),
+	    CONSTRAINT playback_sessions_completion_check CHECK (completed_at IS NULL OR (ended_at IS NOT NULL AND terminal_reason = 'ended')),
+	    CONSTRAINT playback_sessions_queue_pair CHECK ((queue_item_id IS NULL) = (selection_token IS NULL))
+	);
+	CREATE INDEX playback_sessions_recent_idx ON playback_sessions(started_at DESC,id DESC);
+	CREATE INDEX playback_sessions_client_open_idx ON playback_sessions(client_instance_id,started_at DESC) WHERE ended_at IS NULL;
+	
+	CREATE TABLE mutation_receipts (
+	    operation_scope text NOT NULL CHECK (length(operation_scope) BETWEEN 1 AND 80),
+	    idempotency_key uuid NOT NULL,
+	    canonical_request bytea NOT NULL CHECK (octet_length(canonical_request) <= 262144),
+	    response_status integer NOT NULL CHECK (response_status BETWEEN 200 AND 299),
+	    response_body bytea NOT NULL CHECK (octet_length(response_body) <= 16384),
+	    created_at timestamptz NOT NULL DEFAULT now(),
+	    expires_at timestamptz NOT NULL DEFAULT (now() + interval '7 days'),
+	    last_replayed_at timestamptz,
+	    CONSTRAINT mutation_receipts_expiry_check CHECK (expires_at > created_at),
+	    PRIMARY KEY(operation_scope,idempotency_key)
+	);
+	CREATE INDEX mutation_receipts_expiry_idx ON mutation_receipts(expires_at);
+	
+2026-09-28 18:57:39.185 IST [17040] ERROR:  injected queue failure
+2026-09-28 18:57:39.185 IST [17040] CONTEXT:  PL/pgSQL function fail_queue_update() line 1 at RAISE
+2026-09-28 18:57:39.185 IST [17040] STATEMENT:  UPDATE active_queue SET revision=$1,current_item_id=$2,selection_token=$3,selection_state=$4,updated_at=now() WHERE singleton=true
+2026-09-28 18:58:36.759 IST [10388] LOG:  checkpoint complete: wrote 1067 buffers (6.5%); 0 WAL file(s) added, 11 removed, 0 recycled; write=120.545 s, sync=3.423 s, total=126.711 s; sync files=10429, longest=0.040 s, average=0.001 s; distance=169209 kB, estimate=169209 kB; lsn=0/6CDD9090, redo lsn=0/6709ED00
+2026-09-28 19:01:30.774 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 19:03:57.744 IST [10388] LOG:  checkpoint complete: wrote 1335 buffers (8.1%); 0 WAL file(s) added, 1 removed, 4 recycled; write=144.478 s, sync=0.068 s, total=146.970 s; sync files=102, longest=0.010 s, average=0.001 s; distance=95499 kB, estimate=161838 kB; lsn=0/6CE3AE58, redo lsn=0/6CDE1A78
+2026-09-28 19:11:30.782 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 19:13:57.862 IST [10388] LOG:  checkpoint complete: wrote 1361 buffers (8.3%); 0 WAL file(s) added, 1 removed, 0 recycled; write=146.872 s, sync=0.201 s, total=147.081 s; sync files=488, longest=0.003 s, average=0.001 s; distance=6039 kB, estimate=146258 kB; lsn=0/6D40C378, redo lsn=0/6D3C7A20
+2026-09-28 19:16:30.899 IST [10388] LOG:  checkpoint starting: time
+2026-09-28 19:17:09.697 IST [15656] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 19:17:09.697 IST [26260] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 19:17:09.718 IST [28716] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-09-28 19:17:22.471 IST [17816] LOG:  received fast shutdown request
+2026-09-28 19:17:22.473 IST [17816] LOG:  aborting any active transactions
+2026-09-28 19:17:22.482 IST [17816] LOG:  background worker "logical replication launcher" (PID 5876) exited with exit code 1
+2026-09-28 19:17:22.577 IST [10388] LOG:  checkpoint complete: wrote 3129 buffers (19.1%); 0 WAL file(s) added, 2 removed, 0 recycled; write=51.600 s, sync=0.061 s, total=51.678 s; sync files=80, longest=0.010 s, average=0.001 s; distance=35020 kB, estimate=135134 kB; lsn=0/6F5FAB78, redo lsn=0/6F5FAAE8
+2026-09-28 19:17:22.582 IST [10388] LOG:  shutting down
+2026-09-28 19:17:22.584 IST [10388] LOG:  checkpoint starting: shutdown immediate
+2026-09-28 19:17:22.590 IST [10388] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.007 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=121621 kB; lsn=0/6F5FABF0, redo lsn=0/6F5FABF0
+2026-09-28 19:17:22.625 IST [17816] LOG:  database system is shut down

@@ -1,0 +1,8 @@
+Invoke-WebRequest : The 'Range' header must be modified using the appropriate property or method.
+Parameter name: name
+At <host-path>
++ $range = Invoke-WebRequest "$BaseUrl$($browser.stream_url)" -Headers  ...
++          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Invoke-WebRequest], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+ 

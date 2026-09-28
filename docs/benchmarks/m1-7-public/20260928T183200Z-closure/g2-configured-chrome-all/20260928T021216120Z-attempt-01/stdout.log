@@ -1,0 +1,46 @@
+
+Running 15 tests using 1 worker
+
+[1A[2K[1/15] tests\e2e\library-status.spec.js:5:1 › reports path-free reconciliation status while health and readiness stay separate
+[1A[2K[2/15] tests\e2e\library.spec.js:5:1 › browses Artist and Album, plays real Track before full download, and seeks by 206
+[1A[2Ktests\e2e\library.spec.js:5:1 › browses Artist and Album, plays real Track before full download, and seeks by 206
+{"size":26460044,"bytesAtPlayback":507806,"seekRange":"bytes=18513920-","seekContentRange":"bytes 18513920-26460043/26460044","seekToPlayingMs":188.39999997615814}
+
+[1A[2K[3/15] tests\e2e\library.spec.js:66:1 › shows an unavailable Track without starting playback
+[1A[2K[4/15] tests\e2e\library.spec.js:74:1 › reports a browser decoder failure for an indexed Track
+[1A[2K[5/15] tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history
+[1A[2K  1) tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history › Expect "poll toBe" 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m2[39m
+    Received: [31m3[39m
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      66 |     return queue.items.find(item => item.id === queue.current_item_id)?.track_id;
+      67 |   }).toBe(short.id);
+    > 68 |   await expect.poll(async () => {
+         |   ^
+      69 |     const queue = await (await request.get('/api/v1/queue')).json();
+      70 |     return queue.items.length;
+      71 |   }).toBe(2);
+        at <host-path>
+
+    Error Context: test-results\m17-journey-real-catalog-j-539c2-rite-and-qualifying-history\error-context.md
+
+
+[1A[2K[6/15] tests\e2e\user-library.spec.js:21:1 › natural end finalizes history and advances durable queue once
+[1A[2K[7/15] tests\e2e\user-library.spec.js:76:1 › playlist create, edit, reorder, delete, and favorite toggles persist
+[1A[2K[8/15] tests\e2e\user-library.spec.js:122:1 › retains one pending ended transition during outage and retries after reload
+[1A[2K[9/15] tests\e2e\user-library.spec.js:151:1 › Track actions add, play next, and play now as distinct queue occurrences
+[1A[2K[10/15] tests\e2e\user-library.spec.js:173:1 › a lost queue-add response replays its original receipt instead of adding twice
+[1A[2K[11/15] tests\e2e\user-library.spec.js:197:1 › Play Now keeps its mutation token when another tab selects the same Track before response handling
+[1A[2K[12/15] tests\e2e\user-library.spec.js:233:1 › a queue advance response cannot autoplay a selection made by another tab afterward
+[1A[2K[13/15] tests\e2e\user-library.spec.js:275:1 › stale tab ended, Next, and Previous cannot change a newer queue selection
+[1A[2K[14/15] tests\e2e\user-library.spec.js:321:1 › seeking to the end after meaningful listening does not mark completion
+[1A[2K[15/15] tests\e2e\user-library.spec.js:345:1 › decoder failure creates no listening history
+[1A[2K  1 failed
+    tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history 
+  14 passed (52.1s)

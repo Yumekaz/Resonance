@@ -1,0 +1,11 @@
+{
+  "favorite_persisted": true,
+  "media_expected_bytes": 26460044,
+  "media_received_bytes": 4718336,
+  "original_receipt_replayed_after_restart": true,
+  "playlist_persisted": true,
+  "queue_persisted": true,
+  "shutdown_ms": 10750.78,
+  "stream_completed": false,
+  "stream_error": "read tcp 127.0.0.1:57771->127.0.0.1:57756: wsarecv: An existing connection was forcibly closed by the remote host."
+}

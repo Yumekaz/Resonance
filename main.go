@@ -41,7 +41,14 @@ func run() error {
 		if databaseURL == "" {
 			return errors.New("RESONANCE_DATABASE_URL is required for migrations")
 		}
-		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		startupTimeout := 10 * time.Second
+		if *migrateOnly {
+			// Populated grouping backfills are part of the foreground migration
+			// command. The normal server's dependency check remains bounded at
+			// ten seconds; the measured 10k upgrade needs a longer command budget.
+			startupTimeout = 5 * time.Minute
+		}
+		ctx, cancel := context.WithTimeout(context.Background(), startupTimeout)
 		defer cancel()
 		store, err := storage.Open(ctx, databaseURL)
 		if err != nil {

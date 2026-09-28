@@ -1,0 +1,44 @@
+{
+  "attempt_id": "20260928T135833904Z-attempt-01",
+  "campaign": "g8-postgres-restart-final",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T13:58:33.9046961+00:00",
+  "finished_utc": "2026-09-28T13:58:35.1463763+00:00",
+  "duration_ms": 1241.68,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "<local-path>",
+    "-Executable",
+    "<local-path>",
+    "-ArgumentsJson",
+    "[\"-D\",\"<local-path>\",\"-p\",\"55439\",\"-h\",\"127.0.0.1\"]",
+    "-WorkingDirectory",
+    "<local-path>"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 45,
+  "child_environment_cleared": true,
+  "output_capture": "disabled; child manages its own output files",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

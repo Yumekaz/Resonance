@@ -1,0 +1,9 @@
+{"Time":"2026-09-28T20:10:31.2281773+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:10:31.2585317+05:30","Action":"run","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries"}
+{"Time":"2026-09-28T20:10:31.2585317+05:30","Action":"output","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Output":"=== RUN   TestM17AllPublicRoutesPrivacyAndConfinementCanaries\n"}
+{"Time":"2026-09-28T20:10:31.8915455+05:30","Action":"output","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Output":"    m17_security_integration_test.go:36: private canary leaked in malformed/confined request\n"}
+{"Time":"2026-09-28T20:10:31.9492289+05:30","Action":"output","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Output":"--- FAIL: TestM17AllPublicRoutesPrivacyAndConfinementCanaries (0.69s)\n"}
+{"Time":"2026-09-28T20:10:31.9492289+05:30","Action":"fail","Package":"resonance","Test":"TestM17AllPublicRoutesPrivacyAndConfinementCanaries","Elapsed":0.69}
+{"Time":"2026-09-28T20:10:31.9492289+05:30","Action":"output","Package":"resonance","Output":"FAIL\n"}
+{"Time":"2026-09-28T20:10:31.9550054+05:30","Action":"output","Package":"resonance","Output":"FAIL\tresonance\t0.726s\n"}
+{"Time":"2026-09-28T20:10:31.9550054+05:30","Action":"fail","Package":"resonance","Elapsed":0.727}

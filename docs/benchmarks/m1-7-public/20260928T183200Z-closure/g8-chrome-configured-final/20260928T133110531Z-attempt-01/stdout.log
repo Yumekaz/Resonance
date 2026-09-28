@@ -1,0 +1,166 @@
+
+Running 15 tests using 1 worker
+
+[1A[2K[1/15] tests\e2e\library-status.spec.js:5:1 › reports path-free reconciliation status while health and readiness stay separate
+[1A[2K[2/15] tests\e2e\library.spec.js:5:1 › browses Artist and Album, plays real Track before full download, and seeks by 206
+[1A[2K  1) tests\e2e\library.spec.js:5:1 › browses Artist and Album, plays real Track before full download, and seeks by 206 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('button', { name: 'Browser Artist' })[22m
+
+
+      18 |   await page.goto('/');
+      19 |   await page.getByRole('button', { name: 'Artists', exact: true }).click();
+    > 20 |   await page.getByRole('button', { name: 'Browser Artist' }).click();
+         |                                                              ^
+      21 |   await expect(page.getByRole('button', { name: 'Browser Album' })).toBeVisible();
+      22 |   await page.getByRole('button', { name: 'Browser Album' }).click();
+      23 |   await expect(page.getByRole('button', { name: 'Browser Song' })).toBeVisible();
+        at <host-path>
+
+    Error Context: test-results\library-browses-Artist-and-1d0e1-l-download-and-seeks-by-206\error-context.md
+
+
+[1A[2K[3/15] tests\e2e\library.spec.js:66:1 › shows an unavailable Track without starting playback
+[1A[2K[4/15] tests\e2e\library.spec.js:74:1 › reports a browser decoder failure for an indexed Track
+[1A[2K[5/15] tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history
+[1A[2K  2) tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      34 |   const long = catalog.find(item => item.title === 'long');
+      35 |   expect(browser).toBeTruthy();
+    > 36 |   expect(short).toBeTruthy();
+         |                 ^
+      37 |   expect(long).toBeTruthy();
+      38 |
+      39 |   const actualResponses = new Map();
+        at <host-path>
+
+
+[1A[2K[6/15] tests\e2e\user-library.spec.js:21:1 › natural end finalizes history and advances durable queue once
+[1A[2K  3) tests\e2e\user-library.spec.js:21:1 › natural end finalizes history and advances durable queue once 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      24 |   const short = catalog.find(item => item.title === 'Short');
+      25 |   const browser = catalog.find(item => item.title?.startsWith('Browser Song'));
+    > 26 |   expect(short).toBeTruthy(); expect(browser).toBeTruthy();
+         |                 ^
+      27 |   await page.route(/\/api\/v1\/tracks\?limit=50$/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ items: [short, browser], next_cursor: null }) }));
+      28 |   await page.goto('/');
+      29 |   await expect(page.locator('#items li').filter({ hasText: browser.title })).toBeVisible();
+        at <host-path>
+
+
+[1A[2K[7/15] tests\e2e\user-library.spec.js:76:1 › playlist create, edit, reorder, delete, and favorite toggles persist
+[1A[2K[8/15] tests\e2e\user-library.spec.js:122:1 › retains one pending ended transition during outage and retries after reload
+[1A[2K  4) tests\e2e\user-library.spec.js:122:1 › retains one pending ended transition during outage and retries after reload 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#items li').filter({ hasText: 'Browser Song' }).getByRole('button', { name: 'Add to queue' })[22m
+
+
+      128 |   await page.route('**/api/v1/queue/advance', route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: { code: 'catalog_unavailable' } }) }));
+      129 |   await page.goto('/');
+    > 130 |   await page.locator('#items li').filter({ hasText: next.title }).getByRole('button', { name: 'Add to queue' }).click();
+          |                                                                                                                 ^
+      131 |   await expect.poll(async () => (await (await request.get('/api/v1/queue')).json()).items.length).toBe(1);
+      132 |   await page.locator('#items li').filter({ hasText: 'Short' }).getByRole('button', { name: 'Play now' }).click();
+      133 |   await expect.poll(async () => {
+        at <host-path>
+
+    Error Context: test-results\user-library-retains-one-p-3df00-ge-and-retries-after-reload\error-context.md
+
+
+[1A[2K[9/15] tests\e2e\user-library.spec.js:151:1 › Track actions add, play next, and play now as distinct queue occurrences
+[1A[2K  5) tests\e2e\user-library.spec.js:151:1 › Track actions add, play next, and play now as distinct queue occurrences 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      154 |   const browser = catalog.find(item => item.title?.startsWith('Browser Song'));
+      155 |   const short = catalog.find(item => item.title === 'Short');
+    > 156 |   expect(browser).toBeTruthy(); expect(short).toBeTruthy();
+          |                                               ^
+      157 |   await page.route(/\/api\/v1\/tracks\?limit=50$/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ items: [browser, short], next_cursor: null }) }));
+      158 |   await page.goto('/');
+      159 |   await page.locator('#items li').filter({ hasText: browser.title }).getByRole('button', { name: 'Play next' }).click();
+        at <host-path>
+
+
+[1A[2K[10/15] tests\e2e\user-library.spec.js:173:1 › a lost queue-add response replays its original receipt instead of adding twice
+[1A[2K[11/15] tests\e2e\user-library.spec.js:197:1 › Play Now keeps its mutation token when another tab selects the same Track before response handling
+[1A[2K  6) tests\e2e\user-library.spec.js:197:1 › Play Now keeps its mutation token when another tab selects the same Track before response handling 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      198 |   await clearQueue(request);
+      199 |   const short = (await catalogTracks(request)).find(item => item.title === 'Short');
+    > 200 |   expect(short).toBeTruthy();
+          |                 ^
+      201 |   await page.route(/\/api\/v1\/tracks\?limit=50$/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ items: [short], next_cursor: null }) }));
+      202 |   let raced = false;
+      203 |   await page.route('**/api/v1/queue/items', async route => {
+        at <host-path>
+
+
+[1A[2K[12/15] tests\e2e\user-library.spec.js:233:1 › a queue advance response cannot autoplay a selection made by another tab afterward
+[1A[2K  7) tests\e2e\user-library.spec.js:233:1 › a queue advance response cannot autoplay a selection made by another tab afterward 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      236 |   const browser = catalog.find(item => item.title?.startsWith('Browser Song'));
+      237 |   const short = catalog.find(item => item.title === 'Short');
+    > 238 |   expect(browser).toBeTruthy(); expect(short).toBeTruthy();
+          |                                               ^
+      239 |   const startingQueue = await (await request.get('/api/v1/queue')).json();
+      240 |   const first = await request.post('/api/v1/queue/items', { headers: { 'Idempotency-Key': crypto.randomUUID() }, data: { track_id: browser.id, placement: 'now', expected_version: startingQueue.revision } });
+      241 |   expect(first.ok()).toBeTruthy();
+        at <host-path>
+
+
+[1A[2K[13/15] tests\e2e\user-library.spec.js:275:1 › stale tab ended, Next, and Previous cannot change a newer queue selection
+[1A[2K[14/15] tests\e2e\user-library.spec.js:321:1 › seeking to the end after meaningful listening does not mark completion
+[1A[2K  8) tests\e2e\user-library.spec.js:321:1 › seeking to the end after meaningful listening does not mark completion 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      322 |   await clearQueue(request);
+      323 |   const short = (await catalogTracks(request)).find(item => item.title === 'Short');
+    > 324 |   expect(short).toBeTruthy();
+          |                 ^
+      325 |   const before = await (await request.get('/api/v1/history?limit=200')).json();
+      326 |   const beforeIDs = new Set(before.items.map(item => item.id));
+      327 |   await page.route(/\/api\/v1\/tracks\?limit=50$/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ items: [short], next_cursor: null }) }));
+        at <host-path>
+
+
+[1A[2K[15/15] tests\e2e\user-library.spec.js:345:1 › decoder failure creates no listening history
+[1A[2K  8 failed
+    tests\e2e\library.spec.js:5:1 › browses Artist and Album, plays real Track before full download, and seeks by 206 
+    tests\e2e\m17-journey.spec.js:29:1 › real catalog journey persists queue, playlist, favorite and qualifying history 
+    tests\e2e\user-library.spec.js:21:1 › natural end finalizes history and advances durable queue once 
+    tests\e2e\user-library.spec.js:122:1 › retains one pending ended transition during outage and retries after reload 
+    tests\e2e\user-library.spec.js:151:1 › Track actions add, play next, and play now as distinct queue occurrences 
+    tests\e2e\user-library.spec.js:197:1 › Play Now keeps its mutation token when another tab selects the same Track before response handling 
+    tests\e2e\user-library.spec.js:233:1 › a queue advance response cannot autoplay a selection made by another tab afterward 
+    tests\e2e\user-library.spec.js:321:1 › seeking to the end after meaningful listening does not mark completion 
+  7 passed (2.8m)

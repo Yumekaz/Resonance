@@ -1,0 +1,35 @@
+{
+  "attempt_id": "20260928T013750654Z-attempt-01",
+  "campaign": "fixture-format",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:37:50.6548883+00:00",
+  "finished_utc": "2026-09-28T01:37:51.5528419+00:00",
+  "duration_ms": 897.954,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "fmt",
+    "./internal/m17fixtures",
+    "./cmd/m17corpus"
+  ],
+  "timeout_seconds": 180,
+  "child_environment_cleared": false,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOROOT",
+    "GOTOOLCHAIN"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

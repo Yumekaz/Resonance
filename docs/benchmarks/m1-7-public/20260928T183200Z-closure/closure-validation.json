@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "files_checked": 963,
+  "preserved_attempt_statuses": {
+    "pass": 208,
+    "launch_failed": 3,
+    "fail": 54,
+    "started": 1
+  },
+  "failures": [],
+  "original_hashes_checked": true,
+  "derivative_hashes_checked": true,
+  "privacy_and_json_checked": true
+}

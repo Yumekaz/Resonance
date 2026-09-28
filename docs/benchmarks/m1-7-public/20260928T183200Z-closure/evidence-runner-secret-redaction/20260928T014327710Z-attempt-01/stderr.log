@@ -1,0 +1,15 @@
+
+  #  <host-path>]: class std::shared_ptr<class node::InitializationResultImpl> __cdecl node::InitializeOncePerProcessInternal(const class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > &,enum node::ProcessInitializationFlags::Flags) at <host-path>
+  #  Assertion failed: ncrypto::CSPRNG(nullptr, 0)
+
+----- Native stack trace -----
+
+ 1: 00007FF6414470F7 node::SetCppgcReference+18039
+ 2: 00007FF6413A8831 v8::base::CPU::num_virtual_address_bits+94241
+ 3: 00007FF6413F3128 node::InitializeOncePerProcess+2728
+ 4: 00007FF6413F4FA9 node::Start+3737
+ 5: 00007FF6413F412E node::Start+30
+ 6: 00007FF64115AF9C AES_cbc_encrypt+151436
+ 7: 00007FF642D09E7C inflateValidate+40748
+ 8: 00007FFAF53BCDF7 BaseThreadInitThunk+23
+ 9: 00007FFAF683EE4C RtlUserThreadStart+44

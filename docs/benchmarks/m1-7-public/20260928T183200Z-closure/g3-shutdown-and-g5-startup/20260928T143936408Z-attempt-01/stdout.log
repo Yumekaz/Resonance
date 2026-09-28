@@ -1,0 +1,35 @@
+{"Time":"2026-09-28T20:09:39.1089051+05:30","Action":"start","Package":"resonance"}
+{"Time":"2026-09-28T20:09:39.1601945+05:30","Action":"run","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse"}
+{"Time":"2026-09-28T20:09:39.1601945+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"=== RUN   TestM17NormalShutdownStreamPersistenceAndLostResponse\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"    m17_process_windows_integration_test.go:68: {\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"favorite_persisted\": true,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"media_expected_bytes\": 26460044,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"media_received_bytes\": 5930752,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"original_receipt_replayed_after_restart\": true,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"playlist_persisted\": true,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"queue_persisted\": true,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"shutdown_ms\": 13448.743,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"stream_completed\": false,\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"          \"stream_error\": \"read tcp 127.0.0.1:50519-\\u003e127.0.0.1:59775: wsarecv: An existing connection was forcibly closed by the remote host.\"\n"}
+{"Time":"2026-09-28T20:10:14.6865423+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"        }\n"}
+{"Time":"2026-09-28T20:10:14.7511329+05:30","Action":"output","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Output":"--- PASS: TestM17NormalShutdownStreamPersistenceAndLostResponse (35.59s)\n"}
+{"Time":"2026-09-28T20:10:14.7511329+05:30","Action":"pass","Package":"resonance","Test":"TestM17NormalShutdownStreamPersistenceAndLostResponse","Elapsed":35.59}
+{"Time":"2026-09-28T20:10:14.7511329+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection"}
+{"Time":"2026-09-28T20:10:14.7511329+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"=== RUN   TestM17ConfiguredStartupRejection\n"}
+{"Time":"2026-09-28T20:10:15.096615+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable"}
+{"Time":"2026-09-28T20:10:15.096615+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"=== RUN   TestM17ConfiguredStartupRejection/unreachable\n"}
+{"Time":"2026-09-28T20:10:15.2693441+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Output":"--- PASS: TestM17ConfiguredStartupRejection/unreachable (0.17s)\n"}
+{"Time":"2026-09-28T20:10:15.2693441+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/unreachable","Elapsed":0.17}
+{"Time":"2026-09-28T20:10:15.2693441+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged"}
+{"Time":"2026-09-28T20:10:15.2693441+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"=== RUN   TestM17ConfiguredStartupRejection/damaged\n"}
+{"Time":"2026-09-28T20:10:15.5794726+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Output":"--- PASS: TestM17ConfiguredStartupRejection/damaged (0.31s)\n"}
+{"Time":"2026-09-28T20:10:15.5794726+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/damaged","Elapsed":0.31}
+{"Time":"2026-09-28T20:10:15.5794726+05:30","Action":"run","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending"}
+{"Time":"2026-09-28T20:10:15.5794726+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"=== RUN   TestM17ConfiguredStartupRejection/pending\n"}
+{"Time":"2026-09-28T20:10:15.8115379+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Output":"--- PASS: TestM17ConfiguredStartupRejection/pending (0.23s)\n"}
+{"Time":"2026-09-28T20:10:15.8115379+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection/pending","Elapsed":0.23}
+{"Time":"2026-09-28T20:10:15.8690511+05:30","Action":"output","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Output":"--- PASS: TestM17ConfiguredStartupRejection (1.12s)\n"}
+{"Time":"2026-09-28T20:10:15.8696001+05:30","Action":"pass","Package":"resonance","Test":"TestM17ConfiguredStartupRejection","Elapsed":1.12}
+{"Time":"2026-09-28T20:10:15.8696001+05:30","Action":"output","Package":"resonance","Output":"PASS\n"}
+{"Time":"2026-09-28T20:10:15.8765318+05:30","Action":"output","Package":"resonance","Output":"ok  \tresonance\t36.768s\n"}
+{"Time":"2026-09-28T20:10:15.8765318+05:30","Action":"pass","Package":"resonance","Elapsed":36.768}

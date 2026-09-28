@@ -1,0 +1,6 @@
+<host-path>
+[System.Net.Http.HttpClient].
+    + CategoryInfo          : InvalidOperation: (System.Net.Http.HttpClient:TypeName) [m17-restore-probe.ps1], Runtime 
+   Exception
+    + FullyQualifiedErrorId : TypeNotFound,m17-restore-probe.ps1
+ 

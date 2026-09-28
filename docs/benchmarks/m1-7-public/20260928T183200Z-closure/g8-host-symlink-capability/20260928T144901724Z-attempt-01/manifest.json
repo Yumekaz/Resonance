@@ -1,0 +1,31 @@
+{
+  "attempt_id": "20260928T144901724Z-attempt-01",
+  "campaign": "g8-host-symlink-capability",
+  "status": "fail",
+  "exit_code": 2,
+  "timed_out": false,
+  "started_utc": "2026-09-28T14:49:01.7246772+00:00",
+  "finished_utc": "2026-09-28T14:49:02.5870488+00:00",
+  "duration_ms": 862.372,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-File",
+    "<local-path>"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 30,
+  "child_environment_cleared": false,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

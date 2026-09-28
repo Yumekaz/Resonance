@@ -1,0 +1,43 @@
+{
+  "attempt_id": "20260928T015253737Z-attempt-01",
+  "campaign": "g1-journey-fixture",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:52:53.7373670+00:00",
+  "finished_utc": "2026-09-28T01:52:55.2753836+00:00",
+  "duration_ms": 1538.017,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "run",
+    "./cmd/m17corpus",
+    "-mode",
+    "journey",
+    "-out",
+    "<host-path>"
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 180,
+  "child_environment_cleared": true,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOROOT",
+    "GOTOOLCHAIN",
+    "PATH",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

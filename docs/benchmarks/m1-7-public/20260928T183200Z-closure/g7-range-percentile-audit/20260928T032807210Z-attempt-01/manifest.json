@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20260928T032807210Z-attempt-01",
+  "campaign": "g7-range-percentile-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:28:07.2106923+00:00",
+  "finished_utc": "2026-09-28T03:28:07.2672664+00:00",
+  "raw_sources": [
+    "g7-indexed-range/indexed-range.json",
+    "g7-demo-range/demo-range.json"
+  ],
+  "percentile_method": "median of middle pair when even; nearest-rank p95/p99"
+}

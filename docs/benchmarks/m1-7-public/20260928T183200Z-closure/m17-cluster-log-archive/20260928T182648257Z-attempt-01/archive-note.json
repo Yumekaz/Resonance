@@ -1,0 +1,5 @@
+{
+  "date_utc": "2026-09-28T18:26:48.4579678Z",
+  "status": "recorded",
+  "note": "Original logs retained. Cluster was absent before the first final regression request. Cause not established; corrected restart and full rerun are separate attempts."
+}

@@ -1,0 +1,1 @@
+{"catalog_samples":500,"catalog_p50_ms":59.371,"catalog_p95_nearest_rank_ms":76.026,"catalog_p99_nearest_rank_ms":80.225,"range_samples":200,"indexed_range_total_ms":{"p99":13.599,"p95":12.936,"p50":10.95},"indexed_range_ttfb_ms":{"p99":13.599,"p95":12.936,"p50":10.949},"every_catalog_200":true,"every_random_range_valid":true,"reported_percentiles_match":true}

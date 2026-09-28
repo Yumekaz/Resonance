@@ -1,0 +1,15 @@
+{
+  "attempt_id": "20260928T022310887Z-attempt-01",
+  "campaign": "g4-prestartup-compare",
+  "status": "fail",
+  "exit_code": 1,
+  "started_utc": "2026-09-28T02:23:10.8878346+00:00",
+  "finished_utc": "2026-09-28T02:23:10.9181836+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "compare row-value hashes and row counts for every application table",
+    "compare every table schema fingerprint",
+    "compare sequence options and live last_value/is_called",
+    "compare pg_dump schema outputs normalized for its per-dump restrict token"
+  ]
+}

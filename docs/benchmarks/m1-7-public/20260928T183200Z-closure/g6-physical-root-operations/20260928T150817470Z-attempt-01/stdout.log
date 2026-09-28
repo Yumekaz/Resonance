@@ -1,0 +1,9 @@
+{"Time":"2026-09-28T20:38:20.4366453+05:30","Action":"start","Package":"resonance/internal/library"}
+{"Time":"2026-09-28T20:38:20.4710707+05:30","Action":"run","Package":"resonance/internal/library","Test":"TestM17PhysicalRootOfflineReturnReplacementAndVerification"}
+{"Time":"2026-09-28T20:38:20.4710707+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PhysicalRootOfflineReturnReplacementAndVerification","Output":"=== RUN   TestM17PhysicalRootOfflineReturnReplacementAndVerification\n"}
+{"Time":"2026-09-28T20:38:22.0379167+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PhysicalRootOfflineReturnReplacementAndVerification","Output":"    m17_root_operations_integration_test.go:35: actual root object moved away and returned; replacement quarantined without absence; explicit host verification gated later absence; queue/favorite/history retained\n"}
+{"Time":"2026-09-28T20:38:22.1103478+05:30","Action":"output","Package":"resonance/internal/library","Test":"TestM17PhysicalRootOfflineReturnReplacementAndVerification","Output":"--- PASS: TestM17PhysicalRootOfflineReturnReplacementAndVerification (1.64s)\n"}
+{"Time":"2026-09-28T20:38:22.1103478+05:30","Action":"pass","Package":"resonance/internal/library","Test":"TestM17PhysicalRootOfflineReturnReplacementAndVerification","Elapsed":1.64}
+{"Time":"2026-09-28T20:38:22.1103478+05:30","Action":"output","Package":"resonance/internal/library","Output":"PASS\n"}
+{"Time":"2026-09-28T20:38:22.1156106+05:30","Action":"output","Package":"resonance/internal/library","Output":"ok  \tresonance/internal/library\t1.678s\n"}
+{"Time":"2026-09-28T20:38:22.1156106+05:30","Action":"pass","Package":"resonance/internal/library","Elapsed":1.679}

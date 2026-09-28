@@ -1,0 +1,40 @@
+{
+  "attempt_id": "20260928T013834862Z-attempt-01",
+  "campaign": "scale-corpus-generation",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T01:38:34.8623111+00:00",
+  "finished_utc": "2026-09-28T01:38:47.0453169+00:00",
+  "duration_ms": 12183.006,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "run",
+    "./cmd/m17corpus",
+    "-mode",
+    "scale",
+    "-tracks",
+    "10000",
+    "-seed",
+    "20260928"
+  ],
+  "timeout_seconds": 900,
+  "child_environment_cleared": false,
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOROOT",
+    "GOTOOLCHAIN"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

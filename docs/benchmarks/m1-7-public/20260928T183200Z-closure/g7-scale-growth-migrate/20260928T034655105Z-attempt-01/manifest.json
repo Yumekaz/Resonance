@@ -1,0 +1,42 @@
+{
+  "attempt_id": "20260928T034655105Z-attempt-01",
+  "campaign": "g7-scale-growth-migrate",
+  "status": "pass",
+  "exit_code": 0,
+  "timed_out": false,
+  "started_utc": "2026-09-28T03:46:55.1052268+00:00",
+  "finished_utc": "2026-09-28T03:46:57.0743122+00:00",
+  "duration_ms": 1969.085,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "run",
+    ".",
+    "-migrate-only"
+  ],
+  "working_directory": "<host-path>",
+  "timeout_seconds": 300,
+  "child_environment_cleared": true,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOROOT",
+    "GOTOOLCHAIN",
+    "PATH",
+    "RESONANCE_DATABASE_URL",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

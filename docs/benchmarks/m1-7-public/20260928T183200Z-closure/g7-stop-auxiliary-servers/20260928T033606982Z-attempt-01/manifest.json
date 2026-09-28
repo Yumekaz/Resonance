@@ -1,0 +1,11 @@
+{
+  "attempt_id": "20260928T033606982Z-attempt-01",
+  "campaign": "g7-stop-auxiliary-servers",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:36:06.9829270+00:00",
+  "finished_utc": "2026-09-28T03:36:07.3176338+00:00",
+  "command": [
+    "stop only the earlier M0 and restore verification servers; retain scale server"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "stage": "PowerShell post-export assertion",
+  "cause": "ConvertFrom-Json automatically interpreted the ISO timestamp as DateTime; the export preserved the original JSON string. Independent Python verification passed.",
+  "status": "fail"
+}

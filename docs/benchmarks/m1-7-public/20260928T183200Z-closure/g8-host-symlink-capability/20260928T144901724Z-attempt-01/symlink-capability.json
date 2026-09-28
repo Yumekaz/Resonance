@@ -1,0 +1,6 @@
+{
+  "created": false,
+  "win32_error": 1314,
+  "used_allow_unprivileged_create": true,
+  "requirement": "Run tests in an elevated Administrator console with SeCreateSymbolicLinkPrivilege, or enable Windows Developer Mode for unprivileged symbolic link creation. No system policy was changed."
+}

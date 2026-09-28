@@ -1,0 +1,23 @@
+2026/09/28 07:57:52 Resonance listening on 127.0.0.1:18083
+2026/09/28 07:57:52 INFO reconciliation_sweep_scheduled cycle_id=1 trigger=startup
+2026/09/28 07:57:52 INFO reconciliation_scan_started cycle_id=1 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=configuration
+2026/09/28 07:57:53 INFO scan_started run_id=ae8d4220-e3e0-400d-afa5-bec4cddf5982 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 07:57:53 INFO scan_finished run_id=ae8d4220-e3e0-400d-afa5-bec4cddf5982 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=115.5 publish_transaction_ms=11.923 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 07:57:53 INFO reconciliation_scan_finished cycle_id=1 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=115.5
+2026/09/28 07:57:53 INFO reconciliation_scan_started cycle_id=2 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=watch_coverage_refresh
+2026/09/28 07:57:53 INFO scan_started run_id=8e3b9996-5969-4eac-9817-6d3783a8c84e root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 07:57:54 INFO scan_finished run_id=8e3b9996-5969-4eac-9817-6d3783a8c84e root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=107.099 publish_transaction_ms=11.529 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 07:57:54 INFO reconciliation_scan_finished cycle_id=2 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=107.099
+2026/09/28 08:04:52 WARN root_configuration_unavailable code=database_unavailable
+2026/09/28 08:06:52 WARN root_configuration_unavailable code=database_unavailable
+2026/09/28 08:07:52 WARN root_configuration_unavailable code=database_unavailable
+2026/09/28 08:28:10 INFO reconciliation_sweep_scheduled cycle_id=2 trigger=periodic
+2026/09/28 08:28:10 INFO reconciliation_scan_started cycle_id=3 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=sweep
+2026/09/28 08:28:10 INFO scan_started run_id=c2a1bfd2-9301-423d-8084-1ef68e4cd4b8 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 08:28:10 INFO scan_finished run_id=c2a1bfd2-9301-423d-8084-1ef68e4cd4b8 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=225.158 publish_transaction_ms=13.357 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 08:28:10 INFO reconciliation_scan_finished cycle_id=3 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=225.158
+2026/09/28 08:58:10 INFO reconciliation_sweep_scheduled cycle_id=3 trigger=periodic
+2026/09/28 08:58:10 INFO reconciliation_scan_started cycle_id=4 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 trigger=sweep
+2026/09/28 08:58:10 INFO scan_started run_id=7993022f-2e97-41fe-b8c7-ecf5b5124fec root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4
+2026/09/28 08:58:11 INFO scan_finished run_id=7993022f-2e97-41fe-b8c7-ecf5b5124fec root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=272.585 publish_transaction_ms=21.088 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 08:58:11 INFO reconciliation_scan_finished cycle_id=4 root_id=5f48cdc1-fe71-4c90-b1fa-cce84aa7e0c4 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=272.585

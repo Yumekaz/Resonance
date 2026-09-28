@@ -1,0 +1,53 @@
+{
+  "attempt_id": "20260928T142654707Z-attempt-01",
+  "campaign": "g3-shutdown-and-g5-startup",
+  "status": "fail",
+  "exit_code": 1,
+  "timed_out": false,
+  "started_utc": "2026-09-28T14:26:54.7076121+00:00",
+  "finished_utc": "2026-09-28T14:27:00.0340365+00:00",
+  "duration_ms": 5326.424,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "go.exe",
+    "test",
+    "-json",
+    "-p",
+    "1",
+    "-tags=integration",
+    "-count=1",
+    "-timeout",
+    "3m",
+    "-run",
+    "TestM17NormalShutdown|TestM17ConfiguredStartup",
+    "."
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 1800,
+  "child_environment_cleared": true,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "GOCACHE",
+    "GOMODCACHE",
+    "GOPATH",
+    "GOPROXY",
+    "GOROOT",
+    "GOTOOLCHAIN",
+    "PATH",
+    "RESONANCE_M17_ATTEMPT_OUTPUT",
+    "RESONANCE_M17_SERVER_EXE",
+    "RESONANCE_TEST_DATABASE_URL",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

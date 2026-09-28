@@ -1,0 +1,39 @@
+{
+  "attempt_id": "20260928T133623826Z-attempt-01",
+  "campaign": "g8-restore-short-fixture",
+  "status": "fail",
+  "exit_code": 1,
+  "timed_out": false,
+  "started_utc": "2026-09-28T13:36:23.8269677+00:00",
+  "finished_utc": "2026-09-28T13:36:24.8499122+00:00",
+  "duration_ms": 1022.944,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-Command",
+    "$ErrorActionPreference='Stop'\n$rootId='885c6fe5-5e2d-4101-9e61-ec1a862ce3da'\n$tempRoot=[IO.Path]::GetFullPath((Join-Path $env:TEMP 'ResonanceM17G1-20260928')).TrimEnd('\\')\n$source=Join-Path $tempRoot 'restore-media\\Short.wav'\n$psql=Join-Path (Get-Location).Path 'data\\postgresql-17.11\\pgsql\\bin\\psql.exe'\n$raw=& $psql -X -A -t -w -v ON_ERROR_STOP=1 -h 127.0.0.1 -p 55439 -U resonance -d resonance_m17_scale -c \"SELECT canonical_path FROM library_roots WHERE id='$rootId'\"\nif ($LASTEXITCODE -ne 0 -or -not $raw) { throw 'Could not resolve the expected disposable journey root.' }\n$rootPath=[IO.Path]::GetFullPath(([string]($raw | Select-Object -Last 1)).Trim()).TrimEnd('\\')\nif (-not $rootPath.StartsWith($tempRoot+'\\',[StringComparison]::OrdinalIgnoreCase) -or (Split-Path -Leaf $rootPath) -ne 'library') { throw 'Refusing to write a fixture outside the expected disposable journey root.' }\nif (-not (Test-Path -LiteralPath $source -PathType Leaf)) { throw 'Saved Short fixture is unavailable.' }\n$destination=Join-Path $rootPath 'Short.wav'\n$before=Test-Path -LiteralPath $destination -PathType Leaf\nif (-not $before) { Copy-Item -LiteralPath $source -Destination $destination }\n$sourceHash=(Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash\n$destHash=(Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash\nif ($sourceHash -ne $destHash) { throw 'Restored fixture hash differs from saved G4 copy.' }\n[ordered]@{root_id=$rootId;short_existed_before=$before;short_exists_after=(Test-Path -LiteralPath $destination);sha256=$destHash;restored=$(-not $before)} | ConvertTo-Json -Compress"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 30,
+  "child_environment_cleared": true,
+  "output_capture": "captured",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "PGPASSWORD",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

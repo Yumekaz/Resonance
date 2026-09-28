@@ -1,0 +1,18 @@
+{
+  "result": "passed",
+  "relative_path": "library/Added After Startup/Scale Track 00000.mp3",
+  "sha256": "671b1de5752c72c9099ab9a408b1d35dca16a7354c6b09b4476a7dfc5c982daa",
+  "bytes": 4404,
+  "track_visible_after_ms": 1104.0,
+  "track_count": 10,
+  "root": [
+    {
+      "id": "a91ef059-d341-46e2-8270-955c3ab9a206",
+      "verification_state": "verified",
+      "watch_state": "watching",
+      "dirty": true,
+      "last_scan_status": "succeeded",
+      "absence_reconciled": true
+    }
+  ]
+}

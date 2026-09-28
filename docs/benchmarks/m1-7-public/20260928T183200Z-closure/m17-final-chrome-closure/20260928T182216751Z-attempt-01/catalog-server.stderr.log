@@ -1,0 +1,10 @@
+2026/09/28 23:52:19 Resonance listening on 127.0.0.1:18087
+2026/09/28 23:52:19 INFO reconciliation_sweep_scheduled cycle_id=1 trigger=startup
+2026/09/28 23:52:20 INFO reconciliation_scan_started cycle_id=1 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 trigger=configuration
+2026/09/28 23:52:20 INFO scan_started run_id=dc153dd5-fdca-4020-9191-35b65dd6f725 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17
+2026/09/28 23:52:20 INFO scan_finished run_id=dc153dd5-fdca-4020-9191-35b65dd6f725 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=109.006 publish_transaction_ms=15.491 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 23:52:20 INFO reconciliation_scan_finished cycle_id=1 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=109.006
+2026/09/28 23:52:21 INFO reconciliation_scan_started cycle_id=2 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 trigger=watch_coverage_refresh
+2026/09/28 23:52:21 INFO scan_started run_id=a4900e7f-9601-4807-90ea-5f41d3677681 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17
+2026/09/28 23:52:21 INFO scan_finished run_id=a4900e7f-9601-4807-90ea-5f41d3677681 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 status=succeeded error_code="" files_visited=10 files_supported=10 files_unchanged=10 files_hashed=0 imported=0 locations_added=0 locations_moved=0 locations_unavailable=0 failed=0 bytes_hashed=0 metadata_extractions=0 traversal_complete=true observations_applied=true absence_reconciled=true duration_ms=104.208 publish_transaction_ms=12.53 grouping_ms=0 sql_statements=43 rows_affected=34
+2026/09/28 23:52:21 INFO reconciliation_scan_finished cycle_id=2 root_id=d7699db1-935c-47ef-a9c0-895fd1e41e17 status=succeeded error_code="" traversal_complete=true absence_reconciled=true duration_ms=104.208

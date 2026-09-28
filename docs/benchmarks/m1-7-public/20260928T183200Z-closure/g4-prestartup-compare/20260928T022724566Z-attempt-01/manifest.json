@@ -1,0 +1,15 @@
+{
+  "attempt_id": "20260928T022724566Z-attempt-01",
+  "campaign": "g4-prestartup-compare",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T02:27:24.5662135+00:00",
+  "finished_utc": "2026-09-28T02:27:24.5911804+00:00",
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "command": [
+    "compare value hashes and counts for all 19 public tables",
+    "compare schema fingerprints independent of database name and dead attribute slots",
+    "compare sequence options/state",
+    "compare normalized pg_dump schema-only DDL"
+  ]
+}

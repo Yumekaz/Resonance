@@ -1,0 +1,48 @@
+{
+  "attempt_id": "20260928T023435766Z-attempt-01",
+  "campaign": "g6-postgres-outage-recovery",
+  "status": "fail",
+  "exit_code": 1,
+  "timed_out": false,
+  "started_utc": "2026-09-28T02:34:35.7663041+00:00",
+  "finished_utc": "2026-09-28T02:34:37.6949974+00:00",
+  "duration_ms": 1928.693,
+  "candidate_commit": "47c31c5e55ff89edffaa55a037762ce85496f63b",
+  "source_tree_dirty": true,
+  "command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "<host-path>",
+    "-BaseUrl",
+    "http://127.0.0.1:18083",
+    "-ClusterPath",
+    "<host-path>",
+    "-PostgresBin",
+    "<host-path>",
+    "-LibraryRoot",
+    "<host-path>",
+    "-Port",
+    "55439"
+  ],
+  "working_directory": "<local-path>",
+  "timeout_seconds": 300,
+  "child_environment_cleared": true,
+  "output_capture": "disabled; child manages its own output files",
+  "removed_environment_variable_names": [],
+  "provided_environment_variable_names": [
+    "PATH",
+    "SystemRoot",
+    "TEMP",
+    "TMP"
+  ],
+  "output_redactions": [
+    "repository root",
+    "user profile",
+    "temporary directory",
+    "secret values"
+  ],
+  "launch_error": null
+}

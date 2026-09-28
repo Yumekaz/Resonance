@@ -1,0 +1,21 @@
+--- FAIL: TestM14TracksPageRepeatedAt304Tracks (0.18s)
+    catalog_integration_test.go:135: invalid database configuration
+--- FAIL: TestCatalogHTTPAndRealRanges (0.07s)
+    catalog_integration_test.go:234: invalid database configuration
+--- FAIL: TestM15HTTPContractsAndPathBoundary (0.07s)
+    user_library_http_integration_test.go:42: invalid database configuration
+FAIL
+FAIL	resonance	1.398s
+ok  	resonance/cmd/bench	0.058s
+?   	resonance/cmd/fixture	[no test files]
+?   	resonance/cmd/m14measure	[no test files]
+?   	resonance/cmd/m15burst	[no test files]
+?   	resonance/cmd/m15catalogbench	[no test files]
+?   	resonance/cmd/m17corpus	[no test files]
+?   	resonance/cmd/m17manifest	[no test files]
+?   	resonance/cmd/m17scanbench	[no test files]
+ok  	resonance/internal/library	61.726s
+ok  	resonance/internal/m17fixtures	0.662s
+ok  	resonance/internal/metadata	0.091s
+ok  	resonance/internal/storage	34.103s
+FAIL

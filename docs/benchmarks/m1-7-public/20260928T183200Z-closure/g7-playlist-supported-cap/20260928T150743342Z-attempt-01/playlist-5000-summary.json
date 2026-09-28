@@ -1,0 +1,9 @@
+{
+  "cache": "warm/uncontrolled",
+  "dataset": "one rooted Track repeated; 5000 distinct playlist occurrence IDs",
+  "p50_ms": 915.5995,
+  "p95_ms": 1020.137,
+  "p99_ms": 1824.395,
+  "playlist_entries": 5000,
+  "samples": 30
+}

@@ -1,0 +1,15 @@
+{
+  "format_version": 1,
+  "mode": "scale",
+  "seed": 1776,
+  "track_count": 1,
+  "unique_sha256": 1,
+  "artist_count": 1,
+  "album_count": 1,
+  "file_count": 1,
+  "total_bytes": 4404,
+  "audio_source_details": "CC0 testdata/metadata/untagged.mp3; four complete source MPEG frames per fixture",
+  "audio_sources_sha256": {
+    "untagged.mp3": "a6bf32d47cb8f4da29fa6dc5b037cb028a2a8d07c49bdf183a71f17c9d2fc802"
+  }
+}

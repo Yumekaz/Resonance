@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20260928T034612046Z-attempt-01",
+  "campaign": "g7-active-pct-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:46:12.0464328+00:00",
+  "finished_utc": "2026-09-28T03:46:12.1318079+00:00",
+  "raw_sources": [
+    "g7-active-catalog-pages/catalog-pages-500.json",
+    "g7-active-indexed-ranges/indexed-range-200.json"
+  ],
+  "method": "median and nearest-rank p95/p99 recomputed from request-level raw samples"
+}

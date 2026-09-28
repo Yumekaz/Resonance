@@ -1,0 +1,820 @@
+{
+  "config": {
+    "configFile": "<host-path>",
+    "rootDir": "<host-path>",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "<host-path>",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "<host-path>",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "library-status.spec.js",
+      "file": "library-status.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "reports path-free reconciliation status while health and readiness stay separate",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 579,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T18:22:30.757Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1ecbefb0a32828fc595d-34d9d38de3bc68349e56",
+          "file": "library-status.spec.js",
+          "line": 5,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "library.spec.js",
+      "file": "library.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "browses Artist and Album, plays real Track before full download, and seeks by 206",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3079,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"size\":26460044,\"bytesAtPlayback\":494306,\"seekRange\":\"bytes=18513920-\",\"seekContentRange\":\"bytes 18513920-26460043/26460044\",\"seekToPlayingMs\":188.39999997615814}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 1954
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:32.347Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "catalog-playback-evidence",
+                      "contentType": "application/json",
+                      "body": "ewogICJzaXplIjogMjY0NjAwNDQsCiAgImJ5dGVzQXRQbGF5YmFjayI6IDQ5NDMwNiwKICAic2Vla1JhbmdlIjogImJ5dGVzPTE4NTEzOTIwLSIsCiAgInNlZWtDb250ZW50UmFuZ2UiOiAiYnl0ZXMgMTg1MTM5MjAtMjY0NjAwNDMvMjY0NjAwNDQiLAogICJzZWVrVG9QbGF5aW5nTXMiOiAxODguMzk5OTk5OTc2MTU4MTQKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "254f146a5fc831b96eb5-dbdd372196b873ef582c",
+          "file": "library.spec.js",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "shows an unavailable Track without starting playback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T18:22:35.451Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "254f146a5fc831b96eb5-b9c929fc35bab02db400",
+          "file": "library.spec.js",
+          "line": 66,
+          "column": 1
+        },
+        {
+          "title": "reports a browser decoder failure for an indexed Track",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 368,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T18:22:35.797Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "254f146a5fc831b96eb5-661d91e8b2188e5d2346",
+          "file": "library.spec.js",
+          "line": 74,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "m17-journey.spec.js",
+      "file": "m17-journey.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real catalog journey persists queue, playlist, favorite and qualifying history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5074,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 135
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 135
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 138
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 13
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 1935
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 134
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 136
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 138
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 11
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:36.193Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd4fc184bb2f1c6592a0-52ad6e3e2fd33085ebc2",
+          "file": "m17-journey.spec.js",
+          "line": 29,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "user-library.spec.js",
+      "file": "user-library.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "natural end finalizes history and advances durable queue once",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3647,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 131
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 407
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 1929
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 127
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 10
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 124
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:41.300Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-79b42b7566ae659750e8",
+          "file": "user-library.spec.js",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "playlist create, edit, reorder, delete, and favorite toggles persist",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2091,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 138
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 134
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 139
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 126
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:44.968Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-3171d32e5043fb6df85b",
+          "file": "user-library.spec.js",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "retains one pending ended transition during outage and retries after reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 135
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 125
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 136
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:47.081Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-d92947394b57ad1c1008",
+          "file": "user-library.spec.js",
+          "line": 122,
+          "column": 1
+        },
+        {
+          "title": "Track actions add, play next, and play now as distinct queue occurrences",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 971,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 126
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 135
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 127
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 133
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:50.933Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-b72ef090d9a7db995fae",
+          "file": "user-library.spec.js",
+          "line": 151,
+          "column": 1
+        },
+        {
+          "title": "a lost queue-add response replays its original receipt instead of adding twice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 562,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 125
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:51.925Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-42c8adc06a19a628a958",
+          "file": "user-library.spec.js",
+          "line": 173,
+          "column": 1
+        },
+        {
+          "title": "Play Now keeps its mutation token when another tab selects the same Track before response handling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2704,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 11
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 1931
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:52.506Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-889a101d10bac69bf83e",
+          "file": "user-library.spec.js",
+          "line": 197,
+          "column": 1
+        },
+        {
+          "title": "a queue advance response cannot autoplay a selection made by another tab afterward",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1176,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 16
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 129
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 128
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 135
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:55.227Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-14fffeadbbd3f88613ec",
+          "file": "user-library.spec.js",
+          "line": 233,
+          "column": 1
+        },
+        {
+          "title": "stale tab ended, Next, and Previous cannot change a newer queue selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3044,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 18
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 133
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 405
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:56.421Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-b6cbdcdb7cb6a70141ea",
+          "file": "user-library.spec.js",
+          "line": 275,
+          "column": 1
+        },
+        {
+          "title": "seeking to the end after meaningful listening does not mark completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2528,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 17
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 133
+                    },
+                    {
+                      "title": "Expect \"poll toBe\"",
+                      "duration": 12
+                    }
+                  ],
+                  "startTime": "2026-09-28T18:22:59.498Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-2ec7c9131769bf3a1823",
+          "file": "user-library.spec.js",
+          "line": 321,
+          "column": 1
+        },
+        {
+          "title": "decoder failure creates no listening history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 409,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T18:23:02.052Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99de5f841be8239e68d7-56ff17dfad1c063519c1",
+          "file": "user-library.spec.js",
+          "line": 345,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-28T18:22:29.740Z",
+    "duration": 32986.602,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "attempt_id": "20260928T031359596Z-attempt-01",
+  "campaign": "g7-user-library-percentile-audit",
+  "status": "pass",
+  "exit_code": 0,
+  "started_utc": "2026-09-28T03:13:59.5968599+00:00",
+  "finished_utc": "2026-09-28T03:13:59.6213993+00:00",
+  "raw_source": "g7-user-library-benchmark/m15-user-library.json",
+  "percentile_method": "median p50; nearest-rank p95/p99"
+}

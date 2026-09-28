@@ -1,0 +1,1 @@
+A cleanup-loop variable named PID collided with PowerShell automatic read-only $PID; the loop stopped no process. The preceding raw output correctly says stopped_auxiliary_server_count=0, but its manifest status is not accepted.

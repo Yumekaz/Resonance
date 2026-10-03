@@ -12,11 +12,12 @@ import (
 )
 
 type Playlist struct {
-	ID        string    `json:"id"`
-	Name      string    `json:"name"`
-	Revision  int64     `json:"revision"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	TrackCount int64     `json:"track_count"`
+	ID         string    `json:"id"`
+	Name       string    `json:"name"`
+	Revision   int64     `json:"revision"`
+	CreatedAt  time.Time `json:"created_at"`
+	UpdatedAt  time.Time `json:"updated_at"`
 }
 type PlaylistItem struct {
 	ID           string  `json:"id"`
@@ -39,8 +40,18 @@ type PlaylistChange struct {
 func validPlaylistName(name string) bool {
 	return utf8.ValidString(name) && len(name) <= 1024 && len([]rune(strings.TrimSpace(name))) >= 1 && len([]rune(strings.TrimSpace(name))) <= 256
 }
-func (s *Store) ListPlaylists(ctx context.Context, limit int, beforeTime *time.Time, beforeID string) ([]Playlist, error) {
-	rows, err := s.pool.Query(ctx, `SELECT id,name,revision,created_at,updated_at FROM playlists WHERE ($1::timestamptz IS NULL OR (created_at,id)<($1,$2)) ORDER BY created_at DESC,id DESC LIMIT $3`, beforeTime, beforeID, limit)
+func (s *Store) ListPlaylists(ctx context.Context, limit int, beforeTime *time.Time, beforeID string, queries ...string) ([]Playlist, error) {
+	query := ""
+	if len(queries) > 1 {
+		return nil, ErrUserInvalid
+	}
+	if len(queries) == 1 {
+		query = strings.TrimSpace(queries[0])
+	}
+	if !utf8.ValidString(query) || strings.ContainsRune(query, 0) || len(query) > 512 || utf8.RuneCountInString(query) > 120 {
+		return nil, ErrUserInvalid
+	}
+	rows, err := s.pool.Query(ctx, `SELECT p.id,p.name,p.revision,p.created_at,p.updated_at,(SELECT count(*) FROM playlist_items pi WHERE pi.playlist_id=p.id) FROM playlists p WHERE ($1::timestamptz IS NULL OR (p.created_at,p.id)<($1,$2)) AND strpos(lower(p.name),lower($4))>0 ORDER BY p.created_at DESC,p.id DESC LIMIT $3`, beforeTime, beforeID, limit, query)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +59,7 @@ func (s *Store) ListPlaylists(ctx context.Context, limit int, beforeTime *time.T
 	out := []Playlist{}
 	for rows.Next() {
 		var p Playlist
-		if err := rows.Scan(&p.ID, &p.Name, &p.Revision, &p.CreatedAt, &p.UpdatedAt); err != nil {
+		if err := rows.Scan(&p.ID, &p.Name, &p.Revision, &p.CreatedAt, &p.UpdatedAt, &p.TrackCount); err != nil {
 			return nil, err
 		}
 		out = append(out, p)
@@ -78,6 +89,7 @@ func readPlaylist(ctx context.Context, q queueQueryer, id string) (PlaylistDetai
 		}
 		out.Items = append(out.Items, item)
 	}
+	out.TrackCount = int64(len(out.Items))
 	return out, rows.Err()
 }
 func (s *Store) ReadPlaylist(ctx context.Context, id string) (PlaylistDetail, error) {

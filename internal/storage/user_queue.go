@@ -94,12 +94,12 @@ func currentIndex(items []QueueItem, id *string) int {
 	return -1
 }
 func persistQueueOrder(ctx context.Context, tx pgx.Tx, items []QueueItem) error {
+	ids := make([]string, len(items))
 	for i, item := range items {
-		if _, err := tx.Exec(ctx, "UPDATE queue_items SET position=$2 WHERE id=$1", item.ID, i); err != nil {
-			return err
-		}
+		ids[i] = item.ID
 	}
-	return nil
+	_, err := tx.Exec(ctx, `UPDATE queue_items qi SET position=ordered.ordinality-1 FROM unnest($1::text[]) WITH ORDINALITY AS ordered(id,ordinality) WHERE qi.id=ordered.id`, ids)
+	return err
 }
 func setQueueSelection(ctx context.Context, tx pgx.Tx, revision int64, current, token *string, state string) error {
 	_, err := tx.Exec(ctx, "UPDATE active_queue SET revision=$1,current_item_id=$2,selection_token=$3,selection_state=$4,updated_at=now() WHERE singleton=true", revision, current, token, state)
@@ -327,6 +327,7 @@ func (s *Store) ClearQueue(ctx context.Context, key string, req QueueClearReques
 }
 
 type QueueAdvanceRequest struct {
+	Repeat                string                `json:"repeat,omitempty"`
 	Direction             string                `json:"direction"`
 	ExpectedVersion       int64                 `json:"expected_version"`
 	ExpectedCurrentItemID *string               `json:"expected_current_item_id"`
@@ -340,6 +341,9 @@ func sameNullableString(a, b *string) bool {
 	return a == nil && b == nil || a != nil && b != nil && *a == *b
 }
 func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRequest) (MutationResult, error) {
+	if req.Repeat != "" && req.Repeat != "off" && req.Repeat != "one" && req.Repeat != "all" {
+		return MutationResult{}, ErrUserInvalid
+	}
 	if req.ExpectedVersion < 0 || !(req.Direction == "next" || req.Direction == "previous" || req.Direction == "ended") || req.FailureCode != nil && (*req.FailureCode != "resolver_failed" || req.Direction != "next") {
 		return MutationResult{}, ErrUserInvalid
 	}
@@ -386,7 +390,9 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 		}
 		skipped := []string{}
 		selected := -1
-		if req.Direction == "previous" {
+		if req.Direction == "ended" && req.Repeat == "one" && full.Items[at].Available {
+			selected = at
+		} else if req.Direction == "previous" {
 			for i := at - 1; i >= 0; i-- {
 				if full.Items[i].Available {
 					selected = i
@@ -401,6 +407,30 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 					break
 				}
 				skipped = append(skipped, full.Items[i].ID)
+			}
+		}
+		// Loop at most once. Unavailable items never create an endless repeat
+		// cycle, and a resolver-failed current item is not immediately retried.
+		if selected < 0 && req.Repeat == "all" {
+			if req.Direction == "previous" {
+				for i := len(full.Items) - 1; i >= at && i >= 0; i-- {
+					if full.Items[i].Available {
+						selected = i
+						break
+					}
+					skipped = append(skipped, full.Items[i].ID)
+				}
+			} else {
+				for i := 0; i <= at && i < len(full.Items); i++ {
+					if req.FailureCode != nil && i == at {
+						continue
+					}
+					if full.Items[i].Available {
+						selected = i
+						break
+					}
+					skipped = append(skipped, full.Items[i].ID)
+				}
 			}
 		}
 		for _, id := range skipped {

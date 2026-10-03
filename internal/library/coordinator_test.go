@@ -129,6 +129,16 @@ func (s *coordinatorFakeScanner) Calls() int {
 
 func TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority(t *testing.T) {
 	rootPath := t.TempDir()
+	var clockMu sync.RWMutex
+	var frozenNow *time.Time
+	now := func() time.Time {
+		clockMu.RLock()
+		defer clockMu.RUnlock()
+		if frozenNow != nil {
+			return *frozenNow
+		}
+		return time.Now()
+	}
 	watcher := newCoordinatorFakeWatcher()
 	store := &coordinatorMemoryStore{roots: []storage.LibraryRoot{{
 		ID: "00000000-0000-4000-8000-000000000001", Name: "test", Enabled: true,
@@ -141,6 +151,7 @@ func TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority(t *testing.T) 
 	}}
 	coordinator, err := NewCoordinator(CoordinatorOptions{
 		Store: store, Scanner: scanner, WatcherFactory: func() (DirectoryWatcher, error) { return watcher, nil },
+		Now:      now,
 		Logger:   quietCoordinatorLogger(),
 		Debounce: 15 * time.Millisecond, MaxDebounce: 2 * time.Second, MinFollowupInterval: 15 * time.Millisecond,
 		ConfigRefreshInterval: time.Hour, PeriodicInterval: time.Hour, RetryMinimum: 30 * time.Millisecond, RetryMaximum: 60 * time.Millisecond,
@@ -152,13 +163,24 @@ func TestCoordinatorCoalescesRootEventsAndRetriesPartialAuthority(t *testing.T) 
 	ctx, cancel := context.WithCancel(context.Background())
 	done := make(chan struct{})
 	go func() { _ = coordinator.Run(ctx); close(done) }()
+	defer func() { cancel(); <-done }()
 	waitForCoordinator(t, 2*time.Second, func() bool {
 		status := coordinator.Status()
 		return scanner.Calls() >= 1 && len(status.Roots) == 1 && !status.Roots[0].Dirty && !status.GlobalSweep
 	})
+	// All events belong to one logical burst. Producer/consumer scheduling on a
+	// busy host must not create artificial 15ms quiet gaps during injection.
+	clockMu.Lock()
+	held := time.Now()
+	frozenNow = &held
+	clockMu.Unlock()
 	for i := 0; i < 10000; i++ {
 		watcher.events <- fsnotify.Event{Name: filepath.Join(rootPath, "track.wav"), Op: fsnotify.Write}
 	}
+	waitForCoordinator(t, 2*time.Second, func() bool { return coordinator.Status().EventsObserved == 10000 })
+	clockMu.Lock()
+	frozenNow = nil
+	clockMu.Unlock()
 	waitForCoordinator(t, 2*time.Second, func() bool { return scanner.Calls() >= 2 })
 	waitForCoordinator(t, 2*time.Second, func() bool { return scanner.Calls() >= 3 && !coordinator.Status().Roots[0].Dirty })
 	time.Sleep(100 * time.Millisecond)

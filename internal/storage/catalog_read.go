@@ -36,13 +36,18 @@ type CatalogTrack struct {
 }
 
 type CatalogArtist struct {
-	ID            string `json:"id"`
-	DisplayCredit string `json:"display_credit"`
-	Available     bool   `json:"available"`
-	SortKey       string `json:"-"`
+	ArtworkURL    *string `json:"artwork_url"`
+	TrackCount    int64   `json:"track_count"`
+	ID            string  `json:"id"`
+	DisplayCredit string  `json:"display_credit"`
+	Available     bool    `json:"available"`
+	SortKey       string  `json:"-"`
 }
 
 type CatalogAlbum struct {
+	ArtworkURL    *string `json:"artwork_url"`
+	ArtistCredit  *string `json:"artist_credit"`
+	TrackCount    int64   `json:"track_count"`
 	ID            string  `json:"id"`
 	DisplayTitle  string  `json:"display_title"`
 	AlbumArtistID *string `json:"album_artist_id"`
@@ -86,8 +91,22 @@ func (s *Store) GetCatalogTrack(ctx context.Context, id string) (CatalogTrack, e
 	return t, err
 }
 
-func (s *Store) ListCatalogTracks(ctx context.Context, limit int, afterKey, afterID, artistID, albumID string, available *bool) ([]CatalogTrack, error) {
-	rows, err := s.pool.Query(ctx, trackReadSQL+` AND (coalesce(t.catalog_title_key,''),t.id)>($1,$2) AND ($3='' OR EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.track_id=t.id AND am.artist_id=$3)) AND ($4='' OR EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.track_id=t.id AND m.album_id=$4)) AND ($5::boolean IS NULL OR EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=t.id AND ml.availability='available' AND lr.enabled)=$5) ORDER BY coalesce(t.catalog_title_key,''),t.id LIMIT $6`, afterKey, afterID, artistID, albumID, available, limit)
+// Disabling a folder removes its music from discovery without deleting durable
+// Track identities, favorites, history or playlist/queue references. Missing
+// files in an enabled folder remain visible as unavailable for recovery.
+const enabledTrackSQL = ` AND EXISTS(SELECT 1 FROM media_objects em JOIN media_locations el ON el.media_object_id=em.id JOIN library_roots er ON er.id=el.root_id WHERE em.track_id=t.id AND er.enabled)`
+const enabledArtistSQL = ` AND EXISTS(SELECT 1 FROM track_artist_memberships eam JOIN media_objects em ON em.track_id=eam.track_id JOIN media_locations el ON el.media_object_id=em.id JOIN library_roots er ON er.id=el.root_id WHERE eam.artist_id=ca.id AND er.enabled)`
+const enabledAlbumSQL = ` AND EXISTS(SELECT 1 FROM track_album_memberships eam JOIN media_objects em ON em.track_id=eam.track_id JOIN media_locations el ON el.media_object_id=em.id JOIN library_roots er ON er.id=el.root_id WHERE eam.album_id=ca.id AND er.enabled)`
+
+func (s *Store) ListCatalogTracks(ctx context.Context, limit int, afterKey, afterID, artistID, albumID string, available *bool, order ...string) ([]CatalogTrack, error) {
+	if len(order) > 1 || len(order) == 1 && order[0] != "" && order[0] != "title" && order[0] != "title_desc" {
+		return nil, ErrCatalogInvalid
+	}
+	comparison, direction := ">", ""
+	if len(order) == 1 && order[0] == "title_desc" {
+		comparison, direction = "<", " DESC"
+	}
+	rows, err := s.pool.Query(ctx, trackReadSQL+enabledTrackSQL+` AND ($2='' OR (coalesce(t.catalog_title_key,''),t.id)`+comparison+`($1,$2)) AND ($3='' OR EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.track_id=t.id AND am.artist_id=$3)) AND ($4='' OR EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.track_id=t.id AND m.album_id=$4)) AND ($5::boolean IS NULL OR EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=t.id AND ml.availability='available' AND lr.enabled)=$5) ORDER BY coalesce(t.catalog_title_key,'')`+direction+`,t.id`+direction+` LIMIT $6`, afterKey, afterID, artistID, albumID, available, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +129,7 @@ func (s *Store) ListAlbumTracks(ctx context.Context, limit int, afterKey, afterI
 	if selectSQL == trackReadSQL {
 		return nil, errors.New("album sort query unavailable")
 	}
-	query := selectSQL + ` AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.track_id=t.id AND m.album_id=$1) AND (` + albumSortExpression + `,t.id)>($2,$3) ORDER BY ` + albumSortExpression + `,t.id LIMIT $4`
+	query := selectSQL + enabledTrackSQL + ` AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.track_id=t.id AND m.album_id=$1) AND (` + albumSortExpression + `,t.id)>($2,$3) ORDER BY ` + albumSortExpression + `,t.id LIMIT $4`
 	rows, err := s.pool.Query(ctx, query, albumID, afterKey, afterID, limit)
 	if err != nil {
 		return nil, err
@@ -127,9 +146,17 @@ func (s *Store) ListAlbumTracks(ctx context.Context, limit int, afterKey, afterI
 	return out, rows.Err()
 }
 
+const catalogArtistPresentationSQL = `,
+ (SELECT '/api/v1/tracks/' || am.track_id || '/artwork' FROM track_artist_memberships am WHERE am.artist_id=ca.id AND EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=am.track_id AND mo.artwork_sha256 IS NOT NULL AND mo.artwork_mime IN ('image/png','image/jpeg') AND ml.availability='available' AND lr.enabled) ORDER BY am.track_id LIMIT 1),
+ (SELECT count(DISTINCT am.track_id) FROM track_artist_memberships am WHERE am.artist_id=ca.id AND EXISTS(SELECT 1 FROM media_objects em JOIN media_locations el ON el.media_object_id=em.id JOIN library_roots er ON er.id=el.root_id WHERE em.track_id=am.track_id AND er.enabled))`
+const catalogAlbumPresentationSQL = `,
+ (SELECT '/api/v1/tracks/' || am.track_id || '/artwork' FROM track_album_memberships am WHERE am.album_id=ca.id AND EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=am.track_id AND mo.artwork_sha256 IS NOT NULL AND mo.artwork_mime IN ('image/png','image/jpeg') AND ml.availability='available' AND lr.enabled) ORDER BY am.track_id LIMIT 1),
+ coalesce((SELECT ac.display_credit FROM catalog_artists ac WHERE ac.id=ca.album_artist_id),(SELECT coalesce(t.album_artist_credit,t.artist_credit) FROM track_album_memberships am JOIN tracks t ON t.id=am.track_id WHERE am.album_id=ca.id ORDER BY am.track_id LIMIT 1)),
+ (SELECT count(*) FROM track_album_memberships am WHERE am.album_id=ca.id AND EXISTS(SELECT 1 FROM media_objects em JOIN media_locations el ON el.media_object_id=em.id JOIN library_roots er ON er.id=el.root_id WHERE em.track_id=am.track_id AND er.enabled))`
+
 func (s *Store) GetCatalogArtist(ctx context.Context, id string) (CatalogArtist, error) {
 	var a CatalogArtist
-	err := s.pool.QueryRow(ctx, `SELECT ca.id,ca.display_credit,ca.normalized_credit,EXISTS(SELECT 1 FROM track_artist_memberships am JOIN media_objects mo ON mo.track_id=am.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE am.artist_id=ca.id AND ml.availability='available' AND lr.enabled) FROM catalog_artists ca WHERE ca.id=$1 AND EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.artist_id=ca.id)`, id).Scan(&a.ID, &a.DisplayCredit, &a.SortKey, &a.Available)
+	err := s.pool.QueryRow(ctx, `SELECT ca.id,ca.display_credit,ca.normalized_credit,EXISTS(SELECT 1 FROM track_artist_memberships am JOIN media_objects mo ON mo.track_id=am.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE am.artist_id=ca.id AND ml.availability='available' AND lr.enabled)`+catalogArtistPresentationSQL+` FROM catalog_artists ca WHERE ca.id=$1 AND EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.artist_id=ca.id)`, id).Scan(&a.ID, &a.DisplayCredit, &a.SortKey, &a.Available, &a.ArtworkURL, &a.TrackCount)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return CatalogArtist{}, ErrCatalogNotFound
 	}
@@ -139,8 +166,15 @@ func (s *Store) GetCatalogArtist(ctx context.Context, id string) (CatalogArtist,
 	return a, err
 }
 
-func (s *Store) ListCatalogArtists(ctx context.Context, limit int, afterKey, afterID string) ([]CatalogArtist, error) {
-	rows, err := s.pool.Query(ctx, `SELECT ca.id,ca.display_credit,ca.normalized_credit,EXISTS(SELECT 1 FROM track_artist_memberships am JOIN media_objects mo ON mo.track_id=am.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE am.artist_id=ca.id AND ml.availability='available' AND lr.enabled) FROM catalog_artists ca WHERE (ca.normalized_credit,ca.id)>($1,$2) AND EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.artist_id=ca.id) ORDER BY ca.normalized_credit,ca.id LIMIT $3`, afterKey, afterID, limit)
+func (s *Store) ListCatalogArtists(ctx context.Context, limit int, afterKey, afterID string, order ...string) ([]CatalogArtist, error) {
+	if len(order) > 1 || len(order) == 1 && order[0] != "" && order[0] != "title" && order[0] != "title_desc" {
+		return nil, ErrCatalogInvalid
+	}
+	comparison, direction := ">", ""
+	if len(order) == 1 && order[0] == "title_desc" {
+		comparison, direction = "<", " DESC"
+	}
+	rows, err := s.pool.Query(ctx, `SELECT ca.id,ca.display_credit,ca.normalized_credit,EXISTS(SELECT 1 FROM track_artist_memberships am JOIN media_objects mo ON mo.track_id=am.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE am.artist_id=ca.id AND ml.availability='available' AND lr.enabled)`+catalogArtistPresentationSQL+` FROM catalog_artists ca WHERE true`+enabledArtistSQL+` AND ($2='' OR (ca.normalized_credit,ca.id)`+comparison+`($1,$2)) AND EXISTS(SELECT 1 FROM track_artist_memberships am WHERE am.artist_id=ca.id) ORDER BY ca.normalized_credit`+direction+`,ca.id`+direction+` LIMIT $3`, afterKey, afterID, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +182,7 @@ func (s *Store) ListCatalogArtists(ctx context.Context, limit int, afterKey, aft
 	out := []CatalogArtist{}
 	for rows.Next() {
 		var a CatalogArtist
-		if err := rows.Scan(&a.ID, &a.DisplayCredit, &a.SortKey, &a.Available); err != nil {
+		if err := rows.Scan(&a.ID, &a.DisplayCredit, &a.SortKey, &a.Available, &a.ArtworkURL, &a.TrackCount); err != nil {
 			return nil, err
 		}
 		if len(a.DisplayCredit) > 65536 || !utf8.ValidString(a.DisplayCredit) {
@@ -161,18 +195,25 @@ func (s *Store) ListCatalogArtists(ctx context.Context, limit int, afterKey, aft
 
 func (s *Store) GetCatalogAlbum(ctx context.Context, id string) (CatalogAlbum, error) {
 	var a CatalogAlbum
-	err := s.pool.QueryRow(ctx, `SELECT ca.id,ca.display_title,ca.album_artist_id,ca.release_year,ca.normalized_title,EXISTS(SELECT 1 FROM track_album_memberships m JOIN media_objects mo ON mo.track_id=m.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE m.album_id=ca.id AND ml.availability='available' AND lr.enabled) FROM catalog_albums ca WHERE ca.id=$1 AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.album_id=ca.id)`, id).Scan(&a.ID, &a.DisplayTitle, &a.AlbumArtistID, &a.ReleaseYear, &a.SortKey, &a.Available)
+	err := s.pool.QueryRow(ctx, `SELECT ca.id,ca.display_title,ca.album_artist_id,ca.release_year,ca.normalized_title,EXISTS(SELECT 1 FROM track_album_memberships m JOIN media_objects mo ON mo.track_id=m.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE m.album_id=ca.id AND ml.availability='available' AND lr.enabled)`+catalogAlbumPresentationSQL+` FROM catalog_albums ca WHERE ca.id=$1 AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.album_id=ca.id)`, id).Scan(&a.ID, &a.DisplayTitle, &a.AlbumArtistID, &a.ReleaseYear, &a.SortKey, &a.Available, &a.ArtworkURL, &a.ArtistCredit, &a.TrackCount)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return CatalogAlbum{}, ErrCatalogNotFound
 	}
-	if err == nil && (len(a.DisplayTitle) > 65536 || !utf8.ValidString(a.DisplayTitle)) {
+	if err == nil && (len(a.DisplayTitle) > 65536 || !utf8.ValidString(a.DisplayTitle) || !validDisplay(a.ArtistCredit)) {
 		return CatalogAlbum{}, ErrCatalogInvalid
 	}
 	return a, err
 }
 
-func (s *Store) ListCatalogAlbums(ctx context.Context, limit int, afterKey, afterID, artistID string) ([]CatalogAlbum, error) {
-	rows, err := s.pool.Query(ctx, `SELECT ca.id,ca.display_title,ca.album_artist_id,ca.release_year,ca.normalized_title,EXISTS(SELECT 1 FROM track_album_memberships m JOIN media_objects mo ON mo.track_id=m.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE m.album_id=ca.id AND ml.availability='available' AND lr.enabled) FROM catalog_albums ca WHERE (ca.normalized_title,ca.id)>($1,$2) AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.album_id=ca.id) AND ($3='' OR ca.album_artist_id=$3 OR EXISTS(SELECT 1 FROM track_album_memberships m JOIN track_artist_memberships am ON am.track_id=m.track_id WHERE m.album_id=ca.id AND am.artist_id=$3)) ORDER BY ca.normalized_title,ca.id LIMIT $4`, afterKey, afterID, artistID, limit)
+func (s *Store) ListCatalogAlbums(ctx context.Context, limit int, afterKey, afterID, artistID string, order ...string) ([]CatalogAlbum, error) {
+	if len(order) > 1 || len(order) == 1 && order[0] != "" && order[0] != "title" && order[0] != "title_desc" {
+		return nil, ErrCatalogInvalid
+	}
+	comparison, direction := ">", ""
+	if len(order) == 1 && order[0] == "title_desc" {
+		comparison, direction = "<", " DESC"
+	}
+	rows, err := s.pool.Query(ctx, `SELECT ca.id,ca.display_title,ca.album_artist_id,ca.release_year,ca.normalized_title,EXISTS(SELECT 1 FROM track_album_memberships m JOIN media_objects mo ON mo.track_id=m.track_id JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE m.album_id=ca.id AND ml.availability='available' AND lr.enabled)`+catalogAlbumPresentationSQL+` FROM catalog_albums ca WHERE true`+enabledAlbumSQL+` AND ($2='' OR (ca.normalized_title,ca.id)`+comparison+`($1,$2)) AND EXISTS(SELECT 1 FROM track_album_memberships m WHERE m.album_id=ca.id) AND ($3='' OR ca.album_artist_id=$3 OR EXISTS(SELECT 1 FROM track_album_memberships m JOIN track_artist_memberships am ON am.track_id=m.track_id WHERE m.album_id=ca.id AND am.artist_id=$3)) ORDER BY ca.normalized_title`+direction+`,ca.id`+direction+` LIMIT $4`, afterKey, afterID, artistID, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -180,10 +221,10 @@ func (s *Store) ListCatalogAlbums(ctx context.Context, limit int, afterKey, afte
 	out := []CatalogAlbum{}
 	for rows.Next() {
 		var a CatalogAlbum
-		if err := rows.Scan(&a.ID, &a.DisplayTitle, &a.AlbumArtistID, &a.ReleaseYear, &a.SortKey, &a.Available); err != nil {
+		if err := rows.Scan(&a.ID, &a.DisplayTitle, &a.AlbumArtistID, &a.ReleaseYear, &a.SortKey, &a.Available, &a.ArtworkURL, &a.ArtistCredit, &a.TrackCount); err != nil {
 			return nil, err
 		}
-		if len(a.DisplayTitle) > 65536 || !utf8.ValidString(a.DisplayTitle) {
+		if len(a.DisplayTitle) > 65536 || !utf8.ValidString(a.DisplayTitle) || !validDisplay(a.ArtistCredit) {
 			return nil, ErrCatalogInvalid
 		}
 		out = append(out, a)

@@ -173,6 +173,14 @@ func TestM17PublicationCrashCampaign(t *testing.T) {
 					t.Fatal(err)
 				}
 			}
+			// Process exit does not synchronously prove that PostgreSQL has
+			// observed the closed socket and released its session scan lock.
+			// Inspect that boundary before testing the next scanner's recovery.
+			m17Wait(t, func() bool {
+				var live bool
+				err := pool.QueryRow(context.Background(), "SELECT EXISTS(SELECT 1 FROM pg_stat_activity WHERE application_name='m17_crash_child')").Scan(&live)
+				return err == nil && !live
+			})
 			if mode != "commit_without_delivery" {
 				if got := m17ProductDigest(t, pool); got != before {
 					t.Fatal("partial catalog/grouping/generation publication survived crash")

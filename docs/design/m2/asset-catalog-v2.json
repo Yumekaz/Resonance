@@ -1,0 +1,175 @@
+{
+  "assets": [
+    {
+      "name": "meadow",
+      "master": "docs/design/m2/production-sources/sleeve-meadow-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-meadow-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 105048,
+      "sha256": "a97ff673a4bfe2fdfc095da1358c4e03b70ee348d164ee5b6d0c789c34994fdc",
+      "prompt": "docs/design/m2/production-sources/sleeve-meadow-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "tide",
+      "master": "docs/design/m2/production-sources/sleeve-tide-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-tide-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 101938,
+      "sha256": "cd0ab78a9996ca9e37431edb2a46f07e6aad176207e89d8198f157a23f287673",
+      "prompt": "docs/design/m2/production-sources/sleeve-tide-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "shadow",
+      "master": "docs/design/m2/production-sources/sleeve-shadow-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-shadow-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 125036,
+      "sha256": "f32c024e781336891ba0488998b051a78fc928c2d1db74cd23006378fece0d43",
+      "prompt": "docs/design/m2/production-sources/sleeve-shadow-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "ridge",
+      "master": "docs/design/m2/production-sources/sleeve-ridge-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-ridge-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 92760,
+      "sha256": "ca04ec890a279ba9b60b9d9681ddc0168a10c2e61c10a5dbf6c1144fcc9db2c2",
+      "prompt": "docs/design/m2/production-sources/sleeve-ridge-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "floral",
+      "master": "docs/design/m2/production-sources/sleeve-floral-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-floral-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 55780,
+      "sha256": "abd55ad1878e03023c686a920ee3d843e04944e1f1b48ffb39df952a06f88cd0",
+      "prompt": "docs/design/m2/production-sources/sleeve-floral-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "terra",
+      "master": "docs/design/m2/production-sources/sleeve-terra-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-terra-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 266962,
+      "sha256": "1f65dbc709a5dca0f2fea42ec312dc048c29d5a69c0ade4ebf186ddff30a18ca",
+      "prompt": "docs/design/m2/production-sources/sleeve-terra-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "linen",
+      "master": "docs/design/m2/production-sources/sleeve-linen-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-linen-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 145950,
+      "sha256": "7e00867d759a00dc3c5673f07a7cc467d1b68e262afb07d3514e150bba18992b",
+      "prompt": "docs/design/m2/production-sources/sleeve-linen-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "leaf",
+      "master": "docs/design/m2/production-sources/sleeve-leaf-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-leaf-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 212524,
+      "sha256": "c6322d0edd27b0778ea88785849cfb7fc67b7ef4840853d280f9feea976be239",
+      "prompt": "docs/design/m2/production-sources/sleeve-leaf-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "room",
+      "master": "docs/design/m2/production-sources/sleeve-room-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-room-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 69174,
+      "sha256": "67f8619dfde10168a7c413df5f25ace2eae8da9378d5a525d41480e3853cdb4f",
+      "prompt": "docs/design/m2/production-sources/sleeve-room-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    },
+    {
+      "name": "dune",
+      "master": "docs/design/m2/production-sources/sleeve-dune-v2.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "delivery": "web/assets/sleeve-dune-v2.webp",
+      "delivery_pixels": [
+        960,
+        960
+      ],
+      "bytes": 77758,
+      "sha256": "4f89a7c496ba4c02ebc2f49f5f80cd61700c0c5a9502da0f43ae020de72486d6",
+      "prompt": "docs/design/m2/production-sources/sleeve-dune-v2-prompt.md",
+      "method": "Built-in Image Generation; original preserved; WebP conversion/downsampling only"
+    }
+  ],
+  "delivery_bytes": 1252930
+}

@@ -26,7 +26,7 @@ func m17ServerProcess(t *testing.T, dsn, media, addr, label string) *exec.Cmd {
 	if exe == "" {
 		t.Skip("production executable required for process drill")
 	}
-	cmd := exec.Command(exe, "-addr", addr, "-media", media)
+	cmd := exec.Command(exe, "-addr", addr, "-admin-addr", "127.0.0.1:0", "-media", media)
 	cmd.Env = append(os.Environ(), "RESONANCE_DATABASE_URL="+dsn)
 	cmd.SysProcAttr = &syscall.SysProcAttr{CreationFlags: 0x10, HideWindow: true}
 	output := os.Getenv("RESONANCE_M17_ATTEMPT_OUTPUT")

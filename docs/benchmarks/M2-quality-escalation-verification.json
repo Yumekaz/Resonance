@@ -1,0 +1,263 @@
+{
+  "date": "2026-10-03T14:16:24.862Z",
+  "timezone": "Asia/Calcutta",
+  "targetMet": false,
+  "unit": {
+    "pass": 122,
+    "fail": 0,
+    "skipped": [
+      "TestReviewMediaSymlinkCannotEscape"
+    ]
+  },
+  "integration": {
+    "pass": 262,
+    "fail": 0,
+    "skipped": [
+      "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+      "TestM17ChangedMediaHTTPConcurrency",
+      "TestM17PlaylistSupportedCapBenchmark",
+      "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+      "TestReviewMediaSymlinkCannotEscape",
+      "TestM16BenchmarkWatcherConvergence",
+      "TestM17ThirtyRealMediaWatcherChanges",
+      "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+      "TestM17MigrationCLIAtTenThousandTracks",
+      "TestM2QueueOrderBenchmark",
+      "TestM15BenchmarkEvidence"
+    ]
+  },
+  "goStages": [
+    {
+      "phase": "format",
+      "exitCode": 0,
+      "files": []
+    },
+    {
+      "phase": "vet",
+      "exitCode": 0,
+      "started": "2026-10-03T10:43:39.6014668+00:00",
+      "ended": "2026-10-03T10:43:55.1932334+00:00"
+    },
+    {
+      "phase": "unit",
+      "exitCode": 0,
+      "started": "2026-10-03T10:43:55.1934599+00:00",
+      "ended": "2026-10-03T10:44:17.6591462+00:00"
+    },
+    {
+      "phase": "integration",
+      "exitCode": 0,
+      "started": "2026-10-03T10:44:17.6593291+00:00",
+      "ended": "2026-10-03T10:47:39.4922997+00:00"
+    }
+  ],
+  "browser": {
+    "startTime": "2026-10-03T13:23:04.527Z",
+    "duration": 141762.752,
+    "expected": 62,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalLayoutAccessibilityFollowup": {
+    "startTime": "2026-10-03T13:35:36.785Z",
+    "duration": 53629.759,
+    "expected": 30,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "m0Browser": {
+    "startTime": "2026-10-03T05:52:38.407Z",
+    "duration": 11180.968,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontendState": {
+    "pass": 7,
+    "fail": 0,
+    "command": "node --test tests/frontend/*.test.cjs (expanded explicit paths on Windows)"
+  },
+  "scale": {
+    "date": "2026-10-03T14:10:47.598Z",
+    "datasetTracks": 10000,
+    "environment": {
+      "cpu": "AMD Ryzen 7 5700U with Radeon Graphics         ",
+      "logicalCPUs": 16,
+      "memoryBytes": 16473051136,
+      "node": "v22.20.0",
+      "os": "10.0.26300"
+    },
+    "conditions": "Fresh Chrome contexts, browser cache disabled, service workers blocked, warm database/filesystem. Stress profile emulates CPU and network; it is not physical Android evidence. Search includes input debounce. Album readiness requires 50 bounded cards, not completion of every image.",
+    "summary": [
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "samples": 5,
+        "readyP50": 361.3948999999998,
+        "readyP95": 434.91449999999986,
+        "searchP95": 330.71590000000015,
+        "albumsP95": 178.191499999999
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "samples": 5,
+        "readyP50": 312.46839999999975,
+        "readyP95": 391.02540000000045,
+        "searchP95": 350.97339999999895,
+        "albumsP95": 107.88580000000002
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "samples": 5,
+        "readyP50": 1663.7675000000017,
+        "readyP95": 1752.958200000001,
+        "searchP95": 495.4418000000005,
+        "albumsP95": 400.6262999999999
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "samples": 5,
+        "readyP50": 1611.7300000000032,
+        "readyP95": 2205.4218999999975,
+        "searchP95": 471.81890000000567,
+        "albumsP95": 423.21370000000024
+      }
+    ]
+  },
+  "queueOrder": {
+    "dataset": "999 rooted queue occurrences; 20 warm local samples per condition",
+    "before": {
+      "p50MS": 195.615,
+      "p95MS": 302.853,
+      "p99MS": 369.279
+    },
+    "after": {
+      "p50MS": 29.937,
+      "p95MS": 39.16,
+      "p99MS": 41.571
+    },
+    "limitation": "Transaction duration; not phone, LAN, audio startup or SLO evidence."
+  },
+  "frames": {
+    "date": "2026-10-03T13:52:58.086Z",
+    "definition": "Five pointer open/close cycles per viewport/profile; rAF interval samples while transition flag active; headless desktop Chrome, emulated CPU throttle, warm local server, no recording/screenshots. This is pacing evidence, not proof of physical-device smoothness or compositor FPS.",
+    "records": [
+      {
+        "width": 390,
+        "cpuRate": 1,
+        "activeCount": 285,
+        "activeP50": 8.399999999999636,
+        "activeP95": 16.700000000000273,
+        "activeP99": 33.5,
+        "activeOver33ms": 4,
+        "audio": {
+          "paused": false,
+          "time": 3.70238
+        }
+      },
+      {
+        "width": 390,
+        "cpuRate": 4,
+        "activeCount": 301,
+        "activeP50": 8.399999999999636,
+        "activeP95": 25.199999999999818,
+        "activeP99": 108.20000000000027,
+        "activeOver33ms": 13,
+        "audio": {
+          "paused": false,
+          "time": 4.80505
+        }
+      },
+      {
+        "width": 1440,
+        "cpuRate": 1,
+        "activeCount": 313,
+        "activeP50": 8.300000000000182,
+        "activeP95": 8.900000000000091,
+        "activeP99": 33.19999999999982,
+        "activeOver33ms": 2,
+        "audio": {
+          "paused": false,
+          "time": 3.505015
+        }
+      },
+      {
+        "width": 1440,
+        "cpuRate": 4,
+        "activeCount": 294,
+        "activeP50": 8.300000000000182,
+        "activeP95": 41.70000000000073,
+        "activeP99": 108.40000000000009,
+        "activeOver33ms": 18,
+        "audio": {
+          "paused": false,
+          "time": 4.884742
+        }
+      }
+    ]
+  },
+  "controlledStyleComparison": {
+    "definition": "One Chrome process; CPU4x; alternate condition order; 3 contexts per width/condition, 5 open/close cycles each. Restoring the former root :has selector through a test-only style rule isolates its invalidation cost. Both variants retain current JS/persistent audio; only unmodified current product captures count as visual evidence. Event-to-rAF is input scheduling evidence, not compositor FPS.",
+    "summary": [
+      {
+        "width": 390,
+        "rootSelector": false,
+        "count": 15,
+        "p50": 35.19999998807907,
+        "p95": 66,
+        "p99": 66
+      },
+      {
+        "width": 390,
+        "rootSelector": true,
+        "count": 15,
+        "p50": 38.39999997615814,
+        "p95": 67.7999999821186,
+        "p99": 67.7999999821186
+      },
+      {
+        "width": 1440,
+        "rootSelector": false,
+        "count": 15,
+        "p50": 30.19999998807907,
+        "p95": 61.19999998807907,
+        "p99": 61.19999998807907
+      },
+      {
+        "width": 1440,
+        "rootSelector": true,
+        "count": 15,
+        "p50": 30.900000005960464,
+        "p95": 70,
+        "p99": 70
+      }
+    ],
+    "caution": "Observed cadence changed from about16.7ms in earlier runs to about8.3ms in this run. Do not attribute that whole change to code."
+  },
+  "openGates": [
+    "Physical Android Chrome LAN/touch/keyboard/orientation/background lifecycle deferred by owner",
+    "TalkBack and actual text scaling/zoom unperformed",
+    "Device/compositor profiling not established by headless rAF",
+    "Inherited Windows file-symlink privilege checks remain skipped"
+  ],
+  "rawHashes": {
+    "resume3-go-final-unit.jsonl": "ff87f6d7312770ea5f9611ae1059f15c514f0a2b42495055cf4176e0435ca4e8",
+    "resume3-go-final-integration.jsonl": "93c2f0affd73e690b185a2d6a8473035b87e1f5a87aa5b4b91aeb37aff6e8b4d",
+    "resume3-final-verified-browser.json": "bd7bd5413c568b58f985c12d183238e25fa537b48d1dfffd03a45bf7e807719a",
+    "resume3-layout-final-checks.json": "d40a4431e642f27b989e1f052fd05abb37422b9c09821c63f90247092b8cc9a3",
+    "resume2-m0.json": "b1c2e94ff5104b4b0c35fddf83869a637c4a62576a15d9ee5ab4236c43d08e07",
+    "resume2-scale-stressed.json": "1fb022af29e7ca877fc9ddc662332101554da5d735f3c98c2a8020abac0a6305",
+    "resume3-current-scale-profile.json": "aa25dd19f71af34115f822e9ef0560fbf8398091b6f554a3487c183ef78e65ea",
+    "resume3-final-frames.json": "6193b61568eec0fade36f5449bf6ef61524a91db731c879b2fc9ff8b10e760ce",
+    "resume3-style-ab.json": "11567919d131b4a071a79342ca0acc692b412cd29cffc20b9257f29840a7fc57",
+    "queue-order-before.log": "d12e3fb2ef4ad437df036381c1a8af9bea51ef500fea4efe43c2652c1b653e1d",
+    "queue-order-after.log": "da396b6da5dc579c17bca11e2b75c4e707780cebebd94a58b18922ceb4586540"
+  },
+  "rawPolicy": "Original failures, intermediate captures and interrupted attempts remain immutable and local. This export contains summaries/hashes, not credentials, local host paths or raw traces."
+}

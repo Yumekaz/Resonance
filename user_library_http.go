@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"resonance/internal/storage"
 )
@@ -248,12 +249,21 @@ func (a *app) playlistsList(w http.ResponseWriter, r *http.Request) {
 	if !a.catalogReady(w, r) {
 		return
 	}
-	limit, t, id, err := parseTimedPage(r, "playlists", playlistID)
+	query := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("q")))
+	if !utf8.ValidString(query) || strings.ContainsRune(query, 0) || len(query) > 512 || utf8.RuneCountInString(query) > 120 {
+		userError(w, storage.ErrUserInvalid)
+		return
+	}
+	kind := "playlists"
+	if query != "" {
+		kind += "/" + query
+	}
+	limit, t, id, err := parseTimedPage(r, kind, playlistID)
 	if err != nil {
 		userError(w, err)
 		return
 	}
-	items, err := a.store.ListPlaylists(r.Context(), limit+1, t, id)
+	items, err := a.store.ListPlaylists(r.Context(), limit+1, t, id, query)
 	if err != nil {
 		userError(w, err)
 		return
@@ -265,7 +275,7 @@ func (a *app) playlistsList(w http.ResponseWriter, r *http.Request) {
 	var next *string
 	if len(items) > 0 {
 		last := items[len(items)-1]
-		next = makeTimedCursor("playlists", last.CreatedAt, last.ID, more)
+		next = makeTimedCursor(kind, last.CreatedAt, last.ID, more)
 	}
 	jsonResponse(w, map[string]any{"items": items, "next_cursor": next})
 }

@@ -301,7 +301,7 @@ func TestM16MigrationRollbackAndRetryAfterPartialDDL(t *testing.T) {
 	var columns, constraints, version int
 	if err := s.pool.QueryRow(ctx, `SELECT
 		(SELECT count(*) FROM information_schema.columns WHERE table_schema=current_schema() AND table_name='library_roots' AND column_name IN ('root_identity_kind','verification_state')),
-		(SELECT count(*) FROM pg_constraint WHERE conname='library_roots_identity_kind_scope_check'),
+		(SELECT count(*) FROM pg_constraint WHERE conname='library_roots_identity_kind_scope_check' AND conrelid='library_roots'::regclass),
 		(SELECT count(*) FROM schema_migrations WHERE version=8)`).Scan(&columns, &constraints, &version); err != nil {
 		t.Fatal(err)
 	}

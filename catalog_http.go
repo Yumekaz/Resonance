@@ -111,7 +111,23 @@ func catalogQueryError(w http.ResponseWriter, err error) {
 	catalogError(w, http.StatusServiceUnavailable, "catalog_unavailable")
 }
 
+func catalogOrder(r *http.Request) (string, error) {
+	order := r.URL.Query().Get("order")
+	if order != "" && order != "title" && order != "title_desc" {
+		return "", errors.New("invalid order")
+	}
+	if order == "title_desc" {
+		return order, nil
+	}
+	return "", nil
+}
+
 func (a *app) tracksList(w http.ResponseWriter, r *http.Request) {
+	order, orderErr := catalogOrder(r)
+	if orderErr != nil {
+		catalogError(w, 400, "invalid_request")
+		return
+	}
 	if !a.catalogReady(w, r) {
 		return
 	}
@@ -131,12 +147,15 @@ func (a *app) tracksList(w http.ResponseWriter, r *http.Request) {
 		available = &v
 	}
 	filter := artistID + "|" + albumID + "|" + q.Get("available")
+	if order != "" {
+		filter += "|" + order
+	}
 	p, e := parsePage(r, "tracks", filter)
 	if e != nil {
 		catalogError(w, 400, "invalid_request")
 		return
 	}
-	items, e := a.store.ListCatalogTracks(r.Context(), p.Limit+1, p.Key, p.ID, artistID, albumID, available)
+	items, e := a.store.ListCatalogTracks(r.Context(), p.Limit+1, p.Key, p.ID, artistID, albumID, available, order)
 	if e != nil {
 		catalogQueryError(w, e)
 		return
@@ -170,15 +189,20 @@ func (a *app) trackDetail(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *app) artistsList(w http.ResponseWriter, r *http.Request) {
+	order, orderErr := catalogOrder(r)
+	if orderErr != nil {
+		catalogError(w, 400, "invalid_request")
+		return
+	}
 	if !a.catalogReady(w, r) {
 		return
 	}
-	p, e := parsePage(r, "artists", "")
+	p, e := parsePage(r, "artists", order)
 	if e != nil {
 		catalogError(w, 400, "invalid_request")
 		return
 	}
-	items, e := a.store.ListCatalogArtists(r.Context(), p.Limit+1, p.Key, p.ID)
+	items, e := a.store.ListCatalogArtists(r.Context(), p.Limit+1, p.Key, p.ID, order)
 	if e != nil {
 		catalogQueryError(w, e)
 		return
@@ -190,7 +214,7 @@ func (a *app) artistsList(w http.ResponseWriter, r *http.Request) {
 	var next *string
 	if len(items) > 0 {
 		last := items[len(items)-1]
-		next = nextPage(p.Kind, "", last.SortKey, last.ID, more)
+		next = nextPage(p.Kind, p.Filter, last.SortKey, last.ID, more)
 	}
 	jsonResponse(w, map[string]any{"items": items, "next_cursor": next})
 }
@@ -212,6 +236,11 @@ func (a *app) artistDetail(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *app) albumsList(w http.ResponseWriter, r *http.Request) {
+	order, orderErr := catalogOrder(r)
+	if orderErr != nil {
+		catalogError(w, 400, "invalid_request")
+		return
+	}
 	if !a.catalogReady(w, r) {
 		return
 	}
@@ -220,12 +249,12 @@ func (a *app) albumsList(w http.ResponseWriter, r *http.Request) {
 		catalogError(w, 400, "invalid_request")
 		return
 	}
-	p, e := parsePage(r, "albums", artistID)
+	p, e := parsePage(r, "albums", artistID+order)
 	if e != nil {
 		catalogError(w, 400, "invalid_request")
 		return
 	}
-	items, e := a.store.ListCatalogAlbums(r.Context(), p.Limit+1, p.Key, p.ID, artistID)
+	items, e := a.store.ListCatalogAlbums(r.Context(), p.Limit+1, p.Key, p.ID, artistID, order)
 	if e != nil {
 		catalogQueryError(w, e)
 		return

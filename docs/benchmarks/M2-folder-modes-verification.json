@@ -1,0 +1,428 @@
+{
+  "date": "2026-10-03T16:34:34.906593+00:00",
+  "scope": "M2 product candidate plus folder/artwork corrections and explicitly requested shuffle/repeat",
+  "qualityTargetMet": false,
+  "go": {
+    "unit": {
+      "pass": 126,
+      "fail": 0,
+      "skipped": [
+        "TestReviewMediaSymlinkCannotEscape"
+      ]
+    },
+    "integration": {
+      "pass": 268,
+      "fail": 0,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ]
+    }
+  },
+  "browser": {
+    "folder-modes-full-browser-attempt3.json": {
+      "startTime": "2026-10-03T16:25:31.908Z",
+      "duration": 153439.465,
+      "expected": 70,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "folder-modes-m0-browser.json": {
+      "startTime": "2026-10-03T16:14:01.380Z",
+      "duration": 10913.582,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "frontend": {
+    "pass": 9,
+    "fail": 0
+  },
+  "privateCollectionSmoke": {
+    "songs": 10,
+    "passed": 10,
+    "embeddedCoversServed": 9,
+    "noEmbeddedCover": 1,
+    "unsupportedM4A": 3,
+    "checks": [
+      "decode/start",
+      "pause",
+      "seek",
+      "resume",
+      "persistent playback across navigation"
+    ],
+    "limits": "Short samples, not full-duration listening; physical Android remains unperformed"
+  },
+  "rawHashes": {
+    "folder-modes-final-unit.jsonl": "311ee7abcd07ff44ae164609ccdbc6ad8769bf46627dbc8be35eea8a77a118ba",
+    "folder-modes-final-integration.jsonl": "0d01f3b21bdff2889b7d9b3eac6b0cac3cf154fddf27deab7c1d1e7905d47471",
+    "folder-modes-full-browser-attempt3.json": "30110a4c5bdce3c557ae7b1b8f3415ab53c8c910fc2681acc68df0139736c565",
+    "folder-modes-m0-browser.json": "c6e48d95b1cda8faf6ef12b6471dff0c3022ef6230cc82b2ff17d9f717ff29ac",
+    "folder-modes-final-performance.json": "822fc427b60969fc362c9d2a8ca27305c78b98f596a3edac2dc3174aacafc8d4",
+    "personal-song-playback.json": "f3f6db469a933d6ab754140441a7b9f2098a2b7fbb2f95741b0f7380f01ee2e7",
+    "playback-modes-attempt2.json": "371a99d8df6504c7829d20a5baab199a4fbf0491cf1925a56532ce9e44a16a8a",
+    "folder-modes-full-browser-attempt1.json": "31e9f54c97956ed98b847943adb9260c2753176caa1c0a6fef914408068ef47a",
+    "playback-modes-pwa-attempt2.json": "24ddade45428c14abafc0074d7806df8ec1af1058320e16d89fc2527dc88b7d0"
+  },
+  "limitations": [
+    "Physical Android Chrome and TalkBack verification deferred by owner",
+    "Windows file-symlink privilege cases remain unperformed",
+    "Historical opt-in load/crash campaigns were not repeated",
+    "Warm loopback performance; stress uses browser CPU/network emulation, not a device SLO"
+  ],
+  "performance": {
+    "date": "2026-10-03T16:28:13.045Z",
+    "command": "node tools/m2-quality-performance.js",
+    "datasetTracks": 10000,
+    "environment": {
+      "cpu": "AMD Ryzen 7 5700U with Radeon Graphics         ",
+      "logicalCPUs": 16,
+      "memoryBytes": 16473051136,
+      "node": "v22.20.0",
+      "os": "10.0.26300"
+    },
+    "summary": [
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "samples": 5,
+        "readyP50": 386.7623999999996,
+        "readyP95": 768.4508999999998,
+        "searchP95": 400.08560000000034,
+        "albumsP95": 171.64959999999974
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "samples": 5,
+        "readyP50": 526.8758999999991,
+        "readyP95": 544.8851999999988,
+        "searchP95": 441.8205999999991,
+        "albumsP95": 213.84209999999985
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "samples": 5,
+        "readyP50": 1908.6224000000002,
+        "readyP95": 2083.2592000000004,
+        "searchP95": 515.6312999999973,
+        "albumsP95": 705.8360999999968
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "samples": 5,
+        "readyP50": 1441.0891000000047,
+        "readyP95": 1490.0449000000008,
+        "searchP95": 416.35599999999977,
+        "albumsP95": 446.9311000000016
+      }
+    ],
+    "samples": [
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "sample": 0,
+        "readyMS": 768.4508999999998,
+        "searchMS": 330.73770000000013,
+        "albumsMS": 103.82580000000007,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "sample": 1,
+        "readyMS": 515.2584999999999,
+        "searchMS": 400.08560000000034,
+        "albumsMS": 171.64959999999974,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "sample": 2,
+        "readyMS": 386.7623999999996,
+        "searchMS": 324.1825999999992,
+        "albumsMS": 100.27549999999974,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "sample": 3,
+        "readyMS": 350.85719999999947,
+        "searchMS": 317.6134999999995,
+        "albumsMS": 99.87159999999949,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 47,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 390,
+        "sample": 4,
+        "readyMS": 299.5738000000001,
+        "searchMS": 379.3003000000008,
+        "albumsMS": 141.3805999999986,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 47,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "sample": 0,
+        "readyMS": 526.8758999999991,
+        "searchMS": 441.8205999999991,
+        "albumsMS": 213.84209999999985,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 55,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "sample": 1,
+        "readyMS": 543.0277999999998,
+        "searchMS": 353.60150000000067,
+        "albumsMS": 121.45179999999891,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 55,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "sample": 2,
+        "readyMS": 544.8851999999988,
+        "searchMS": 357.08700000000135,
+        "albumsMS": 121.53549999999996,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 55,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "sample": 3,
+        "readyMS": 355.21759999999995,
+        "searchMS": 336.27419999999984,
+        "albumsMS": 108.10859999999957,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 54,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "fresh-process-context",
+        "width": 1440,
+        "sample": 4,
+        "readyMS": 463.59979999999996,
+        "searchMS": 402.58780000000115,
+        "albumsMS": 128.39730000000054,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 55,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "sample": 0,
+        "readyMS": 1493.809699999998,
+        "searchMS": 422.6870000000017,
+        "albumsMS": 337.4466999999968,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 47,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "sample": 1,
+        "readyMS": 2083.2592000000004,
+        "searchMS": 515.6312999999973,
+        "albumsMS": 705.8360999999968,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "sample": 2,
+        "readyMS": 1908.6224000000002,
+        "searchMS": 407.39270000000033,
+        "albumsMS": 388.2682999999997,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "sample": 3,
+        "readyMS": 1968.294600000001,
+        "searchMS": 489.398799999999,
+        "albumsMS": 521.8965000000026,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 48,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 390,
+        "sample": 4,
+        "readyMS": 1375.770700000001,
+        "searchMS": 396.2257000000027,
+        "albumsMS": 254.97379999999976,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 47,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "sample": 0,
+        "readyMS": 1484.5845000000045,
+        "searchMS": 398.3475000000035,
+        "albumsMS": 446.9311000000016,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 53,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "sample": 1,
+        "readyMS": 1365.2072999999946,
+        "searchMS": 416.35599999999977,
+        "albumsMS": 410.571100000001,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 52,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "sample": 2,
+        "readyMS": 1490.0449000000008,
+        "searchMS": 384.75,
+        "albumsMS": 227.95520000000397,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 52,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "sample": 3,
+        "readyMS": 1407.647299999997,
+        "searchMS": 387.8579000000027,
+        "albumsMS": 226.35160000000178,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 52,
+          "artworkRequestCount": 1
+        }
+      },
+      {
+        "profile": "4x-cpu-80ms-network",
+        "width": 1440,
+        "sample": 4,
+        "readyMS": 1441.0891000000047,
+        "searchMS": 411.8197,
+        "albumsMS": 249.5627999999997,
+        "layout": {
+          "rows": 50,
+          "overflow": false,
+          "resourceCount": 52,
+          "artworkRequestCount": 1
+        }
+      }
+    ],
+    "conditions": "Fresh Chrome contexts, browser cache disabled, service workers blocked, warm database/filesystem. Stress profile emulates CPU and network; it is not physical Android evidence. Search includes input debounce. Album readiness requires 50 bounded cards, not completion of every image. First normal-profile measurements overlapped the tail of the serial regression run; the raw dates remain recorded.",
+    "sampleExport": "Exact readiness/search/album samples and bounded-layout/request counts; detailed resource timing remains in the hashed local original."
+  },
+  "failedAttemptsPreserved": [
+    "Personal-song harness initially used button instead of menuitem",
+    "Repeat fixture initially violated server elapsed-time bounds",
+    "One shuffle assertion read before acknowledged reorder completion",
+    "PWA reopen test raced worker-client release; corrected to observe activation without creating another client",
+    "Disposable-server restart attempts and port conflict remain raw local artifacts",
+    "One full browser run was intentionally interrupted to verify the served source was final"
+  ],
+  "publicationPolicy": "No user music, personal cover screenshots, credentials, host paths, executables, databases, raw traces or duplicate masters. Original attempts remain immutable/local; public evidence is sanitized."
+}

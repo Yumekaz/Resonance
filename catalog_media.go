@@ -252,8 +252,15 @@ func verifiedArtwork(f *os.File, c storage.PlaybackCandidate) ([]byte, string, e
 	if err != nil || config.Width < 1 || config.Height < 1 || config.Width > 8192 || config.Height > 8192 {
 		return nil, "", errors.New("artwork_invalid")
 	}
-	if format == "png" && art.MIME == "image/png" || format == "jpeg" && art.MIME == "image/jpeg" {
-		return art.Data, art.MIME, nil
+	// Some tag writers label JPEG bytes as PNG (or vice versa). The stored
+	// hash still authenticates the exact embedded bytes; the decoder, rather
+	// than the tag's MIME label, determines the safe response Content-Type.
+	// No new image formats, dimensions or allocation budgets are admitted.
+	if format == "png" {
+		return art.Data, "image/png", nil
+	}
+	if format == "jpeg" {
+		return art.Data, "image/jpeg", nil
 	}
 	return nil, "", errors.New("artwork_mime")
 }

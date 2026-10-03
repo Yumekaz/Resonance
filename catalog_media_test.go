@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/binary"
+	"image"
+	"image/jpeg"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -15,6 +18,61 @@ import (
 	"resonance/internal/library"
 	"resonance/internal/storage"
 )
+
+func TestVerifiedArtworkUsesDecodedMIMEForMislabelledCover(t *testing.T) {
+	base, err := os.ReadFile("testdata/metadata/untagged.mp3")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var encoded bytes.Buffer
+	if err = jpeg.Encode(&encoded, image.NewRGBA(image.Rect(0, 0, 2, 2)), nil); err != nil {
+		t.Fatal(err)
+	}
+	png, err := base64.StdEncoding.DecodeString("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/dXcAAAAASUVORK5CYII=")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, tc := range []struct {
+		name, declared, actual string
+		data                   []byte
+	}{
+		{"JPEG labelled PNG", "image/png", "image/jpeg", encoded.Bytes()},
+		{"PNG labelled JPEG", "image/jpeg", "image/png", png},
+		{"invalid bytes labelled PNG", "image/png", "", []byte("not an image")},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			picture := append([]byte{0}, []byte(tc.declared)...)
+			picture = append(picture, 0, 3, 0)
+			picture = append(picture, tc.data...)
+			frame := make([]byte, 10)
+			copy(frame, "APIC")
+			binary.BigEndian.PutUint32(frame[4:], uint32(len(picture)))
+			frame = append(frame, picture...)
+			n := len(frame)
+			header := []byte{'I', 'D', '3', 3, 0, 0, byte(n >> 21 & 127), byte(n >> 14 & 127), byte(n >> 7 & 127), byte(n & 127)}
+			path := filepath.Join(t.TempDir(), "cover.mp3")
+			if err := os.WriteFile(path, append(append(header, frame...), base...), 0600); err != nil {
+				t.Fatal(err)
+			}
+			f, err := os.Open(path)
+			if err != nil {
+				t.Fatal(err)
+			}
+			defer f.Close()
+			hash := sha256.Sum256(tc.data)
+			art, mime, err := verifiedArtwork(f, storage.PlaybackCandidate{ArtworkSHA256: hash[:], ArtworkMIME: &tc.declared})
+			if tc.actual == "" {
+				if err == nil {
+					t.Fatal("invalid image admitted")
+				}
+				return
+			}
+			if err != nil || mime != tc.actual || !bytes.Equal(art, tc.data) {
+				t.Fatalf("bytes or response MIME changed: mime=%s error=%v", mime, err)
+			}
+		})
+	}
+}
 
 func catalogWorkspaceTempDir(t *testing.T) string {
 	t.Helper()

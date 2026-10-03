@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Resonance · Host</title>
+    <link rel="stylesheet" href="/admin.css" />
+    <script src="/admin.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <span class="brand">Resonance <small>HOST</small></span
+      ><span class="local">On this computer only</span>
+    </header>
+    <main>
+      <p class="eyebrow">YOUR MUSIC STARTS HERE</p>
+      <h1>A home for your library.</h1>
+      <p class="intro">
+        Manage the folders that bring your music to Resonance.
+      </p>
+      <section aria-labelledby="server-title">
+        <div class="section-heading">
+          <h2 id="server-title">Server</h2>
+          <button id="refresh">Refresh status</button>
+        </div>
+        <dl id="server-status">
+          <dt>Connecting</dt>
+          <dd>Checking the server…</dd>
+        </dl>
+        <div id="listener-address" class="listener-address"></div>
+      </section>
+      <details id="setup-guide">
+        <summary>Set up listening on your computer and phone</summary>
+        <ol>
+          <li>
+            <strong>Choose your music folder.</strong> Open it in your file
+            manager and copy the folder address.
+          </li>
+          <li>
+            <strong>Add it below.</strong> Give the folder a name, paste its
+            address, then choose Scan now. Your files stay where they are.
+          </li>
+          <li>
+            <strong>Open the listener.</strong> On a phone, use the laptop’s
+            Wi-Fi address while both devices are on the same network. This Host
+            page stays on the laptop.
+          </li>
+        </ol>
+      </details>
+      <section aria-labelledby="sources-title">
+        <div class="section-heading">
+          <h2 id="sources-title">Library folders</h2>
+          <button id="show-add" class="primary">Add library folder</button>
+        </div>
+        <p class="hint">
+          Folders stay on this computer. Listeners see music, never these paths.
+          All enabled folders contribute to the listener. To use only one,
+          disable the others below. Adding a folder does not replace existing
+          folders.
+        </p>
+        <form id="add-folder" hidden>
+          <h3>Add a music folder</h3>
+          <label for="folder-name">Display name</label
+          ><input
+            id="folder-name"
+            maxlength="128"
+            required
+            placeholder="My music"
+          /><label for="folder-path">Full folder path on this computer</label
+          ><input
+            id="folder-path"
+            maxlength="4096"
+            required
+            spellcheck="false"
+            placeholder="Enter the full path to your music folder"
+          />
+          <p class="hint">
+            On Windows, open the folder in File Explorer, press Alt+D then
+            Ctrl+C, and paste that address here. Music stays in the folder; this
+            does not upload it. Network folders are not supported here.
+          </p>
+          <div class="actions">
+            <button type="submit" class="primary">Add folder</button
+            ><button type="button" id="cancel-add">Cancel</button>
+          </div>
+        </form>
+        <p id="message" role="status" aria-live="polite"></p>
+        <div id="roots"></div>
+        <button id="more-roots" hidden>Load more folders</button>
+      </section>
+      <footer>
+        Folder actions never delete your files. Verification confirms which
+        physical folder belongs to your library. Automatic updates may take up
+        to a minute to reflect configuration changes.
+      </footer>
+    </main>
+    <dialog id="verify-dialog" aria-labelledby="verify-title">
+      <h2 id="verify-title">Verify this folder?</h2>
+      <p>
+        This confirms the folder currently at this path as the trusted source.
+        Check it on this computer first, especially after replacing a drive.
+      </p>
+      <p id="verify-path"></p>
+      <div class="actions">
+        <button id="confirm-verify" class="primary">
+          Confirm folder identity</button
+        ><button id="cancel-verify">Cancel</button>
+      </div>
+    </dialog>
+  </body>
+</html>

@@ -1,29 +1,510 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resonance Library</title>
-  <link rel="stylesheet" href="/library.css">
-  <script src="/library.js" defer></script>
-  <script src="/user-library.js" defer></script>
-</head>
-<body>
-  <header><div><p class="eyebrow">PROJECT RESONANCE</p><h1>Library</h1></div><a href="/demo">Diagnostic player</a></header>
-  <main>
-    <nav aria-label="Library views"><button data-view="tracks" aria-current="page">Tracks</button><button data-view="artists">Artists</button><button data-view="albums">Albums</button><button data-view="queue">Queue</button><button data-view="playlists">Playlists</button><button data-view="favorites">Favorites</button><button data-view="history">History</button></nav>
-    <p id="view-title" class="section-title">Tracks</p>
-    <div id="queue-controls" class="view-controls" hidden><button id="previous" type="button">Previous</button><button id="next" type="button">Next</button><button id="clear-queue" type="button">Clear queue</button></div>
-    <form id="playlist-create" class="view-controls" hidden><label for="playlist-name">New playlist</label><input id="playlist-name" maxlength="256" required><button type="submit">Create</button></form>
-    <div id="track-actions" class="view-controls"><label for="playlist-target">Add Tracks to playlist</label><select id="playlist-target"><option value="">Choose playlist</option></select></div>
-    <p id="status" role="status">Loading library…</p>
-    <ul id="items" aria-label="Catalog entries"></ul>
-    <button id="more" type="button" hidden>Load more</button>
-  </main>
-  <aside aria-label="Persistent player">
-    <div class="now"><img id="cover" alt="" hidden><div><span class="eyebrow">NOW PLAYING</span><strong id="now-title">Choose an available track</strong><span id="now-credit"></span></div></div>
-    <div class="player-controls"><button id="player-previous" type="button">Previous</button><audio id="audio" controls preload="metadata"></audio><button id="player-next" type="button">Next</button></div>
-    <p id="player-error" role="alert" hidden></p>
-  </aside>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f7f4ee" />
+    <meta name="description" content="Your music, at home." />
+    <title>Resonance</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icon-192-v2.png" />
+    <link rel="apple-touch-icon" href="/assets/icon-192-v2.png" />
+    <link rel="stylesheet" href="/components.css" />
+    <link rel="stylesheet" href="/icons.css" />
+    <link rel="stylesheet" href="/player.css" />
+    <link
+      rel="preload"
+      href="/assets/fonts/cormorant-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script src="/ui.js" defer></script>
+    <script src="/library.js" defer></script>
+    <script src="/api.js" defer></script>
+    <script src="/playback-modes.js" defer></script>
+    <script src="/favorites-state.js" defer></script>
+    <script src="/listening-state.js" defer></script>
+    <script src="/context-menu.js" defer></script>
+    <script src="/row-motion.js" defer></script>
+    <script src="/listening-session.js" defer></script>
+    <script src="/playlist-picker.js" defer></script>
+    <script src="/playlist-destination.js" defer></script>
+    <script src="/user-library.js" defer></script>
+    <script src="/player.js" defer></script>
+    <script src="/listening-summary.js" defer></script>
+    <script src="/pwa.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to music</a>
+    <header class="sidebar">
+      <a class="brand" href="#home"
+        ><span class="brand-mark" aria-hidden="true"
+          ><img src="/assets/resonance-mark.png" alt="" /></span
+        >Resonance</a
+      >
+      <p class="nav-caption">YOUR MUSIC LIBRARY</p>
+      <nav aria-label="Main navigation">
+        <button data-view="home" data-icon="house" aria-label="Home">
+          Home</button
+        ><button
+          data-view="search"
+          data-icon="magnifying-glass"
+          aria-label="Search"
+        >
+          Search</button
+        ><button data-view="library" data-icon="books" aria-label="Library">
+          Library
+        </button>
+        <button data-view="queue" data-icon="queue" aria-label="Up Next">
+          Up Next
+        </button>
+        <div class="desktop-collection">
+          <span class="nav-caption">COLLECTION</span
+          ><button
+            data-view="favorites"
+            data-icon="heart"
+            aria-label="Favorites"
+          >
+            Favorites</button
+          ><button
+            data-view="playlists"
+            data-icon="playlist"
+            aria-label="Playlists"
+          >
+            Playlists</button
+          ><button
+            data-view="history"
+            data-icon="clock-counter-clockwise"
+            aria-label="History"
+          >
+            History
+          </button>
+        </div>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="little-rule"></span>
+        <p>Your collection.<br />Always yours.</p>
+        <button id="install-app" hidden>Install Resonance</button
+        ><button id="app-info">About this app</button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="mobile-brandbar">
+        <a class="mobile-brand" href="#home"
+          ><span class="brand-mark" aria-hidden="true"
+            ><img src="/assets/resonance-mark.png" alt="" /></span
+          >Resonance</a
+        >
+        <div class="mobile-tools">
+          <button
+            id="mobile-search"
+            data-icon="magnifying-glass"
+            data-icon-only="true"
+            aria-label="Search your music"
+          >
+            Search your music</button
+          ><button
+            id="mobile-options"
+            data-icon="dots-three"
+            data-icon-only="true"
+            aria-label="App options"
+          >
+            App options
+          </button>
+        </div>
+      </div>
+      <div class="topline">
+        <span id="view-eyebrow">THE PERSONAL COLLECTION</span
+        ><span id="connection-state" role="status">Connecting…</span>
+        <span id="update-state" role="status" hidden></span>
+      </div>
+      <div id="unreachable" class="notice" hidden>
+        <strong>Resonance server unavailable</strong>
+        <p>
+          Check your connection and that your Resonance server is running. Music
+          needs a connection.
+        </p>
+        <button id="retry-connection">Try again</button>
+      </div>
+      <div class="page-heading">
+        <div class="heading-copy">
+          <button
+            id="playlist-back"
+            class="text-button"
+            data-icon="arrow-left"
+            hidden
+          >
+            All playlists
+          </button>
+          <h1 id="view-title" tabindex="-1">Back to the music.</h1>
+        </div>
+
+        <button id="new-playlist" class="primary" data-icon="plus" hidden>
+          New playlist
+        </button>
+        <button
+          id="refresh-view"
+          data-icon="arrows-clockwise"
+          data-icon-only="true"
+          aria-label="Refresh"
+          class="quiet"
+        >
+          Refresh
+        </button>
+      </div>
+      <p id="view-description" class="lead">
+        A little space for your collection.
+      </p>
+      <nav
+        id="collection-links"
+        class="collection-links"
+        aria-label="Your collection"
+        hidden
+      >
+        <button data-view="favorites" data-icon="heart">Favorites</button>
+        <button data-view="playlists" data-icon="playlist">Playlists</button>
+        <button data-view="history" data-icon="clock-counter-clockwise">
+          History
+        </button>
+      </nav>
+      <nav id="library-tabs" class="tabs" aria-label="Library views">
+        <button data-view="tracks">Tracks</button
+        ><button data-view="artists">Artists</button
+        ><button data-view="albums">Albums</button>
+      </nav>
+      <form id="search-form" role="search" hidden>
+        <label for="search-query" class="sr-only">Search your music</label>
+        <div class="search-field">
+          <span class="icon icon-magnifying-glass" aria-hidden="true"></span>
+          <input
+            id="search-query"
+            type="search"
+            maxlength="120"
+            placeholder="Tracks, artists, albums"
+            autocomplete="off"
+            enterkeyhint="search"
+          /><button
+            id="clear-search"
+            type="button"
+            data-icon="x"
+            data-icon-only="true"
+            aria-label="Clear search"
+            hidden
+          >
+            Clear search</button
+          ><button type="submit" class="sr-only" tabindex="-1">
+            Submit search
+          </button>
+        </div>
+        <p class="hint">Tracks, artists and albums in your collection.</p>
+      </form>
+      <div id="browse-tools" class="view-controls" hidden>
+        <label for="catalog-order">Sort</label>
+        <select id="catalog-order" aria-label="Sort your collection">
+          <option value="title">A–Z</option>
+          <option value="title_desc">Z–A</option>
+        </select>
+        <label id="available-filter"
+          ><input id="available-only" type="checkbox" /> Available songs
+          only</label
+        >
+      </div>
+      <div id="detail-hero" hidden></div>
+      <section
+        id="listening-summary"
+        aria-label="Listening and queue"
+        hidden
+      ></section>
+      <div id="queue-controls" class="view-controls" hidden>
+        <button
+          id="previous"
+          data-icon="skip-back"
+          data-icon-only="true"
+          aria-label="Previous"
+        >
+          Previous</button
+        ><button
+          id="next"
+          data-icon="skip-forward"
+          data-icon-only="true"
+          aria-label="Next"
+        >
+          Next</button
+        ><button id="clear-queue" class="quiet">Stop and clear queue</button>
+      </div>
+      <div id="track-actions" class="view-controls" hidden>
+        <label for="playlist-target">Playlist destination</label
+        ><select id="playlist-target">
+          <option value="">Choose playlist</option>
+        </select>
+      </div>
+      <p id="status" role="status" aria-live="polite">Loading your library…</p>
+      <div id="home-content"></div>
+      <ul id="items" aria-label="Catalog entries"></ul>
+      <div class="view-controls">
+        <button id="previous-page" hidden>Previous page</button
+        ><button id="more" hidden>Load more</button>
+      </div>
+    </main>
+    <aside class="mini-player" aria-label="Persistent player">
+      <button class="now" id="open-player" aria-label="Open Now Playing">
+        <img id="cover" src="/assets/artwork-unavailable.webp" alt="" /><span
+          ><span class="eyebrow">NOW PLAYING</span
+          ><strong id="now-title">Make room for a song.</strong
+          ><span id="now-credit">Choose something from your library</span></span
+        >
+      </button>
+      <div class="transport">
+        <div class="player-controls">
+          <button
+            id="player-shuffle"
+            class="mode-control"
+            data-icon="shuffle"
+            data-icon-only="true"
+            aria-label="Shuffle"
+            aria-pressed="false"
+          >
+            Shuffle
+          </button>
+          <button
+            id="player-previous"
+            data-icon="skip-back"
+            data-icon-only="true"
+            aria-label="Previous"
+          >
+            Previous</button
+          ><button id="play-toggle" class="primary" disabled>Play</button
+          ><button
+            id="player-next"
+            data-icon="skip-forward"
+            data-icon-only="true"
+            aria-label="Next"
+          >
+            Next
+          </button>
+          <button
+            id="player-repeat"
+            class="mode-control"
+            data-icon="repeat"
+            data-icon-only="true"
+            aria-label="Repeat off"
+            aria-pressed="false"
+          >
+            Repeat off
+          </button>
+        </div>
+        <div class="timeline">
+          <span id="elapsed">0:00</span
+          ><input
+            id="seek"
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            aria-label="Seek"
+            disabled
+          /><span id="duration">—</span>
+        </div>
+      </div>
+      <div class="player-tools">
+        <label class="volume-label" aria-label="Volume"
+          ><span class="icon icon-speaker-high" aria-hidden="true"></span
+          ><span class="sr-only">Volume</span
+          ><input
+            id="volume"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1" /></label
+        ><button
+          id="open-queue"
+          data-icon="queue"
+          data-icon-only="true"
+          aria-label="Up Next"
+        >
+          Up Next
+        </button>
+      </div>
+      <audio id="audio" preload="metadata"></audio>
+      <p id="player-error" role="alert" hidden></p>
+    </aside>
+    <dialog id="now-playing" aria-labelledby="full-title">
+      <img
+        id="full-ambient"
+        src="/assets/artwork-unavailable.webp"
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="full-top">
+        <span class="eyebrow">YOUR LISTENING ROOM</span
+        ><button
+          id="close-player"
+          data-icon="x"
+          data-icon-only="true"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="full-layout">
+        <div class="full-body">
+          <div class="full-artwork">
+            <img
+              id="full-art"
+              src="/assets/artwork-unavailable.webp"
+              alt=""
+              data-missing="true"
+            /><span class="full-art-caption">Library sleeve</span>
+          </div>
+          <div class="full-info">
+            <p class="eyebrow">NOW PLAYING</p>
+            <h2 id="full-title">Choose a track</h2>
+            <div class="full-credit">
+              <p id="full-artist"></p>
+              <button id="full-album" class="text-button" hidden></button>
+            </div>
+            <p id="listening-context" class="listening-context"></p>
+            <p id="playback-state" role="status">Ready when you are.</p>
+            <div class="timeline">
+              <span id="full-elapsed">0:00</span
+              ><input
+                id="full-seek"
+                type="range"
+                min="0"
+                max="1000"
+                value="0"
+                aria-label="Seek in Now Playing"
+                disabled
+              /><span id="full-duration">—</span>
+            </div>
+            <div class="full-controls">
+              <button
+                id="full-shuffle"
+                class="mode-control"
+                data-icon="shuffle"
+                data-icon-only="true"
+                aria-label="Shuffle"
+                aria-pressed="false"
+              >
+                Shuffle
+              </button>
+              <button
+                id="full-previous"
+                data-icon="skip-back"
+                data-icon-only="true"
+                aria-label="Previous"
+              >
+                Previous</button
+              ><button id="full-play" class="primary" disabled>Play</button
+              ><button
+                id="full-next"
+                data-icon="skip-forward"
+                data-icon-only="true"
+                aria-label="Next"
+              >
+                Next
+              </button>
+              <button
+                id="full-repeat"
+                class="mode-control"
+                data-icon="repeat"
+                data-icon-only="true"
+                aria-label="Repeat off"
+                aria-pressed="false"
+              >
+                Repeat off
+              </button>
+            </div>
+            <div class="full-actions">
+              <button
+                id="full-favorite"
+                data-icon="heart"
+                data-icon-only="true"
+                aria-label="Favorite"
+                disabled
+              >
+                Favorite</button
+              ><button id="full-playlist" data-icon="plus" disabled>
+                Add to playlist</button
+              ><button id="full-queue" data-icon="queue">View queue</button>
+            </div>
+          </div>
+        </div>
+        <section
+          id="full-queue-panel"
+          class="full-queue-panel"
+          aria-labelledby="full-queue-heading"
+        >
+          <div class="queue-rail-heading">
+            <h3 id="full-queue-heading">Up Next</h3>
+            <button
+              id="full-queue-refresh"
+              data-icon="arrows-clockwise"
+              data-icon-only="true"
+              aria-label="Refresh queue"
+            >
+              Refresh queue
+            </button>
+          </div>
+          <p id="full-queue-status" role="status">Loading queue…</p>
+          <ul id="full-queue-items" aria-label="Player queue"></ul>
+          <button id="full-queue-all">Open full queue</button>
+        </section>
+      </div>
+    </dialog>
+    <dialog id="create-playlist-dialog" aria-labelledby="create-playlist-title">
+      <div class="dialog-heading">
+        <h2 id="create-playlist-title">Create a playlist</h2>
+        <button
+          id="close-create-playlist"
+          type="button"
+          data-icon="x"
+          data-icon-only="true"
+          aria-label="Close playlist creation"
+        >
+          Close
+        </button>
+      </div>
+      <form id="playlist-create">
+        <label for="playlist-name">Playlist name</label>
+        <input
+          id="playlist-name"
+          maxlength="256"
+          placeholder="Give it a name"
+          required
+        />
+        <p class="hint">
+          Start with a name. Add songs from your collection whenever you like.
+        </p>
+        <p
+          id="create-playlist-error"
+          class="dialog-status"
+          role="status"
+          hidden
+        ></p>
+        <button type="submit" class="primary">Create</button>
+      </form>
+    </dialog>
+    <dialog id="action-dialog" aria-labelledby="dialog-title">
+      <form method="dialog">
+        <div class="dialog-heading">
+          <h2 id="dialog-title">Track actions</h2>
+          <button
+            value="cancel"
+            data-icon="x"
+            data-icon-only="true"
+            aria-label="Close dialog"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+      <div id="dialog-content"></div>
+    </dialog>
+  </body>
 </html>

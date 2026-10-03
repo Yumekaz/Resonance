@@ -16,6 +16,33 @@ test-results/
 .env
 .env.*
 *.dump
+*.log
+*.pid
+*.trace
+
+# M2 superseded explorations, duplicate raster masters and intermediate captures.
+# Publish active app assets, current quality-final captures and sanitized
+# verification. Raw attempts and personal music remain local.
+docs/design/m2/implemented-studies/
+docs/design/m2/screenshots/
+docs/design/m2/final-screenshots/
+docs/design/m2/review-screenshots/
+docs/design/m2/production-sources/*.png
+docs/design/m2/acoustic-space-study.png
+docs/design/m2/listening-room-study.png
+docs/design/m2/record-index-study.png
+docs/design/m2/direction-comparison.md
+docs/design/m2/exploration-manifest.json
+docs/design/m2/image-prompts.md
+docs/design/m2/quality-escalation.md
+docs/design/m2/production-sources/sleeve-ink-prompt.md
+docs/design/m2/production-sources/sleeve-moss-prompt.md
+docs/design/m2/production-sources/sleeve-ochre-prompt.md
+docs/benchmarks/M2-implemented-design-*.json
+docs/benchmarks/M2-polish-*.json
+docs/benchmarks/M2-v2-*.json
+docs/benchmarks/M2-verification.json
+docs/benchmarks/M2-raw.json
 
 # Private/local engineering and planning documents
 ACCEPTANCE.md

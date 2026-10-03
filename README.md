@@ -1,4 +1,16 @@
-# Project Resonance — M1 single-node media library
+# Project Resonance — personal music library
+
+M2 provides a responsive personal-library listener, literal local search, persistent compact/full player, shell-only PWA support and separate host administration. See the [current product review](docs/design/m2/quality-review.md), [actual app captures](docs/design/m2/quality-final/README.md), [verification and remaining gates](docs/M2-evidence.md), [API contract](docs/api/M2-product.md), and [architecture decisions](docs/adr/ADR-009-m2-product-boundaries.md). Physical Android and inherited Windows symlink gates remain open; publication is not an M2 completion claim.
+
+The warm library and dark full player use original Resonance artwork fallbacks, self-hosted fonts and icons. See [component and state ownership](docs/design/m2/quality-component-system.md) and [asset provenance and licenses](docs/design/m2/assets.md). Embedded cover art takes priority. Playback supports queue progression, Previous/Next, shuffle and repeat-one/repeat-all. Preferences survive reload without autoplay; Up Next always shows the actual server queue order.
+
+With a configured database, open the music listener on its configured address. On the **server computer**, open `http://127.0.0.1:8081/` to add music folders, verify their identity, enable/disable them and scan. Use `-admin-addr 127.0.0.1:<port>` to change the admin port, or `-admin-addr ""` to disable it. The admin port is loopback-only and must never be reverse-proxied, tunneled or forwarded. The listener has no filesystem-management routes.
+
+The listener combines **all enabled music folders**. Adding another folder does not replace the existing selection; disable folders you no longer want in Library or Search. Disabling never deletes music or saved playlist/favorite/history references. Missing files within an enabled folder remain visible as unavailable. The current importer supports MP3, FLAC and WAV; other formats are skipped and reported by Scan now. Embedded PNG/JPEG covers take priority over generated fallbacks, including valid images whose tag writers used the wrong PNG/JPEG MIME label.
+
+No frontend build or Node process is required to run the shipped server. Browser assets remain embedded in Go. Node, Playwright, axe-core and Prettier are development/test tools only. Search is a bounded literal metadata query over the existing PostgreSQL schema; no migration or external search service is added.
+
+On localhost, capable browsers can install the listener and cache its static shell. Trusted LAN HTTP may not permit installation or service workers; ordinary browser playback remains available. Music and writes are never cached for offline use. A new shell waits for existing app tabs to close instead of interrupting playback. M3 owns HTTPS and remote access.
 
 Project Resonance is a single Go server with PostgreSQL-backed catalog and personal-library state. It streams an operator-configured WAV file and enrolled local media to a browser player. M0 is the unauthenticated local/LAN diagnostic path; no Internet access feature is included.
 
@@ -61,7 +73,7 @@ The M1.4 browser test requires a migrated and scanned catalog server with a 300-
 
 The M1.5 browser test uses that catalog plus a generated two-second `Short.wav`. Set `RESONANCE_M15_E2E=1` and run `npx playwright test tests/e2e/user-library.spec.js`. It covers queue placement and controls, stale-tab selection fencing, lost-response and version-conflict retries, natural-end history, playlist/favorite create/edit/reorder/delete, seek-to-end behavior, reload persistence, and decoder failure without fabricated history.
 
-The integration command requires the dedicated `RESONANCE_TEST_DATABASE_URL` described in the PostgreSQL runbook. To enroll and scan a host directory, apply migrations and use `go run . library add -path <directory> -name <name>`, followed by `go run . library scan <root-id>`. The web client cannot enroll paths.
+The integration command requires the dedicated `RESONANCE_TEST_DATABASE_URL` described in the PostgreSQL runbook. To enroll and scan a host directory, apply migrations and use `go run . library add -path <directory> -name <name>`, followed by `go run . library scan <root-id>`. The listener cannot enroll paths. Host-local administration can enroll an explicitly entered server folder through its separate loopback-only listener.
 
 Windows tests create a junction through a fixed PowerShell command to verify containment. A separate file-symlink test explicitly skips if Windows denies symlink creation. The application itself launches no child processes. `go test -race ./...` additionally requires a working CGO/C compiler toolchain; it is not silently treated as passed when unavailable.
 

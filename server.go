@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"crypto/rand"
+	"crypto/sha256"
 	"embed"
 	"encoding/hex"
 	"encoding/json"
@@ -21,7 +22,7 @@ import (
 	"resonance/internal/storage"
 )
 
-//go:embed web/index.html web/app.js web/style.css web/library.html web/library.js web/user-library.js web/library.css
+//go:embed web/*.html web/*.js web/*.css web/*.webmanifest web/assets
 var webAssets embed.FS
 
 type track struct {
@@ -33,11 +34,12 @@ type track struct {
 }
 
 type app struct {
-	tracks      map[string]track
-	log         *slog.Logger
-	ready       func(context.Context) error
-	store       *storage.Store
-	coordinator *library.Coordinator
+	listenerAddress string
+	tracks          map[string]track
+	log             *slog.Logger
+	ready           func(context.Context) error
+	store           *storage.Store
+	coordinator     *library.Coordinator
 }
 
 func newHandler(mediaPath, title string, logOutput io.Writer) http.Handler {
@@ -61,12 +63,36 @@ func newHandlerWithCoordinator(mediaPath, title string, logOutput io.Writer, rea
 		coordinator: coordinator,
 	}
 	mux := http.NewServeMux()
+	// The public music listener has no administration surface, including static
+	// files. Reject before FileServer's index.html redirect behavior.
 	mux.HandleFunc("GET /health", a.health)
 	mux.HandleFunc("GET /ready", a.readiness)
 	mux.HandleFunc("GET /api/v1/library/status", a.libraryStatus)
 	mux.HandleFunc("GET /api/v1/demo-track", a.metadata)
 	mux.HandleFunc("GET /media/{id}", a.media)
 	mux.HandleFunc("GET /api/v1/tracks", a.tracksList)
+	mux.HandleFunc("GET /api/v1/search", a.search)
+	// The worker's bytes change with the embedded shell, so an update never
+	// depends on remembering to bump a hand-maintained cache version.
+	worker, _ := webAssets.ReadFile("web/sw.js")
+	digest := sha256.New()
+	_ = fs.WalkDir(webAssets, "web", func(path string, entry fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if !entry.IsDir() {
+			body, _ := webAssets.ReadFile(path)
+			_, _ = digest.Write([]byte(path))
+			_, _ = digest.Write(body)
+		}
+		return nil
+	})
+	worker = []byte(strings.ReplaceAll(string(worker), "__ASSET_VERSION__", hex.EncodeToString(digest.Sum(nil))))
+	mux.HandleFunc("GET /sw.js", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/javascript; charset=utf-8")
+		w.Header().Set("Cache-Control", "no-cache")
+		_, _ = w.Write(worker)
+	})
 	mux.HandleFunc("GET /api/v1/tracks/{id}", a.trackDetail)
 	mux.HandleFunc("GET /api/v1/artists", a.artistsList)
 	mux.HandleFunc("GET /api/v1/artists/{id}", a.artistDetail)
@@ -80,6 +106,9 @@ func newHandlerWithCoordinator(mediaPath, title string, logOutput io.Writer, rea
 	mux.HandleFunc("GET /api/v1/tracks/{id}/artwork", a.catalogArtwork)
 	mux.HandleFunc("GET /api/v1/queue", a.queueRead)
 	mux.HandleFunc("POST /api/v1/queue/items", a.queueAdd)
+	mux.HandleFunc("POST /api/v1/queue/select", a.queueSelect)
+	mux.HandleFunc("POST /api/v1/queue/collection", a.queueCollection)
+	mux.HandleFunc("POST /api/v1/favorites/lookup", a.favoritesLookup)
 	mux.HandleFunc("DELETE /api/v1/queue/items/{item_id}", a.queueRemove)
 	mux.HandleFunc("PUT /api/v1/queue/order", a.queueOrder)
 	mux.HandleFunc("DELETE /api/v1/queue", a.queueClear)
@@ -115,6 +144,10 @@ func newHandlerWithCoordinator(mediaPath, title string, logOutput io.Writer, rea
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Request-ID", requestID())
 		w.Header().Set("X-Content-Type-Options", "nosniff")
+		if strings.HasPrefix(r.URL.Path, "/admin/") || strings.HasPrefix(r.URL.Path, "/api/v1/admin/") {
+			http.NotFound(w, r)
+			return
+		}
 		mux.ServeHTTP(w, r)
 	})
 }

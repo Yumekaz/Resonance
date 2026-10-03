@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-03T13:59:23.489Z",
+  "definition": "Copies of real captured app pixels; no editing, fake metadata or composited replacement. Source histories remain immutable. Host crop ends above private folder paths.",
+  "images": [
+    {
+      "name": "albums-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-1440x900.png"
+    },
+    {
+      "name": "albums-320x568.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-320x568.png"
+    },
+    {
+      "name": "albums-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-390x844.png"
+    },
+    {
+      "name": "albums-430x932.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-430x932.png"
+    },
+    {
+      "name": "albums-768x1024.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-768x1024.png"
+    },
+    {
+      "name": "albums-844x390.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/albums-844x390.png"
+    },
+    {
+      "name": "favorites-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/favorites-1440x900.png"
+    },
+    {
+      "name": "favorites-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/favorites-390x844.png"
+    },
+    {
+      "name": "history-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/history-1440x900.png"
+    },
+    {
+      "name": "history-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/history-390x844.png"
+    },
+    {
+      "name": "home-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/home-1440x900.png"
+    },
+    {
+      "name": "home-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/home-390x844.png"
+    },
+    {
+      "name": "player-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-1440x900.png"
+    },
+    {
+      "name": "player-320x568.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-320x568.png"
+    },
+    {
+      "name": "player-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-390x844.png"
+    },
+    {
+      "name": "player-430x932.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-430x932.png"
+    },
+    {
+      "name": "player-768x1024.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-768x1024.png"
+    },
+    {
+      "name": "player-844x390.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/player-844x390.png"
+    },
+    {
+      "name": "playlists-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/playlists-1440x900.png"
+    },
+    {
+      "name": "playlists-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/playlists-390x844.png"
+    },
+    {
+      "name": "queue-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/queue-1440x900.png"
+    },
+    {
+      "name": "queue-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/queue-390x844.png"
+    },
+    {
+      "name": "search-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/search-1440x900.png"
+    },
+    {
+      "name": "search-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/search-390x844.png"
+    },
+    {
+      "name": "tracks-1440x900.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/tracks-1440x900.png"
+    },
+    {
+      "name": "tracks-390x844.png",
+      "source": "data/m2/quality-escalation/resume3-final-screens-v2/tracks-390x844.png"
+    },
+    {
+      "name": "01-empty-1440.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/01-empty-1440.png"
+    },
+    {
+      "name": "01-empty-390.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/01-empty-390.png"
+    },
+    {
+      "name": "02-playing-up-next-1440.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/02-playing-up-next-1440.png"
+    },
+    {
+      "name": "02-playing-up-next-390.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/02-playing-up-next-390.png"
+    },
+    {
+      "name": "03-player-queue-1440.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/03-player-queue-1440.png"
+    },
+    {
+      "name": "03-player-queue-390.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/03-player-queue-390.png"
+    },
+    {
+      "name": "04-player-playlist-destination-1440.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/04-player-playlist-destination-1440.png"
+    },
+    {
+      "name": "04-player-playlist-destination-390.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/04-player-playlist-destination-390.png"
+    },
+    {
+      "name": "05-queue-actions-1440.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/05-queue-actions-1440.png"
+    },
+    {
+      "name": "05-queue-actions-390.png",
+      "source": "data/m2/quality-escalation/resume3-delivery-queue/05-queue-actions-390.png"
+    },
+    {
+      "name": "album-detail-1440.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/album-detail-1440.png"
+    },
+    {
+      "name": "album-detail-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/album-detail-390.png"
+    },
+    {
+      "name": "artist-detail-1440.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/artist-detail-1440.png"
+    },
+    {
+      "name": "artist-detail-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/artist-detail-390.png"
+    },
+    {
+      "name": "ambiguous-search-1440.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/ambiguous-search-1440.png"
+    },
+    {
+      "name": "ambiguous-search-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/ambiguous-search-390.png"
+    },
+    {
+      "name": "context-menu-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/context-menu-390.png"
+    },
+    {
+      "name": "create-playlist-320.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/create-playlist-320.png"
+    },
+    {
+      "name": "create-playlist-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/create-playlist-390.png"
+    },
+    {
+      "name": "empty-long-playlist-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/empty-long-playlist-390.png"
+    },
+    {
+      "name": "playlist-detail-1440.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/playlist-detail-1440.png"
+    },
+    {
+      "name": "playlist-detail-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/playlist-detail-390.png"
+    },
+    {
+      "name": "playlist-unavailable-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/playlist-unavailable-390.png"
+    },
+    {
+      "name": "no-results-390.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/no-results-390.png"
+    },
+    {
+      "name": "host-1440.png",
+      "source": "data/m2/quality-escalation/resume3-final-details-v2/host-1440.png"
+    },
+    {
+      "name": "history-empty-1440.png",
+      "source": "data/m2/quality-escalation/resume3-large-context-verified/history-empty-1440.png"
+    },
+    {
+      "name": "history-empty-390.png",
+      "source": "data/m2/quality-escalation/resume3-large-context-verified/history-empty-390.png"
+    },
+    {
+      "name": "catalog-return-1440.png",
+      "source": "data/m2/quality-escalation/resume3-large-context-verified/catalog-return-1440.png"
+    },
+    {
+      "name": "catalog-return-390.png",
+      "source": "data/m2/quality-escalation/resume3-large-context-verified/catalog-return-390.png"
+    },
+    {
+      "name": "manual-keyboard-artist.png",
+      "source": "Cua live current IAB: keyboard Artist to Album to actual parent, heading focus verified from AX tree"
+    }
+  ]
+}

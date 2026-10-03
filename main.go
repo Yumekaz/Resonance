@@ -6,6 +6,7 @@ import (
 	"flag"
 	"log"
 	"log/slog"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -30,10 +31,14 @@ func run() error {
 		return runLibrary(os.Args[2:], os.Stdout, os.Stderr)
 	}
 	addr := flag.String("addr", "127.0.0.1:8080", "HTTP listen address; use a LAN address only on a trusted network")
+	adminAddr := flag.String("admin-addr", "127.0.0.1:8081", "host administration loopback IP:port; empty disables it")
 	media := flag.String("media", "data/demo.wav", "configured WAV file for demo-track")
 	title := flag.String("title", "Demo Track", "display title")
 	migrateOnly := flag.Bool("migrate-only", false, "apply pending database migrations and exit")
 	flag.Parse()
+	if *adminAddr != "" && !loopbackAddress(*adminAddr) {
+		return errors.New("admin address must be an explicit loopback IP and port")
+	}
 	databaseURL := os.Getenv("RESONANCE_DATABASE_URL")
 	var ready func(context.Context) error
 	var catalogStore *storage.Store
@@ -131,7 +136,18 @@ func run() error {
 		MaxHeaderBytes:    16 * 1024,
 	}
 	log.Printf("Resonance listening on %s", *addr)
-	listenErrors := make(chan error, 1)
+	listenErrors := make(chan error, 2)
+	var adminServer *http.Server
+	if catalogStore != nil && *adminAddr != "" {
+		adminListener, err := net.Listen("tcp", *adminAddr)
+		if err != nil {
+			return errors.New("host administration could not listen")
+		}
+		adminServer = &http.Server{Handler: newAdminHandler(catalogStore, ready, coordinator, os.Stdout, *addr), ReadHeaderTimeout: 5 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 * 1024}
+		defer adminServer.Close()
+		go func() { listenErrors <- adminServer.Serve(adminListener) }()
+		log.Printf("Resonance host administration on %s", adminListener.Addr())
+	}
 	go func() { listenErrors <- server.ListenAndServe() }()
 	var serverErr error
 	select {
@@ -145,6 +161,9 @@ func run() error {
 	}
 	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 10*time.Second)
 	shutdownErr := server.Shutdown(shutdownCtx)
+	if adminServer != nil {
+		_ = adminServer.Close()
+	}
 	if shutdownErr != nil {
 		_ = server.Close()
 	}

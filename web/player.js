@@ -12,6 +12,7 @@
   syncDialogPalette();
   let track = null;
   let transportPending = false;
+  let queueStepPending = false;
   let lastQueueSnapshot = null;
   let preparedSelection = null,
     prepareGeneration = 0;
@@ -112,15 +113,24 @@
       }
       el(id).disabled = transportPending || (!track && !preparedSelection);
     }
-    for (const id of [
-      "player-previous",
-      "player-next",
-      "full-previous",
-      "full-next",
-    ])
-      el(id).disabled =
-        !lastQueueSnapshot?.items.length ||
-        (!window.resonanceListening.get().followsQueue && !preparedSelection);
+    const listening = window.resonanceListening.get();
+    const controls = window.resonanceListening.controls(
+      lastQueueSnapshot,
+      listening.playback,
+      preparedSelection,
+      audio.currentTime,
+      window.resonancePlaybackModes.get().repeat,
+    );
+    for (const direction of ["previous", "next"])
+      for (const id of [
+        direction,
+        "player-" + direction,
+        "full-" + direction,
+      ]) {
+        const button = el(id);
+        button.disabled = queueStepPending || !controls[direction];
+        button.setAttribute("aria-busy", String(queueStepPending));
+      }
     if ("mediaSession" in navigator)
       navigator.mediaSession.playbackState = audio.paused
         ? "paused"
@@ -605,6 +615,11 @@
     refresh();
     if (dialog.open && lastQueueSnapshot) renderQueueRail(lastQueueSnapshot);
   });
+  window.addEventListener("resonance:queue-step", (event) => {
+    queueStepPending = event.detail.pending;
+    refresh();
+  });
+  window.addEventListener("resonance:modes", refresh);
   refresh();
   window.resonanceUser.readQueue().catch(() => {});
   if ("mediaSession" in navigator)

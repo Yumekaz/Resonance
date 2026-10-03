@@ -316,7 +316,10 @@ test("rapid catalog Play requests serialize and only the latest intent starts au
     writes = 0;
   const gate = new Promise((r) => (release = r)),
     started = new Promise((r) => (seen = r));
-  await page.route("**/api/v1/queue/items", async (route) => {
+  const shown = (
+    await (await request.get("/api/v1/tracks?limit=50")).json()
+  ).items.filter((track) => track.available);
+  await page.route("**/api/v1/queue/collection", async (route) => {
     if (route.request().method() !== "POST") return route.continue();
     writes++;
     if (writes === 1) {
@@ -338,7 +341,10 @@ test("rapid catalog Play requests serialize and only the latest intent starts au
     .toBe(true);
   await expect(page.locator("#now-title")).toHaveText("long");
   const q = await (await request.get("/api/v1/queue")).json();
-  expect(q.items).toHaveLength(2);
+  expect(q.items).toHaveLength(shown.length);
+  expect(q.items.map((item) => item.track_id)).toEqual(
+    shown.map((track) => track.id),
+  );
   expect(q.items.find((i) => i.id === q.current_item_id).title).toBe("long");
   await page.locator("#play-toggle").click();
 });

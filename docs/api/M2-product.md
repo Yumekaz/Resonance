@@ -114,3 +114,31 @@ stops if nothing is playable. Final listening report, selected occurrence,
 fresh selection token, revision and receipt commit together. Receipt replay and
 stale-token rejection are unchanged. Solo-song repeat restarts only after saving
 its terminal report and never advances a separate saved queue.
+
+## Library playback context and transport boundaries (2026-10-03)
+
+Selecting a row in Library/Artist/Album Track views starts the playable songs on
+that currently displayed page, in its displayed order, at the selected song.
+The bounded page (at most 50 catalog rows) becomes the actual durable queue;
+Next/Previous therefore follow visible music instead of an isolated insertion.
+Navigation afterwards does not change playback context. An explicit Track
+menu Play now/Play next/Add to queue retains its individual-occurrence semantics.
+
+`POST /api/v1/queue/collection` additionally accepts `placement: "replace"`
+and optional zero-based `start_index` (default 0). Only replace admits a nonzero
+start index. Validate references, bounds and the selected Track's availability
+before replacing any queue items. Replacement, order, fresh selection, revision
+and receipt commit in one transaction. A failed/stale/unavailable replacement
+preserves the prior queue. Track identities, favorites, playlists and history
+are never deleted. A repeated receipt never replaces the queue twice.
+
+Shuffle starts with the explicitly selected song, shuffles the remaining
+context and retains restoration ranks for the new occurrence IDs. Disabling
+shuffle preserves current playback authority while restoring surviving upcoming
+songs where possible. Transport is single-flight across full/compact/queue
+controls. Next is disabled when no playable next song exists unless Repeat all
+can wrap; Previous restarts a currently playing song after three seconds, or
+selects the prior available occurrence. A boundary input never pauses the song
+or sends an empty advance. Detached decoders remain unable to control a newer
+queue. A rejected old natural-ended request refreshes presentation without
+adopting another selection token.

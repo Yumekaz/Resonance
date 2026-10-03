@@ -50,6 +50,7 @@ func (s *Store) SelectQueueItem(ctx context.Context, key string, req QueueSelect
 }
 
 type QueueCollectionRequest struct {
+	StartIndex      int      `json:"start_index,omitempty"`
 	TrackIDs        []string `json:"track_ids"`
 	Placement       string   `json:"placement"`
 	ExpectedVersion int64    `json:"expected_version"`
@@ -58,7 +59,7 @@ type QueueCollectionRequest struct {
 // AddQueueCollection commits all occurrences, their order, selection and retry
 // receipt together. A bad reference, limit or stale revision commits none.
 func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCollectionRequest) (MutationResult, error) {
-	if req.ExpectedVersion < 0 || len(req.TrackIDs) < 1 || len(req.TrackIDs) > 1000 || !(req.Placement == "now" || req.Placement == "next" || req.Placement == "end") {
+	if req.ExpectedVersion < 0 || len(req.TrackIDs) < 1 || len(req.TrackIDs) > 1000 || !(req.Placement == "now" || req.Placement == "next" || req.Placement == "end" || req.Placement == "replace") || req.StartIndex < 0 || req.StartIndex >= len(req.TrackIDs) || req.Placement != "replace" && req.StartIndex != 0 {
 		return MutationResult{}, ErrUserInvalid
 	}
 	unique := make(map[string]bool)
@@ -80,7 +81,7 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 		if err != nil {
 			return 0, nil, err
 		}
-		if len(full.Items)+len(req.TrackIDs) > 1000 {
+		if req.Placement != "replace" && len(full.Items)+len(req.TrackIDs) > 1000 {
 			return 0, nil, ErrUserLimit
 		}
 		var count int
@@ -90,6 +91,19 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 		}
 		if count != len(unique) {
 			return 0, nil, ErrUserNotFound
+		}
+		if req.Placement == "replace" {
+			var playable bool
+			if err = tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=$1 AND ml.availability='available' AND lr.enabled)`, req.TrackIDs[req.StartIndex]).Scan(&playable); err != nil {
+				return 0, nil, err
+			}
+			if !playable {
+				return 0, nil, ErrUserNotFound
+			}
+			if _, err = tx.Exec(ctx, "DELETE FROM queue_items"); err != nil {
+				return 0, nil, err
+			}
+			full.Items = nil
 		}
 		ids := make([]string, len(req.TrackIDs))
 		additions := make([]QueueItem, len(req.TrackIDs))
@@ -105,7 +119,7 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 			return 0, nil, err
 		}
 		at := len(full.Items)
-		if req.Placement != "end" {
+		if req.Placement != "end" && req.Placement != "replace" {
 			at = currentIndex(full.Items, q.CurrentItemID) + 1
 		}
 		full.Items = slices.Insert(full.Items, at, additions...)
@@ -117,12 +131,12 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 			return 0, nil, err
 		}
 		q.Revision++
-		if req.Placement == "now" {
+		if req.Placement == "now" || req.Placement == "replace" {
 			token, e := newUUID()
 			if e != nil {
 				return 0, nil, e
 			}
-			q.CurrentItemID = &ids[0]
+			q.CurrentItemID = &ids[req.StartIndex]
 			q.SelectionToken = &token
 			q.SelectionState = "selected"
 		}
@@ -130,7 +144,7 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 			return 0, nil, err
 		}
 		change := queueChange(q)
-		change.ItemID = &ids[0]
+		change.ItemID = &ids[req.StartIndex]
 		return 201, change, nil
 	})
 }

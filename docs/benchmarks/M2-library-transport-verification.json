@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-03T17:34:09.509071+00:00",
+  "problem": "Library row Play queued only one song; Next could stop it at queue end and leave a misleading detached playback message.",
+  "fix": [
+    "Atomic bounded-page queue context with selected starting index",
+    "No-target transport disabled and guarded without pausing",
+    "Single-flight full/compact/queue transport",
+    "Stale ended rejection refreshes presentation without adopting authority",
+    "Shuffle restoration ranks belong to new context occurrence IDs"
+  ],
+  "browser": {
+    "library-transport-before.json": {
+      "startTime": "2026-10-03T16:58:38.403Z",
+      "duration": 18654.354,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "library-context-full-browser-attempt2.json": {
+      "startTime": "2026-10-03T17:28:26.413Z",
+      "duration": 174373.759,
+      "expected": 73,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "go": {
+    "unit": {
+      "pass": 126,
+      "fail": 0,
+      "skipped": [
+        "TestReviewMediaSymlinkCannotEscape"
+      ]
+    },
+    "integration": {
+      "pass": 269,
+      "fail": 0,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ]
+    }
+  },
+  "frontend": {
+    "pass": 10,
+    "fail": 0
+  },
+  "personalTransport": {
+    "songs": 10,
+    "forwardSteps": 9,
+    "backwardSteps": 9,
+    "passedSteps": 18,
+    "boundaryDoesNotPause": true,
+    "scope": "Actual owner MP3 files; short decoder/playback samples, not full-duration or physical Android listening."
+  },
+  "rawHashes": {
+    "library-transport-before.json": "ab9e6ee100dadd1455c0d39f3b83155b77672cc2d2d9f7e713ac5f310d45379b",
+    "library-transport-after-attempt2.json": "9458b630fbd508bc5bfb90db8eea209e7ddc1e6eb13c8f6742c9a6fdb73c639e",
+    "library-context-focused-after-stale-refresh.json": "db9acadd4c361a2437c15f502769e0265d2080cc8f71322b6adbf27083feacf0",
+    "library-context-full-browser-attempt1.json": "133d41ded945ffe9b793c99168011f05b7d2e2745918b96ec20a6c99f3a388cb",
+    "library-context-full-browser-attempt2.json": "afde64199371fe8a74fbc2d6ba170558bcd0d3fb8b2ee5b209387fb6404c4cd5",
+    "personal-next-previous-final.json": "47faa4cc4c67f3fbb8d61e266a3163b2c0fc572493285bf6777ec5ec4f5fc78d",
+    "library-context-final-unit.jsonl": "19e62acb2961d2215b308ebdedd1e6de96f4df0be4bee8199fcb935847e25892",
+    "library-context-final-integration.jsonl": "9f245ac739e97437a5ec44cab178b5c9f7885a27b30545726dc387b7940b0c91"
+  },
+  "limitations": [
+    "Playback context is the currently rendered bounded page, at most 50 catalog rows, not an unbounded 10k queue",
+    "Physical Android remains deferred",
+    "Inherited Windows privilege and opt-in checks remain explicitly skipped"
+  ],
+  "qualityTargetMet": false,
+  "retainedFailedAttempts": [
+    "Two browser failures reproduce the original user-visible defect",
+    "One assertion initially used an incorrect source-label selector",
+    "Three earlier regression cases assumed single-item Library Play or a clickable stale transport; corrected to test context replacement and disabled input plus explicit stale-token API rejection",
+    "Intermediate stale-ended presentation refresh test failed before its correction"
+  ],
+  "privacy": "Public record contains counts/contracts/hashes only; user names, song titles/artwork, runtime data and raw attempts remain local."
+}

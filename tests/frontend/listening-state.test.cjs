@@ -1,6 +1,35 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { project } = require("../../web/listening-state.js");
+const { project, controls } = require("../../web/listening-state.js");
+
+test("transport boundaries never advertise an empty Next or drop playback authority", () => {
+  const q = {
+    items: [{ id: "one", available: true }],
+    current_item_id: "one",
+    selection_token: "token",
+    selection_state: "selected",
+  };
+  const playback = {
+    track: { id: "song" },
+    selection: { itemID: "one", token: "token" },
+  };
+  assert.deepEqual(controls(q, playback, null, 1, "off"), {
+    previous: false,
+    next: false,
+  });
+  assert.deepEqual(controls(q, playback, null, 4, "off"), {
+    previous: true,
+    next: false,
+  });
+  assert.deepEqual(controls(q, playback, null, 1, "all"), {
+    previous: true,
+    next: true,
+  });
+  assert.deepEqual(
+    controls({ ...q, selection_token: "new" }, playback, null, 4, "all"),
+    { previous: false, next: false },
+  );
+});
 test("natural queue completion is distinct from a queue changed while audio keeps playing", () => {
   const stopped = {
     items: [{ id: "last" }],

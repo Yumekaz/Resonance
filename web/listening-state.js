@@ -46,7 +46,32 @@
                   : "Choose a song, or build your queue.",
     };
   }
-  if (typeof module !== "undefined") module.exports = { project };
+  function controls(queue, playback, prepared, position, repeat = "off") {
+    const state = project(queue, playback);
+    const ready =
+      !playback?.track &&
+      prepared &&
+      queue?.selection_state === "selected" &&
+      prepared.itemID === queue.current_item_id &&
+      prepared.token === queue.selection_token;
+    const finished = state.mode === "finished";
+    const enabled = state.followsQueue || ready || finished;
+    const any = queue?.items.some((item) => item.available) || false;
+    return {
+      previous: !!(
+        enabled &&
+        (state.previous.some((item) => item.available) ||
+          (state.followsQueue && position > 3) ||
+          (repeat === "all" && any))
+      ),
+      next: !!(
+        enabled &&
+        (state.upcoming.some((item) => item.available) ||
+          (repeat === "all" && any))
+      ),
+    };
+  }
+  if (typeof module !== "undefined") module.exports = { project, controls };
   if (!root?.document) return;
   let queue = null,
     playback = null;
@@ -57,6 +82,7 @@
   };
   root.resonanceListening = {
     get,
+    controls,
     setPlayback(value) {
       playback = value;
       publish();

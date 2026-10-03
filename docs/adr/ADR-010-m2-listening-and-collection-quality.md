@@ -100,3 +100,22 @@ Off is the backward-compatible default. Natural Repeat one never traps manual
 Next; Repeat all wraps once and stops when every occurrence is unavailable.
 Regression tests cover real endings, occurrence identity, receipts, stale tokens,
 queue changes, reload without autoplay and small-screen keyboard controls.
+
+## Library context correction (2026-10-03)
+
+Owner playback exposed an untested user journey: a Library row inserted only
+one song, so Next immediately exhausted the queue and falsely appeared as a
+queue change. The owner explicitly selected continuation through Library songs.
+Use the current bounded catalog page as a playback context, replacing queue
+occurrences and selecting its chosen index atomically. This earns additive
+replace/start_index intent on the existing collection API, not a hidden local
+queue or a migration. Explicit queue-add menu actions keep their contracts.
+
+Transport controls derive actual playable previous/next availability, honor
+Repeat all and run one step at a time. No-target input is a no-op; stale decoder
+selection authority is never refreshed into live playback. PostgreSQL tests
+cover replacement rollback, unavailable selection, duplicate occurrences,
+receipts/conflicts and old-token rejection. Real browser regressions reproduce
+the former failures and verify Library selection → Next → Previous with audio
+still playing. Current-page scope keeps 10k browsing bounded; it does not silently
+fetch or enqueue the entire catalog.

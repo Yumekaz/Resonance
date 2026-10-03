@@ -103,6 +103,7 @@ test("refreshing the rail cannot give stale browser playback a newer selection t
     .toBe(true);
   await page.locator("#open-player").click();
   await expect(page.locator("#full-queue-items li")).toHaveCount(1);
+  const observed = await (await request.get("/api/v1/queue")).json();
   await add(request, long.id, "now");
   const newer = await (await request.get("/api/v1/queue")).json();
   await page.locator("#full-queue-refresh").click();
@@ -112,13 +113,8 @@ test("refreshing the rail cannot give stale browser playback a newer selection t
   await expect(page.locator("#full-next")).toBeDisabled();
   await page.keyboard.press("Escape");
   await page.locator("#open-queue").click();
-  const response = page.waitForResponse(
-    (r) =>
-      r.url().endsWith("/api/v1/queue/advance") &&
-      r.request().method() === "POST",
-  );
-  await page.locator("#next").click();
-  expect((await response).status()).toBe(409);
+  await expect(page.locator("#next")).toBeDisabled();
+  await page.locator("#next").dispatchEvent("click");
   await expect(page.locator("#status")).toContainText(
     "Queue selection changed",
   );
@@ -126,6 +122,17 @@ test("refreshing the rail cannot give stale browser playback a newer selection t
   expect(after.revision).toBe(newer.revision);
   expect(after.current_item_id).toBe(newer.current_item_id);
   expect(after.selection_token).toBe(newer.selection_token);
+  const rejected = await request.post("/api/v1/queue/advance", {
+    headers: { "Idempotency-Key": crypto.randomUUID() },
+    data: {
+      direction: "next",
+      expected_version: newer.revision,
+      expected_current_item_id: observed.current_item_id,
+      selection_token: observed.selection_token,
+    },
+  });
+  expect(rejected.status()).toBe(409);
+  expect((await rejected.json()).error.code).toBe("stale_selection");
   await clearQueue(request);
 });
 

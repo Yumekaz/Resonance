@@ -744,11 +744,14 @@ test("stale tab ended, Next, and Previous cannot change a newer queue selection"
   await page.locator("#audio").evaluate((audio) => {
     audio.currentTime = 0;
   });
-  await page.locator("#player-next").click();
+  await expect(page.locator("#player-next")).toBeDisabled();
+  await expect(page.locator("#player-previous")).toBeDisabled();
+  // Non-pointer input cannot bypass the disabled stale-playback guard either.
+  await page.locator("#player-next").dispatchEvent("click");
   await expect(page.locator("#status")).toContainText(
     "Queue selection changed in another tab",
   );
-  await page.locator("#player-previous").click();
+  await page.locator("#player-previous").dispatchEvent("click");
   await expect(page.locator("#status")).toContainText(
     "Queue selection changed in another tab",
   );

@@ -259,6 +259,60 @@
     userStatus.textContent = `${available.length} ${available.length === 1 ? "song" : "songs"} added to your queue${available.length < entries.length ? ` · ${entries.length - available.length} unavailable skipped` : ""}.`;
     if (activeView === "queue") await loadUserView(true);
   }
+  function playContext(entries, selectedID) {
+    const intent = ++playIntent;
+    const operation = queueWrites
+      .catch(() => {})
+      .then(async () => {
+        const modes = window.resonancePlaybackModes;
+        let tracks = entries.filter((track) => track.available);
+        const originalTracks = [...tracks];
+        let start = tracks.findIndex((track) => track.id === selectedID);
+        if (start < 0) throw { code: "track_unavailable" };
+        if (modes.get().shuffle) {
+          const selected = tracks[start];
+          tracks = [
+            selected,
+            ...modes.shuffled(tracks.filter((_, index) => index !== start)),
+          ];
+          start = 0;
+        }
+        const q = await refreshQueue();
+        const change = await userWrite("POST", "/api/v1/queue/collection", {
+          track_ids: tracks.map((track) => track.id),
+          placement: "replace",
+          start_index: start,
+          expected_version: q.revision,
+        });
+        const updated = await refreshQueue();
+        if (
+          modes.get().shuffle &&
+          updated.current_item_id === change.current_item_id &&
+          updated.selection_token === change.selection_token
+        ) {
+          const occurrences = new Map();
+          for (const item of updated.items) {
+            if (!occurrences.has(item.track_id))
+              occurrences.set(item.track_id, []);
+            occurrences.get(item.track_id).push(item.id);
+          }
+          modes.setShuffle(
+            true,
+            originalTracks
+              .map((track) => occurrences.get(track.id)?.shift())
+              .filter(Boolean),
+          );
+        }
+        if (intent === playIntent)
+          await selectedQueuePlayback({
+            itemID: change.current_item_id,
+            token: change.selection_token,
+          });
+        userStatus.textContent = `Playing from this view · ${tracks.length} ${tracks.length === 1 ? "song" : "songs"} in Up Next.`;
+      });
+    queueWrites = operation;
+    return operation;
+  }
   async function toggleFavorite(track) {
     return favorites.toggle(track.id);
   }
@@ -427,19 +481,56 @@
       token: q.selection_token,
     });
   }
+  let queueStepPending = false;
   async function advanceQueue(direction, failureCode = null) {
+    if (queueStepPending) return;
+    queueStepPending = true;
+    window.dispatchEvent(
+      new CustomEvent("resonance:queue-step", { detail: { pending: true } }),
+    );
+    try {
+      await performAdvanceQueue(direction, failureCode);
+    } finally {
+      queueStepPending = false;
+      window.dispatchEvent(
+        new CustomEvent("resonance:queue-step", { detail: { pending: false } }),
+      );
+    }
+  }
+  async function performAdvanceQueue(direction, failureCode = null) {
     queuePagePinned = false;
     const q = queue || (await refreshQueue());
     if (!q.items.length) return;
+    const playback = listeningSession.current();
+    const projected = window.resonanceListening.get();
+    const prepared = playback?.track
+      ? null
+      : { itemID: q.current_item_id, token: q.selection_token };
+    const controls = window.resonanceListening.controls(
+      q,
+      projected.playback,
+      prepared,
+      userAudio.currentTime,
+      window.resonancePlaybackModes.get().repeat,
+    );
+    if (!controls[direction]) {
+      if (projected.mode === "detached") throw { code: "stale_selection" };
+      userStatus.textContent =
+        direction === "next"
+          ? "No next song in Up Next."
+          : "No previous song in Up Next.";
+      return;
+    }
     if (
       direction === "previous" &&
+      projected.followsQueue &&
       listeningSession.current()?.selection &&
       userAudio.currentTime > 3
     ) {
       userAudio.currentTime = 0;
       return;
     }
-    const selection = listeningSession.current()?.selection;
+    const selection = projected.followsQueue ? playback?.selection : null;
     const currentItemID = selection ? selection.itemID : q.current_item_id;
     const selectionToken = selection ? selection.token : q.selection_token;
     const change = await userWrite("POST", "/api/v1/queue/advance", {
@@ -1116,6 +1207,7 @@
     window.resonanceBrowse.playTrack(track, expected);
   }
   window.resonanceUser = {
+    playContext,
     async toggleShuffle() {
       const operation = queueWrites
         .catch(() => {})

@@ -71,3 +71,9 @@ order helpers). The player only presents state and delegates queue changes.
 Queue advance owns repeat selection and atomic completion in storage. The
 listening-session controller captures repeat intent in its persisted retry
 request; a later preference change cannot rewrite a pending ended operation.
+
+Library row playback owns a bounded copy of the rendered catalog page. The
+user-library controller serializes its context intent; storage atomically
+replaces occurrences/selects the requested index. listening-state.controls
+projects availability for all three transport surfaces. The queue-step pending
+event is presentation only and cannot replace decoder token authority.

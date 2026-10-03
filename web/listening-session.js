@@ -176,8 +176,15 @@ window.resonanceCreateListeningSession = ({
           token: change.selection_token,
         });
     } catch (error) {
-      if (error.code === "stale_selection")
+      if (error.code === "stale_selection") {
         sessionStorage.removeItem("resonance.pending_ended");
+        // Learn the changed queue without adopting its selection authority.
+        // Otherwise boundary checks still see the obsolete one-song snapshot.
+        try {
+          await refreshQueue();
+          await onQueueChanged();
+        } catch {}
+      }
       userError.textContent =
         error.code === "stale_selection"
           ? "Queue selection changed in another tab. This track did not advance the queue."

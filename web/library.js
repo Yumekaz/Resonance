@@ -35,6 +35,7 @@
     availableOnly = false;
   const catalogPositions = new Map(); // Three read-navigation descriptors, never cached catalog data.
   let loadedCatalogScope = null;
+  let visibleTracks = [];
   const catalogScope = () =>
     `${view}:${catalogOrder}:${view === "tracks" && availableOnly}`;
   const placeholder = window.resonanceUI.fallback;
@@ -142,7 +143,10 @@
     const copy = node("div", "", "track-copy");
     const button = action(
       track.title || "Untitled track",
-      () => startTrack(track),
+      () =>
+        view === "tracks" && visibleTracks.some((item) => item.id === track.id)
+          ? window.resonanceUser.playContext([...visibleTracks], track.id)
+          : startTrack(track),
       "item-title",
     );
     button.disabled = !track.available;
@@ -387,6 +391,8 @@
       if (generation !== navigationGeneration) return;
       homeContent.replaceChildren();
       items.replaceChildren();
+      visibleTracks =
+        view === "tracks" ? page.items.filter((item) => item.available) : [];
       pageCursors[targetIndex] = requestCursor;
       pageIndex = targetIndex;
       if (!group) loadedCatalogScope = catalogScope();

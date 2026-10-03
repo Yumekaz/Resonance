@@ -80,3 +80,20 @@ Source publication excludes personal music, private paths/credentials, runtime
 databases, executables, raw logs, old captures and duplicate image masters.
 Current original app assets, their redistribution licenses, bounded reproduction
 tools and sanitized evidence are included.
+
+## Owner-reported Library navigation correction
+
+The earlier candidate omitted a core journey: selecting a Library row queued
+only that song, so Next could stop at its boundary and show a false queue-change
+state. The owner requested continuation through the visible Library songs.
+This is corrected using a bounded playback context, an atomic chosen-index
+replacement and shared transport boundary/single-flight checks.
+
+The [new verification](benchmarks/M2-library-transport-verification.json) records
+the original two reproduced failures, final **73/73** real browser pass,
+**126** Go unit / **269** PostgreSQL integration passes with inherited skips,
+**10/10** frontend-state passes and **18/18** forward/backward transitions through
+the owner's ten supported songs. Private song names/artwork are not exported.
+Starting another Library page is an explicit new context; browsing remains
+bounded, and stale decoders still cannot borrow a newer selection token.
+The physical-device/quality gates remain open.

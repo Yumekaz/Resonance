@@ -6,6 +6,8 @@ The warm library and dark full player use original Resonance artwork fallbacks, 
 
 With a configured database, open the music listener on its configured address. On the **server computer**, open `http://127.0.0.1:8081/` to add music folders, verify their identity, enable/disable them and scan. Use `-admin-addr 127.0.0.1:<port>` to change the admin port, or `-admin-addr ""` to disable it. The admin port is loopback-only and must never be reverse-proxied, tunneled or forwarded. The listener has no filesystem-management routes.
 
+Selecting a Library song starts the playable songs on the currently displayed page at that position, so Previous/Next follow the visible music. Starting a new context replaces Up Next atomically; explicit Play now/Play next/Add to queue menu actions retain their individual-song semantics.
+
 The listener combines **all enabled music folders**. Adding another folder does not replace the existing selection; disable folders you no longer want in Library or Search. Disabling never deletes music or saved playlist/favorite/history references. Missing files within an enabled folder remain visible as unavailable. The current importer supports MP3, FLAC and WAV; other formats are skipped and reported by Scan now. Embedded PNG/JPEG covers take priority over generated fallbacks, including valid images whose tag writers used the wrong PNG/JPEG MIME label.
 
 No frontend build or Node process is required to run the shipped server. Browser assets remain embedded in Go. Node, Playwright, axe-core and Prettier are development/test tools only. Search is a bounded literal metadata query over the existing PostgreSQL schema; no migration or external search service is added.

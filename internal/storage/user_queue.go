@@ -2,6 +2,7 @@ package storage
 
 import (
 	"context"
+	"math/rand/v2"
 	"slices"
 
 	"github.com/jackc/pgx/v5"
@@ -327,6 +328,7 @@ func (s *Store) ClearQueue(ctx context.Context, key string, req QueueClearReques
 }
 
 type QueueAdvanceRequest struct {
+	Reshuffle             bool                  `json:"reshuffle,omitempty"`
 	Repeat                string                `json:"repeat,omitempty"`
 	Direction             string                `json:"direction"`
 	ExpectedVersion       int64                 `json:"expected_version"`
@@ -341,6 +343,9 @@ func sameNullableString(a, b *string) bool {
 	return a == nil && b == nil || a != nil && b != nil && *a == *b
 }
 func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRequest) (MutationResult, error) {
+	if req.Reshuffle && (req.Repeat != "all" || req.Direction == "previous") {
+		return MutationResult{}, ErrUserInvalid
+	}
 	if req.Repeat != "" && req.Repeat != "off" && req.Repeat != "one" && req.Repeat != "all" {
 		return MutationResult{}, ErrUserInvalid
 	}
@@ -412,7 +417,60 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 		// Loop at most once. Unavailable items never create an endless repeat
 		// cycle, and a resolver-failed current item is not immediately retried.
 		if selected < 0 && req.Repeat == "all" {
-			if req.Direction == "previous" {
+			if req.Reshuffle {
+				oldID, oldTrack := "", ""
+				if at >= 0 {
+					oldID, oldTrack = full.Items[at].ID, full.Items[at].TrackID
+				}
+				before := make([]string, len(full.Items))
+				for i, item := range full.Items {
+					before[i] = item.ID
+				}
+				rand.Shuffle(len(full.Items), func(i, j int) { full.Items[i], full.Items[j] = full.Items[j], full.Items[i] })
+				first := -1
+				seenSkip := make(map[string]bool, len(skipped))
+				for _, id := range skipped {
+					seenSkip[id] = true
+				}
+				for i, item := range full.Items {
+					if !item.Available && !seenSkip[item.ID] {
+						skipped = append(skipped, item.ID)
+						seenSkip[item.ID] = true
+					}
+					if first < 0 && item.Available && item.TrackID != oldTrack {
+						first = i
+					}
+				}
+				if first < 0 {
+					for i, item := range full.Items {
+						if item.Available && (req.FailureCode == nil || item.ID != oldID) {
+							first = i
+							break
+						}
+					}
+				}
+				if first >= 0 {
+					// Keep duplicate occurrences, but avoid immediately replaying
+					// the same musical identity when another one is available.
+					full.Items[0], full.Items[first] = full.Items[first], full.Items[0]
+					same := true
+					for i, item := range full.Items {
+						if item.ID != before[i] {
+							same = false
+							break
+						}
+					}
+					if same && len(full.Items) > 2 {
+						last := full.Items[len(full.Items)-1]
+						copy(full.Items[2:], full.Items[1:len(full.Items)-1])
+						full.Items[1] = last
+					}
+					if err = persistQueueOrder(ctx, tx, full.Items); err != nil {
+						return 0, nil, err
+					}
+					selected = 0
+				}
+			} else if req.Direction == "previous" {
 				for i := len(full.Items) - 1; i >= at && i >= 0; i-- {
 					if full.Items[i].Available {
 						selected = i

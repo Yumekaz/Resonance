@@ -119,3 +119,26 @@ receipts/conflicts and old-token rejection. Real browser regressions reproduce
 the former failures and verify Library selection → Next → Previous with audio
 still playing. Current-page scope keeps 10k browsing bounded; it does not silently
 fetch or enqueue the entire catalog.
+
+## Continuous-cycle extension (2026-10-04)
+
+The owner requested ongoing ordered/shuffled listening after the queue ends.
+Spotify's recommended-track Autoplay is outside the authorized M2 scope;
+continuous cycling of the existing personal queue is inside robust player/queue
+UX. A default-on local Keep playing preference uses existing repeat-all intent,
+with explicit opt-out and Repeat-one precedence. A new optional reshuffle intent
+on advance randomizes only at a forward cycle boundary, in the same receipt-
+protected transaction as final reporting and selection. No schema, broker,
+recommendation service, second audio element or codec change is introduced.
+
+Queue size and occurrence IDs remain bounded/stable. Duplicate musical identities
+are retained; the just-ended identity is not selected first when an alternative
+is playable. Unavailable rows are skipped; no playable row stops the cycle.
+Previous uses the visible current-round ordering. True seamless DSP and a
+cross-round audible-history stack are not claimed by this decision.
+
+Official reference links and additional M2 priorities are in
+../design/m2/spotify-feature-fit.md. Real browser checks cover multiple natural
+endings, shuffle boundary, one-song behavior, opt-out, no-autoplay reload and
+keyboard/mobile reachability. PostgreSQL checks inject a late selection failure
+and prove order/report rollback, replay identity and stale-token rejection.

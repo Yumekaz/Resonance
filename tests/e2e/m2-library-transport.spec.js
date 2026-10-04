@@ -81,6 +81,7 @@ test("Next at a one-song queue boundary cannot stop a playing song", async ({
   });
   await page.goto("/#queue");
   await page.locator("#open-player").click();
+  await page.locator("#full-keep-playing").uncheck();
   await page.locator("#full-play").click();
   await expect
     .poll(() =>

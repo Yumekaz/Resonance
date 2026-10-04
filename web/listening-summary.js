@@ -3,9 +3,15 @@
   const audio = document.querySelector("#audio");
   let lastSignature = "";
   function render(state) {
-    document.querySelector("#listening-context").textContent =
-      state.mode === "queue"
-        ? "From your queue · Up Next continues automatically"
+    const modes = window.resonancePlaybackModes.get();
+    document.querySelector("#listening-context").textContent = state.changing
+      ? "Changing song…"
+      : state.mode === "queue"
+        ? modes.repeat === "one"
+          ? "From your queue · repeating this song"
+          : modes.continuous || modes.repeat === "all"
+            ? "From your queue · keeps playing"
+            : "From your queue · ends after the last song"
         : state.mode === "single"
           ? state.queue?.items.length
             ? "One song · your queue is saved"
@@ -21,6 +27,9 @@
       state.selected?.id,
       state.queue?.selection_token,
       audio.paused,
+      state.changing,
+      modes.continuous,
+      modes.repeat,
     ]);
     if (signature === lastSignature) return;
     lastSignature = signature;

@@ -182,6 +182,7 @@ test("repeat off stops naturally at the end; solo repeat does not advance the sa
   test.setTimeout(30000);
   let q = await seed(request, ["Short"]);
   await openPlayer(page);
+  await page.locator("#full-keep-playing").uncheck();
   await page.locator("#full-play").click();
   await expect
     .poll(

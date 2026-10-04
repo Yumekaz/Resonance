@@ -75,8 +75,14 @@
   if (!root?.document) return;
   let queue = null,
     playback = null;
+  let changing = false;
   const listeners = new Set();
-  const get = () => ({ queue, playback, ...project(queue, playback) });
+  const get = () => ({
+    queue,
+    playback,
+    changing,
+    ...project(queue, playback),
+  });
   const publish = () => {
     for (const listener of listeners) listener(get());
   };
@@ -95,6 +101,11 @@
   };
   root.addEventListener("resonance:queue", (event) => {
     queue = event.detail;
+    publish();
+  });
+  root.addEventListener("resonance:modes", publish);
+  root.addEventListener("resonance:queue-step", (event) => {
+    changing = event.detail.pending;
     publish();
   });
   const audio = root.document.querySelector("#audio");

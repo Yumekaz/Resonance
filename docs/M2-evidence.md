@@ -97,3 +97,18 @@ the owner's ten supported songs. Private song names/artwork are not exported.
 Starting another Library page is an explicit new context; browsing remains
 bounded, and stale decoders still cannot borrow a newer selection token.
 The physical-device/quality gates remain open.
+
+## Continuous personal-queue listening — 2026-10-04
+
+Keep playing defaults on. The existing queue cycles in order; shuffle creates a
+fresh bounded round at forward boundaries. Repeat-one and explicit opt-out are
+retained. Last-song preview and handoff feedback explain the behavior without
+recommended or fictional music. The [feature-scope research](design/m2/spotify-feature-fit.md)
+distinguishes implemented M2, additional M2 priorities and later milestones.
+
+[Verification](benchmarks/M2-continuous-verification.json): 79/79 real browser
+cases, 11/11 frontend-state checks, 126 Go unit / 270 PostgreSQL integration
+passes with inherited skips. Late failure injection proves cycle order/report
+rollback; receipt replay and old-token rejection preserve authority. Current
+page-only Library context, cross-round audible-history semantics, audio DSP and
+physical Android limits remain explicit; M2 quality acceptance is not closed.

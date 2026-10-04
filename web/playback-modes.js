@@ -33,11 +33,24 @@
     // are absent; duplicate songs remain distinct queue occurrence IDs.
     return ids.map((id, i) => (i > at && rank.has(id) ? known[index++] : id));
   }
+  function advanceOptions(state, direction) {
+    const repeat =
+      state.repeat === "one" && direction === "ended"
+        ? "one"
+        : state.repeat === "all" || state.continuous
+          ? "all"
+          : "off";
+    return {
+      repeat,
+      reshuffle:
+        direction !== "previous" && repeat === "all" && state.shuffle === true,
+    };
+  }
   if (typeof module !== "undefined")
-    module.exports = { shuffled, upcomingOrder, restoredOrder };
+    module.exports = { shuffled, upcomingOrder, restoredOrder, advanceOptions };
   if (!root?.document) return;
   const key = "resonance.playback_modes";
-  let state = { shuffle: false, repeat: "off", original: [] };
+  let state = { shuffle: false, repeat: "off", continuous: true, original: [] };
   function read() {
     try {
       const saved = JSON.parse(localStorage.getItem(key));
@@ -45,6 +58,7 @@
         state = {
           shuffle: saved.shuffle === true,
           repeat: saved.repeat,
+          continuous: saved.continuous !== false,
           original: Array.isArray(saved.original)
             ? saved.original
                 .filter((id) => typeof id === "string")
@@ -71,6 +85,8 @@
   root.resonancePlaybackModes = {
     get: () => ({ ...state, original: [...state.original] }),
     setShuffle: (shuffle, original = []) => save({ shuffle, original }),
+    setContinuous: (continuous) => save({ continuous }),
+    advanceOptions: (direction) => advanceOptions(state, direction),
     cycleRepeat: () =>
       save({
         repeat:

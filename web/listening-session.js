@@ -148,7 +148,7 @@ window.resonanceCreateListeningSession = ({
     const q = getQueue() || (await refreshQueue());
     const request = {
       direction: "ended",
-      repeat: window.resonancePlaybackModes.get().repeat,
+      ...window.resonancePlaybackModes.advanceOptions("ended"),
       expected_version: q.revision,
       expected_current_item_id: playback.selection.itemID,
       selection_token: playback.selection.token,
@@ -295,12 +295,23 @@ window.resonanceCreateListeningSession = ({
   userAudio.addEventListener("ended", async () => {
     if (ending) return;
     ending = true;
+    const queued = !!currentPlayback?.selection;
+    if (queued)
+      window.dispatchEvent(
+        new CustomEvent("resonance:queue-step", { detail: { pending: true } }),
+      );
     try {
       await ended();
     } catch (error) {
       userFailure(error);
     } finally {
       ending = false;
+      if (queued)
+        window.dispatchEvent(
+          new CustomEvent("resonance:queue-step", {
+            detail: { pending: false },
+          }),
+        );
     }
   });
   userAudio.addEventListener("error", () => {

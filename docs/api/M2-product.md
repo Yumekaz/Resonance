@@ -142,3 +142,32 @@ selects the prior available occurrence. A boundary input never pauses the song
 or sends an empty advance. Detached decoders remain unable to control a newer
 queue. A rejected old natural-ended request refreshes presentation without
 adopting another selection token.
+
+## Continuous personal-queue cycles (2026-10-04)
+
+Keep playing is a persisted local preference, enabled by default for both new
+profiles and older saved modes without that field. It requests repeat-all queue
+advancement while visible Repeat is off; Repeat-one overrides natural endings.
+This cycles only the existing personal queue, not recommendations or an
+unbounded append. Explicit solo playback remains separate and ignores Keep
+playing unless the user explicitly selects a repeat mode. Turning Keep playing
+off with Repeat off preserves finite ending/replay behavior.
+
+`POST /api/v1/queue/advance` adds optional `reshuffle` (default false), admitted
+only with repeat-all and a forward/ended direction. It affects only a wrap after
+no playable later occurrence remains. The transaction permutes existing IDs,
+keeps duplicate occurrences and the queue cap, starts with another musical
+Track when available, then commits the final report/order/fresh selection and
+receipt together. All-unavailable queues stop after bounded traversal. Receipt
+replay returns the same committed order and token rather than randomizing twice.
+Old callers without the new field retain their behavior.
+
+Ordered playback previews the next round in Now Playing, capped within the
+existing 20-row rail. Shuffle explains that a fresh round will be chosen at the
+boundary rather than displaying a made-up future order. Previous follows the
+current visible cycle order; this is not a separate unbounded playback-history
+stack. With one musical identity, repetition is unavoidable and described as
+such. Queue-step status is presentation only: Changing song never grants an
+older decoder another selection token. Reload restores preferences without
+starting audio. Current Library row context remains its displayed page; full
+10k-library continuation is still a separate M2 gap.

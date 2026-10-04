@@ -1068,3 +1068,27 @@
     display: none;
   }
 }
+.full-mode-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.keep-playing {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.keep-playing input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+.full-top > .eyebrow {
+  min-width: 0;
+}

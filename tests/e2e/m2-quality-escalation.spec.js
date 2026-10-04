@@ -395,6 +395,9 @@ test("end of queue has a truthful replay state and replay retains its occurrence
     data: { expected_version: q.revision },
   });
   await page.goto("/#tracks");
+  await page.locator("#open-player").click();
+  await page.locator("#full-keep-playing").uncheck();
+  await page.locator("#close-player").click();
   const row = page
     .locator("#items .track-row")
     .filter({ has: page.getByRole("button", { name: "Short", exact: true }) });

@@ -478,7 +478,7 @@
   }
   let queueStepPending = false;
   async function advanceQueue(direction, failureCode = null) {
-    if (queueStepPending) return;
+    if (queueStepPending || window.resonanceListening.get().changing) return;
     queueStepPending = true;
     window.dispatchEvent(
       new CustomEvent("resonance:queue-step", { detail: { pending: true } }),
@@ -506,7 +506,7 @@
       projected.playback,
       prepared,
       userAudio.currentTime,
-      window.resonancePlaybackModes.get().repeat,
+      window.resonancePlaybackModes.advanceOptions(direction).repeat,
     );
     if (!controls[direction]) {
       if (projected.mode === "detached") throw { code: "stale_selection" };
@@ -530,7 +530,7 @@
     const selectionToken = selection ? selection.token : q.selection_token;
     const change = await userWrite("POST", "/api/v1/queue/advance", {
       direction,
-      repeat: window.resonancePlaybackModes.get().repeat,
+      ...window.resonancePlaybackModes.advanceOptions(direction),
       expected_version: q.revision,
       expected_current_item_id: currentItemID,
       selection_token: selectionToken,

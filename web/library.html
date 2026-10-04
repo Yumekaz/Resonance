@@ -234,7 +234,18 @@
           aria-label="Next"
         >
           Next</button
-        ><button id="clear-queue" class="quiet">Stop and clear queue</button>
+        ><button
+          id="clear-queue"
+          class="quiet"
+          aria-label="Stop and clear queue"
+          title="Stop and clear queue"
+        >
+          Clear
+        </button>
+        <label class="keep-playing"
+          ><input id="keep-playing" type="checkbox" checked /> Keep
+          playing</label
+        >
       </div>
       <p id="status" role="status" aria-live="polite">Loading your library…</p>
       <div id="home-content"></div>
@@ -335,15 +346,22 @@
         aria-hidden="true"
       />
       <div class="full-top">
-        <span class="eyebrow">YOUR LISTENING ROOM</span
-        ><button
-          id="close-player"
-          data-icon="x"
-          data-icon-only="true"
-          aria-label="Close"
-        >
-          Close
-        </button>
+        <span class="eyebrow">YOUR LISTENING ROOM</span>
+        <div class="full-mode-controls">
+          <label
+            class="keep-playing"
+            title="Start another round of your queued music after the last song"
+            ><input id="full-keep-playing" type="checkbox" checked /> Keep
+            playing</label
+          ><button
+            id="close-player"
+            data-icon="x"
+            data-icon-only="true"
+            aria-label="Close"
+          >
+            Close
+          </button>
+        </div>
       </div>
       <div class="full-layout">
         <div class="full-body">

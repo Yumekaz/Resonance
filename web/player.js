@@ -20,6 +20,8 @@
   let modesPending = false;
   function renderModes() {
     const state = window.resonancePlaybackModes.get();
+    for (const id of ["keep-playing", "full-keep-playing"])
+      el(id).checked = state.continuous;
     for (const prefix of ["player", "full"]) {
       const shuffle = el(prefix + "-shuffle");
       shuffle.setAttribute("aria-pressed", String(state.shuffle));
@@ -66,6 +68,10 @@
     });
   }
   window.addEventListener("resonance:modes", renderModes);
+  for (const id of ["keep-playing", "full-keep-playing"])
+    el(id).addEventListener("change", (event) =>
+      window.resonancePlaybackModes.setContinuous(event.target.checked),
+    );
   renderModes();
   // Native progress supplies the measured elapsed portion below the native
   // seek input. It is visual-only; the slider remains the accessible control.
@@ -90,7 +96,7 @@
     for (const prefix of ["", "full-"]) {
       el(prefix + "elapsed").textContent = time(audio.currentTime);
       el(prefix + "duration").textContent = known ? time(audio.duration) : "—";
-      el(prefix + "seek").disabled = !known;
+      el(prefix + "seek").disabled = !known || queueStepPending;
       el(prefix + "seek").value = known
         ? Math.round((audio.currentTime / audio.duration) * 1000)
         : 0;
@@ -119,7 +125,7 @@
       listening.playback,
       preparedSelection,
       audio.currentTime,
-      window.resonancePlaybackModes.get().repeat,
+      window.resonancePlaybackModes.advanceOptions("next").repeat,
     );
     for (const direction of ["previous", "next"])
       for (const id of [
@@ -217,7 +223,9 @@
     ["error", "This track cannot play. Try another track."],
   ])
     audio.addEventListener(name, () => {
-      el("playback-state").textContent = label;
+      el("playback-state").textContent = queueStepPending
+        ? "Changing song…"
+        : label;
     });
   let playerTransition = null;
   let playerFallback = null;
@@ -422,15 +430,47 @@
       (item) => item.id === snapshot.current_item_id,
     );
     const start = Math.max(0, selected);
+    const modes = window.resonancePlaybackModes.get();
+    const availableTracks = new Set(
+      snapshot.items
+        .filter((item) => item.available)
+        .map((item) => item.track_id),
+    );
+    const atBoundary =
+      selected >= 0 &&
+      !snapshot.items.slice(selected + 1).some((item) => item.available);
+    const cycling =
+      window.resonancePlaybackModes.advanceOptions("next").repeat === "all" &&
+      modes.repeat !== "one" &&
+      atBoundary &&
+      availableTracks.size > 0;
     const shown = snapshot.items.slice(start, start + 20);
+    if (cycling && !modes.shuffle && snapshot.items.length > 1)
+      shown.push(
+        ...snapshot.items
+          .filter((item) => item.available)
+          .slice(0, 20 - shown.length)
+          .map((item) => ({ ...item, next_round: true })),
+      );
     el("full-queue-status").textContent = snapshot.items.length
-      ? window.resonanceListening.get().explanation
+      ? window.resonanceListening.get().changing
+        ? "Changing song…"
+        : cycling && window.resonanceListening.get().followsQueue
+          ? availableTracks.size === 1
+            ? "This song repeats after it finishes."
+            : modes.shuffle
+              ? "A fresh shuffled round starts after this song."
+              : "The next round starts after this song."
+          : window.resonanceListening.get().explanation
       : "Add a song to decide what plays next.";
     const signature = JSON.stringify([
       snapshot.revision,
       snapshot.current_item_id,
       snapshot.selection_token,
       window.resonanceListening.get().mode,
+      modes.continuous,
+      modes.shuffle,
+      modes.repeat,
       shown.map((item) => [
         item.id,
         item.position,
@@ -439,6 +479,7 @@
         item.track_id,
         item.available,
         item.last_skip_code,
+        item.next_round,
       ]),
     ]);
     if (signature === railSignature) return;
@@ -458,7 +499,11 @@
           "item-subtitle",
         ),
       );
-      if (item.id === snapshot.current_item_id)
+      if (item.next_round)
+        copy.append(
+          window.resonanceBrowse.node("span", "Next round", "queue-selection"),
+        );
+      else if (item.id === snapshot.current_item_id)
         copy.append(
           window.resonanceBrowse.node(
             "span",
@@ -487,7 +532,7 @@
       window.resonanceUI.button(
         more,
         "dots-three",
-        `More actions for ${item.title || "Untitled track"} by ${item.artist_credit || "Unknown artist"} · position ${item.position + 1}`,
+        `More actions for ${item.title || "Untitled track"} by ${item.artist_credit || "Unknown artist"} · position ${item.position + 1}${item.next_round ? " · next round" : ""}`,
         true,
       );
       row.append(more);
@@ -617,6 +662,17 @@
   });
   window.addEventListener("resonance:queue-step", (event) => {
     queueStepPending = event.detail.pending;
+    el("playback-state").textContent = queueStepPending
+      ? "Changing song…"
+      : audio.error
+        ? "This track cannot play. Try another track."
+        : audio.paused
+          ? audio.ended
+            ? "Track finished"
+            : "Paused"
+          : audio.readyState < 3
+            ? "Loading…"
+            : "Playing";
     refresh();
   });
   window.addEventListener("resonance:modes", refresh);

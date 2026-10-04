@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-04T03:02:29.574736+00:00",
+  "scope": "M2 continuous existing-queue playback and official Spotify feature-scope research",
+  "qualityTargetMet": false,
+  "browser": {
+    "startTime": "2026-10-04T02:57:15.956Z",
+    "duration": 173080.191,
+    "expected": 79,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontend": {
+    "pass": 11,
+    "fail": 0
+  },
+  "go": {
+    "unit": {
+      "pass": 126,
+      "fail": 0,
+      "skipped": [
+        "TestReviewMediaSymlinkCannotEscape"
+      ]
+    },
+    "integration": {
+      "pass": 270,
+      "fail": 0,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ]
+    }
+  },
+  "behaviors": [
+    "Default-on persisted Keep playing preference; explicit opt-out",
+    "Ordered cycles wrap existing queue without growth",
+    "Fresh shuffled cycle commits order/final report/selection/receipt atomically",
+    "Avoid just-ended musical identity when another one is playable",
+    "Unavailable/all-unavailable and duplicate occurrences remain bounded",
+    "Repeat-one precedence and manual skip semantics",
+    "Explicit solo playback stays separate",
+    "Next-round preview; changing-song handoff does not claim a remote queue change",
+    "Reload restores preferences without autoplay"
+  ],
+  "rawHashes": {
+    "continuous-focused-attempt1.json": "28de79c46081c5c39a59ad64f6ced14dbeb5adb5005168ae20aa112d3ee77517",
+    "continuous-focused-attempt2.json": "1acf9fe341e550013736c12b77b7bee0696ba3bd2efc60e989b7c6fed9289cfc",
+    "continuous-full-browser-attempt1.json": "eb9b5b3fb9b6ea7184d7dca056f063b09619459cfb5ade4cc5e92d7b33cb24f3",
+    "continuous-phone-transition-final.json": "02527239a93baefefa7d3c0a4ef4f45e0f3fb7b46ad5fe8e703b87fce4380936",
+    "continuous-full-browser-attempt2.json": "014d0a6a74b4f6eb2bf714f2c652acb807786eb2c3a20700d524e6429e417983",
+    "continuous-frontend-final.log": "02a9eadc935bd4f6240e608d6bc6c428924f7dd90a5b650c2c8318103a3a0c41",
+    "continuous-final-unit.jsonl": "2cf6305cb1a6fd2d78af600bc14e341bc42ce69c460ff0f6238eb9a89dbd66be",
+    "continuous-final-integration.jsonl": "caa85b378300dcb9563791a844ffe534eaa3ce69044a26254bbb315759d4ba5a"
+  },
+  "retainedFailures": [
+    "Shuffle preview assertion initially ran before playback was resumed",
+    "Phone queue-control row initially hid part of the first upcoming song; tightened without reducing touch targets",
+    "Finite-ending setup tried to use a hidden empty-queue control; changed to the always-reachable full-player preference"
+  ],
+  "limitations": [
+    "Library context is still the currently rendered bounded page, not whole-library continuation",
+    "Previous follows visible current-cycle order, not a separate cross-round audible-history stack",
+    "No recommendation autoplay, crossfade/true-gapless DSP, offline downloaded music or M3 identity/remote work",
+    "Physical Android checks remain deferred; inherited privilege/opt-in tests explicitly skipped"
+  ],
+  "privacy": "No personal song names, covers, host paths, credentials or raw attempts in this export."
+}

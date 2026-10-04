@@ -46,3 +46,36 @@ test("shuffle off preserves new Play next slots and never restores deleted items
   );
   assert.deepEqual(shuffled(["only"]), ["only"]);
 });
+
+test("continuous intent is explicit and repeat-one wins only at natural ending", () => {
+  const { advanceOptions } = require("../../web/playback-modes.js");
+  assert.deepEqual(
+    advanceOptions(
+      { repeat: "off", continuous: true, shuffle: false },
+      "ended",
+    ),
+    { repeat: "all", reshuffle: false },
+  );
+  assert.deepEqual(
+    advanceOptions(
+      { repeat: "off", continuous: false, shuffle: true },
+      "ended",
+    ),
+    { repeat: "off", reshuffle: false },
+  );
+  assert.deepEqual(
+    advanceOptions({ repeat: "one", continuous: true, shuffle: true }, "ended"),
+    { repeat: "one", reshuffle: false },
+  );
+  assert.deepEqual(
+    advanceOptions({ repeat: "one", continuous: true, shuffle: true }, "next"),
+    { repeat: "all", reshuffle: true },
+  );
+  assert.deepEqual(
+    advanceOptions(
+      { repeat: "all", continuous: false, shuffle: true },
+      "previous",
+    ),
+    { repeat: "all", reshuffle: false },
+  );
+});

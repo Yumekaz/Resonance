@@ -59,10 +59,14 @@ func hostLocalRequest(r *http.Request) bool {
 }
 
 func newAdminHandler(store *storage.Store, ready func(context.Context) error, coordinator *library.Coordinator, logs io.Writer, listenerAddresses ...string) http.Handler {
-	a := &app{store: store, ready: ready, coordinator: coordinator, log: slog.New(slog.NewJSONHandler(logs, nil))}
+	address := ""
 	if len(listenerAddresses) > 0 {
-		a.listenerAddress = listenerAddresses[0]
+		address = listenerAddresses[0]
 	}
+	return newAdminHandlerWithPicker(store, ready, coordinator, logs, address, newHostFolderPicker())
+}
+func newAdminHandlerWithPicker(store *storage.Store, ready func(context.Context) error, coordinator *library.Coordinator, logs io.Writer, address string, picker hostFolderPicker) http.Handler {
+	a := &app{store: store, ready: ready, coordinator: coordinator, log: slog.New(slog.NewJSONHandler(logs, nil)), listenerAddress: address, folderPicker: picker}
 	mux := http.NewServeMux()
 	// Shared, embedded visual assets only. The enclosing host-local guard still
 	// applies; this cannot open arbitrary host files or expose admin API routes.
@@ -81,6 +85,7 @@ func newAdminHandler(store *storage.Store, ready func(context.Context) error, co
 	}
 	mux.HandleFunc("GET /api/v1/admin/status", a.adminStatus)
 	mux.HandleFunc("GET /api/v1/admin/roots", a.adminRoots)
+	mux.HandleFunc("POST /api/v1/admin/folder-picker", a.adminPickFolder)
 	mux.HandleFunc("POST /api/v1/admin/roots", a.adminAddRoot)
 	mux.HandleFunc("POST /api/v1/admin/roots/{id}/{action}", a.adminRootAction)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -102,6 +107,9 @@ func newAdminHandler(store *storage.Store, ready func(context.Context) error, co
 			}
 		}
 		budget := 10 * time.Second
+		if r.URL.Path == "/api/v1/admin/folder-picker" {
+			budget = 2 * time.Minute
+		}
 		if strings.HasSuffix(r.URL.Path, "/scan") {
 			budget = 5 * time.Minute
 		}
@@ -113,6 +121,7 @@ func newAdminHandler(store *storage.Store, ready func(context.Context) error, co
 
 func (a *app) adminStatus(w http.ResponseWriter, r *http.Request) {
 	state := map[string]any{"process": "running", "catalog": "unavailable"}
+	state["folder_picker"] = map[string]bool{"available": a.folderPicker != nil && a.folderPicker.Available()}
 	if host, port, err := net.SplitHostPort(a.listenerAddress); err == nil {
 		ip := net.ParseIP(host)
 		mode := "network"
@@ -132,6 +141,40 @@ func (a *app) adminStatus(w http.ResponseWriter, r *http.Request) {
 		state["library"] = a.coordinator.Status()
 	}
 	jsonResponse(w, state)
+}
+
+func (a *app) adminPickFolder(w http.ResponseWriter, r *http.Request) {
+	r.Body = http.MaxBytesReader(w, r.Body, 256)
+	var input *struct{}
+	if decodeUserJSON(r, &input, false) != nil || input == nil {
+		catalogError(w, 400, "invalid_request")
+		return
+	}
+	if a.folderPicker == nil || !a.folderPicker.Available() {
+		catalogError(w, 501, "folder_picker_unavailable")
+		return
+	}
+	choice, err := a.folderPicker.Pick(r.Context())
+	if err != nil {
+		code, status := "folder_picker_failed", http.StatusServiceUnavailable
+		if errors.Is(err, errPickerBusy) {
+			code, status = "folder_picker_busy", http.StatusConflict
+		}
+		if errors.Is(err, context.DeadlineExceeded) || r.Context().Err() != nil {
+			code, status = "folder_picker_timeout", http.StatusRequestTimeout
+		}
+		catalogError(w, status, code)
+		return
+	}
+	if !choice.Cancelled && !validAdminPath(choice.Path) {
+		catalogError(w, 422, "folder_picker_failed")
+		return
+	}
+	name := ""
+	if !choice.Cancelled {
+		name = filepath.Base(choice.Path)
+	}
+	jsonResponse(w, map[string]any{"path": choice.Path, "name": name, "cancelled": choice.Cancelled})
 }
 
 type adminRoot struct {

@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-04T14:39:15.7747793+05:30",
+  "scope": "M2 host-native Windows folder selection and owner-reported basic Android use",
+  "qualityTargetMet": false,
+  "browser": {
+    "startTime": "2026-10-04T08:40:13.416Z",
+    "duration": 238964.767,
+    "expected": 97,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "focused": {
+    "startTime": "2026-10-04T08:40:04.196Z",
+    "duration": 6559.876,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalHostAccessibility": {
+    "startTime": "2026-10-04T08:49:46.257Z",
+    "duration": 21250.219,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontend": {
+    "fail": 0,
+    "pass": 11
+  },
+  "go": {
+    "unit": {
+      "pass": 143,
+      "skipped": ["TestReviewMediaSymlinkCannotEscape"],
+      "fail": 0
+    },
+    "integration": {
+      "pass": 287,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ],
+      "fail": 0
+    }
+  },
+  "environment": {
+    "browser": "Chrome, Playwright 1.55.1 and Codex in-app browser",
+    "go": "1.25.0",
+    "database": "PostgreSQL 17.11; separate rooted regression library",
+    "os": "Windows interactive desktop",
+    "workers": 1
+  },
+  "nativeManual": {
+    "cancel": "Owner confirmed Cancel; live Host showed Selection cancelled with previous path retained",
+    "selection": "Owner confirmed Windows dialog opens and selection fills Host; observed real path and automatic name",
+    "noAutoEnroll": "Picker result only fills form; Add folder remains separate",
+    "initialCancelReport": "First report did not match a newly selected folder in live UI; repeated and verified rather than counted"
+  },
+  "phone": {
+    "observed": "Tracks screen, artwork, library navigation, active/paused row and persistent player visible",
+    "status": "Basic same-LAN use confirmed by owner report and supplied photo",
+    "platform": "Android Chrome identified by owner; model and versions not provided",
+    "notVerified": [
+      "Independent audible playback observation",
+      "Install/update lifecycle",
+      "Background and lock-screen continuity",
+      "Physical rotation and large text",
+      "TalkBack and hardware volume"
+    ]
+  },
+  "commands": {
+    "go": [
+      "gofmt -l",
+      "go vet ./...",
+      "go test -count=1 -json ./...",
+      "go test -count=1 -p 1 -parallel 1 -timeout 10m -tags integration -json ./..."
+    ],
+    "browser": "RESONANCE_M2_E2E=1 RESONANCE_M14_E2E=1 RESONANCE_M15_E2E=1 RESONANCE_M17_E2E=1 npx playwright test tests/e2e/library.spec.js tests/e2e/user-library.spec.js tests/e2e/m17-journey.spec.js tests/e2e/m2-product.spec.js tests/e2e/m2-pwa.spec.js tests/e2e/m2-accessibility.spec.js tests/e2e/m2-editorial.spec.js tests/e2e/m2-pagination.spec.js tests/e2e/m2-player-rail.spec.js tests/e2e/m2-quality-escalation.spec.js tests/e2e/m2-visual-polish.spec.js tests/e2e/m2-folders-artwork.spec.js tests/e2e/m2-playback-modes.spec.js tests/e2e/m2-library-transport.spec.js tests/e2e/m2-continuous-play.spec.js tests/e2e/m2-control-consistency.spec.js tests/e2e/m2-folder-picker.spec.js --workers=1 --reporter=json",
+    "format": "prettier --check on changed UI/tests/new documentation; git diff --check",
+    "frontend": "npm run test:frontend"
+  },
+  "boundaries": [
+    "Picker absent from public music listener",
+    "Existing loopback peer/socket, Host, Origin/Fetch Metadata, JSON and custom header checks retained",
+    "No browser-provided path or command arguments to picker",
+    "Fixed self-executable helper, bounded output, cancellation and two-minute timeout",
+    "Native output fills form; canonical enrollment remains the existing separate operation",
+    "Interactive Windows only; manual fallback on other/headless hosts",
+    "Non-object/null picker input rejected without launching UI",
+    "Parent-held pipe terminates native helper if server exits; real child-process EOF regression passed"
+  ],
+  "capture": {
+    "accepted": true,
+    "original": "data/m2/folder-picker/host-form-settled.jpg",
+    "rejected": "First crop used viewport instead of document coordinates and showed page header; retained as host-form-final.jpg",
+    "file": "docs/design/m2/host-folder-picker.jpg",
+    "crop": "Actual empty Add folder form; no private folder paths included"
+  },
+  "limitations": [
+    "Browser native-result transport is controlled only for repeatable browser contract cases; native UI evidence comes from actual owner interaction and real COM checks",
+    "Private native screenshots and supplied phone photo are not published",
+    "No new performance benchmark or claim",
+    "Inherited symlink privilege and opt-in campaign skips remain explicit; full M2 quality acceptance not closed"
+  ],
+  "rawHashes": {
+    "final-host-check.json": "08a75edc5ec7a0f719b69530cfe345c4064f23f52792c178d9f6a21b699eb8a4",
+    "focused-browser-1.json": "8b2e19084fa20699fa193bc667de28908451c9d4ca2b40ae2e8d50c1a34150cd",
+    "focused-browser-final.json": "81f9ef2bdca85f20d22439c47879b234de696a7d3b2da543513e48973da24658",
+    "focused-go-1.txt": "525f4d2ef1588474db7e1ab6fe6363b48a697e9738b491731d472972ddde224d",
+    "focused-go-final.txt": "1e2d5b9f70bc5f188dbdef3b2b3a854ccae14c6915af54c262fdb5db87a56931",
+    "frontend-final.txt": "c4f44463912fd07a08a4055b11213b47a2ef562ab2b3bcf8653dfc3ebd2726c2",
+    "full-browser-1.json": "41b5b79c136c1efc3d07e864e42ccb7a6abe3d0960ae3f8f7f093567e6cfb20c",
+    "full-browser-final.json": "b976a2633fcf4f27f2644944e68eaf47bfbc6d49899439012b7958955eca387a",
+    "host-form-final.jpg": "670221bd37326c68fd79e82bcddfbbadbb2062b350fb36bc0d99bead0a191632",
+    "host-form-settled.jpg": "5dcac65d3e1147d898cce30114bf80d9faedae80aedebfde6691c0ef8f8b7e45",
+    "lifecycle-browser-final.json": "75b45ccbf83734a15574da5b00469d166d58d0aa57b413c0f35825bbcfd049b9",
+    "lifecycle-final.txt": "8f3f028ddefceb8973e9232bd12ff9a957228489cd8eaef80767cb0c58e4d853",
+    "native-cancel-confirmed.jpg": "d32dd8dfe420a09d0c48ee51a791b4f78559fd520acd6365976a565063c9c5fd",
+    "native-cancel.jpg": "6685be74ed0a6ededf87eda6d0abec9bf5efe6395c52ccb27f8dda64fc25060d",
+    "native-selection.jpg": "ac518048a26f9427dc41eef0765c4b5adacb74f7c1e8b62b076dec2a2ab51688",
+    "picker-final-oct4-integration.jsonl": "89e806300c051d02d528d68194827572883ee23eedb110a1a61b56f30e35fe63",
+    "picker-final-oct4-summary.json": "d7347544dfef9767e13930b7d903d2800a87285902b8079aa87900a1228d952e",
+    "picker-final-oct4-unit.jsonl": "230a43f2f7dbcd7fa0739b84cf6e392e5176bf8b7dc5dbc19b78e539bfecd3f5"
+  },
+  "postLifecycleBrowser": {
+    "startTime": "2026-10-04T09:02:48.492Z",
+    "duration": 26385.832000000002,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

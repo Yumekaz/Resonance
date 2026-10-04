@@ -33,12 +33,12 @@
         <summary>Set up listening on your computer and phone</summary>
         <ol>
           <li>
-            <strong>Choose your music folder.</strong> Open it in your file
-            manager and copy the folder address.
+            <strong>Choose your music folder.</strong> Use Choose folder below
+            to open the folder picker on this computer.
           </li>
           <li>
-            <strong>Add it below.</strong> Give the folder a name, paste its
-            address, then choose Scan now. Your files stay where they are.
+            <strong>Add it below.</strong> Confirm its name, choose Add folder,
+            then Scan now. Your files stay where they are.
           </li>
           <li>
             <strong>Open the listener.</strong> On a phone, use the laptop’s
@@ -60,27 +60,42 @@
         </p>
         <form id="add-folder" hidden>
           <h3>Add a music folder</h3>
+          <button type="button" id="choose-folder" class="primary">
+            Choose folder
+          </button>
+          <p id="chosen-folder" class="folder-path" hidden></p>
+          <p id="picker-status" class="hint" role="status">
+            Select a folder on this computer. Music stays where it is.
+          </p>
           <label for="folder-name">Display name</label
           ><input
             id="folder-name"
             maxlength="128"
             required
             placeholder="My music"
-          /><label for="folder-path">Full folder path on this computer</label
-          ><input
-            id="folder-path"
-            maxlength="4096"
-            required
-            spellcheck="false"
-            placeholder="Enter the full path to your music folder"
           />
-          <p class="hint">
-            On Windows, open the folder in File Explorer, press Alt+D then
-            Ctrl+C, and paste that address here. Music stays in the folder; this
-            does not upload it. Network folders are not supported here.
-          </p>
+          <details id="manual-folder">
+            <summary>Enter a path manually</summary>
+            <label for="folder-path">Full folder path on this computer</label
+            ><input
+              id="folder-path"
+              maxlength="4096"
+              required
+              spellcheck="false"
+              placeholder="Enter the full path to your music folder"
+            />
+            <p class="hint">
+              Use a full local folder path. Network folders are not supported.
+            </p>
+          </details>
           <div class="actions">
-            <button type="submit" class="primary">Add folder</button
+            <button
+              type="submit"
+              id="confirm-add-folder"
+              class="primary"
+              disabled
+            >
+              Add folder</button
             ><button type="button" id="cancel-add">Cancel</button>
           </div>
         </form>

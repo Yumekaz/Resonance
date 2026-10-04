@@ -27,6 +27,9 @@ func main() {
 
 // Return before reporting fatal startup/listener errors so resource defers run.
 func run() error {
+	if len(os.Args) == 2 && os.Args[1] == "host-folder-picker" {
+		return runHostFolderPicker(os.Stdout)
+	}
 	if len(os.Args) > 1 && os.Args[1] == "library" {
 		return runLibrary(os.Args[2:], os.Stdout, os.Stderr)
 	}

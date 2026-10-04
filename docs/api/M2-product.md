@@ -50,15 +50,15 @@ Open that address **on the server computer**. The music listener contains no hos
 
 All responses are `no-store`, same-origin CORP, nosniff and frame-restricted. Paths occur only in this host response type; native root identity bytes and secrets are never returned.
 
-| Host route | Behavior |
-|---|---|
-| `GET /api/v1/admin/status` | Process, catalog readiness, existing coordinator snapshot and configured listener address/mode; a wildcard bind has no invented device URL |
-| `GET /api/v1/admin/roots?after=<UUID>` | At most 100 entries `{items,next}`; root fields plus host `path` |
-| `POST /api/v1/admin/roots` | `{name,path}`; name ≤128 bytes, absolute local path ≤4096 bytes, body ≤8 KiB |
-| `POST /api/v1/admin/roots/{id}/verify` | `{confirm:true}`; explicit identity pin/rebind |
-| `POST /api/v1/admin/roots/{id}/enable` | `{}`; current identity must match pinned verified identity |
-| `POST /api/v1/admin/roots/{id}/disable` | `{}`; retains files and catalog/user-library intent |
-| `POST /api/v1/admin/roots/{id}/scan` | `{}`; foreground authoritative scan, up to five minutes, request cancellation |
+| Host route                              | Behavior                                                                                                                                   |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET /api/v1/admin/status`              | Process, catalog readiness, existing coordinator snapshot and configured listener address/mode; a wildcard bind has no invented device URL |
+| `GET /api/v1/admin/roots?after=<UUID>`  | At most 100 entries `{items,next}`; root fields plus host `path`                                                                           |
+| `POST /api/v1/admin/roots`              | `{name,path}`; name ≤128 bytes, absolute local path ≤4096 bytes, body ≤8 KiB                                                               |
+| `POST /api/v1/admin/roots/{id}/verify`  | `{confirm:true}`; explicit identity pin/rebind                                                                                             |
+| `POST /api/v1/admin/roots/{id}/enable`  | `{}`; current identity must match pinned verified identity                                                                                 |
+| `POST /api/v1/admin/roots/{id}/disable` | `{}`; retains files and catalog/user-library intent                                                                                        |
+| `POST /api/v1/admin/roots/{id}/scan`    | `{}`; foreground authoritative scan, up to five minutes, request cancellation                                                              |
 
 Enrollment rejects relative paths, network/UNC paths, control characters and alternate stream syntax before canonicalization. Existing canonicalization, directory readability, overlap transaction and identity capture apply. Alias resolution is validated again; no directory browse or delete operation exists. Root actions use existing storage/scanner methods. A manual scan cannot override unverified/quarantined/disabled roots or the global scan lease.
 
@@ -142,6 +142,28 @@ selects the prior available occurrence. A boundary input never pauses the song
 or sends an empty advance. Detached decoders remain unable to control a newer
 queue. A rejected old natural-ended request refreshes presentation without
 adopting another selection token.
+
+## Host-native folder selection (2026-10-04)
+
+`GET /api/v1/admin/status` includes `folder_picker.available`. Native selection
+requires an interactive Windows host session. Other/headless hosts retain the
+validated manual-path form.
+
+`POST /api/v1/admin/folder-picker` accepts exactly `{}` under the existing
+loopback socket/peer, Host, Origin/Fetch Metadata, JSON and custom-header guard.
+It opens the native Windows folder dialog and returns `{path, name, cancelled}`
+only to the host page. Cancellation returns `cancelled: true` with empty path/name.
+Selection is read-only: it does not enroll or scan anything. The existing
+`POST /api/v1/admin/roots` still performs canonicalization and identity checks.
+
+One picker is admitted at a time; a concurrent request gets 409
+`folder_picker_busy`. Unsupported hosts return 501 `folder_picker_unavailable`;
+failures return 503 `folder_picker_failed`; expiry returns 408
+`folder_picker_timeout`. The two-minute deadline/request cancellation terminates
+the isolated native helper. Browser-supplied command/path parameters are rejected.
+Picker output is bounded and validated; network paths remain unsupported.
+This route is absent from the public music listener (404), and its output is
+never included in the PWA shell or listener API.
 
 ## Continuous personal-queue cycles (2026-10-04)
 

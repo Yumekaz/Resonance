@@ -34,6 +34,7 @@ type track struct {
 }
 
 type app struct {
+	folderPicker    hostFolderPicker
 	listenerAddress string
 	tracks          map[string]track
 	log             *slog.Logger

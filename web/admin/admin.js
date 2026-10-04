@@ -5,6 +5,10 @@
     after = null,
     verifying = null,
     busy = false;
+  let suggestedFolderName = null;
+  let pickerRequest = null,
+    pickerGeneration = 0,
+    pickerAvailable = false;
   const node = (tag, text, className) => {
     const e = document.createElement(tag);
     e.textContent = text;
@@ -33,10 +37,19 @@
     catalog_unavailable:
       "The catalog is unavailable. Restore the database and refresh status.",
     host_only: "Host management is only available directly on this computer.",
+    folder_picker_unavailable:
+      "The folder picker is unavailable here. Enter a local path manually.",
+    folder_picker_busy:
+      "A folder picker is already open on this computer. Finish that selection first.",
+    folder_picker_timeout:
+      "The folder picker timed out. Choose folder to try again.",
+    folder_picker_failed:
+      "The folder picker could not finish. Try again or enter the path manually.",
   };
-  async function api(path, body) {
+  async function api(path, body, signal) {
     const response = await fetch("/api/v1/admin/" + path, {
       cache: "no-store",
+      signal,
       ...(body
         ? {
             method: "POST",
@@ -80,9 +93,24 @@
     document.querySelectorAll("button").forEach((button) => {
       button.disabled = value;
     });
+    if (pickerRequest) el("cancel-add").disabled = false;
+    updateFolderChoice();
+  }
+  function updateFolderChoice() {
+    const path = el("folder-path").value.trim();
+    el("chosen-folder").textContent = path;
+    el("chosen-folder").hidden = !path;
+    el("confirm-add-folder").disabled = busy || !path;
   }
   async function refresh(reset = true) {
     const state = await api("status");
+    pickerAvailable = state.folder_picker?.available === true;
+    el("choose-folder").hidden = !pickerAvailable;
+    if (!pickerAvailable) {
+      el("manual-folder").open = true;
+      el("picker-status").textContent =
+        "Enter a local folder path on this server.";
+    }
     runtime = state.library || {};
     el("listener-address").replaceChildren();
     if (state.listener) {
@@ -211,9 +239,65 @@
   }
   el("show-add").addEventListener("click", () => {
     el("add-folder").hidden = false;
-    el("folder-name").focus();
+    (pickerAvailable ? el("choose-folder") : el("folder-name")).focus();
+    updateFolderChoice();
+  });
+  el("folder-path").addEventListener("input", updateFolderChoice);
+  el("folder-name").addEventListener("input", () => {
+    suggestedFolderName = null;
+  });
+  el("choose-folder").addEventListener("click", async () => {
+    if (busy) return;
+    const generation = ++pickerGeneration;
+    const request = new AbortController();
+    pickerRequest = request;
+    setBusy(true);
+    el("choose-folder").setAttribute("aria-busy", "true");
+    el("picker-status").textContent =
+      "Choose a folder in the Windows window, or Cancel to return here.";
+    try {
+      const choice = await api("folder-picker", {}, request.signal);
+      if (generation !== pickerGeneration || el("add-folder").hidden) return;
+      if (choice.cancelled) {
+        el("picker-status").textContent =
+          "Selection cancelled. Your chosen folder has not changed.";
+        return;
+      }
+      el("folder-path").value = choice.path;
+      if (
+        !el("folder-name").value.trim() ||
+        el("folder-name").value === suggestedFolderName
+      ) {
+        let name = "",
+          bytes = 0;
+        const encoder = new TextEncoder();
+        for (const char of choice.name) {
+          const length = encoder.encode(char).length;
+          if (bytes + length > 128) break;
+          name += char;
+          bytes += length;
+        }
+        el("folder-name").value = name;
+        suggestedFolderName = name;
+      }
+      updateFolderChoice();
+      el("picker-status").textContent =
+        "Folder selected. Confirm the name, then choose Add folder.";
+    } catch (error) {
+      if (error.name !== "AbortError" && generation === pickerGeneration)
+        el("picker-status").textContent = error.message;
+    } finally {
+      if (pickerRequest === request) pickerRequest = null;
+      el("choose-folder").removeAttribute("aria-busy");
+      setBusy(false);
+      if (!el("add-folder").hidden) el("choose-folder").focus();
+    }
   });
   el("cancel-add").addEventListener("click", () => {
+    pickerGeneration++;
+    pickerRequest?.abort();
+    el("picker-status").textContent =
+      "Choose a folder to continue. Your previous selection has not changed.";
     el("add-folder").hidden = true;
     el("show-add").focus();
   });
@@ -227,6 +311,8 @@
         path: el("folder-path").value,
       });
       event.target.reset();
+      suggestedFolderName = null;
+      updateFolderChoice();
       event.target.hidden = true;
       message.textContent = "Folder added. Use Scan now to import your music.";
       await refresh();

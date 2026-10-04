@@ -64,6 +64,38 @@ footer {
   font-size: 13px;
   line-height: 1.6;
 }
+#manual-folder {
+  margin: 16px 0;
+  padding: 14px 16px;
+}
+#manual-folder summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+#manual-folder summary::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  flex: none;
+  background: currentColor;
+  mask: url("/assets/icons/caret-down.svg") center/contain no-repeat;
+}
+#manual-folder[open] summary::after {
+  transform: rotate(180deg);
+}
+#manual-folder input {
+  width: 100%;
+}
+#chosen-folder {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+  background: #fffdf8;
+}
 main {
   max-width: 1050px;
   margin: 0 auto;

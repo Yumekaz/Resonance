@@ -68,6 +68,12 @@ test("host add, verify and scan release controls; original artwork wins; disable
     await page.goto(adminURL + "/");
     await page.getByRole("button", { name: "Add library folder" }).click();
     await page.getByLabel("Display name", { exact: true }).fill(title);
+    if (
+      !(await page
+        .locator("#manual-folder")
+        .evaluate((details) => details.open))
+    )
+      await page.locator("#manual-folder summary").click();
     await page
       .getByLabel("Full folder path on this computer", { exact: true })
       .fill(folder);

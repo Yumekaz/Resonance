@@ -3,7 +3,10 @@
 This publishes the product candidate and verified corrections. It does **not**
 close M2 or claim every category reaches 9/10. The [strict review](design/m2/quality-review.md)
 remains 8.8 overall with physical-device/accessibility/PWA/performance-confidence
-gaps. Android Chrome checks were deferred by the owner.
+gaps. Initial Android Chrome checks were deferred. On 2026-10-04 the owner
+reported successful real-phone use and supplied a Tracks-screen photo. This
+establishes basic same-LAN device use; the complete lifecycle/accessibility
+matrix remains unperformed.
 
 ## Product and corrections
 
@@ -128,4 +131,29 @@ and 270 PostgreSQL integration passes with existing skips. Failed attempts,
 including the stopped PostgreSQL prerequisite after a pause, remain recorded.
 Player gain is explicitly separate from device master volume: portable hardware
 volume synchronization is unavailable. Physical Android verification remains
-deferred by the owner, and this pass does not close the full M2 quality gates.
+deferred at that run, and the pass did not close the full M2 quality gates.
+
+## Native host folder picker and real-phone baseline — 2026-10-04
+
+Choose folder now opens Windows’ native folder dialog and fills the Host form.
+Suggested names follow folder changes until edited; native Cancel preserves
+the existing choice. Enrollment and scanning remain separate explicit actions.
+[ADR-011](adr/ADR-011-m2-host-native-folder-picker.md) records the host-only,
+bounded helper lifecycle and platform boundary. The [form capture](design/m2/host-folder-picker.jpg)
+contains no private paths. Actual native selection and cancellation were confirmed
+by the owner and inspected in the running Host UI; the initial ambiguous Cancel
+report was repeated rather than counted as a pass.
+
+[Verification](benchmarks/M2-folder-picker-verification.json): 97/97 complete
+browser cases, 4 new picker contract cases, 7 final host/accessibility checks,
+11 frontend-state checks, 143 Go unit and 287 integration passes with existing
+skips. Browser-controlled native-result cases cover reproducible failure/race
+states, while a real Windows COM check and owner interaction establish native
+dialog behavior. Eight final browser checks also passed after the strict-input
+and parent-liveness guards. Root canonicalization, identity and overlap handling remain.
+
+The owner reports that the listener works on the phone and supplied a physical
+Tracks-screen photo. Record basic same-LAN Android use as confirmed. This does
+not establish installation/update, background/lock-screen, physical rotation,
+large-text, TalkBack, hardware-volume or the full inherited phone journey gates.
+Private host paths, music, phone photos and raw evidence remain local.

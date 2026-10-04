@@ -63,7 +63,15 @@ test("host setup is labeled and keyboard accessible", async ({ page }) => {
   );
   await page.locator(".folder").first().waitFor();
   await page.getByRole("button", { name: "Add library folder" }).click();
-  await expect(page.getByLabel("Display name", { exact: true })).toBeFocused();
+  const chooser = page.getByRole("button", {
+    name: "Choose folder",
+    exact: true,
+  });
+  await expect(
+    (await chooser.isVisible())
+      ? chooser
+      : page.getByLabel("Display name", { exact: true }),
+  ).toBeFocused();
   const result = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
     .analyze();

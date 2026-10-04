@@ -38,7 +38,6 @@
   let visibleTracks = [];
   const catalogScope = () =>
     `${view}:${catalogOrder}:${view === "tracks" && availableOnly}`;
-  const placeholder = window.resonanceUI.fallback;
   // randomUUID is secure-context-only, but getRandomValues is available on LAN
   // HTTP. Use the same RFC 4122 v4 wire shape without weakening randomness.
   window.resonanceID = () => {
@@ -1092,11 +1091,8 @@
     playTrack,
     play: startTrack,
     openPlaylist,
-    queueCollection,
     selectView,
-    load,
     openGroup,
-    trackRow,
     artwork,
     syncNavigation,
     watchArtwork(img, trackID) {

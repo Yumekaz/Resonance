@@ -669,3 +669,21 @@ test("single-song listening agrees with Up Next and selecting an occurrence does
   ).toHaveLength(3);
   await page.locator("#play-toggle").click();
 });
+
+test("collection pagination state stays private to its controller", async ({
+  page,
+}) => {
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  for (const view of ["playlists", "favorites", "history"]) {
+    await page.goto("/#" + view);
+    await expect(page.locator("#view-title")).toHaveText(
+      view[0].toUpperCase() + view.slice(1),
+    );
+    await expect(page.locator("#status")).not.toHaveText("Loading your music…");
+    expect(await page.evaluate(() => Object.hasOwn(window, "viewCursor"))).toBe(
+      false,
+    );
+  }
+  expect(errors).toEqual([]);
+});

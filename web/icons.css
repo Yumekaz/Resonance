@@ -31,17 +31,9 @@
   -webkit-mask-image: url("/assets/icons/books.svg");
   mask-image: url("/assets/icons/books.svg");
 }
-.icon-caret-down {
-  -webkit-mask-image: url("/assets/icons/caret-down.svg");
-  mask-image: url("/assets/icons/caret-down.svg");
-}
 .icon-caret-right {
   -webkit-mask-image: url("/assets/icons/caret-right.svg");
   mask-image: url("/assets/icons/caret-right.svg");
-}
-.icon-check-circle {
-  -webkit-mask-image: url("/assets/icons/check-circle.svg");
-  mask-image: url("/assets/icons/check-circle.svg");
 }
 .icon-clock-counter-clockwise {
   -webkit-mask-image: url("/assets/icons/clock-counter-clockwise.svg");
@@ -50,10 +42,6 @@
 .icon-dots-three {
   -webkit-mask-image: url("/assets/icons/dots-three.svg");
   mask-image: url("/assets/icons/dots-three.svg");
-}
-.icon-download-simple {
-  -webkit-mask-image: url("/assets/icons/download-simple.svg");
-  mask-image: url("/assets/icons/download-simple.svg");
 }
 .icon-folder {
   -webkit-mask-image: url("/assets/icons/folder.svg");
@@ -66,10 +54,6 @@
 .icon-house {
   -webkit-mask-image: url("/assets/icons/house.svg");
   mask-image: url("/assets/icons/house.svg");
-}
-.icon-list {
-  -webkit-mask-image: url("/assets/icons/list.svg");
-  mask-image: url("/assets/icons/list.svg");
 }
 .icon-magnifying-glass {
   -webkit-mask-image: url("/assets/icons/magnifying-glass.svg");
@@ -118,10 +102,6 @@
 .icon-trash {
   -webkit-mask-image: url("/assets/icons/trash.svg");
   mask-image: url("/assets/icons/trash.svg");
-}
-.icon-warning-circle {
-  -webkit-mask-image: url("/assets/icons/warning-circle.svg");
-  mask-image: url("/assets/icons/warning-circle.svg");
 }
 .icon-x {
   -webkit-mask-image: url("/assets/icons/x.svg");

@@ -13,6 +13,8 @@ __pycache__/
 *.pyc
 playwright-report/
 test-results/
+# Some Windows helpers accidentally create this literal path in the checkout.
+/%SystemDrive%/
 .env
 .env.*
 *.dump

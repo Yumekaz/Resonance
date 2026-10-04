@@ -1,4 +1,5 @@
 (() => {
+  "use strict";
   const userItems = document.querySelector("#items");
   const userStatus = document.querySelector("#status");
   const userTitle = document.querySelector("#view-title");
@@ -12,13 +13,12 @@
     "#create-playlist-dialog",
   );
   const createPlaylistError = document.querySelector("#create-playlist-error");
-  const trackActions = document.querySelector("#track-actions");
-  const playlistTarget = document.querySelector("#playlist-target");
   let activeView = null;
   let queue = null;
   let queueWrites = Promise.resolve(),
     playIntent = 0;
   let currentPlaylist = null;
+  let viewCursor = null;
   let favoriteLoadGeneration = 0;
   let userViewGeneration = 0;
   let userViewAbort = new AbortController();
@@ -135,14 +135,9 @@
     );
     if (ids.length) await favorites.load(ids);
   }
-  async function refreshPlaylists() {
-    // Destination options are read only when their searchable picker opens.
-    playlistTarget.replaceChildren(new Option("Choose playlist", ""));
-  }
   function setControls(mode) {
     queueControls.hidden = mode !== "queue" || !queue?.items.length;
     newPlaylist.hidden = mode !== "playlists" || !!currentPlaylist;
-    trackActions.hidden = true;
   }
   function onBrowseView(mode) {
     userViewAbort.abort();
@@ -900,7 +895,6 @@
           );
           const returnFocus = current();
           close();
-          await refreshPlaylists();
           if (activeView === "playlists" && currentPlaylist?.id === detail.id) {
             window.resonanceBrowse.selectView("playlists");
             if (returnFocus) newPlaylist.focus({ preventScroll: true });
@@ -1308,7 +1302,6 @@
         expected_version: 0,
       });
       document.querySelector("#playlist-name").value = "";
-      await refreshPlaylists();
       await loadUserView(true);
       if (createPlaylistDialog.open) createPlaylistDialog.close();
     } catch (error) {
@@ -1357,7 +1350,7 @@
     true,
   );
   retryPending()
-    .then(() => Promise.allSettled([refreshFavorites(), refreshPlaylists()]))
+    .then(() => Promise.allSettled([refreshFavorites()]))
     .then(() => {
       for (const row of userItems.querySelectorAll("[data-track-id]")) {
         const button = row.querySelector(".favorite-button");

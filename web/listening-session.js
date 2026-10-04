@@ -13,7 +13,6 @@ window.resonanceCreateListeningSession = ({
   const userWrite = window.resonanceAPI.write;
   const { pendingMutations, removePendingMutation } = window.resonanceAPI;
   let currentPlayback = null;
-  let viewCursor = null;
   let lastClock = performance.now();
   let stalled = false;
   let starting = false;

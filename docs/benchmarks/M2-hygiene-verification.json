@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-04T01:42:53.822876+00:00",
+  "scope": "Repository hygiene only; no product redesign, migration or music deletion",
+  "localCleanup": {
+    "obsoleteExecutables": 116,
+    "installerArchives": 2,
+    "duplicateSDKDirectories": 1,
+    "emptyLiteralCacheDirectories": 1,
+    "bytesRemoved": 2817840020,
+    "sizeBasis": "Sum of removed file logical lengths, not a measurement of physical free space",
+    "runningExecutablePreserved": true,
+    "databaseAndMusicPreserved": true,
+    "rawEvidencePreserved": true
+  },
+  "sourceCleanup": [
+    "Unused hidden playlist destination controls and no-op refresh calls",
+    "Unused presentation binding and listening-session cursor binding",
+    "Three unconsumed browse bridge exports",
+    "Five unreferenced icon SVGs, matching CSS masks and shell cache entries",
+    "Collection pagination cursor is explicitly local; strict mode prevents implicit globals",
+    "Documented cleanup boundaries and npm test:frontend script"
+  ],
+  "browser": {
+    "startTime": "2026-10-04T01:33:43.691Z",
+    "duration": 164145.385,
+    "expected": 74,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontend": {
+    "pass": 10,
+    "fail": 0
+  },
+  "go": {
+    "unit": {
+      "pass": 126,
+      "fail": 0,
+      "skipped": [
+        "TestReviewMediaSymlinkCannotEscape"
+      ]
+    },
+    "integration": {
+      "pass": 269,
+      "fail": 0,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ]
+    }
+  },
+  "rawHashes": {
+    "hygiene-after-recovery-unit.jsonl": "06067fc4ddec59c0a27aa13ee828e8a139964fc69a3a6d80a594365f5a837410",
+    "hygiene-after-recovery-integration.jsonl": "215b6446a3af9cee9773c96e31a138d0d18be2802623b51f492cb0e4706ff125",
+    "deletion-result.json": "c585ca6bf53ebef792490984e88529440fcde6fe6f60352dba8473d5641bafe2",
+    "deletion-final.json": "fd347edc5978fff3cafaca5e3c4f6377410c50dd53532a74d1a6d27b2e79bbfb",
+    "browser-final.json": "50445115ef6d71f47d66c01a2a781063fa5219c302ff821eedf84b67a84b9f10",
+    "browser-after-recovery.json": "8d08930f799a5c870b00d477242ad3b24f1156df06517c0c7b88ddde2a4f34e6",
+    "frontend-script-final.log": "652225ad10783b83d0ae2c43068ee43b60965a836958916a0b0c068dbf5013f2",
+    "postgres-resume.log": "7203f69875ab09ed0f423fed07335ea802f29dca6b69e2fd63612bd44ec9233f",
+    "postgres-correct-port.log": "82d0d0e3c7c0a4f368aeba85bec330d56d142f9f2e1f225415f04ed4a48e5e04"
+  },
+  "failedAttempt": "Initial browser and integration runs could not connect because the existing PostgreSQL instance was stopped after an interrupted prior session. The database recovered its WAL and was restarted on the original explicit loopback address/port before successful reruns. Failed runs and startup logs remain local.",
+  "limitations": [
+    "Existing Windows file-symlink privilege checks skipped",
+    "Historical opt-in performance/process campaigns not executed",
+    "Physical Android verification remains deferred"
+  ],
+  "publicationPolicy": "No absolute host paths, credentials, binary builds, databases, personal music/covers or raw attempts in this export."
+}

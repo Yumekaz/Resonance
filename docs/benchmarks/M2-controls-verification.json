@@ -1,0 +1,116 @@
+﻿{
+  "date": "2026-10-04T07:41:32.2199089+00:00",
+  "scope": "M2 control consistency: menus, volume/mute, prepared song actions, responsive player and motion",
+  "qualityTargetMet": false,
+  "environment": {
+    "catalogTracks": 9,
+    "browserWorkers": 1,
+    "browser": "Chrome via Playwright 1.55.1 and Codex in-app browser",
+    "go": "1.25.0",
+    "database": "PostgreSQL 17.11, separate real rooted fixture catalog",
+    "os": "Windows"
+  },
+  "browser": {
+    "startTime": "2026-10-04T07:35:48.326Z",
+    "duration": 190315.79200000002,
+    "expected": 93,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "focused": {
+    "startTime": "2026-10-04T07:35:25.604Z",
+    "duration": 20229.843,
+    "expected": 14,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontend": {
+    "fail": 0,
+    "pass": 11
+  },
+  "go": {
+    "unit": {
+      "pass": 126,
+      "skipped": ["TestReviewMediaSymlinkCannotEscape"],
+      "fail": 0
+    },
+    "integration": {
+      "pass": 270,
+      "skipped": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ],
+      "fail": 0
+    }
+  },
+  "commands": {
+    "static": [
+      "gofmt -l: no unformatted Go source",
+      "go vet ./...",
+      "prettier --check on changed frontend/tests/docs",
+      "git diff --check"
+    ],
+    "browser": "RESONANCE_M2_E2E=1 RESONANCE_M14_E2E=1 RESONANCE_M15_E2E=1 RESONANCE_M17_E2E=1 npx playwright test tests/e2e/library.spec.js tests/e2e/user-library.spec.js tests/e2e/m17-journey.spec.js tests/e2e/m2-product.spec.js tests/e2e/m2-pwa.spec.js tests/e2e/m2-accessibility.spec.js tests/e2e/m2-editorial.spec.js tests/e2e/m2-pagination.spec.js tests/e2e/m2-player-rail.spec.js tests/e2e/m2-quality-escalation.spec.js tests/e2e/m2-visual-polish.spec.js tests/e2e/m2-folders-artwork.spec.js tests/e2e/m2-playback-modes.spec.js tests/e2e/m2-library-transport.spec.js tests/e2e/m2-continuous-play.spec.js tests/e2e/m2-control-consistency.spec.js --workers=1 --reporter=json",
+    "frontend": "npm run test:frontend",
+    "integration": "go test -count=1 -p 1 -parallel 1 -timeout 10m -tags integration -json ./...",
+    "focused": "RESONANCE_M2_E2E=1 npx playwright test tests/e2e/m2-control-consistency.spec.js --workers=1 --reporter=json",
+    "unit": "go test -count=1 -json ./..."
+  },
+  "behaviors": [
+    "Mute preserves actual playing audio and restores previous positive gain",
+    "Both players reflect HTMLMediaElement volumechange and persist preferences without autoplay",
+    "Player gain remains explicitly separate from device master volume",
+    "Capability rejection hides an ineffective slider; fault injection is not physical device proof",
+    "Selected menu state, actual server sort order, Escape/Tab/arrows and immediate menu readiness",
+    "Saved selection favorite/album/playlist actions preserve queue token and create no listening history",
+    "Delayed metadata cannot overwrite newer identity, artwork or action targets",
+    "Favorite placement and transport-column fit at 320/390/430/768/844/1101/1440 widths",
+    "Artwork expansion cancels obsolete geometry on rotation while audio continues"
+  ],
+  "retainedFailures": [
+    "Focused attempts 1/2: test harness used incorrect API field, title selector and playlist response name; corrected against implementation, originals retained",
+    "Full attempt 2: immediate Escape raced menu animation-frame readiness; fixed with microtask initialization and repeated immediate-dismissal regression",
+    "Focused attempt 6 after pause: 14 connection-refused failures because PostgreSQL was stopped; no product verdict inferred, restored existing loopback runtime and reran",
+    "Two initial public player captures caught in-progress artwork motion; rejected, originals retained and settled captures reviewed"
+  ],
+  "limitations": [
+    "No portable bidirectional device master-volume API; HTML media gain is separate",
+    "Physical Android Chrome testing deferred by owner; hardware volume/touch/keyboard/TalkBack/install/background behavior not verified",
+    "No new load or frame-time benchmark; this record is not a performance claim",
+    "Existing Windows symlink privilege and opt-in process/benchmark skips remain explicit",
+    "Full M2 quality and inherited engineering gates remain open"
+  ],
+  "rawHashes": {
+    "focused-1.json": "c4e14cf50ed60a2cb2a039266a4892a50b10836e745a75b82a439c3aad2170ac",
+    "focused-2.json": "1451238c87c7b9ddb1b8de4e7257d7f9e9d14cc8ff4d563385eb109bd6386fb1",
+    "focused-3.json": "ba5e205f02dd5471e8235fdb4b6cd9aa1f58582212b8c0eb24bfc4035c1813c9",
+    "focused-4.json": "5352a0a16418c6aa5bcea1cb9b9358b5d3a16fa1033f0312429d63eb244d16c4",
+    "focused-5.json": "fd40316b1dae4b2a5b831c58b21b555653dc5f0616c56abfb9eaf889e17640fe",
+    "focused-6.json": "5daba5defa72e62313e1330180fa0c7a905e57e4a5a7b278869abcb579b571ca",
+    "focused-7.json": "21725d445e4172218c5e5be80994ecefa8775347c21910690b8416e450c4cc3e",
+    "frontend-final.txt": "1b43148b746d26e7014fd571a0d9e3712e47a9990201ae58292732f7e391c14d",
+    "frontend-resumed.txt": "91f3c752117ae9dcdadd8360feb5d5add4c1c25896ae533f21f534ffa90bba80",
+    "full-1.json": "f16f33bcccc8b0ecdc2ca852df6808cbc663c36fa54e068525c4f794950643bc",
+    "full-2.json": "63934f4aba526437f5a2bcada0bbf3cc8d0d30b98fb96e586493bdebecd4fa0f",
+    "full-3.json": "2fedaa08fb56f20b45d56805adf78850950d7d804d55d7de25258f7187699a1d",
+    "full-5.json": "0530b3c6a4c44b02c37a1a603855eae687fc1df9f5e3d8982766de979baff390",
+    "public-player-desktop-settled.jpg": "e6e9520c784fdefb42af889d8e83a5b920447ec4dbc96d1776ec27c9d046b781",
+    "public-player-desktop.jpg": "f45fc280798a08121d34d4954370e6ca443fbcd6fdd9b7b3ebe16745fa036607",
+    "public-player-phone-settled.jpg": "b515819adc9758139f037847788a4008c977d77919b7e4c8af95b1a8e28ab71d",
+    "public-player-phone.jpg": "909db5b72960be8fe4b1416435f93b8f22f82b274ad4fb2f38f7bab61b5b0c24",
+    "controls-oct4-integration.jsonl": "2f86ceed5ca0e480e1e2de5b398ad465be0ff4e0902bfb77923a2f47cad2927f",
+    "controls-oct4-summary.json": "977145d8cdbc67b2f80f041a3e87c8f3f1b40b71ee2d645978892ece1af98829",
+    "controls-oct4-unit.jsonl": "8188daeb60a742156b50d90319df6152cb34c88e3116c3b0fdad37cd3caf757c"
+  }
+}

@@ -13,3 +13,8 @@ missing-art sleeves, self-hosted fonts and icons. Real embedded covers take
 priority. [Exploration boards](quality-studies/README.md) are separate from
 actual product captures. Earlier duplicate studies and image masters remain
 local archives.
+
+[Control consistency review](control-consistency-review.md) documents the shared
+select menus, media-owned volume/mute, identity-adjacent favorite placement and
+prepared-track action state. Player gain is explicitly separate from device
+master volume. Narrow columns use icon-only transport before labels can clip.

@@ -42,9 +42,13 @@
         close(false);
         return;
       }
-      const width = Math.min(300, visibleWidth - 24);
+      const selectMenu = menu.classList.contains("select-menu");
+      const width = Math.min(
+        selectMenu ? Math.max(200, Math.min(300, bounds.width)) : 300,
+        visibleWidth - 24,
+      );
       menu.style.width = `${width}px`;
-      menu.style.left = `${Math.max(left + 12, Math.min(bounds.right - width, left + visibleWidth - width - 12))}px`;
+      menu.style.left = `${Math.max(left + 12, Math.min(selectMenu ? bounds.left : bounds.right - width, left + visibleWidth - width - 12))}px`;
       const below = top + height - bounds.bottom - 18;
       const above = bounds.top - top - 18;
       const useBelow = below >= menu.offsetHeight || below >= above;
@@ -72,19 +76,48 @@
         event.preventDefault();
         event.stopPropagation();
         close();
-      } else if (event.key === "Tab") close(false);
+      } else if (event.key === "Tab") close();
+      else if (
+        event.key.length === 1 &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
+      ) {
+        const match = buttons
+          .slice(index + 1)
+          .concat(buttons.slice(0, index + 1))
+          .find((button) =>
+            button.textContent
+              .trim()
+              .toLocaleLowerCase()
+              .startsWith(event.key.toLocaleLowerCase()),
+          );
+        if (match) {
+          event.preventDefault();
+          match.focus();
+        }
+      }
     });
-    requestAnimationFrame(() => {
+    let ready = false;
+    function prepare() {
       if (active?.menu !== menu) return;
+      ready = true;
       for (const button of menu.querySelectorAll("button"))
-        button.setAttribute("role", "menuitem");
+        if (!button.hasAttribute("role"))
+          button.setAttribute("role", "menuitem");
       position();
-      menu
-        .querySelector("button:not(:disabled)")
-        ?.focus({ preventScroll: true });
+      (
+        menu.querySelector('button[aria-checked="true"]:not(:disabled)') ||
+        menu.querySelector("button:not(:disabled)")
+      )?.focus({ preventScroll: true });
+    }
+    queueMicrotask(() => {
+      if (ready || active?.menu !== menu) return;
+      prepare();
     });
     return {
       content: menu,
+      ready: prepare,
       close: () => {
         if (active?.menu === menu) return close();
         return false;

@@ -112,3 +112,20 @@ passes with inherited skips. Late failure injection proves cycle order/report
 rollback; receipt replay and old-token rejection preserve authority. Current
 page-only Library context, cross-round audible-history semantics, audio DSP and
 physical Android limits remain explicit; M2 quality acceptance is not closed.
+
+## Control consistency corrections — 2026-10-04
+
+The [screenshot-led review](design/m2/control-consistency-review.md) fixes the
+owner-reported native dropdown, decorative speaker and misplaced favorite.
+Prepared songs now support favorite/album/playlist actions before playback;
+metadata fencing, menu readiness, transport fit and rotation motion are covered
+by new regressions. [Public captures](design/m2/control-consistency/README.md)
+use the separate fixture library, excluding owner music and artwork.
+
+[Verification](benchmarks/M2-controls-verification.json): 93/93 real browser
+cases, including 14 new control checks; 11/11 frontend-state checks; 126 Go unit
+and 270 PostgreSQL integration passes with existing skips. Failed attempts,
+including the stopped PostgreSQL prerequisite after a pause, remain recorded.
+Player gain is explicitly separate from device master volume: portable hardware
+volume synchronization is unavailable. Physical Android verification remains
+deferred by the owner, and this pass does not close the full M2 quality gates.

@@ -1,0 +1,82 @@
+{
+  "rejectedAttempts": [
+    {
+      "file": "player-desktop.jpg",
+      "original": "data/m2/control-review/public-player-desktop.jpg",
+      "format": "JPEG",
+      "width": 1425,
+      "height": 891,
+      "sha256": "f45fc280798a08121d34d4954370e6ca443fbcd6fdd9b7b3ebe16745fa036607",
+      "accepted": false,
+      "note": "Rejected after inspection: artwork transition was still in progress. Original retained locally; settled recapture required."
+    },
+    {
+      "file": "player-phone.jpg",
+      "original": "data/m2/control-review/public-player-phone.jpg",
+      "format": "JPEG",
+      "width": 375,
+      "height": 812,
+      "sha256": "909db5b72960be8fe4b1416435f93b8f22f82b274ad4fb2f38f7bab61b5b0c24",
+      "accepted": false,
+      "note": "Rejected after inspection: artwork transition was still in progress. Original retained locally; settled recapture required."
+    }
+  ],
+  "captures": [
+    {
+      "file": "player-desktop.jpg",
+      "original": "data/m2/control-review/public-player-desktop-settled.jpg",
+      "format": "JPEG",
+      "requestedViewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1425,
+      "height": 891,
+      "sha256": "e6e9520c784fdefb42af889d8e83a5b920447ec4dbc96d1776ec27c9d046b781",
+      "accepted": true,
+      "note": "Original IAB capture saved and viewed; fixture data only. Player captures verified with transition false and visible artwork."
+    },
+    {
+      "file": "player-phone.jpg",
+      "original": "data/m2/control-review/public-player-phone-settled.jpg",
+      "format": "JPEG",
+      "requestedViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 375,
+      "height": 812,
+      "sha256": "b515819adc9758139f037847788a4008c977d77919b7e4c8af95b1a8e28ab71d",
+      "accepted": true,
+      "note": "Original IAB capture saved and viewed; fixture data only. Player captures verified with transition false and visible artwork."
+    },
+    {
+      "file": "playlist-menu.jpg",
+      "original": "data/m2/control-review/public-playlist-menu.jpg",
+      "format": "JPEG",
+      "requestedViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 375,
+      "height": 812,
+      "sha256": "12d03f373f46ac73bca8cdc8b86d5e62ef2d7b1bd009b2f2a859c498b381ff1e",
+      "accepted": true,
+      "note": "Original IAB capture saved and viewed; fixture data only. Player captures verified with transition false and visible artwork."
+    },
+    {
+      "file": "sort-desktop.jpg",
+      "original": "data/m2/control-review/public-sort-desktop.jpg",
+      "format": "JPEG",
+      "requestedViewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1425,
+      "height": 891,
+      "sha256": "66422267ac67a4cf9178e7e1aedf7a9ac1610adace33ded3229c0eca75a79f9b",
+      "accepted": true,
+      "note": "Original IAB capture saved and viewed; fixture data only. Player captures verified with transition false and visible artwork."
+    }
+  ]
+}

@@ -124,3 +124,19 @@
   -webkit-mask-image: url("/assets/icons/repeat-once.svg");
   mask-image: url("/assets/icons/repeat-once.svg");
 }
+.icon-speaker-slash {
+  -webkit-mask-image: url("/assets/icons/speaker-slash.svg");
+  mask-image: url("/assets/icons/speaker-slash.svg");
+}
+.icon-speaker-low {
+  -webkit-mask-image: url("/assets/icons/speaker-low.svg");
+  mask-image: url("/assets/icons/speaker-low.svg");
+}
+.icon-caret-down {
+  -webkit-mask-image: url("/assets/icons/caret-down.svg");
+  mask-image: url("/assets/icons/caret-down.svg");
+}
+.icon-check {
+  -webkit-mask-image: url("/assets/icons/check.svg");
+  mask-image: url("/assets/icons/check.svg");
+}

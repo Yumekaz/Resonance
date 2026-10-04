@@ -29,12 +29,14 @@
     <script src="/favorites-state.js" defer></script>
     <script src="/listening-state.js" defer></script>
     <script src="/context-menu.js" defer></script>
+    <script src="/select-control.js" defer></script>
     <script src="/row-motion.js" defer></script>
     <script src="/listening-session.js" defer></script>
     <script src="/playlist-picker.js" defer></script>
     <script src="/playlist-destination.js" defer></script>
     <script src="/user-library.js" defer></script>
     <script src="/player.js" defer></script>
+    <script src="/player-volume.js" defer></script>
     <script src="/listening-summary.js" defer></script>
     <script src="/pwa.js" defer></script>
   </head>
@@ -316,17 +318,27 @@
         </div>
       </div>
       <div class="player-tools">
-        <label class="volume-label" aria-label="Volume"
-          ><span class="icon icon-speaker-high" aria-hidden="true"></span
-          ><span class="sr-only">Volume</span
-          ><input
+        <div class="volume-label">
+          <button
+            id="mute-player"
+            data-icon="speaker-high"
+            data-icon-only="true"
+            aria-label="Mute player"
+          >
+            Mute player
+          </button>
+          <input
             id="volume"
+            aria-label="Player volume"
+            title="Player volume · device volume is separate"
             type="range"
             min="0"
             max="1"
             step="0.01"
-            value="1" /></label
-        ><button
+            value="1"
+          />
+        </div>
+        <button
           id="open-queue"
           data-icon="queue"
           data-icon-only="true"
@@ -375,10 +387,24 @@
           </div>
           <div class="full-info">
             <p class="eyebrow">NOW PLAYING</p>
-            <h2 id="full-title">Choose a track</h2>
-            <div class="full-credit">
-              <p id="full-artist"></p>
-              <button id="full-album" class="text-button" hidden></button>
+            <div class="full-track-heading">
+              <div>
+                <h2 id="full-title">Choose a track</h2>
+                <div class="full-credit">
+                  <p id="full-artist"></p>
+                  <button id="full-album" class="text-button" hidden></button>
+                  <span id="full-album-text" hidden></span>
+                </div>
+              </div>
+              <button
+                id="full-favorite"
+                data-icon="heart"
+                data-icon-only="true"
+                aria-label="Favorite"
+                disabled
+              >
+                Favorite
+              </button>
             </div>
             <p id="listening-context" class="listening-context"></p>
             <p id="playback-state" role="status">Ready when you are.</p>
@@ -433,17 +459,32 @@
               </button>
             </div>
             <div class="full-actions">
-              <button
-                id="full-favorite"
-                data-icon="heart"
-                data-icon-only="true"
-                aria-label="Favorite"
-                disabled
-              >
-                Favorite</button
-              ><button id="full-playlist" data-icon="plus" disabled>
+              <button id="full-playlist" data-icon="plus" disabled>
                 Add to playlist</button
               ><button id="full-queue" data-icon="queue">View queue</button>
+            </div>
+            <div class="full-volume">
+              <button
+                id="full-mute"
+                data-icon="speaker-high"
+                data-icon-only="true"
+                aria-label="Mute player"
+              >
+                Mute player
+              </button>
+              <input
+                id="full-volume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+                aria-label="Player volume in Now Playing"
+                aria-describedby="volume-note"
+              />
+              <span id="volume-note" class="hint"
+                >Player volume · device volume is separate</span
+              >
             </div>
           </div>
         </div>

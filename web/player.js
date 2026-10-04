@@ -11,6 +11,9 @@
   });
   syncDialogPalette();
   let track = null;
+  let preparedTrack = null;
+  let favoritePending = false;
+  const displayTrack = () => track || preparedTrack;
   let transportPending = false;
   let queueStepPending = false;
   let lastQueueSnapshot = null;
@@ -201,9 +204,6 @@
         audio.currentTime =
           (audio.duration * Number(event.target.value)) / 1000;
     });
-  el("volume").addEventListener("input", (event) => {
-    audio.volume = Number(event.target.value);
-  });
   for (const name of [
     "timeupdate",
     "durationchange",
@@ -315,6 +315,8 @@
     { passive: true },
   );
   window.addEventListener("resonance:cancel-motion", cancelPlayerMotion);
+  window.addEventListener("resize", cancelPlayerMotion);
+  window.visualViewport?.addEventListener("resize", cancelPlayerMotion);
   window.addEventListener("resonance:track", cancelPlayerMotion);
   reduceMotion.addEventListener("change", () => {
     if (reduceMotion.matches) cancelPlayerMotion();
@@ -322,7 +324,7 @@
   el("open-player").addEventListener("click", () => {
     showPlayer(true);
     loadQueueRail();
-    if (track) window.resonanceUser.loadFavorites([track.id]).catch(() => {});
+    if (displayTrack()) loadTrackActions(displayTrack());
   });
   el("close-player").addEventListener("click", () => showPlayer(false));
   for (const id of ["open-queue", "full-queue"])
@@ -340,38 +342,76 @@
       window.resonanceUI.setArtwork(el("full-art"), null);
   });
   el("full-favorite").addEventListener("click", async () => {
+    const target = displayTrack();
+    if (!target || favoritePending) return;
+    favoritePending = true;
+    el("full-favorite").disabled = true;
+    el("full-favorite").setAttribute("aria-busy", "true");
     try {
-      const added = await window.resonanceUser.toggleFavorite(track);
-      window.resonanceUI.button(
-        el("full-favorite"),
-        added ? "heart-fill" : "heart",
-        added ? "Favorited" : "Favorite",
-        true,
-      );
-      el("full-favorite").setAttribute("aria-pressed", String(added));
+      await window.resonanceUser.toggleFavorite(target);
     } catch {
-      el("playback-state").textContent =
-        "Favorite could not be saved. Try again.";
+      if (displayTrack()?.id === target.id)
+        el("playback-state").textContent =
+          "Favorite could not be saved. Try again.";
+    } finally {
+      favoritePending = false;
+      el("full-favorite").removeAttribute("aria-busy");
+      renderTrackActions();
     }
   });
-  el("full-playlist").addEventListener("click", () =>
-    window.resonanceUser.choosePlaylist(track),
-  );
+  el("full-playlist").addEventListener("click", () => {
+    if (displayTrack()) window.resonanceUser.choosePlaylist(displayTrack());
+  });
   el("full-album").addEventListener("click", async () => {
-    if (!track?.album_id) return;
+    const target = displayTrack();
+    if (!target?.album_id) return;
     try {
-      const response = await fetch(`/api/v1/albums/${track.album_id}`, {
+      const response = await fetch(`/api/v1/albums/${target.album_id}`, {
         cache: "no-store",
       });
       if (!response.ok) throw Error();
+      const album = await response.json();
+      if (displayTrack()?.id !== target.id) return;
       dialog.close();
-      window.resonanceBrowse.openGroup("albums", await response.json());
+      window.resonanceBrowse.openGroup("albums", album);
     } catch {
-      el("playback-state").textContent = "Album is unavailable. Try again.";
+      if (displayTrack()?.id === target.id)
+        el("playback-state").textContent = "Album is unavailable. Try again.";
     }
   });
+  function renderTrackActions() {
+    const target = displayTrack();
+    const favorite = target && window.resonanceUser.isFavorite(target.id);
+    window.resonanceUI.button(
+      el("full-favorite"),
+      favorite ? "heart-fill" : "heart",
+      target
+        ? `${favorite ? "Remove favorite" : "Favorite"}: ${target.title || "Untitled track"}`
+        : "Favorite",
+      true,
+    );
+    el("full-favorite").setAttribute("aria-pressed", String(!!favorite));
+    el("full-favorite").disabled =
+      favoritePending ||
+      !target ||
+      !window.resonanceUser.favoriteStatus(target.id).known;
+    el("full-playlist").disabled = !target;
+    el("full-album").hidden = !target?.album_id;
+    el("full-album").textContent = target?.album_title || "View album";
+    el("full-album-text").hidden = !!target?.album_id || !target?.album_title;
+    el("full-album-text").textContent = target?.album_title || "";
+  }
+  function loadTrackActions(target) {
+    renderTrackActions();
+    window.resonanceUser.loadFavorites([target.id]).catch(() => {
+      if (displayTrack()?.id === target.id)
+        el("playback-state").textContent =
+          "Favorite status is unavailable. Reopen the player to retry.";
+    });
+  }
   window.addEventListener("resonance:track", (event) => {
     track = event.detail;
+    preparedTrack = null;
     preparedSelection = null;
     prepareGeneration++;
     el("full-title").textContent = track.title || "Untitled track";
@@ -381,26 +421,7 @@
       track.artwork_url,
       window.resonanceUI.artworkKey(track),
     );
-    el("full-album").hidden = !track.album_id;
-    el("full-album").textContent = track.album_title || "View album";
-    el("full-favorite").disabled = !window.resonanceUser.favoriteStatus(
-      track.id,
-    ).known;
-    const observedTrackID = track.id;
-    window.resonanceUser.loadFavorites([observedTrackID]).catch(() => {
-      if (track?.id === observedTrackID)
-        el("playback-state").textContent =
-          "Favorite status is unavailable. Reopen the player to retry.";
-    });
-    el("full-playlist").disabled = false;
-    const favorite = window.resonanceUser.isFavorite(track.id);
-    window.resonanceUI.button(
-      el("full-favorite"),
-      favorite ? "heart-fill" : "heart",
-      favorite ? "Favorited" : "Favorite",
-      true,
-    );
-    el("full-favorite").setAttribute("aria-pressed", String(favorite));
+    loadTrackActions(track);
     el("playback-state").textContent = "Loading…";
     refresh();
     if ("mediaSession" in navigator && "MediaMetadata" in window)
@@ -573,11 +594,7 @@
         if (!response.ok) throw Error("Artwork metadata unavailable");
         const detail = await response.json();
         entry.expires = performance.now() + 30000;
-        return {
-          id: item.track_id,
-          artwork_url: detail.artwork_url,
-          album_id: detail.album_id,
-        };
+        return { ...detail, id: item.track_id };
       })
       .catch((error) => {
         if (preparedArtwork === entry) preparedArtwork = null;
@@ -595,7 +612,26 @@
       snapshot.selection_state === "selected" && item?.available
         ? { itemID: item.id, token: snapshot.selection_token }
         : null;
+    const previousTrackID = preparedTrack?.id;
+    preparedTrack = preparedSelection
+      ? preparedTrack?.id === item.track_id
+        ? preparedTrack
+        : {
+            id: item.track_id,
+            title: item.title,
+            artist_credit: item.artist_credit,
+          }
+      : null;
+    if (previousTrackID !== preparedTrack?.id) {
+      const key = preparedTrack
+        ? window.resonanceUI.artworkKey(preparedTrack)
+        : "";
+      window.resonanceUI.setArtwork(el("cover"), null, key);
+      window.resonanceUI.setArtwork(el("full-art"), null, key);
+    }
+    renderTrackActions();
     if (preparedSelection) {
+      loadTrackActions(preparedTrack);
       el("now-title").textContent = item.title || "Untitled track";
       el("now-credit").textContent = item.artist_credit || "Unknown artist";
       el("full-title").textContent = item.title || "Untitled track";
@@ -605,6 +641,8 @@
       try {
         const detail = await readPreparedArtwork(item);
         if (generation === prepareGeneration && !track) {
+          preparedTrack = detail;
+          renderTrackActions();
           window.resonanceUI.setArtwork(
             el("cover"),
             detail.artwork_url,
@@ -642,19 +680,7 @@
     attributeFilter: ["hidden"],
   });
   window.addEventListener("resonance:favorite", (event) => {
-    if (track?.id === event.detail.id) {
-      el("full-favorite").disabled = false;
-      window.resonanceUI.button(
-        el("full-favorite"),
-        event.detail.present ? "heart-fill" : "heart",
-        event.detail.present ? "Favorited" : "Favorite",
-        true,
-      );
-      el("full-favorite").setAttribute(
-        "aria-pressed",
-        String(event.detail.present),
-      );
-    }
+    if (displayTrack()?.id === event.detail.id) renderTrackActions();
   });
   window.resonanceListening.subscribe(() => {
     refresh();

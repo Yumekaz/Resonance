@@ -119,6 +119,49 @@
   width: 17px;
   height: 17px;
 }
+.volume-label input {
+  width: 120px;
+}
+.volume-label button {
+  flex: none;
+  color: var(--muted);
+}
+.full-track-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 14px;
+  align-items: center;
+}
+.full-track-heading > div {
+  min-width: 0;
+}
+#full-favorite {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+#full-favorite[aria-pressed="true"] {
+  color: var(--accent);
+  background: var(--tint);
+}
+.full-volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.full-volume input {
+  width: 110px;
+  flex: 0 1 110px;
+}
+.full-volume .hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+  max-width: 160px;
+  line-height: 1.5;
+}
 .mini-player audio {
   display: none;
 }
@@ -218,6 +261,12 @@
   overflow-wrap: anywhere;
   max-width: 100%;
 }
+#full-album-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
 .full-info .timeline {
   margin-top: 8px;
 }
@@ -230,7 +279,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: clamp(6px, 1.2vw, 14px);
   margin-top: 24px;
 }
 .full-controls button {
@@ -268,10 +317,6 @@
 .full-actions .icon {
   width: 16px;
   height: 16px;
-}
-.full-actions #full-favorite {
-  padding: 10px;
-  width: 44px;
 }
 .full-queue-panel {
   padding-left: 24px;
@@ -447,8 +492,8 @@
     align-items: stretch;
   }
   .full-body > .full-artwork {
-    width: 100%;
-    max-width: 370px;
+    width: clamp(180px, 58vw, 270px);
+    max-width: 100%;
     align-self: center;
     border-radius: 4px;
   }
@@ -799,13 +844,14 @@
   transform-origin: top left;
   will-change: transform;
 }
-@media (min-width: 1101px) and (min-height: 551px) {
+@media (min-width: 1280px) and (min-height: 551px) {
   .full-controls .icon-only:not(.primary) {
     width: auto;
     border: 1px solid var(--line);
     padding: 9px 13px;
     border-radius: 6px;
     gap: 7px;
+    flex: none;
   }
   .full-controls .icon-only:not(.primary) .button-label {
     position: static;
@@ -813,10 +859,19 @@
     height: auto;
     clip: auto;
     font-size: 12px;
+    overflow: visible;
   }
   .full-controls .icon-only:not(.primary) .icon {
     width: 18px;
     height: 18px;
+  }
+}
+@media (min-width: 1101px) and (min-height: 551px) {
+  .full-controls {
+    gap: clamp(6px, 0.8vw, 12px);
+  }
+  .full-controls .primary {
+    flex: none;
   }
 }
 @media (max-width: 700px) {
@@ -988,7 +1043,7 @@
   }
   .full-actions {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
   .full-actions button {
@@ -1066,6 +1121,14 @@
   }
   .player-controls .mode-control {
     display: none;
+  }
+}
+@media (max-width: 360px) {
+  .full-controls {
+    gap: 5px;
+  }
+  .full-track-heading {
+    gap: 10px;
   }
 }
 .full-mode-controls {

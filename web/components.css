@@ -967,6 +967,46 @@ input[type="search"]::-webkit-search-cancel-button {
 .context-menu > button:focus-visible {
   background: var(--tint);
 }
+.select-trigger {
+  min-width: 0;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: var(--surface);
+  text-align: left;
+}
+.select-trigger > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.select-trigger .icon {
+  width: 16px;
+  height: 16px;
+}
+.select-trigger[aria-expanded="true"] {
+  border-color: var(--accent);
+}
+.select-menu > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.select-menu > button .icon {
+  width: 18px;
+  height: 18px;
+  visibility: hidden;
+}
+.select-menu > button[aria-checked="true"] {
+  color: var(--accent);
+  background: var(--tint);
+}
+.select-menu > button[aria-checked="true"] .icon {
+  visibility: visible;
+}
 .dialog-status {
   padding: 12px;
   font-size: 13px;

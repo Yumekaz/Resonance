@@ -34,7 +34,9 @@
       upcoming: items.slice(selectedIndex < 0 ? 0 : selectedIndex + 1),
       explanation:
         mode === "queue"
-          ? "Playing from your queue. Up Next continues automatically."
+          ? queue?.context
+            ? `Playing from ${queue.context.name}. Up Next continues through ${queue.context.total} ${queue.context.total === 1 ? "song" : "songs"}.`
+            : "Playing from your queue. Up Next continues automatically."
           : mode === "single"
             ? "Playing one song. Your saved queue stays ready to resume."
             : mode === "finished"
@@ -61,15 +63,22 @@
       previous: !!(
         enabled &&
         (state.previous.some((item) => item.available) ||
+          (queue?.context?.previous && itemsUnderCap(queue)) ||
           (state.followsQueue && position > 3) ||
-          (repeat === "all" && any))
+          (repeat === "all" &&
+            any &&
+            (!queue?.context || itemsUnderCap(queue))))
       ),
       next: !!(
         enabled &&
         (state.upcoming.some((item) => item.available) ||
+          queue?.context?.more ||
           (repeat === "all" && any))
       ),
     };
+  }
+  function itemsUnderCap(queue) {
+    return (queue?.items.length || 0) < 1000;
   }
   if (typeof module !== "undefined") module.exports = { project, controls };
   if (!root?.document) return;

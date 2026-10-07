@@ -687,11 +687,167 @@ img[data-pending="false"] {
   background: var(--tint);
 }
 .view-controls {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
   margin: 16px 0;
+}
+.collection-edit {
+  margin: 12px 0 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.playlist-view-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 16px 0 0;
+}
+.playlist-view-controls .search-field {
+  max-width: 520px;
+}
+.playlist-view-controls .view-controls {
+  margin: 0;
+  flex-wrap: wrap;
+}
+.playlist-view-controls .hint {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.playlist-heading > .view-controls {
+  margin: 0 0 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+}
+body[data-density="compact"] .track-row {
+  min-height: 48px;
+  padding-block: 4px;
+}
+body[data-density="compact"] .track-row .row-art {
+  width: 32px;
+  height: 32px;
+}
+body[data-density="compact"] .track-row .item-actions > button {
+  min-height: 44px;
+}
+.selection-toggle {
+  border-color: transparent;
+  color: var(--accent);
+}
+.selection-options,
+.selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.selection-options button {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.selection-check {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.selection-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+.track-row:has(.selection-check input:checked) {
+  background: var(--tint);
+  border-radius: var(--radius);
+}
+@media (max-width: 700px) {
+  .page-heading .selection-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    flex: none;
+  }
+  .page-heading .selection-toggle .button-label {
+    display: none;
+  }
+  .playlist-view-controls {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .playlist-heading > .view-controls {
+    flex-direction: row;
+    margin-left: 0;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    gap: 4px;
+  }
+  .playlist-heading {
+    position: relative;
+  }
+  .playlist-heading > .view-controls button {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+  .playlist-heading > .view-controls .button-label {
+    display: none;
+  }
+  .playlist-view-controls .view-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 12px;
+  }
+  .playlist-view-controls label[for="playlist-order-trigger"] {
+    grid-area: 1 / 1;
+  }
+  .playlist-view-controls label[for="playlist-density-trigger"] {
+    grid-area: 1 / 2;
+  }
+  #playlist-order-trigger {
+    grid-area: 2 / 1;
+  }
+  #playlist-density-trigger {
+    grid-area: 2 / 2;
+  }
+  .playlist-view-controls .select-trigger {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  main:has(#playlist-view-controls:not([hidden])) .lead {
+    display: none;
+  }
+  main:has(#playlist-view-controls:not([hidden])) .playlist-heading {
+    margin-bottom: 12px;
+  }
+  .collection-edit {
+    padding: 8px 12px;
+  }
+  .selection-actions button {
+    flex: 1 1 calc(50% - 8px);
+    font-size: 13px;
+  }
+  .track-row:has(.selection-check:not([hidden])) {
+    gap: 6px;
+  }
+  .track-row:has(.selection-check:not([hidden])) .row-art {
+    width: 34px;
+    height: 34px;
+  }
+  .track-row:has(.selection-check:not([hidden])) .item-title {
+    font-size: 13px;
+  }
 }
 .view-controls label {
   font-size: 13px;

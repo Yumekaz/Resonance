@@ -18,20 +18,22 @@ type QueueItem struct {
 	LastSkipCode *string `json:"last_skip_code"`
 }
 type QueueSnapshot struct {
-	Revision       int64       `json:"revision"`
-	CurrentItemID  *string     `json:"current_item_id"`
-	SelectionToken *string     `json:"selection_token"`
-	SelectionState string      `json:"selection_state"`
-	Items          []QueueItem `json:"items"`
+	Context        *QueueContext `json:"context,omitempty"`
+	Revision       int64         `json:"revision"`
+	CurrentItemID  *string       `json:"current_item_id"`
+	SelectionToken *string       `json:"selection_token"`
+	SelectionState string        `json:"selection_state"`
+	Items          []QueueItem   `json:"items"`
 }
 type QueueChange struct {
-	Revision       int64    `json:"revision"`
-	CurrentItemID  *string  `json:"current_item_id"`
-	SelectionToken *string  `json:"selection_token"`
-	SelectionState string   `json:"selection_state"`
-	ItemID         *string  `json:"item_id,omitempty"`
-	SkippedItemIDs []string `json:"skipped_item_ids,omitempty"`
-	SessionID      *string  `json:"session_id,omitempty"`
+	Context        *QueueContext `json:"context,omitempty"`
+	Revision       int64         `json:"revision"`
+	CurrentItemID  *string       `json:"current_item_id"`
+	SelectionToken *string       `json:"selection_token"`
+	SelectionState string        `json:"selection_state"`
+	ItemID         *string       `json:"item_id,omitempty"`
+	SkippedItemIDs []string      `json:"skipped_item_ids,omitempty"`
+	SessionID      *string       `json:"session_id,omitempty"`
 }
 
 type queueQueryer interface {
@@ -44,7 +46,7 @@ func readQueue(ctx context.Context, q queueQueryer) (QueueSnapshot, error) {
 	if err := q.QueryRow(ctx, "SELECT revision,current_item_id,selection_token::text,selection_state FROM active_queue WHERE singleton=true").Scan(&out.Revision, &out.CurrentItemID, &out.SelectionToken, &out.SelectionState); err != nil {
 		return out, err
 	}
-	rows, err := q.Query(ctx, `SELECT qi.id,qi.track_id,qi.position,t.title,t.artist_credit,qi.last_skip_code,EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=qi.track_id AND ml.availability='available' AND lr.enabled) FROM queue_items qi JOIN tracks t ON t.id=qi.track_id ORDER BY qi.position,qi.id`)
+	rows, err := q.Query(ctx, `SELECT qi.id,qi.track_id,qi.position,t.title,t.artist_credit,qi.last_skip_code,EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=qi.track_id AND ml.availability='available' AND lr.enabled) AND NOT EXISTS(SELECT 1 FROM queue_context_items ci JOIN queue_context_tracks cm ON cm.ordinal=ci.ordinal WHERE ci.queue_item_id=qi.id AND cm.failed) FROM queue_items qi JOIN tracks t ON t.id=qi.track_id ORDER BY qi.position,qi.id`)
 	if err != nil {
 		return out, err
 	}
@@ -57,7 +59,13 @@ func readQueue(ctx context.Context, q queueQueryer) (QueueSnapshot, error) {
 		}
 		out.Items = append(out.Items, item)
 	}
-	return out, rows.Err()
+	err = rows.Err()
+	rows.Close()
+	if err != nil {
+		return out, err
+	}
+	out.Context, err = readQueueContext(ctx, q, out.CurrentItemID)
+	return out, err
 }
 func (s *Store) ReadQueue(ctx context.Context) (QueueSnapshot, error) {
 	tx, err := s.pool.BeginTx(ctx, pgx.TxOptions{IsoLevel: pgx.RepeatableRead, AccessMode: pgx.ReadOnly})
@@ -81,7 +89,7 @@ func lockQueue(ctx context.Context, tx pgx.Tx) (QueueSnapshot, error) {
 	return q, err
 }
 func queueChange(q QueueSnapshot) QueueChange {
-	return QueueChange{Revision: q.Revision, CurrentItemID: q.CurrentItemID, SelectionToken: q.SelectionToken, SelectionState: q.SelectionState}
+	return QueueChange{Revision: q.Revision, CurrentItemID: q.CurrentItemID, SelectionToken: q.SelectionToken, SelectionState: q.SelectionState, Context: q.Context}
 }
 func currentIndex(items []QueueItem, id *string) int {
 	if id == nil {
@@ -208,6 +216,9 @@ func (s *Store) RemoveQueueItem(ctx context.Context, key string, req QueueRemove
 		if at < 0 {
 			return 0, nil, ErrUserNotFound
 		}
+		if err = excludeContextItems(ctx, tx, []string{req.ItemID}); err != nil {
+			return 0, nil, err
+		}
 		if _, err = tx.Exec(ctx, "DELETE FROM queue_items WHERE id=$1", req.ItemID); err != nil {
 			return 0, nil, err
 		}
@@ -230,6 +241,27 @@ func (s *Store) RemoveQueueItem(ctx context.Context, key string, req QueueRemove
 					q.SelectionToken = &token
 					q.SelectionState = "selected"
 					break
+				}
+			}
+			if q.CurrentItemID == nil && full.Context != nil {
+				if err = fillQueueContext(ctx, tx, min(contextWindow, 1000-len(full.Items)), -1, false); err != nil {
+					return 0, nil, err
+				}
+				refreshed, e := readQueue(ctx, tx)
+				if e != nil {
+					return 0, nil, e
+				}
+				for i := at; i < len(refreshed.Items); i++ {
+					if refreshed.Items[i].Available {
+						token, e := newUUID()
+						if e != nil {
+							return 0, nil, e
+						}
+						q.CurrentItemID = &refreshed.Items[i].ID
+						q.SelectionToken = &token
+						q.SelectionState = "selected"
+						break
+					}
 				}
 			}
 		}
@@ -309,6 +341,9 @@ func (s *Store) ClearQueue(ctx context.Context, key string, req QueueClearReques
 		}
 		if q.Revision != req.ExpectedVersion {
 			return 0, nil, ErrStaleVersion
+		}
+		if err = clearQueueContext(ctx, tx); err != nil {
+			return 0, nil, err
 		}
 		if _, err = tx.Exec(ctx, "UPDATE active_queue SET current_item_id=NULL,selection_token=NULL,selection_state='stopped' WHERE singleton=true"); err != nil {
 			return 0, nil, err
@@ -393,6 +428,11 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 				return 0, nil, err
 			}
 		}
+		full, err = prepareContextAdvance(ctx, tx, full, req)
+		if err != nil {
+			return 0, nil, err
+		}
+		at = currentIndex(full.Items, q.CurrentItemID)
 		skipped := []string{}
 		selected := -1
 		if req.Direction == "ended" && req.Repeat == "one" && full.Items[at].Available {
@@ -416,7 +456,7 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 		}
 		// Loop at most once. Unavailable items never create an endless repeat
 		// cycle, and a resolver-failed current item is not immediately retried.
-		if selected < 0 && req.Repeat == "all" {
+		if selected < 0 && req.Repeat == "all" && full.Context == nil {
 			if req.Reshuffle {
 				oldID, oldTrack := "", ""
 				if at >= 0 {
@@ -514,6 +554,7 @@ func (s *Store) AdvanceQueue(ctx context.Context, key string, req QueueAdvanceRe
 			return 0, nil, err
 		}
 		change := queueChange(q)
+		change.Context = full.Context
 		change.SkippedItemIDs = skipped
 		change.SessionID = req.SessionID
 		return 200, change, nil

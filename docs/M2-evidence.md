@@ -157,3 +157,48 @@ Tracks-screen photo. Record basic same-LAN Android use as confirmed. This does
 not establish installation/update, background/lock-screen, physical rotation,
 large-text, TalkBack, hardware-volume or the full inherited phone journey gates.
 Private host paths, music, phone photos and raw evidence remain local.
+
+## Whole collections, bulk editing and playlist views — 2026-10-07
+
+The owner requested whole-library continuation first, then atomic bulk queue/
+playlist organization, then in-playlist search/sort/density. The candidate now
+uses complete durable source references with a bounded rolling queue, including
+full-source shuffle/cycles and duplicate playlist occurrence selection. Play
+starts the chosen Library, artist/album, playlist or Favorites source; current
+selection authority and the persistent decoder stay protected. Explicit solo
+play and history replay remain separate.
+
+Accessible multi-select supports selected playback, Play next, group ordering,
+copy/move/save and removal. Unknown/stale/capacity/faulted transfers save neither
+side partially. Playlist search spans all entries; six view orders and two row
+densities preserve the saved sequence. The selection entry point moved into the
+header after real phone-size checks exposed player-dock obstruction.
+
+[Verification](benchmarks/M2-collections-verification.json) records 104 real
+Chrome checks across the existing and new collection campaigns, frontend checks,
+serial PostgreSQL checks, preserved failures, backup/restore and measurements.
+The 10,000-reference source-start/storage p95 is 1,144.084ms across 20 warm local
+samples, including a queue read; initially only 128 queue occurrences are loaded.
+This is projection work, not physical-device first-audio or LAN performance.
+[ADR-012](adr/ADR-012-m2-collection-playback-and-bulk-editing.md),
+[API contracts](api/M2-product.md) and [actual app captures](design/m2/collection-quality/README.md)
+describe the source and interaction boundaries.
+
+The two inherited Windows checks ran with Administrator permission on October 5:
+`TestReviewMediaSymlinkCannotEscape` and
+`TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable` both executed
+and passed without skips. Their raw hashes and explicit named results are in the
+verification file. The ordinary unprivileged suites retain their listed skips;
+the privileged result is not inferred from a package-level PASS.
+
+An actual version-8 owner backup restored into a fresh database with exact data/
+legacy-ledger equality. Its version-9 upgrade preserved 18 existing tables,
+excluding only the grouping projection's refreshed completion timestamp from
+the upgrade comparison. A late migration failure rolls back DDL and ledger;
+schema readiness rejects a missing new index.
+
+Automatic approval review rejected the live main-database migration/listener
+restart pending explicit authorization for that data/service change. Main data
+remains at version 8; the verified new application runs only in isolated previews.
+This pass does not close the full M2 quality target or the advanced Android,
+TalkBack, zoom, installation/update and locked-screen/background audio gates.

@@ -1,0 +1,256 @@
+{
+  "date": "2026-10-07",
+  "scope": "Whole-source listening, atomic bulk collection editing and playlist view controls",
+  "quality_target_met": false,
+  "main_database_version": 8,
+  "live_promotion": "Pending explicit approval after automatic review rejection; no main migration executed",
+  "go": {
+    "unit": {
+      "pass": 143,
+      "fail": 0,
+      "skip": 1,
+      "skipped_tests": [
+        "TestReviewMediaSymlinkCannotEscape"
+      ]
+    },
+    "integration": {
+      "pass": 307,
+      "fail": 0,
+      "skip": 11,
+      "skipped_tests": [
+        "TestM16BenchmarkIndexedRangeDuringUserLibraryWrite",
+        "TestM17ChangedMediaHTTPConcurrency",
+        "TestM17PlaylistSupportedCapBenchmark",
+        "TestM17NormalShutdownStreamPersistenceAndLostResponse",
+        "TestReviewMediaSymlinkCannotEscape",
+        "TestM16BenchmarkWatcherConvergence",
+        "TestM17ThirtyRealMediaWatcherChanges",
+        "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+        "TestM17MigrationCLIAtTenThousandTracks",
+        "TestM2QueueOrderBenchmark",
+        "TestM15BenchmarkEvidence"
+      ]
+    },
+    "format": true,
+    "vet": true
+  },
+  "frontend": {
+    "pass": 14,
+    "fail": 0
+  },
+  "browser_existing": {
+    "startTime": "2026-10-07T14:21:33.428Z",
+    "duration": 299708.434,
+    "expected": 97,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browser_collections": {
+    "startTime": "2026-10-07T14:43:00.666Z",
+    "duration": 26846.458,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "symlink_gates": [
+    {
+      "test": "TestReviewMediaSymlinkCannotEscape",
+      "action": "pass",
+      "date": "2026-10-05",
+      "administrator": true,
+      "skips": 0
+    },
+    {
+      "test": "TestWindowsKnownLocationReplacedBySymlinkIsDirectlyUnavailable",
+      "action": "pass",
+      "date": "2026-10-05",
+      "administrator": true,
+      "skips": 0
+    }
+  ],
+  "backup_restore": {
+    "upgrade_preserved_owned_rows": true,
+    "exact_restore_equal": true,
+    "legacy_ledger_equal": true,
+    "existing_tables": 18,
+    "before_version": 8,
+    "restored_version": 9,
+    "backup_sha256": "6079604549be6c99e3500a4025b430b197d9116b6424bb6c314e203931420097"
+  },
+  "performance": {
+    "cache": "warm local database; no ANALYZE forced; projection only",
+    "p50_ms": 1037.795,
+    "p95_ms": 1144.084,
+    "p99_ms": 1145.089,
+    "queue_rows": 128,
+    "samples_ms": [
+      1037.795,
+      1068.024,
+      1113.753,
+      1094.319,
+      1096.758,
+      1105.207,
+      1088.275,
+      1145.089,
+      1117.454,
+      1085.397,
+      1144.084,
+      813.112,
+      633.201,
+      579.929,
+      638.213,
+      603.551,
+      611.381,
+      598.653,
+      610.814,
+      576.723
+    ],
+    "tracks": 10000
+  },
+  "environment": {
+    "os": "Windows",
+    "architecture": "amd64",
+    "go": "1.25.0",
+    "postgresql": "17.11",
+    "database": "isolated loopback fixture schemas",
+    "media": "350 generated playable WAVs in browser fixture; 10000 logical references for storage benchmark"
+  },
+  "responsive_sizes": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      430,
+      932
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1440,
+      900
+    ]
+  ],
+  "coverage": [
+    "350-member complete source traversal and whole-source cycle",
+    "10000-reference bounded source/shuffle and fresh Store persistence",
+    "natural report/refill/receipt atomic rollback and replay",
+    "stale decoder selection rejection",
+    "all resolver failures terminate",
+    "playlist Unicode/filter/view-order and duplicate selection agreement",
+    "2000-occurrence copy and capacity rollback",
+    "actual Chrome audio page/window advancement",
+    "bulk audio/token preservation and duplicate copy/move",
+    "playlist all-page query, no-results, sorting without saved-order mutations",
+    "keyboard menu focus return and automated Axe"
+  ],
+  "limits": [
+    "Storage benchmark is local warm projection work, not first-audio/device/LAN evidence",
+    "New imports and source edits enter listening when Play starts the source again",
+    "Queue capacity remains 1000; playlist capacity 5000; ordinary rolling window initially128 with100 prior retained",
+    "History and explicit solo listening stay separate",
+    "Automated accessibility and emulated screens do not establish full TalkBack, physical text zoom, rotation, install/update or locked-screen/background audio acceptance",
+    "Two named symlink tests ran with Administrator; broad unprivileged suites retain their listed skips"
+  ],
+  "raw_attempt_hashes": {
+    "browser-bulk-attempt1.json": "be6ea82454d550c0d796cd813c982de015a4dc362bb3d30846e8e9ed0a522cf8",
+    "browser-regression-attempt1.json": "1325de5dc401ccab3fb37cc140f6b41f3a85da27f2ef4c840b612c2a7344b046",
+    "browser-regression-oct7-attempt1.json": "9208915b5b6d22de2b513ead331f0054759449957d98b4808e4e9ee74f9c426a",
+    "browser-regression-oct7-final.json": "e412279e9f9dacc4ef8ecc73e4b7faebf6f7372d15c792f52c0a78c05d14264b",
+    "browser-source-attempt1.json": "aa228c3e77e9368fcc60d4230d04ca2938c0ae34dc6f18a0cdf66413e8afe680",
+    "bulk-attempt1.log": "f774644b3e501090a115f72c52d9def9fa09cf18d749610e1ebc37be86a2b474",
+    "collection-browser-oct7-attempt1.json": "b4e959098841cc45a79c15d7a052a9f8bd75aeed6402c001c8fd64e0b2de2f8a",
+    "collection-browser-oct7-final.json": "6372f0061d33190acde25a143a29d504e49aeb95768d7f918298c6faf777443a",
+    "collection-browser-oct7-publish.json": "63b9cb05edb2e7fecc2946d3b7351abdbabaac013b969e69cd23c746ef65144e",
+    "frontend-phase5-final.txt": "5d2118ed5dea81484c3c0abdab80f332813459258ba56aff208ce10281060a7d",
+    "frontend-phase5.txt": "0f99774e4784f890879a62b2096d72bf9215278b41325eb3c8ace6b7837191da",
+    "migration-after.txt": "eae96db9004c7ccf7ba338374348e608eba71a0dba64da47d4a975edb8dd38dd",
+    "migration-before.txt": "eae96db9004c7ccf7ba338374348e608eba71a0dba64da47d4a975edb8dd38dd",
+    "migration-original-before.txt": "7886db989f2a9a277d2c52779946e25fae6acbfd8740b476162a63ec5a450867",
+    "migration-run-2.err.txt": "619430fa438e62f57e926a06be9b5e10c16f3c442f60281eb5cbcbf72a6e6617",
+    "migration-run-2.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "migration-run.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pg-resume-1791381462206.log": "4c3e45e5c5e93c4effa14d88e37da4af89a4f7faf44079170bb9f47ee2739c32",
+    "pg-resume.log": "d7f28d34cc1fa1ea14d8da88fe68c30bddcb1b9515a75e4879cc2e1930ded17a",
+    "phase5-browser-attempt1.json": "ebe0c2efe8cd99558a00ad1fbcf938b6d7fc032f2bab73b6c6425a2ab0f6a1d2",
+    "phase5-browser-attempt2.json": "59a92b9e865b89d1a2931d3da111814f3ad6ffccef4933c818a0300b8a6d6cb0",
+    "phase5-browser-attempt3.json": "55605c9c91b0b5115ec0984d62a775a9b96b2e01138f06743e0ed94bd0af6fc9",
+    "playable-root-id.txt": "1b4a564f41a8b6ab5b299fe130f567368bfea5e6cc894b6e49bcd111926499a9",
+    "playable-scan.json": "ed17e1280e9041bf4f6dd55f0774bb8d94bbb73c03adcfcce30c9a4a01d85e0d",
+    "playable-source-path.txt": "a76ae2fd685cb3a0c4ba8a282081eb566faf94ea4546417ee58a82c0a3a3ce65",
+    "prerequisite-notes.txt": "8a4be1387c25dfb5b427d2a06d416c193c04e2d90d53462e40468730b3f6c57b",
+    "regression-attempt1-fmt.txt": "a435fc7a94dcadec71c6cb35c101c62f17c67b658bb5a736b7384d4eb61e3a52",
+    "regression-attempt1-frontend.txt": "631ee05bb8081ec7f9ea0cf3944a4617cec486ed236af8de07f0ce0bcd5dce35",
+    "regression-attempt1-integration.jsonl": "c8775656cca91d2a26e122bf0371aca78d300a07c5e3f723bcbf7238d739bcde",
+    "regression-attempt1-summary.json": "8035f1f19c136eeef9991504c0cbf7b7e07de3f16747c6babfacf9ddd09b0840",
+    "regression-attempt1-unit.jsonl": "d4b5c413b58d0831ad44a8f36182d8ee001b91418de96b4c3b5e1f6245b32c68",
+    "regression-attempt1-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-attempt2-fmt.txt": "7d24baf644c8b05add9b48fe66942d74849455405ba901e2139c8cc803884e4b",
+    "regression-attempt2-frontend.txt": "e070c359913086eafadce90d141de126347a4a42d8c965d84d4e897ea94719b5",
+    "regression-attempt2-integration.jsonl": "89e018b42236059c2a92b75cb5b1063c1ad8e8e13640879646278331d1edc744",
+    "regression-attempt2-summary.json": "8035f1f19c136eeef9991504c0cbf7b7e07de3f16747c6babfacf9ddd09b0840",
+    "regression-attempt2-unit.jsonl": "b4806bf900b1a630370b82ad6116c53cfd3a4b9424339043a8a30fd8bb1798a1",
+    "regression-attempt2-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-attempt3-fmt.txt": "70c9ffd18d384e5f9a2bc0bf3edc14aeb8da89d95d9e9a1b73aabb82722beb7a",
+    "regression-attempt3-frontend.txt": "80be2cbe0b9ae8ae58590f47de1c0756d5046201bc114b7781ef2cda50b78063",
+    "regression-attempt3-integration.jsonl": "169c0ea6cb099a348463f09249a42c8c29dc4ec2498e3d968be5a7c2f7774fa0",
+    "regression-attempt3-summary.json": "f6a590b13ea8b74b5b3b15edf6ae3e8860955dc7975975805d05863dd4c6c57a",
+    "regression-attempt3-unit.jsonl": "d66413c6a6835e5c18ad5d2ce4ca7f2756c409ccb21a4e4bbdfde2c344f6d128",
+    "regression-attempt3-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-oct7-attempt1-fmt.txt": "8dccf02a841ab63a3e857de531cdf4ce79521a3a4a85c0c1d3f1d2d8c3921e90",
+    "regression-oct7-attempt1-frontend.txt": "7f7117c2033d0aee17eb1066b5af2f465b8855a35bba9966aca3ecfb244405a0",
+    "regression-oct7-attempt1-integration.jsonl": "aa3a56c0f13baf0b6f73f8ee133ce190d1b8f8a64f795abb6cb1cfb6ad291daf",
+    "regression-oct7-attempt1-summary.json": "f6a590b13ea8b74b5b3b15edf6ae3e8860955dc7975975805d05863dd4c6c57a",
+    "regression-oct7-attempt1-unit.jsonl": "f8c105bd92d6300f24ae414d7edb76226de8ad5d7d4612eeaf3d68e57e69f1ff",
+    "regression-oct7-attempt1-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-oct7-final-fmt.txt": "99d14b2705a7297c7d41f07f5c8ee794c4ecfd13b1c2521b682c3f9b14adf4cd",
+    "regression-oct7-final-frontend.txt": "dc975ee9eddf02488c6b970d683083830e4fc33f0c1bf2ee195a47f88db202fb",
+    "regression-oct7-final-integration.jsonl": "43c07c18dfae5ba41a7cf98b50d8a1f16669b4c67dbec0c45ea1cb645b0ddff6",
+    "regression-oct7-final-summary.json": "f6a590b13ea8b74b5b3b15edf6ae3e8860955dc7975975805d05863dd4c6c57a",
+    "regression-oct7-final-unit.jsonl": "e453246d86e72da26d2b61437ba85830d0edd49fca0ea8dff6a87e7d6dfd36f6",
+    "regression-oct7-final-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-oct7-publish-fmt.txt": "e3ae9e868fdbbb9b4a5715e70262890b33a6db5eaca0e395ab5fda72c7c73141",
+    "regression-oct7-publish-frontend.txt": "8a1b5e664b611c5547c0b90e5675a2a82926bb95cbff0a8f929dce98dc372ffd",
+    "regression-oct7-publish-integration.jsonl": "6450a1ae2d86f62eb477a1c22b72b775df08da56268a0b004e22112a865ad647",
+    "regression-oct7-publish-summary.json": "f6a590b13ea8b74b5b3b15edf6ae3e8860955dc7975975805d05863dd4c6c57a",
+    "regression-oct7-publish-unit.jsonl": "3fcd95653b87b5c3bab96ffaf63563ca91146a6719407c5a9780f6db2e2bb947",
+    "regression-oct7-publish-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "regression-oct7-release-fmt.txt": "3cc72c16142f2439a54c3fd32535e89192914028f463a1edf6b51c0a6d27bbb7",
+    "regression-oct7-release-frontend.txt": "e82c43c79ee9c67337807923fc7229dc213724132a3e46a03c52109150f45fb4",
+    "regression-oct7-release-integration.jsonl": "0891066b65c3f72e1dabc532eff5b60e1f232cbf7d4dbf12df7ae5fddc480cf7",
+    "regression-oct7-release-summary.json": "f6a590b13ea8b74b5b3b15edf6ae3e8860955dc7975975805d05863dd4c6c57a",
+    "regression-oct7-release-unit.jsonl": "17bf9546489fe516774b15f1e5d50541fc19a2496c8f1a387e4520084a67096f",
+    "regression-oct7-release-vet.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source-attempt1.log": "dd35f62b5d4e5e26ad8b8fef2408ef0ab2e0560e4f553ac09678f9247bd979f8",
+    "source-attempt2.log": "7f1cef63bc638018be88ffcbea6def92fa35c49c0b161ccf448840e1416c3a72",
+    "source-attempt3.log": "a85a0de839be64e31a1d0606204cf15a49fb5ffc1425f5a388972ce94f084162",
+    "source-attempt4.log": "ef6b4ae12a730968b1db6f85c61cc3ae442ed660dde55feddb4f189a9309f709",
+    "source-attempt5.log": "b888d64b29d2635bb201df5671a40e0ccf02c3d420e7952a9b7d0120c71f56b3",
+    "source-attempt6.log": "cb5a4bbb97b33b859b7f5ff6db4b4653bdf43c2861a6e50e65fa09f7b12fdc6b",
+    "source-benchmark-oct7-final.log": "e728f28f1d552b239ae86049e1a14adce7b0b04d0ab675b23746cc0a1108edb7",
+    "source-benchmark1.log": "ba09a2f45ee0f0bd1c04a2f145687a683472e4f3ff370beb50191775dfa99e6a",
+    "source-profile1.log": "6a85ae267fbf5261d9c5a573e0764ae2a55855986e049217afb5a16123ad1183",
+    "source-profile2.log": "ac86479c380cf99ad593ac766d4550d623d518d48c1f74c9b39175dba1c3bd5b",
+    "source-profile3.log": "e6cea13c18cb736d93542203244ad44e41d50887f640f260911dc87f31766b3b",
+    "symlink-admin-summary.json": "1c12f0fb0ad4d6c507c5ec43a9391c395b0eb2d5ce17cb2d1837a8b3c5c3590c",
+    "symlink-current-summary.json": "d6557bd981bb196cfc5351aa40a143787e89e7d0819e54f06e371a9c9035d04d",
+    "symlink-integration-admin.jsonl": "87178250ad67500f4b52604c8817dd4c7f5b52237cc85800fcd2e34074bc78d4",
+    "symlink-integration-current.jsonl": "64717330d3044c2fce032dda26c352e2a4640716bc9cee3394ffb2aac2920b65",
+    "symlink-unit-admin.jsonl": "245e984debde3680b73aab707ff1693218cf541c74585fc12877db728a0573d6",
+    "symlink-unit-current.jsonl": "946322f81de0696a7d9c352773c3e378c8303f90c3154aa9e6b4650f389ec265",
+    "visual-oct7-attempt1.txt": "635a3c691f45d10ad565f9ef7522173e86731356d182c2410579b94ab66b5417",
+    "visual-oct7-publish.txt": "635a3c691f45d10ad565f9ef7522173e86731356d182c2410579b94ab66b5417"
+  }
+}

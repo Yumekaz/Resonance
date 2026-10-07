@@ -1,0 +1,28 @@
+package storage
+
+import "context"
+
+func validateQueueContextContract(ctx context.Context, q queryer) error {
+	tables := `(to_regclass('queue_playback_context'),to_regclass('queue_context_tracks'),to_regclass('queue_context_items'))`
+	columns := []string{
+		"queue_playback_context|singleton|boolean|true|true", "queue_playback_context|id|uuid|true|", "queue_playback_context|source_kind|text|true|", "queue_playback_context|source_id|text|false|", "queue_playback_context|source_name|text|true|", "queue_playback_context|source_order|text|true|", "queue_playback_context|source_query|text|true|''::text", "queue_playback_context|shuffled|boolean|true|false", "queue_playback_context|next_rank|bigint|true|0", "queue_playback_context|exhausted|boolean|true|false", "queue_playback_context|total|bigint|true|", "queue_playback_context|round|bigint|true|0", "queue_playback_context|created_at|timestamp with time zone|true|now()",
+		"queue_context_tracks|singleton|boolean|true|true", "queue_context_tracks|ordinal|bigint|true|", "queue_context_tracks|track_id|text|true|", "queue_context_tracks|source_item_id|text|false|", "queue_context_tracks|play_rank|bigint|true|", "queue_context_tracks|seen|boolean|true|false", "queue_context_tracks|excluded|boolean|true|false", "queue_context_tracks|failed|boolean|true|false",
+		"queue_context_items|queue_item_id|text|true|", "queue_context_items|ordinal|bigint|true|", "queue_context_items|round|bigint|true|",
+	}
+	if err := matchContract(ctx, q, `SELECT c.relname||'|'||a.attname||'|'||format_type(a.atttypid,a.atttypmod)||'|'||a.attnotnull::text||'|'||coalesce(pg_get_expr(d.adbin,d.adrelid),'') FROM pg_attribute a JOIN pg_class c ON c.oid=a.attrelid LEFT JOIN pg_attrdef d ON d.adrelid=a.attrelid AND d.adnum=a.attnum WHERE c.oid IN `+tables+` AND c.relkind='r' AND a.attnum>0 AND NOT a.attisdropped`, columns); err != nil {
+		return err
+	}
+	constraints := []string{
+		"queue_playback_context|queue_playback_context_pkey|PRIMARY KEY (singleton)", "queue_playback_context|queue_playback_context_singleton_fkey|FOREIGN KEY (singleton) REFERENCES active_queue(singleton) ON DELETE CASCADE", "queue_playback_context|queue_playback_context_singleton_check|CHECK (singleton)",
+		"queue_playback_context|queue_playback_context_source_kind_check|CHECK ((source_kind = ANY (ARRAY['library'::text, 'artist'::text, 'album'::text, 'playlist'::text, 'favorites'::text, 'selection'::text])))",
+		"queue_playback_context|queue_playback_context_source_name_check|CHECK ((octet_length(source_name) <= 512))", "queue_playback_context|queue_playback_context_source_order_check|CHECK ((source_order = ANY (ARRAY['original'::text, 'title'::text, 'title_desc'::text, 'artist'::text, 'album'::text, 'recent'::text])))", "queue_playback_context|queue_playback_context_source_query_check|CHECK ((octet_length(source_query) <= 512))", "queue_playback_context|queue_playback_context_next_rank_check|CHECK ((next_rank >= 0))", "queue_playback_context|queue_playback_context_total_check|CHECK ((total >= 0))", "queue_playback_context|queue_playback_context_round_check|CHECK ((round >= 0))",
+		"queue_context_tracks|queue_context_tracks_pkey|PRIMARY KEY (ordinal)", "queue_context_tracks|queue_context_tracks_ordinal_check|CHECK ((ordinal >= 0))", "queue_context_tracks|queue_context_tracks_play_rank_check|CHECK ((play_rank >= 0))", "queue_context_tracks|queue_context_tracks_rank_key|UNIQUE (play_rank) DEFERRABLE INITIALLY DEFERRED", "queue_context_tracks|queue_context_tracks_singleton_check|CHECK (singleton)", "queue_context_tracks|queue_context_tracks_singleton_fkey|FOREIGN KEY (singleton) REFERENCES queue_playback_context(singleton) ON DELETE CASCADE", "queue_context_tracks|queue_context_tracks_track_id_fkey|FOREIGN KEY (track_id) REFERENCES tracks(id) ON DELETE RESTRICT",
+		"queue_context_items|queue_context_items_pkey|PRIMARY KEY (queue_item_id)", "queue_context_items|queue_context_items_queue_item_id_fkey|FOREIGN KEY (queue_item_id) REFERENCES queue_items(id) ON DELETE CASCADE", "queue_context_items|queue_context_items_ordinal_fkey|FOREIGN KEY (ordinal) REFERENCES queue_context_tracks(ordinal) ON DELETE CASCADE", "queue_context_items|queue_context_items_round_check|CHECK ((round >= 0))",
+	}
+	if err := matchContract(ctx, q, `SELECT c.relname||'|'||k.conname||'|'||pg_get_constraintdef(k.oid) FROM pg_constraint k JOIN pg_class c ON c.oid=k.conrelid LEFT JOIN pg_index i ON i.indexrelid=k.conindid WHERE c.oid IN `+tables+` AND k.convalidated AND (k.conindid=0 OR (i.indisvalid AND i.indisready))`, constraints); err != nil {
+		return err
+	}
+	return matchContract(ctx, q, `SELECT c.relname||'|'||x.relname||'|'||i.indisunique::text||'|'||i.indisprimary::text||'|'||(SELECT string_agg(pg_get_indexdef(i.indexrelid,k.n,true),',' ORDER BY k.n) FROM generate_series(1,i.indnkeyatts) k(n))||'|'||coalesce(pg_get_expr(i.indpred,i.indrelid),'') FROM pg_index i JOIN pg_class c ON c.oid=i.indrelid JOIN pg_class x ON x.oid=i.indexrelid JOIN pg_am am ON am.oid=x.relam WHERE c.oid IN `+tables+` AND i.indisvalid AND i.indisready AND i.indnatts=i.indnkeyatts AND am.amname='btree'`, []string{
+		"queue_playback_context|queue_playback_context_pkey|true|true|singleton|", "queue_context_tracks|queue_context_tracks_pkey|true|true|ordinal|", "queue_context_tracks|queue_context_tracks_rank_key|true|false|play_rank|", "queue_context_tracks|queue_context_tracks_track_idx|false|false|track_id|", "queue_context_tracks|queue_context_tracks_pending_idx|false|false|play_rank|((NOT seen) AND (NOT excluded) AND (NOT failed))", "queue_context_items|queue_context_items_pkey|true|true|queue_item_id|", "queue_context_items|queue_context_items_ordinal_idx|false|false|ordinal|",
+	})
+}

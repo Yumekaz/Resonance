@@ -19,7 +19,7 @@ import (
 // version. Migrate, including its grouping backfill, is the production path.
 func TestM17PopulatedHistoricalUpgradeMatrix(t *testing.T) {
 	for _, version := range []int{2, 4, 5, 6, 7} {
-		t.Run(fmt.Sprintf("v%d_to_v8", version), func(t *testing.T) {
+		t.Run(fmt.Sprintf("v%d_to_current", version), func(t *testing.T) {
 			s, _ := isolatedStore(t)
 			ctx := context.Background()
 			if err := s.migrateTo(ctx, version); err != nil {
@@ -65,7 +65,7 @@ func TestM17PopulatedHistoricalUpgradeMatrix(t *testing.T) {
 				t.Fatal("identity/raw data changed")
 			}
 			var ledger int
-			if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&ledger); err != nil || ledger != 8 {
+			if err := s.pool.QueryRow(ctx, "SELECT count(*) FROM schema_migrations").Scan(&ledger); err != nil || ledger != 9 {
 				t.Fatal("ledger mismatch", err)
 			}
 			if version >= 4 {
@@ -266,7 +266,7 @@ func TestM17MigrationCLIAtTenThousandTracks(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	if !success || s.Ready(ctx) != nil || versions != 8 || grouped != 10000 || digest() != before {
+	if !success || s.Ready(ctx) != nil || versions != 9 || grouped != 10000 || digest() != before {
 		t.Fatal("production migration CLI could not converge populated 10k upgrade after retry")
 	}
 }

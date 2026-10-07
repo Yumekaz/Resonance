@@ -93,6 +93,9 @@ func (s *Store) AddQueueCollection(ctx context.Context, key string, req QueueCol
 			return 0, nil, ErrUserNotFound
 		}
 		if req.Placement == "replace" {
+			if err = clearQueueContext(ctx, tx); err != nil {
+				return 0, nil, err
+			}
 			var playable bool
 			if err = tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=$1 AND ml.availability='available' AND lr.enabled)`, req.TrackIDs[req.StartIndex]).Scan(&playable); err != nil {
 				return 0, nil, err

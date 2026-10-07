@@ -144,8 +144,14 @@
       track.title || "Untitled track",
       () =>
         view === "tracks" && visibleTracks.some((item) => item.id === track.id)
-          ? window.resonanceUser.playContext([...visibleTracks], track.id)
-          : startTrack(track),
+          ? window.resonanceUser.playContext(
+              [...visibleTracks],
+              track.id,
+              playbackSource(),
+            )
+          : group
+            ? window.resonanceUser.playSource(playbackSource(), track.id)
+            : startTrack(track),
       "item-title",
     );
     button.disabled = !track.available;
@@ -804,7 +810,17 @@
         });
     load(true);
   }
+  function playbackSource() {
+    return group
+      ? {
+          kind: group.kind === "albums" ? "album" : "artist",
+          id: group.id,
+          order: group.kind === "albums" ? "original" : "title",
+        }
+      : { kind: "library", order: catalogOrder };
+  }
   async function queueCollection(path, play) {
+    if (play && group) return window.resonanceUser.playSource(playbackSource());
     status.textContent = "Preparing the music…";
     const tracks = [];
     let next = null;
@@ -1089,6 +1105,7 @@
   window.addEventListener("popstate", route);
   window.resonanceBrowse = {
     playTrack,
+    playbackSource,
     play: startTrack,
     openPlaylist,
     selectView,

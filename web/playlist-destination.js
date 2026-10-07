@@ -1,7 +1,11 @@
 // A bounded, searchable destination picker. No startup traversal of playlists.
-window.resonancePlaylistDestination = async (track) => {
+window.resonancePlaylistDestination = async (
+  track,
+  operation = null,
+  options = {},
+) => {
   const { close, content, current, dialog } =
-    window.resonanceUser.openActionDialog("Add to playlist");
+    window.resonanceUser.openActionDialog(options.title || "Add to playlist");
   const { node } = window.resonanceBrowse;
   content.append(
     node(
@@ -66,14 +70,17 @@ window.resonancePlaylistDestination = async (track) => {
         { signal: controller.signal },
       );
       if (!current() || observed !== generation) return;
-      for (const playlist of data.items)
+      const eligible = data.items.filter(
+        (playlist) => playlist.id !== options.excludePlaylistID,
+      );
+      for (const playlist of eligible)
         select.add(new Option(playlist.name, playlist.id));
       pageIndex = index;
       next = data.next_cursor;
       previous.hidden = index === 0;
       more.hidden = !next;
-      create.hidden = !!data.items.length;
-      feedback.textContent = data.items.length
+      create.hidden = !!eligible.length;
+      feedback.textContent = eligible.length
         ? "Choose a playlist, then Add track."
         : query
           ? "No matching playlists. Try another name."
@@ -107,7 +114,7 @@ window.resonancePlaylistDestination = async (track) => {
   create.addEventListener("click", () => {
     close();
     window.resonanceBrowse.selectView("playlists");
-    document.querySelector("#playlist-name").focus();
+    document.querySelector("#new-playlist").click();
   });
   add.addEventListener("click", async () => {
     if (add.disabled || !select.value) return;
@@ -118,11 +125,13 @@ window.resonancePlaylistDestination = async (track) => {
       const playlist = await window.resonanceAPI.read(
         `/api/v1/playlists/${destination}`,
       );
-      await window.resonanceAPI.write(
-        "POST",
-        `/api/v1/playlists/${playlist.id}/items`,
-        { track_id: track.id, expected_version: playlist.revision },
-      );
+      if (operation) await operation(playlist);
+      else
+        await window.resonanceAPI.write(
+          "POST",
+          `/api/v1/playlists/${playlist.id}/items`,
+          { track_id: track.id, expected_version: playlist.revision },
+        );
       if (current()) {
         close();
         document.querySelector("#status").textContent =

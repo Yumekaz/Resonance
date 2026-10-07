@@ -18,6 +18,56 @@
   let queueWrites = Promise.resolve(),
     playIntent = 0;
   let currentPlaylist = null;
+  let playlistQuery = "",
+    playlistQueryTimer = null,
+    playlistRenderGeneration = 0;
+  const playlistTools = document.getElementById("playlist-view-controls");
+  const playlistPrefs = window.resonancePlaylistView.get();
+  document.getElementById("playlist-order").value = playlistPrefs.order;
+  document.getElementById("playlist-density").value = playlistPrefs.density;
+  document.getElementById("playlist-order").dispatchEvent(new Event("change"));
+  document
+    .getElementById("playlist-density")
+    .dispatchEvent(new Event("change"));
+  document
+    .getElementById("playlist-search")
+    .addEventListener("submit", (event) => event.preventDefault());
+  document
+    .getElementById("playlist-query")
+    .addEventListener("input", (event) => {
+      playlistQuery = event.target.value;
+      playlistRenderGeneration++;
+      document.getElementById("playlist-query-clear").hidden = !playlistQuery;
+      occurrenceLimit = 100;
+      window.resonanceSelection.clear();
+      clearTimeout(playlistQueryTimer);
+      playlistQueryTimer = setTimeout(() => {
+        if (activeView === "playlists" && currentPlaylist)
+          renderPlaylistDetail(
+            typeof currentPlaylist === "object" ? currentPlaylist : null,
+          ).catch(userFailure);
+      }, 180);
+    });
+  document
+    .getElementById("playlist-query-clear")
+    .addEventListener("click", () => {
+      const input = document.getElementById("playlist-query");
+      input.value = "";
+      input.dispatchEvent(new Event("input"));
+      input.focus();
+    });
+  for (const id of ["playlist-order", "playlist-density"])
+    document.getElementById(id).addEventListener("change", (event) => {
+      window.resonancePlaylistView.set({
+        [id === "playlist-order" ? "order" : "density"]: event.target.value,
+      });
+      occurrenceLimit = 100;
+      if (activeView === "playlists" && currentPlaylist)
+        renderPlaylistDetail(
+          typeof currentPlaylist === "object" ? currentPlaylist : null,
+        ).catch(userFailure);
+    });
+
   let viewCursor = null;
   let favoriteLoadGeneration = 0;
   let userViewGeneration = 0;
@@ -61,7 +111,9 @@
         ? "Queue selection changed in another tab. Refresh the queue."
         : error?.code === "stale_version"
           ? "This list changed in another tab. Refresh and try again."
-          : "The change was not saved. Check the server and try again.";
+          : error?.code === "limit_exceeded"
+            ? "This collection is full. Remove some songs, then try again."
+            : "The change was not saved. Check the server and try again.";
     const dialog =
       document.querySelector(".context-menu") ||
       document.querySelector("#action-dialog");
@@ -126,6 +178,11 @@
   const { setPlayback, accrue, sendReport, retryPending } = listeningSession;
   async function refreshQueue() {
     queue = await userAPI("/api/v1/queue");
+    if (
+      queue.context &&
+      window.resonancePlaybackModes.get().shuffle !== queue.context.shuffled
+    )
+      window.resonancePlaybackModes.setShuffle(queue.context.shuffled);
     window.dispatchEvent(new CustomEvent("resonance:queue", { detail: queue }));
     return queue;
   }
@@ -136,10 +193,16 @@
     if (ids.length) await favorites.load(ids);
   }
   function setControls(mode) {
+    playlistTools.hidden = mode !== "playlists" || !currentPlaylist;
+
     queueControls.hidden = mode !== "queue" || !queue?.items.length;
     newPlaylist.hidden = mode !== "playlists" || !!currentPlaylist;
   }
   function onBrowseView(mode) {
+    window.resonanceSelection.hide();
+    playlistRenderGeneration++;
+    clearTimeout(playlistQueryTimer);
+    playlistTools.hidden = true;
     userViewAbort.abort();
     userViewAbort = new AbortController();
     userViewGeneration++;
@@ -159,6 +222,14 @@
     userPageIndex = 0;
     userPageCursors = [null];
     activeView = mode;
+    playlistRenderGeneration++;
+    clearTimeout(playlistQueryTimer);
+    playlistQuery = "";
+    document.getElementById("playlist-query").value = "";
+    document.getElementById("playlist-query-clear").hidden = true;
+    document.getElementById("detail-hero").hidden = true;
+    document.getElementById("detail-hero").replaceChildren();
+
     document.querySelector("#playlist-back").hidden = !playlistID;
     currentPlaylist = playlistID;
     viewCursor = null;
@@ -254,59 +325,46 @@
     userStatus.textContent = `${available.length} ${available.length === 1 ? "song" : "songs"} added to your queue${available.length < entries.length ? ` · ${entries.length - available.length} unavailable skipped` : ""}.`;
     if (activeView === "queue") await loadUserView(true);
   }
-  function playContext(entries, selectedID) {
+  function playSource(
+    source,
+    selectedID = "",
+    selectedItemID = "",
+    sourceVersion = null,
+  ) {
     const intent = ++playIntent;
+    const shuffled = window.resonancePlaybackModes.get().shuffle;
     const operation = queueWrites
       .catch(() => {})
       .then(async () => {
-        const modes = window.resonancePlaybackModes;
-        let tracks = entries.filter((track) => track.available);
-        const originalTracks = [...tracks];
-        let start = tracks.findIndex((track) => track.id === selectedID);
-        if (start < 0) throw { code: "track_unavailable" };
-        if (modes.get().shuffle) {
-          const selected = tracks[start];
-          tracks = [
-            selected,
-            ...modes.shuffled(tracks.filter((_, index) => index !== start)),
-          ];
-          start = 0;
-        }
         const q = await refreshQueue();
-        const change = await userWrite("POST", "/api/v1/queue/collection", {
-          track_ids: tracks.map((track) => track.id),
-          placement: "replace",
-          start_index: start,
+        const change = await userWrite("POST", "/api/v1/queue/context", {
+          source,
+          start_track_id: selectedID,
+          start_item_id: selectedItemID,
+          shuffle: shuffled,
           expected_version: q.revision,
+          ...(sourceVersion === null ? {} : { source_version: sourceVersion }),
         });
-        const updated = await refreshQueue();
-        if (
-          modes.get().shuffle &&
-          updated.current_item_id === change.current_item_id &&
-          updated.selection_token === change.selection_token
-        ) {
-          const occurrences = new Map();
-          for (const item of updated.items) {
-            if (!occurrences.has(item.track_id))
-              occurrences.set(item.track_id, []);
-            occurrences.get(item.track_id).push(item.id);
-          }
-          modes.setShuffle(
-            true,
-            originalTracks
-              .map((track) => occurrences.get(track.id)?.shift())
-              .filter(Boolean),
-          );
-        }
+        await refreshQueue();
         if (intent === playIntent)
           await selectedQueuePlayback({
             itemID: change.current_item_id,
             token: change.selection_token,
           });
-        userStatus.textContent = `Playing from this view · ${tracks.length} ${tracks.length === 1 ? "song" : "songs"} in Up Next.`;
+        userStatus.textContent = `${change.context.name} · ${change.context.total} songs. More music continues automatically.`;
       });
     queueWrites = operation;
     return operation;
+  }
+  function playContext(entries, selectedID, source = null) {
+    return playSource(
+      source || {
+        kind: "selection",
+        order: "original",
+        track_ids: entries.filter((t) => t.available).map((t) => t.id),
+      },
+      selectedID,
+    );
   }
   async function toggleFavorite(track) {
     return favorites.toggle(track.id);
@@ -657,6 +715,12 @@
   }
   async function renderQueue() {
     const q = await viewAPI("/api/v1/queue");
+    window.resonanceSelection.update({
+      kind: "queue",
+      revision: q.revision,
+      items: q.items,
+      changed: () => loadUserView(true),
+    });
     queue = q;
     window.dispatchEvent(new CustomEvent("resonance:queue", { detail: q }));
     userItems.replaceChildren();
@@ -696,6 +760,7 @@
       .entries()) {
       const index = localIndex + occurrenceLimit - 100;
       const row = occurrenceRow(item, index, () => selectQueueItem(q, item.id));
+      window.resonanceSelection.decorate(row, item, index);
       const state = window.resonanceListening.get();
       const section =
         index < state.selectedIndex
@@ -763,10 +828,13 @@
     }
     if (q.items.length > occurrenceLimit) userMore.hidden = false;
     userStatus.textContent = q.items.length
-      ? `${q.items.length} ${q.items.length === 1 ? "song" : "songs"} in your queue`
+      ? q.context
+        ? `From ${q.context.name} · ${q.context.total} ${q.context.total === 1 ? "song" : "songs"}${q.context.more ? " · more songs follow automatically" : ""}`
+        : `${q.items.length} ${q.items.length === 1 ? "song" : "songs"} in your queue`
       : "";
   }
   async function renderPlaylists(reset) {
+    window.resonanceSelection.hide();
     if (currentPlaylist) return renderPlaylistDetail();
     if (reset) {
       userPageIndex = 0;
@@ -827,12 +895,46 @@
     window.resonanceRows.settle(userItems, before, item.id);
     userStatus.textContent = `${item.title || "Song"} moved to position ${index + delta + 1}.`;
   }
-  async function renderPlaylistDetail() {
+  async function renderPlaylistDetail(cached = null) {
     const id =
       typeof currentPlaylist === "string"
         ? currentPlaylist
         : currentPlaylist.id;
-    const detail = await viewAPI(`/api/v1/playlists/${id}`);
+    const observed = ++playlistRenderGeneration;
+    const detail = cached || (await viewAPI(`/api/v1/playlists/${id}`));
+    if (
+      observed !== playlistRenderGeneration ||
+      activeView !== "playlists" ||
+      (typeof currentPlaylist === "string"
+        ? currentPlaylist
+        : currentPlaylist?.id) !== id
+    )
+      return;
+    const view = window.resonancePlaylistView.get();
+    const viewItems = window.resonancePlaylistView.project(
+      detail.items,
+      playlistQuery,
+      view.order,
+    );
+    const canReorder = view.order === "original" && !playlistQuery.trim();
+    const source = {
+      kind: "playlist",
+      id: detail.id,
+      order: view.order,
+      query: playlistQuery.trim(),
+    };
+    playlistTools.hidden = false;
+    document.getElementById("playlist-view-hint").textContent =
+      `${viewItems.length} of ${detail.items.length} songs${canReorder ? "" : " · Saved playlist order is unchanged. Return to Playlist order and clear search to reorder."}`;
+
+    window.resonanceSelection.update({
+      kind: "playlist",
+      id: detail.id,
+      revision: detail.revision,
+      items: viewItems,
+      reorder: canReorder,
+      changed: () => renderPlaylistDetail(),
+    });
     currentPlaylist = detail;
     userTitle.textContent = detail.name;
     document.querySelector("#collection-links").hidden = true;
@@ -841,7 +943,7 @@
     document.querySelector("#playlist-back").hidden = false;
     userItems.replaceChildren();
     userMore.hidden = true;
-    const controls = uiNode("li", "", "view-controls");
+    const controls = uiNode("div", "", "view-controls");
     userItems.className = "playlist-tracks";
     controls.append(
       uiAction("Rename", async () => {
@@ -868,8 +970,8 @@
               if (returnFocus) close();
               await renderPlaylistDetail();
               if (returnFocus)
-                userItems
-                  .querySelector(".view-controls button")
+                document
+                  .querySelector("#detail-hero .view-controls button")
                   ?.focus({ preventScroll: true });
             }
           }),
@@ -911,7 +1013,7 @@
         button.textContent === "Rename" ? "pencil-simple" : "trash",
         button.textContent,
       );
-    const hero = uiNode("li", "", "playlist-heading");
+    const hero = uiNode("section", "", "playlist-heading");
     const copy = uiNode("div", "", "summary-copy");
     copy.append(
       uiNode("p", "PLAYLIST", "eyebrow"),
@@ -923,20 +1025,20 @@
     );
     const toolbar = uiNode("div", "", "playlist-toolbar");
     const playPlaylist = uiAction("Play playlist", () =>
-      addCollection(detail.items, "now"),
+      playSource(source, "", "", detail.revision),
     );
     playPlaylist.classList.add("primary");
-    playPlaylist.disabled = !detail.items.some((item) => item.available);
+    playPlaylist.disabled = !viewItems.some((item) => item.available);
     toolbar.append(
       playPlaylist,
-      uiAction("Add to queue", () => addCollection(detail.items, "end")),
+      uiAction("Add to queue", () => addCollection(viewItems, "end")),
       uiAction("Add songs", () =>
         window.resonancePlaylistPicker(detail, async () => {
           if (activeView !== "playlists" || currentPlaylist?.id !== detail.id)
             return;
           await renderPlaylistDetail();
-          userItems
-            .querySelector(".playlist-toolbar button:last-child")
+          document
+            .querySelector("#detail-hero .playlist-toolbar button:last-child")
             ?.focus();
         }),
       ),
@@ -945,8 +1047,20 @@
     copy.append(toolbar);
     const mark = window.resonanceUI.collectionMark(detail.name, detail.id);
     mark.classList.add("playlist-detail-mark");
-    hero.append(mark, copy);
-    userItems.append(hero, controls);
+    hero.append(mark, copy, controls);
+    const sharedHero = document.getElementById("detail-hero");
+    sharedHero.className = "playlist-detail-hero";
+    sharedHero.hidden = false;
+    sharedHero.replaceChildren(hero);
+    if (detail.items.length && !viewItems.length) {
+      const empty = uiNode("li", "", "empty-state");
+      empty.append(
+        uiNode("h2", "No songs match this search."),
+        uiNode("p", "Try a title, artist or album, or clear the search."),
+      );
+      userItems.append(empty);
+    }
+
     if (!detail.items.length) {
       const empty = uiNode("li", "", "empty-state");
       empty.append(
@@ -960,14 +1074,17 @@
     }
     occurrenceLimit = Math.min(
       occurrenceLimit,
-      Math.max(100, Math.ceil(detail.items.length / 100) * 100),
+      Math.max(100, Math.ceil(viewItems.length / 100) * 100),
     );
     userPrevious.hidden = occurrenceLimit === 100;
-    for (const [localIndex, item] of detail.items
+    for (const [localIndex, item] of viewItems
       .slice(occurrenceLimit - 100, occurrenceLimit)
       .entries()) {
-      const index = localIndex + occurrenceLimit - 100;
-      const row = occurrenceRow(item, index);
+      const index = item.position;
+      const row = occurrenceRow(item, index, () =>
+        playSource(source, item.track_id, item.id, detail.revision),
+      );
+      window.resonanceSelection.decorate(row, item, index);
       const actions = [
         [
           "Play now",
@@ -986,14 +1103,14 @@
           },
         ],
       ];
-      if (index > 0)
+      if (canReorder && index > 0)
         actions.push(["Move up", () => reorderPlaylist(index, -1)]);
-      if (index < detail.items.length - 1)
+      if (canReorder && index < detail.items.length - 1)
         actions.push(["Move down", () => reorderPlaylist(index, 1)]);
       occurrenceMenu(row, item, actions);
       userItems.append(row);
     }
-    if (detail.items.length > occurrenceLimit) userMore.hidden = false;
+    if (viewItems.length > occurrenceLimit) userMore.hidden = false;
     userStatus.textContent = "";
   }
   async function renderFavorites(reset) {
@@ -1011,7 +1128,9 @@
       return;
     for (const item of page.items) {
       favorites.seed(item.track_id, true);
-      const row = occurrenceRow({ ...item, id: item.track_id }, 0);
+      const row = occurrenceRow({ ...item, id: item.track_id }, 0, () =>
+        playSource({ kind: "favorites", order: "original" }, item.track_id),
+      );
       row.querySelector(".track-number")?.remove();
       const remove = uiAction("Remove favorite", async () => {
         await favorites.save(item.track_id, false);
@@ -1202,6 +1321,7 @@
   }
   window.resonanceUser = {
     playContext,
+    playSource,
     async toggleShuffle() {
       const operation = queueWrites
         .catch(() => {})
@@ -1209,6 +1329,18 @@
           const q = await refreshQueue();
           const modes = window.resonancePlaybackModes;
           const state = modes.get();
+          if (q.context) {
+            await userWrite("POST", "/api/v1/queue/context/shuffle", {
+              shuffle: !q.context.shuffled,
+              expected_version: q.revision,
+            });
+            await refreshQueue();
+            userStatus.textContent = q.context.shuffled
+              ? "Shuffle off. Remaining collection songs follow their saved order."
+              : "Shuffle on across the collection.";
+            if (activeView === "queue") await loadUserView(true);
+            return;
+          }
           const ids = state.shuffle
             ? modes.restoredOrder(q, state.original)
             : modes.upcomingOrder(q);

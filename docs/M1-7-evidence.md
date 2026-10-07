@@ -1,5 +1,12 @@
 # M1.7 single-node closure evidence
 
+Later verification, 2026-10-05: the two privilege-blocked file-symlink checks
+identified below both executed with Administrator permission and passed without
+skips. See [named results and raw hashes](benchmarks/M2-collections-verification.json).
+This resolves that specific remaining G6/G8 requirement; the September campaign
+and its original skips remain preserved below. It does not establish the complete
+physical-phone G2 journey or change historical benchmark evidence.
+
 Evidence dated **2026-09-28 UTC**, extending into September 29 Asia/Calcutta. Candidate base: `47c31c5e55ff89edffaa55a037762ce85496f63b` (`m1.6-watcher-recovery`) plus the corrected uncommitted tree. **M1 is not complete. No commit or push was made.**
 
 The [public export index](benchmarks/m1-7-public/20260928T183200Z-closure/export-index.json) records original/export SHA-256 values and exclusions. Private raw attempts remain ignored and preserved without rewriting. The prior incomplete report is retained in `m17-prior-evidence-report`. Campaign paths below are relative to the public export.

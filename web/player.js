@@ -464,9 +464,15 @@
       window.resonancePlaybackModes.advanceOptions("next").repeat === "all" &&
       modes.repeat !== "one" &&
       atBoundary &&
+      !snapshot.context?.more &&
       availableTracks.size > 0;
     const shown = snapshot.items.slice(start, start + 20);
-    if (cycling && !modes.shuffle && snapshot.items.length > 1)
+    if (
+      cycling &&
+      !snapshot.context &&
+      !modes.shuffle &&
+      snapshot.items.length > 1
+    )
       shown.push(
         ...snapshot.items
           .filter((item) => item.available)
@@ -476,13 +482,21 @@
     el("full-queue-status").textContent = snapshot.items.length
       ? window.resonanceListening.get().changing
         ? "Changing song…"
-        : cycling && window.resonanceListening.get().followsQueue
-          ? availableTracks.size === 1
-            ? "This song repeats after it finishes."
-            : modes.shuffle
-              ? "A fresh shuffled round starts after this song."
-              : "The next round starts after this song."
-          : window.resonanceListening.get().explanation
+        : snapshot.context?.more &&
+            atBoundary &&
+            window.resonanceListening.get().followsQueue
+          ? `More songs from ${snapshot.context.name} follow automatically.`
+          : cycling && window.resonanceListening.get().followsQueue
+            ? snapshot.context
+              ? modes.shuffle
+                ? `A fresh shuffled round from ${snapshot.context.name} starts after this song.`
+                : `A new round from ${snapshot.context.name} starts after this song.`
+              : availableTracks.size === 1
+                ? "This song repeats after it finishes."
+                : modes.shuffle
+                  ? "A fresh shuffled round starts after this song."
+                  : "The next round starts after this song."
+            : window.resonanceListening.get().explanation
       : "Add a song to decide what plays next.";
     const signature = JSON.stringify([
       snapshot.revision,

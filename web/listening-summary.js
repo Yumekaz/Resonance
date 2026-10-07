@@ -4,14 +4,15 @@
   let lastSignature = "";
   function render(state) {
     const modes = window.resonancePlaybackModes.get();
+    const source = state.queue?.context?.name || "your queue";
     document.querySelector("#listening-context").textContent = state.changing
       ? "Changing song…"
       : state.mode === "queue"
         ? modes.repeat === "one"
-          ? "From your queue · repeating this song"
+          ? `From ${source} · repeating this song`
           : modes.continuous || modes.repeat === "all"
-            ? "From your queue · keeps playing"
-            : "From your queue · ends after the last song"
+            ? `From ${source} · keeps playing`
+            : `From ${source} · ends after the last song`
         : state.mode === "single"
           ? state.queue?.items.length
             ? "One song · your queue is saved"
@@ -26,6 +27,7 @@
       state.playback?.track?.id,
       state.selected?.id,
       state.queue?.selection_token,
+      state.queue?.context?.id,
       audio.paused,
       state.changing,
       modes.continuous,
@@ -53,7 +55,7 @@
         node(
           "p",
           state.mode === "queue"
-            ? "Playing from your queue."
+            ? `Playing from ${source}.`
             : state.explanation,
           "hint",
         ),

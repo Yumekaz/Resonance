@@ -16,7 +16,7 @@ async function clear(request) {
     ).ok(),
   ).toBe(true);
 }
-test("Library song click queues the visible context; Next and Previous continue playing", async ({
+test("Library song click starts its complete source; Next and Previous continue playing", async ({
   page,
   request,
 }) => {
@@ -32,12 +32,14 @@ test("Library song click queues the visible context; Next and Previous continue 
   await expect
     .poll(
       async () =>
-        (await (await request.get("/api/v1/queue")).json()).items.length,
+        (await (await request.get("/api/v1/queue")).json()).context?.total,
     )
     .toBe(tracks.length);
   let q = await (await request.get("/api/v1/queue")).json();
-  expect(q.items.map((i) => i.track_id)).toEqual(tracks.map((t) => t.id));
-  expect(q.current_item_id).toBe(q.items[index].id);
+  expect(q.items.map((i) => i.track_id)).toEqual(
+    tracks.slice(index).map((t) => t.id),
+  );
+  expect(q.current_item_id).toBe(q.items[0].id);
   await expect
     .poll(() =>
       page.locator("#audio").evaluate((a) => !a.paused && a.currentTime > 0.1),
@@ -122,6 +124,7 @@ test("shuffle Library playback keeps the chosen song and restores upcoming order
   const selected = q.items.find((i) => i.id === q.current_item_id);
   expect(selected.track_id).toBe(tracks.find((t) => t.title === "Guest A").id);
   expect(q.items).toHaveLength(tracks.length);
+  expect(q.context.total).toBe(tracks.length);
   const before = { id: q.current_item_id, token: q.selection_token };
   await page.locator("#player-shuffle").click();
   await expect(page.locator("#player-shuffle")).toHaveAttribute(

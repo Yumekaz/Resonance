@@ -55,6 +55,37 @@ const queue = {
   selection_token: "observed",
   selection_state: "selected",
 };
+test("a full rolling queue does not advertise source backfill it cannot fit", () => {
+  const q = {
+    ...queue,
+    current_item_id: "a",
+    items: Array.from({ length: 1000 }, (_, i) => ({
+      id: i === 0 ? "a" : String(i),
+      available: true,
+    })),
+    context: { previous: true, more: true },
+  };
+  assert.equal(
+    controls(
+      q,
+      { track: {}, selection: { itemID: "a", token: "observed" } },
+      null,
+      0,
+      "all",
+    ).previous,
+    false,
+  );
+  assert.equal(
+    controls(
+      q,
+      { track: {}, selection: { itemID: "a", token: "observed" } },
+      null,
+      0,
+      "all",
+    ).next,
+    true,
+  );
+});
 test("only the observed item and token couple live playback to Up Next", () => {
   assert.equal(
     project(queue, { track: {}, selection: { itemID: "b", token: "observed" } })

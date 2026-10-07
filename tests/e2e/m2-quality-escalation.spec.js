@@ -319,7 +319,7 @@ test("rapid catalog Play requests serialize and only the latest intent starts au
   const shown = (
     await (await request.get("/api/v1/tracks?limit=50")).json()
   ).items.filter((track) => track.available);
-  await page.route("**/api/v1/queue/collection", async (route) => {
+  await page.route("**/api/v1/queue/context", async (route) => {
     if (route.request().method() !== "POST") return route.continue();
     writes++;
     if (writes === 1) {
@@ -341,9 +341,11 @@ test("rapid catalog Play requests serialize and only the latest intent starts au
     .toBe(true);
   await expect(page.locator("#now-title")).toHaveText("long");
   const q = await (await request.get("/api/v1/queue")).json();
-  expect(q.items).toHaveLength(shown.length);
+  const start = shown.findIndex((track) => track.title === "long");
+  expect(q.context.total).toBe(shown.length);
+  expect(q.items).toHaveLength(shown.length - start);
   expect(q.items.map((item) => item.track_id)).toEqual(
-    shown.map((track) => track.id),
+    shown.slice(start).map((track) => track.id),
   );
   expect(q.items.find((i) => i.id === q.current_item_id).title).toBe("long");
   await page.locator("#play-toggle").click();
@@ -479,7 +481,10 @@ test("playlist song picker adds duplicate occurrences without losing the playlis
       async () =>
         (await (await request.get("/api/v1/queue")).json()).items.length,
     )
-    .toBe(before.items.length + 2);
+    .toBe(2);
+  expect(
+    (await (await request.get("/api/v1/queue")).json()).context.total,
+  ).toBe(2);
   await expect
     .poll(() =>
       page.locator("#audio").evaluate((a) => !a.paused && a.currentTime > 0.1),

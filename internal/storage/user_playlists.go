@@ -20,12 +20,14 @@ type Playlist struct {
 	UpdatedAt  time.Time `json:"updated_at"`
 }
 type PlaylistItem struct {
-	ID           string  `json:"id"`
-	TrackID      string  `json:"track_id"`
-	Position     int64   `json:"position"`
-	Title        *string `json:"title"`
-	ArtistCredit *string `json:"artist_credit"`
-	Available    bool    `json:"available"`
+	AlbumTitle   *string   `json:"album_title"`
+	AddedAt      time.Time `json:"added_at"`
+	ID           string    `json:"id"`
+	TrackID      string    `json:"track_id"`
+	Position     int64     `json:"position"`
+	Title        *string   `json:"title"`
+	ArtistCredit *string   `json:"artist_credit"`
+	Available    bool      `json:"available"`
 }
 type PlaylistDetail struct {
 	Playlist
@@ -76,7 +78,7 @@ func readPlaylist(ctx context.Context, q queueQueryer, id string) (PlaylistDetai
 	if err != nil {
 		return out, err
 	}
-	rows, err := q.Query(ctx, `SELECT pi.id,pi.track_id,pi.position,t.title,t.artist_credit,EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=pi.track_id AND ml.availability='available' AND lr.enabled) FROM playlist_items pi JOIN tracks t ON t.id=pi.track_id WHERE pi.playlist_id=$1 ORDER BY pi.position,pi.id`, id)
+	rows, err := q.Query(ctx, `SELECT pi.id,pi.track_id,pi.position,t.title,t.artist_credit,t.album_title,pi.created_at,EXISTS(SELECT 1 FROM media_objects mo JOIN media_locations ml ON ml.media_object_id=mo.id JOIN library_roots lr ON lr.id=ml.root_id WHERE mo.track_id=pi.track_id AND ml.availability='available' AND lr.enabled) FROM playlist_items pi JOIN tracks t ON t.id=pi.track_id WHERE pi.playlist_id=$1 ORDER BY pi.position,pi.id`, id)
 	if err != nil {
 		return out, err
 	}
@@ -84,7 +86,7 @@ func readPlaylist(ctx context.Context, q queueQueryer, id string) (PlaylistDetai
 	out.Items = []PlaylistItem{}
 	for rows.Next() {
 		var item PlaylistItem
-		if err := rows.Scan(&item.ID, &item.TrackID, &item.Position, &item.Title, &item.ArtistCredit, &item.Available); err != nil {
+		if err := rows.Scan(&item.ID, &item.TrackID, &item.Position, &item.Title, &item.ArtistCredit, &item.AlbumTitle, &item.AddedAt, &item.Available); err != nil {
 			return out, err
 		}
 		out.Items = append(out.Items, item)

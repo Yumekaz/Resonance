@@ -191,5 +191,60 @@ current visible cycle order; this is not a separate unbounded playback-history
 stack. With one musical identity, repetition is unavoidable and described as
 such. Queue-step status is presentation only: Changing song never grants an
 older decoder another selection token. Reload restores preferences without
-starting audio. Current Library row context remains its displayed page; full
-10k-library continuation is still a separate M2 gap.
+starting audio. The full-source behavior below supersedes the former displayed-page
+Library playback limit.
+
+## Whole-source listening and atomic collection editing (2026-10-07)
+
+`POST /api/v1/queue/context` accepts `source`, `expected_version`, optional
+`start_track_id`, `start_item_id`, `shuffle` and `source_version`. Source has a
+`kind` (library, artist, album, playlist, favorites or selection), scoped logical
+`id` where required, an `order` (original, title, title_desc, artist, album or
+recent), optional literal `query`, and `track_ids` only for a selection (1–5,000).
+Playlist playback requires the observed `source_version`; `start_item_id`
+identifies a specific duplicate playlist occurrence. Query is bounded to 120
+characters/512 UTF-8 bytes. All ordering expressions are fixed SQL; values stay
+parameterized. Public responses never include a host path.
+
+Starting a source atomically replaces the queue, snapshots its ordered playable
+Track references, selects the requested occurrence and issues fresh authority.
+Missing/stale/invalid input rolls back the replacement. The receipt replays the
+same selection rather than rebuilding a random order. Library, artist, album,
+playlist and Favorites Play use this route; explicit solo play and history replay
+remain separate. A source is a listening snapshot: imports or playlist/favorite
+edits enter the source when it is started again.
+
+Queue responses may include compact `context` metadata: id, kind, name, total,
+shuffled, more, previous and round. `total` is the initial playable source count;
+`more` means source references remain beyond the loaded queue. The initial window
+is 128 occurrences, refilled below 24 playable upcoming songs, with up to 100
+earlier occurrences retained. Explicit additions remain ahead of later refill.
+The existing 1,000-occurrence queue cap remains enforced; a full queue cannot
+backfill Previous and reports `limit_exceeded` without changing authority.
+
+Refill, finite end/repeat/Keep playing cycle, final natural-ended report, fresh
+selection and receipt commit in the same advancement transaction. Resolver-failed
+musical identities are excluded for this source so all-failed sources stop rather
+than retry indefinitely. Clearing/replacing a queue clears its source. Source
+shuffle reaches the full snapshot and avoids immediate repeat when an alternative
+exists. `POST /api/v1/queue/context/shuffle` takes `shuffle` and `expected_version`;
+it preserves the playing ID/token, history and explicit additions while rebuilding
+the upcoming source order. No recommendations or offline music are introduced.
+
+`POST /api/v1/collections/edit` accepts `source` (kind queue or playlist, logical
+playlist id), selected occurrence `item_ids`, `action` and `expected_version`.
+Actions are remove, next (queue), top (playlist), end, copy and move. Transfers
+also require `target`, `target_version` and queue `placement` (next or end);
+playlist placement is omitted. Up to 1,000 queue or 5,000 playlist occurrences may
+be selected. Existing destination capacities apply. IDs must be unique occurrences,
+not musical Track IDs; duplicate songs remain distinct. Queue locks precede
+lexically ordered playlist locks. Unknown IDs, stale revisions, capacity and
+late failures roll back both sides; the receipt makes retries safe. Reordering
+keeps the playing occurrence in place; removing it fences its former decoder.
+
+Playlist items include `album_title` and `added_at`. Search/sort/density are view
+preferences, not playlist mutations. Search checks title, artist and album across
+all entries before the bounded 100-row presentation. View-sorted/filtered
+reordering is disabled until the listener returns to saved order. Playback captures
+the chosen view order/query and preserves duplicate occurrence selection. Density
+is stored locally; unavailable entries remain visible for organization.

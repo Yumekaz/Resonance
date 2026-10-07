@@ -34,6 +34,8 @@
     <script src="/listening-session.js" defer></script>
     <script src="/playlist-picker.js" defer></script>
     <script src="/playlist-destination.js" defer></script>
+    <script src="/collection-selection.js" defer></script>
+    <script src="/playlist-view.js" defer></script>
     <script src="/user-library.js" defer></script>
     <script src="/player.js" defer></script>
     <script src="/player-volume.js" defer></script>
@@ -149,6 +151,14 @@
           New playlist
         </button>
         <button
+          id="select-songs"
+          class="selection-toggle"
+          aria-pressed="false"
+          hidden
+        >
+          Select songs
+        </button>
+        <button
           id="refresh-view"
           data-icon="arrows-clockwise"
           data-icon-only="true"
@@ -217,6 +227,53 @@
       </div>
       <div id="detail-hero" hidden></div>
       <section
+        id="playlist-view-controls"
+        class="playlist-view-controls"
+        aria-label="Playlist view"
+        hidden
+      >
+        <form id="playlist-search" role="search">
+          <label for="playlist-query" class="sr-only"
+            >Search this playlist</label
+          >
+          <div class="search-field">
+            <span class="icon icon-magnifying-glass" aria-hidden="true"></span
+            ><input
+              id="playlist-query"
+              type="search"
+              maxlength="120"
+              placeholder="Search this playlist"
+              autocomplete="off"
+            /><button
+              id="playlist-query-clear"
+              type="button"
+              data-icon="x"
+              data-icon-only="true"
+              aria-label="Clear playlist search"
+              hidden
+            >
+              Clear playlist search
+            </button>
+          </div>
+        </form>
+        <div class="view-controls">
+          <label for="playlist-order">Sort</label
+          ><select id="playlist-order" aria-label="Sort playlist view">
+            <option value="original">Playlist order</option>
+            <option value="title">Title A–Z</option>
+            <option value="title_desc">Title Z–A</option>
+            <option value="artist">Artist</option>
+            <option value="album">Album</option>
+            <option value="recent">Recently added</option></select
+          ><label for="playlist-density">Rows</label
+          ><select id="playlist-density" aria-label="Row density">
+            <option value="comfortable">Comfortable</option>
+            <option value="compact">Compact</option>
+          </select>
+        </div>
+        <p id="playlist-view-hint" class="hint" role="status"></p>
+      </section>
+      <section
         id="listening-summary"
         aria-label="Listening and queue"
         hidden
@@ -250,6 +307,32 @@
         >
       </div>
       <p id="status" role="status" aria-live="polite">Loading your library…</p>
+      <section
+        id="collection-edit"
+        class="collection-edit"
+        aria-label="Collection selection"
+        hidden
+      >
+        <div id="selection-tools" hidden>
+          <span id="selection-count" role="status">0 selected</span>
+          <div class="selection-options">
+            <button id="select-page">Select shown</button
+            ><button id="select-matches">Select all in this view</button
+            ><button id="clear-selection">Clear selection</button>
+          </div>
+          <div class="selection-actions">
+            <button id="selected-play">Play selected</button
+            ><button id="selected-next">Play next</button
+            ><button id="selected-top">Move to top</button
+            ><button id="selected-end">Move to end</button
+            ><button id="selected-queue-next">Play next</button
+            ><button id="selected-queue-end">Add to queue</button
+            ><button id="selected-save">Add to playlist</button
+            ><button id="selected-move-save">Move to playlist</button
+            ><button id="selected-remove">Remove selected</button>
+          </div>
+        </div>
+      </section>
       <div id="home-content"></div>
       <ul id="items" aria-label="Catalog entries"></ul>
       <div class="view-controls">

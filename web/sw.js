@@ -19,6 +19,8 @@ const SHELL = [
   "/listening-session.js",
   "/playlist-picker.js",
   "/playlist-destination.js",
+  "/collection-selection.js",
+  "/playlist-view.js",
   "/user-library.js",
   "/player.js",
   "/listening-summary.js",

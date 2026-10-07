@@ -66,6 +66,70 @@ func mutationKey(r *http.Request) (string, error) {
 	}
 	return values[0], nil
 }
+
+func (a *app) queueContextStart(w http.ResponseWriter, r *http.Request) {
+	if !a.catalogReady(w, r) {
+		return
+	}
+	key, err := mutationKey(r)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	var req storage.ContextStartRequest
+	if err = decodeUserJSON(r, &req, true); err != nil {
+		userError(w, err)
+		return
+	}
+	result, err := a.store.StartQueueContext(r.Context(), key, req)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	sendMutation(w, result)
+}
+func (a *app) collectionEdit(w http.ResponseWriter, r *http.Request) {
+	if !a.catalogReady(w, r) {
+		return
+	}
+	key, err := mutationKey(r)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	var req storage.BulkCollectionRequest
+	if err = decodeUserJSON(r, &req, true); err != nil {
+		userError(w, err)
+		return
+	}
+	result, err := a.store.EditCollection(r.Context(), key, req)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	sendMutation(w, result)
+}
+func (a *app) queueContextShuffle(w http.ResponseWriter, r *http.Request) {
+	if !a.catalogReady(w, r) {
+		return
+	}
+	key, err := mutationKey(r)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	var req storage.ContextShuffleRequest
+	if err = decodeUserJSON(r, &req, true); err != nil {
+		userError(w, err)
+		return
+	}
+	result, err := a.store.ShuffleQueueContext(r.Context(), key, req)
+	if err != nil {
+		userError(w, err)
+		return
+	}
+	sendMutation(w, result)
+}
 func sendMutation(w http.ResponseWriter, result storage.MutationResult) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	if result.Replayed {

@@ -4,7 +4,7 @@ The owner confirms successful different-folder, complete Android workflow and
 background/recovery tests. Mark these **PASS — owner-reported**. Accessibility
 and device performance verification/refinement are **ON HOLD — owner-deferred**,
 retained explicitly in the [last strict review](design/m2/quality-review.md).
-M2 may be committed and pushed under the owner's renewed authorization. This is
+M2 was committed and pushed under the owner's renewed authorization. This is
 functional release acceptance with declared exceptions, not a fresh all-category
 9/10 score or proof that the deferred checks passed. M3 has not started.
 
@@ -221,3 +221,13 @@ became ready. Read-only verification checked the real 10-song catalog/UI and all
 covers, host paths and that private main-library capture are not published.
 This pass does not close the full M2 quality target or the advanced Android,
 TalkBack, zoom, installation/update and locked-screen/background audio gates.
+
+## Parked after release — 2026-10-07
+
+The owner requested idle disk cleanup before returning for M3. A fresh current
+backup restored exactly, compact evidence was verified, and only checked
+workspace-local rebuildable/archived files were removed. The offline recovery
+kit subsequently restored the library and passed readiness/read/Range checks.
+Both app and PostgreSQL are now stopped; no M3 implementation was started.
+See [park/resume instructions](runbooks/M2-park-and-resume.md) and
+[aggregate storage/recovery verification](benchmarks/M2-park-verification.json).

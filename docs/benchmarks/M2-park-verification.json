@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-07",
+  "bytes_before": 7703383453,
+  "bytes_after": 559394732,
+  "bytes_removed": 7143988721,
+  "size_metric": "logical file bytes, not a physical disk allocation measurement",
+  "backup_restore_verified": true,
+  "offline_resume_verified": true,
+  "runtime_parked": true,
+  "enrolled_media_preserved": true,
+  "retained": [
+    "Tracked source/assets/tests/docs and Git history",
+    "Private compact database/configuration/evidence/offline-runtime bundle",
+    "Existing enrolled media, including the registered repository-local root"
+  ],
+  "removed": [
+    "Compiler/module and Node development caches",
+    "Generated benchmark corpora and disposable database clusters",
+    "Duplicate preview executables",
+    "Downloaded pgAdmin/tool development files",
+    "Archived untracked raw attempts and obsolete image masters"
+  ],
+  "backup": {
+    "persistent_tables": 22,
+    "sequences": 1,
+    "dump_bytes": 979444,
+    "dump_sha256": "946a9b5b893cb7f768f354e5e02b91d99e1eaf3187daab527fa5cc583c82f178",
+    "exact_restore_equal": true,
+    "schema_version": 9
+  },
+  "offline_resume": {
+    "host_ready": true,
+    "range_checks": 10,
+    "recovered_without_removed_caches": true,
+    "catalog_page_tracks": 10,
+    "ready": true,
+    "playlists": 9,
+    "queue_items": 10
+  },
+  "quality": {
+    "different_folder": "owner_confirmed_pass",
+    "android_workflows": "owner_confirmed_pass",
+    "background_recovery": "owner_confirmed_pass",
+    "accessibility": "owner_deferred",
+    "device_performance": "owner_deferred",
+    "historical_scores_not_inflated": true,
+    "m3_started": false
+  }
+}

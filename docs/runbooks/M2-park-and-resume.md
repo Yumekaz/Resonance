@@ -51,3 +51,16 @@ The private manifest records the exact backup/configuration and cleanup results
 for this machine. Restore instructions and hashes should remain available even
 when caches and temporary tools have been removed. The deferred quality work is
 still unverified; release acceptance does not turn it into a passing score.
+
+## Executed parking verification — 2026-10-07
+
+The workspace decreased from approximately 7.174 GiB to 533.5 MiB, reclaiming
+6.653 GiB in logical file size. The main backup compared exactly across 22
+persistent tables and one sequence, then restored successfully using only the
+compact retained runtime after the original caches/database cluster were removed.
+Readiness, Host, catalog/queue/playlist reads and indexed Range checks passed.
+The temporary recovery instance was stopped and its verification cluster removed;
+the project is idle, with no app/database process left running. Music and all
+registered root contents were retained. [Machine-readable results](../benchmarks/M2-park-verification.json)
+contain aggregate evidence only; private dumps, credentials and raw archives are
+excluded from Git. Figures measure logical files, not physical disk allocation.

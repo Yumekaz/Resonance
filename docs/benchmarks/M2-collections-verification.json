@@ -275,5 +275,17 @@
     "symlink-unit-current.jsonl": "946322f81de0696a7d9c352773c3e378c8303f90c3154aa9e6b4650f389ec265",
     "visual-oct7-attempt1.txt": "635a3c691f45d10ad565f9ef7522173e86731356d182c2410579b94ab66b5417",
     "visual-oct7-publish.txt": "635a3c691f45d10ad565f9ef7522173e86731356d182c2410579b94ab66b5417"
+  },
+  "owner_acceptance": {
+    "date": "2026-10-07",
+    "evidence_type": "direct owner report; no new agent-observed device traces",
+    "different_folder": "pass",
+    "android_workflows": "pass",
+    "background_recovery": "pass",
+    "accessibility": "on_hold_owner_deferred",
+    "device_performance": "on_hold_owner_deferred",
+    "functional_release_accepted": true,
+    "fresh_all_category_quality_audit": false,
+    "m3_started": false
   }
 }

@@ -1,6 +1,36 @@
 # Resonance M2 quality escalation — strict review
 
-**Current strict review — implementation and desktop verification complete;
+## Owner closure decision — 2026-10-07
+
+M2 is closed for the owner-approved functional scope and may be published. The
+owner reports successful different-folder testing, complete Android workflow
+testing, and background/recovery testing. These are **owner-reported passes**,
+not newly agent-observed traces or a fresh numerical design audit.
+
+| Acceptance item | Current disposition | Evidence |
+| --- | --- | --- |
+| Different-folder enrollment, discovery and playback | PASS — owner-confirmed | Direct owner confirmation on 2026-10-07 |
+| Android listener workflows | PASS — owner-confirmed | Owner states complete Android testing is done |
+| Background and recovery workflows | PASS — owner-confirmed | Owner states background/recovery testing is done |
+| Two inherited Windows file-symlink cases | PASS — executed | Administrator run, 2026-10-05; named results in collection verification |
+| Full accessibility verification | **ON HOLD — owner-deferred** | TalkBack, real text scaling/zoom and complete assistive journeys remain unverified |
+| Device performance profiling and stress-tail refinement | **ON HOLD — owner-deferred** | Actual device/compositor and cold Wi-Fi evidence remain incomplete; recorded stress outliers remain |
+
+The two on-hold items are retained for a later strict quality review, with no
+claim that they passed. They do not block this owner-authorized M2 release.
+The 2026-10-03 score table below is historical and is not automatically increased
+by test completion or owner acceptance: the all-category 9/10 target has **not**
+been freshly audited or established. Do not publish an invented 10/10 rating.
+
+PWA shell/lifecycle boundaries remain verified as documented. Owner-reported
+background/recovery passes do not establish every installation/update pathway.
+LAN HTTP capability limits remain an accepted platform boundary; HTTPS/security
+work stays in M3. No insecure-origin overrides or certificate bypasses are added.
+M3 is **not started**; the project will be parked until the owner resumes it.
+
+## Historical strict review — 2026-10-03
+
+**Historical strict review — implementation and desktop verification complete;
 quality acceptance remains open.** The empty-queue and phone queue-density
 findings were fixed and reinspected. No 9 is inferred from a passing test count.
 

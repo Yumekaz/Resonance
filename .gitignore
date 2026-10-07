@@ -1,5 +1,6 @@
 # Generated local media and build output
 data/
+.resonance-local/
 docs/benchmarks/m1-7-attempts/**/corpus/
 # Raw M1.7 attempt logs can contain host-local paths; keep them local-only until sanitized exports exist.
 docs/benchmarks/m1-7-attempts/**

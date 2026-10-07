@@ -1,4 +1,20 @@
-# M2 candidate evidence — 2026-10-03
+# M2 evidence — owner-approved functional closure, 2026-10-07
+
+The owner confirms successful different-folder, complete Android workflow and
+background/recovery tests. Mark these **PASS — owner-reported**. Accessibility
+and device performance verification/refinement are **ON HOLD — owner-deferred**,
+retained explicitly in the [last strict review](design/m2/quality-review.md).
+M2 may be committed and pushed under the owner's renewed authorization. This is
+functional release acceptance with declared exceptions, not a fresh all-category
+9/10 score or proof that the deferred checks passed. M3 has not started.
+
+Implementation and automated verification: 105 Chrome, 143 unit, 307 PostgreSQL
+and 14 frontend-state passes; original suite skips remain documented. Both named
+Windows symlink checks separately executed and passed without skips. Version-9
+activation preserved existing owned data and the migration ledger. Detailed
+results follow and in the [collection verification](benchmarks/M2-collections-verification.json).
+
+## Historical candidate evidence — 2026-10-03
 
 This publishes the product candidate and verified corrections. It does **not**
 close M2 or claim every category reaches 9/10. The [strict review](design/m2/quality-review.md)

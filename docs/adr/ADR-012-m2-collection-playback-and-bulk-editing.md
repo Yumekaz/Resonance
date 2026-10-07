@@ -60,8 +60,9 @@ records real PostgreSQL and Chrome checks, complete 350-reference traversal,
 10,000-reference bounded startup/shuffle, exact playlist view/source order,
 2,000-occurrence copying, failure rollback/replay and populated v8→v9 upgrade.
 An actual owner backup was restored and upgraded in an isolated database.
-Main-library promotion requires separate approval after an automatic approval
-review rejection and has not run. Only the existing grouping completion timestamp is
+After an initial automatic approval rejection, the owner explicitly approved
+main-library promotion. It preserved source/user rows and the legacy ledger,
+passed readiness and read-only real-catalog/Range checks. Only the existing grouping completion timestamp is
 excluded from before/after upgrade comparison; source and user-owned fields and
 the previous migration ledger are compared exactly. Raw failed attempts remain
 private and unchanged. [Real app captures](../design/m2/collection-quality/README.md)

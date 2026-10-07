@@ -174,7 +174,7 @@ side partially. Playlist search spans all entries; six view orders and two row
 densities preserve the saved sequence. The selection entry point moved into the
 header after real phone-size checks exposed player-dock obstruction.
 
-[Verification](benchmarks/M2-collections-verification.json) records 104 real
+[Verification](benchmarks/M2-collections-verification.json) records 105 real
 Chrome checks across the existing and new collection campaigns, frontend checks,
 serial PostgreSQL checks, preserved failures, backup/restore and measurements.
 The 10,000-reference source-start/storage p95 is 1,144.084ms across 20 warm local
@@ -197,8 +197,11 @@ excluding only the grouping projection's refreshed completion timestamp from
 the upgrade comparison. A late migration failure rolls back DDL and ledger;
 schema readiness rejects a missing new index.
 
-Automatic approval review rejected the live main-database migration/listener
-restart pending explicit authorization for that data/service change. Main data
-remains at version 8; the verified new application runs only in isolated previews.
+Automatic approval review initially rejected the live migration/restart. The
+owner then explicitly approved it. The main library was upgraded to version 9,
+with existing source/user rows and the legacy ledger preserved, and both listeners
+became ready. Read-only verification checked the real 10-song catalog/UI and all
+10 indexed Range responses without changing the owner's queue. Personal music,
+covers, host paths and that private main-library capture are not published.
 This pass does not close the full M2 quality target or the advanced Android,
 TalkBack, zoom, installation/update and locked-screen/background audio gates.

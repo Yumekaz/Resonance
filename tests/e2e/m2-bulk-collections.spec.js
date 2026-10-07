@@ -18,7 +18,10 @@ async function playlist(request, name) {
 async function choose(page, name) {
   await page.getByRole("button", { name: /^Choose playlist:/ }).click();
   await page.getByRole("menuitemradio", { name, exact: true }).click();
-  await page.getByRole("button", { name: "Add track", exact: true }).click();
+  await page
+    .locator("#action-dialog")
+    .getByRole("button", { name: /^(Add songs|Move songs)$/ })
+    .click();
   await expect(page.locator("#action-dialog")).toBeHidden();
 }
 test("queue multi-select preserves playing audio and current token through group move/removal", async ({
@@ -120,6 +123,71 @@ test("playlist groups copy and move duplicate occurrences through one destinatio
     copied = await (await request.get(`/api/v1/playlists/${target.id}`)).json();
     expect(original.items.length).toBe(1);
     expect(copied.items.length).toBe(4);
+  } finally {
+    for (const p of [source, target]) {
+      const current = await (
+        await request.get(`/api/v1/playlists/${p.id}`)
+      ).json();
+      await request.delete(`/api/v1/playlists/${p.id}`, {
+        data: { expected_version: current.revision },
+      });
+    }
+  }
+});
+test("full destination gives a useful recovery message and saves neither side partially", async ({
+  page,
+  request,
+}) => {
+  test.setTimeout(60000);
+  const track = (await (await request.get("/api/v1/tracks?limit=50")).json())
+    .items[0];
+  const name = "Full destination " + crypto.randomUUID().slice(0, 8),
+    sourceName = "Capacity source " + crypto.randomUUID().slice(0, 8);
+  const target = await playlist(request, name),
+    source = await playlist(request, sourceName);
+  try {
+    const initial = await (await request.get("/api/v1/queue")).json();
+    await write(request, "/api/v1/queue/collection", {
+      track_ids: Array(1000).fill(track.id),
+      placement: "replace",
+      expected_version: initial.revision,
+    });
+    const q = await (await request.get("/api/v1/queue")).json();
+    for (let n = 0; n < 5; n++)
+      await write(request, "/api/v1/collections/edit", {
+        source: { kind: "queue" },
+        item_ids: q.items.map((item) => item.id),
+        action: "copy",
+        expected_version: q.revision,
+        target: { kind: "playlist", id: target.id },
+        target_version: n,
+      });
+    await write(request, `/api/v1/playlists/${source.id}/items`, {
+      track_id: track.id,
+      expected_version: 0,
+    });
+    await page.goto("/#playlists");
+    await page.getByRole("button", { name: sourceName, exact: true }).click();
+    await page.locator("#select-songs").click();
+    await page.locator("#items .selection-check input").check();
+    await page.locator("#selected-move-save").click();
+    await page.getByRole("button", { name: /^Choose playlist:/ }).click();
+    await page.getByRole("menuitemradio", { name, exact: true }).click();
+    await page
+      .locator("#action-dialog")
+      .getByRole("button", { name: "Move songs", exact: true })
+      .click();
+    await expect(page.locator("#action-dialog")).toContainText(
+      "This playlist is full. Choose another playlist.",
+    );
+    expect(
+      (await (await request.get(`/api/v1/playlists/${target.id}`)).json()).items
+        .length,
+    ).toBe(5000);
+    expect(
+      (await (await request.get(`/api/v1/playlists/${source.id}`)).json()).items
+        .length,
+    ).toBe(1);
   } finally {
     for (const p of [source, target]) {
       const current = await (

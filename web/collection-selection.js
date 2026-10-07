@@ -237,6 +237,8 @@
       {
         excludePlaylistID: state.kind === "playlist" ? state.id : null,
         title: move ? "Move selected songs to playlist" : "Add to playlist",
+        confirmLabel: move ? "Move songs" : "Add songs",
+        successVerb: move ? "Moved" : "Added",
       },
     );
   }

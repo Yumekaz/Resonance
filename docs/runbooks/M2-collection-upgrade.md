@@ -21,8 +21,10 @@ Before updating a working server:
 
 The executed M2 campaign restored the owner's v8 backup in isolation, compared
 18 existing tables and the v1–v8 ledger, and verified the v9 contract. Its main
-promotion remains pending explicit authorization after automatic review rejected
-the live change. See [verification](../benchmarks/M2-collections-verification.json).
+promotion was initially blocked by automatic review, then explicitly approved by
+the owner and executed with data/ledger equality and readiness checks. Read-only
+main-library UI/Range verification preserved the queue. See
+[verification](../benchmarks/M2-collections-verification.json).
 
 Migration 0009 is forward-only. To return to the prior application, use the
 retained backup in a separate restored v8 database with the prior executable;

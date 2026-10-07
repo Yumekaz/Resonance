@@ -2,8 +2,8 @@
   "date": "2026-10-07",
   "scope": "Whole-source listening, atomic bulk collection editing and playlist view controls",
   "quality_target_met": false,
-  "main_database_version": 8,
-  "live_promotion": "Pending explicit approval after automatic review rejection; no main migration executed",
+  "main_database_version": 9,
+  "live_promotion": "Initially blocked by automatic review; explicitly approved by the owner, then executed and verified",
   "go": {
     "unit": {
       "pass": 143,
@@ -47,9 +47,9 @@
     "flaky": 0
   },
   "browser_collections": {
-    "startTime": "2026-10-07T14:43:00.666Z",
-    "duration": 26846.458,
-    "expected": 7,
+    "startTime": "2026-10-07T15:30:01.769Z",
+    "duration": 28922.588,
+    "expected": 8,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
@@ -107,7 +107,25 @@
       610.814,
       576.723
     ],
-    "tracks": 10000
+    "tracks": 10000,
+    "command": "RESONANCE_SOURCE_PROFILE=1 RESONANCE_SOURCE_BENCHMARK=1 go test -count=1 -tags integration -run 'TestM2TenThousandSourceSnapshotAndShuffleRemainBounded|TestM2CollectionUpgradePreservesPopulatedV8AndRejectsSchemaDrift' -v ./internal/storage",
+    "concurrency": 1,
+    "configuration": "Default local PostgreSQL test cluster; no forced ANALYZE/cache reset; optional query timing enabled; no concurrent test campaign"
+  },
+  "main_activation": {
+    "owner_version": 9,
+    "host_ready": true,
+    "legacy_ledger_equal": true,
+    "source_and_owned_rows_equal": true,
+    "listener_ready": true
+  },
+  "main_readonly_check": {
+    "available_tracks": 10,
+    "catalog_tracks": 10,
+    "range_samples": 10,
+    "all_range_checks_passed": true,
+    "ui_catalog_count_matches": true,
+    "owned_queue_unchanged": true
   },
   "environment": {
     "os": "Windows",
@@ -174,15 +192,19 @@
     "collection-browser-oct7-attempt1.json": "b4e959098841cc45a79c15d7a052a9f8bd75aeed6402c001c8fd64e0b2de2f8a",
     "collection-browser-oct7-final.json": "6372f0061d33190acde25a143a29d504e49aeb95768d7f918298c6faf777443a",
     "collection-browser-oct7-publish.json": "63b9cb05edb2e7fecc2946d3b7351abdbabaac013b969e69cd23c746ef65144e",
+    "collection-browser-oct7-transfer-final.json": "32061799f8c7fcd55251212584753fd7b1ead57877b7011bbac8494adeeeff2d",
     "frontend-phase5-final.txt": "5d2118ed5dea81484c3c0abdab80f332813459258ba56aff208ce10281060a7d",
     "frontend-phase5.txt": "0f99774e4784f890879a62b2096d72bf9215278b41325eb3c8ace6b7837191da",
-    "migration-after.txt": "eae96db9004c7ccf7ba338374348e608eba71a0dba64da47d4a975edb8dd38dd",
-    "migration-before.txt": "eae96db9004c7ccf7ba338374348e608eba71a0dba64da47d4a975edb8dd38dd",
+    "frontend-transfer-final.txt": "907f259fa43c47002a80809cb81054ac151f409b823de3317ab1b5a6bb4fe6a7",
+    "migration-after.txt": "4c009d9992242bb40b245f060de0bc38c9662a137e99eadec7f1ea4f4bac66f4",
+    "migration-before.txt": "4c009d9992242bb40b245f060de0bc38c9662a137e99eadec7f1ea4f4bac66f4",
     "migration-original-before.txt": "7886db989f2a9a277d2c52779946e25fae6acbfd8740b476162a63ec5a450867",
-    "migration-run-2.err.txt": "619430fa438e62f57e926a06be9b5e10c16f3c442f60281eb5cbcbf72a6e6617",
+    "migration-run-2.err.txt": "f8f6f6ae34d3a1260c0336fc4844aeb8fa76ba6200463304a87afe3003f1dfcc",
     "migration-run-2.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "migration-run.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "pg-resume-1791381462206.log": "4c3e45e5c5e93c4effa14d88e37da4af89a4f7faf44079170bb9f47ee2739c32",
+    "owner-readonly-check.txt": "ae57951424efe9dcbc418e3b57f8af78b0003ba2d889245f0f9376bbbbf6fa53",
+    "owner-readonly-summary.json": "a2d0a004e00e41ea6eee4e40991dbe5ce67a0013a8dc4e3df6b99e101c409321",
+    "pg-resume-1791381462206.log": "938b976ab51a1a51f7bb35fee936924418fca1ffc793b15807d6a06a5f294a15",
     "pg-resume.log": "d7f28d34cc1fa1ea14d8da88fe68c30bddcb1b9515a75e4879cc2e1930ded17a",
     "phase5-browser-attempt1.json": "ebe0c2efe8cd99558a00ad1fbcf938b6d7fc032f2bab73b6c6425a2ab0f6a1d2",
     "phase5-browser-attempt2.json": "59a92b9e865b89d1a2931d3da111814f3ad6ffccef4933c818a0300b8a6d6cb0",
@@ -191,6 +213,7 @@
     "playable-scan.json": "ed17e1280e9041bf4f6dd55f0774bb8d94bbb73c03adcfcce30c9a4a01d85e0d",
     "playable-source-path.txt": "a76ae2fd685cb3a0c4ba8a282081eb566faf94ea4546417ee58a82c0a3a3ce65",
     "prerequisite-notes.txt": "8a4be1387c25dfb5b427d2a06d416c193c04e2d90d53462e40468730b3f6c57b",
+    "public-allowlist.json": "256a69e991df8b67d83f54796f3449627d0d7aba1fbab26a9971875a9e999e83",
     "regression-attempt1-fmt.txt": "a435fc7a94dcadec71c6cb35c101c62f17c67b658bb5a736b7384d4eb61e3a52",
     "regression-attempt1-frontend.txt": "631ee05bb8081ec7f9ea0cf3944a4617cec486ed236af8de07f0ce0bcd5dce35",
     "regression-attempt1-integration.jsonl": "c8775656cca91d2a26e122bf0371aca78d300a07c5e3f723bcbf7238d739bcde",

@@ -33,7 +33,8 @@ window.resonancePlaylistDestination = async (
   previous.type = more.type = "button";
   previous.hidden = more.hidden = true;
   paging.append(previous, more);
-  const add = node("button", "Add track", "primary");
+  const confirmLabel = options.confirmLabel || "Add track";
+  const add = node("button", confirmLabel, "primary");
   add.type = "button";
   add.disabled = true;
   const create = node("button", "Create a playlist");
@@ -81,7 +82,7 @@ window.resonancePlaylistDestination = async (
       more.hidden = !next;
       create.hidden = !!eligible.length;
       feedback.textContent = eligible.length
-        ? "Choose a playlist, then Add track."
+        ? `Choose a playlist, then ${confirmLabel}.`
         : query
           ? "No matching playlists. Try another name."
           : "No playlists yet. Create a sequence for this song.";
@@ -135,14 +136,18 @@ window.resonancePlaylistDestination = async (
       if (current()) {
         close();
         document.querySelector("#status").textContent =
-          `Added to ${playlist.name}.`;
+          `${options.successVerb || "Added"} to ${playlist.name}.`;
       }
     } catch (error) {
       if (current())
         feedback.textContent =
           error.code === "stale_version"
-            ? "This playlist changed elsewhere. Try Add track again."
-            : "The song was not added. Check the server and try Add track again.";
+            ? `This playlist changed elsewhere. Try ${confirmLabel} again.`
+            : error.code === "limit_exceeded"
+              ? "This playlist is full. Choose another playlist. No songs were added or moved."
+              : operation
+                ? `The selection could not be saved. Check the server and try ${confirmLabel} again.`
+                : "The song was not added. Check the server and try Add track again.";
     } finally {
       add.disabled = !select.value;
       add.removeAttribute("aria-busy");
